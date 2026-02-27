@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SchedulerClassCS
 =======
 # University Timetabling System
