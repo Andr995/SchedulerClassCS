@@ -1,0 +1,8 @@
+{
+  "assignments": [],
+  "status": "no_events",
+  "message": "Nessun evento da schedulare.",
+  "solveTimeSeconds": 0.0,
+  "solverBackend": "or-tools CP-SAT",
+  "timestamp": "2026-02-27 15:51:52"
+}
