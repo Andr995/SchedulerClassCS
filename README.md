@@ -1,5 +1,5 @@
 # SchedulerClassCS
-=======
+
 # University Timetabling System
 
 Applicazione web per la generazione automatica dell'orario delle lezioni universitarie con ottimizzazione vincolata.
@@ -79,4 +79,3 @@ Il server si avvia su **http://127.0.0.1:5000**.
 - **Backend**: Python, Flask
 - **Solver**: Google OR-Tools (CP-SAT) con fallback greedy
 - **Frontend**: HTML/CSS/JS vanilla (single-page, API-driven)
->>>>>>> 68aabe3 (first commit)
