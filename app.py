@@ -141,6 +141,21 @@ def generate_schedule():
     # Parametri opzionali dal body
     body = request.get_json(silent=True) or {}
     time_limit = body.get('timeLimitSeconds', 30)
+    semester = body.get('semester', None)  # 1, 2 o None (tutti)
+
+    # Filtra corsi per semestre se specificato
+    if semester in (1, 2):
+        filtered_course_ids = set()
+        db['courses'] = [c for c in db.get('courses', []) if c.get('semester') == semester]
+        filtered_course_ids = {c['id'] for c in db['courses']}
+        # Filtra anche le indisponibilità solo per i docenti coinvolti
+        active_teacher_ids = set()
+        for c in db['courses']:
+            active_teacher_ids.update(c.get('teacherIds', []))
+        db['unavailability'] = [
+            u for u in db.get('unavailability', [])
+            if u.get('teacherId') in active_teacher_ids
+        ]
 
     t0 = time.time()
     try:
@@ -155,6 +170,7 @@ def generate_schedule():
     result['solveTimeSeconds'] = elapsed
     result['solverBackend'] = 'or-tools CP-SAT' if scheduler.HAS_ORTOOLS else 'greedy heuristic'
     result['timestamp'] = time.strftime('%Y-%m-%d %H:%M:%S')
+    result['semester'] = semester  # None = tutti, 1 o 2
 
     save_schedule(result)
     return jsonify(result)

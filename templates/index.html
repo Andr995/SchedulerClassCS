@@ -89,6 +89,9 @@
     .tt-container{position:relative}
     .tt-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
     .tt-toolbar select{width:auto;min-width:180px}
+    .sem-btn{background:rgba(255,255,255,.08);color:var(--muted);border:1px solid var(--line);cursor:pointer;transition:all .2s;font-weight:600}
+    .sem-btn:hover{background:rgba(255,255,255,.14);color:#fff}
+    .sem-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     .tt-grid{display:grid;grid-template-columns:70px repeat(5,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(0,0,0,.15)}
     .tt-hdr{padding:10px 6px;text-align:center;font-weight:700;font-size:13px;background:rgba(255,255,255,.06);border-bottom:1px solid var(--line)}
     .tt-hour-label{padding:6px;font-size:11px;font-family:var(--mono);color:var(--muted);text-align:right;border-bottom:1px solid rgba(255,255,255,.06);border-right:1px solid var(--line);display:flex;align-items:flex-start;justify-content:flex-end}
@@ -116,7 +119,12 @@
       main .grid{grid-template-columns:1fr}
       .tt-grid{font-size:10px}
     }
+    /* PDF export button */
+    button.pdf{border-color:rgba(255,165,0,.55);background:rgba(255,165,0,.12);color:#ffa500}
+    button.pdf:hover{background:rgba(255,165,0,.22)}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -255,12 +263,25 @@ async function saveDbToServer() {
   render();
 }
 
+let selectedSemester = null; // null = auto (usa ultimo), 1, 2
+
+function updateSemesterButtons(){
+  const b1=document.getElementById('btnSem1');
+  const b2=document.getElementById('btnSem2');
+  if(b1){ b1.classList.toggle('active', selectedSemester===1); }
+  if(b2){ b2.classList.toggle('active', selectedSemester===2); }
+}
+
 async function generateSchedule() {
-  showLoading(true, 'Generazione orario in corso… (può richiedere fino a 30s)');
+  if(!selectedSemester){
+    alert('Seleziona il semestre (1° o 2°) prima di generare l\'orario.');
+    return;
+  }
+  showLoading(true, `Generazione orario ${selectedSemester}° semestre in corso…`);
   try {
-    lastSchedule = await apiPost('/api/schedule', { timeLimitSeconds: 30 });
+    lastSchedule = await apiPost('/api/schedule', { timeLimitSeconds: 30, semester: selectedSemester });
     scheduleDirty = false;
-    setStatus("orario generato ✓");
+    setStatus(`orario ${selectedSemester}° semestre generato ✓`);
   } catch(e) {
     lastSchedule = { assignments:[], status:'error', message: 'Errore di comunicazione con il server.' };
     console.error(e);
@@ -272,8 +293,108 @@ async function generateSchedule() {
 async function loadLastSchedule() {
   try {
     const r = await apiGet('/api/schedule');
-    if(r && r.status !== 'none') { lastSchedule = r; }
+    if(r && r.status !== 'none') {
+      lastSchedule = r;
+      if(r.semester) selectedSemester = r.semester;
+    }
   } catch(e) { /* ignore */ }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ESPORTA PDF
+// ═══════════════════════════════════════════════════════════════════════════
+async function exportTimetablePdf() {
+  const gridEl = document.getElementById("ttGridContainer");
+  if(!gridEl || !gridEl.querySelector(".tt-grid")) {
+    alert("Nessun orario da esportare."); return;
+  }
+
+  const btn = document.getElementById("btnExportPdf");
+  if(btn){ btn.disabled=true; btn.textContent="⏳ Generazione PDF…"; }
+
+  try {
+    // Carica jsPDF da fallback se non disponibile
+    if(!window.jspdf) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js';
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+    if(!window.jspdf) { throw new Error("Impossibile caricare la libreria jsPDF."); }
+
+    // Determina filtro attivo per il titolo
+    const fCurr = document.getElementById("ttFilterCurriculum")?.value || "";
+    const fTeach = document.getElementById("ttFilterTeacher")?.value || "";
+    const fRoom = document.getElementById("ttFilterRoom")?.value || "";
+    let subtitle = "Orario completo";
+    if(fCurr) { const c=db.curricula.find(x=>x.id===fCurr); subtitle="Curriculum: "+(c?.name||fCurr); }
+    if(fTeach){ const t=db.teachers.find(x=>x.id===fTeach); subtitle+=(subtitle!=="Orario completo"?" — ":"")+"Docente: "+(t?.name||fTeach); }
+    if(fRoom) { const r=db.rooms.find(x=>x.id===fRoom); subtitle+=(subtitle!=="Orario completo"?" — ":"")+"Aula: "+(r?.name||fRoom); }
+
+    const ttGrid = gridEl.querySelector(".tt-grid");
+
+    // Cattura la griglia come canvas
+    const canvas = await html2canvas(ttGrid, {
+      backgroundColor: "#0b1220",
+      scale: 2,
+      useCORS: true,
+      logging: false
+    });
+
+    const { jsPDF } = window.jspdf;
+    // Orientamento landscape per adattare la griglia
+    const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const margin = 10;
+
+    // Titolo
+    pdf.setFontSize(16);
+    pdf.setTextColor(30, 30, 30);
+    const semTitle = lastSchedule?.semester ? ` — ${lastSchedule.semester}° Semestre` : '';
+    pdf.text("Orario delle Lezioni — LM-18 Informatica" + semTitle, margin, margin + 6);
+    pdf.setFontSize(10);
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(subtitle, margin, margin + 13);
+    if(lastSchedule?.timestamp) {
+      pdf.text("Generato il: " + lastSchedule.timestamp, margin, margin + 18);
+    }
+
+    // Inserisci immagine della griglia
+    const imgData = canvas.toDataURL("image/png");
+    const topOffset = margin + 22;
+    const availW = pageW - margin * 2;
+    const availH = pageH - topOffset - margin;
+    const imgRatio = canvas.width / canvas.height;
+    let imgW = availW;
+    let imgH = imgW / imgRatio;
+    if(imgH > availH) { imgH = availH; imgW = imgH * imgRatio; }
+
+    pdf.addImage(imgData, "PNG", margin, topOffset, imgW, imgH);
+
+    // Statistiche in footer
+    const placed = lastSchedule.assignments?.filter(a=>a.day!=='N/A').length || 0;
+    const totalH = (lastSchedule.assignments||[]).reduce((s,a)=>s+(a.day!=='N/A'?a.duration:0),0);
+    pdf.setFontSize(8);
+    pdf.setTextColor(140, 140, 140);
+    pdf.text(
+      `Lezioni: ${placed} | Ore settimanali: ${totalH}h | Solver: ${lastSchedule.solverBackend||'N/A'} | Tempo: ${lastSchedule.solveTimeSeconds||0}s`,
+      margin, pageH - 4
+    );
+
+    // Download
+    const filename = "orario_lm18" + (fCurr?"_"+fCurr:"") + ".pdf";
+    pdf.save(filename);
+  } catch(e) {
+    console.error("Errore export PDF:", e);
+    alert("Errore nella generazione del PDF: " + e.message);
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent="📄 Esporta PDF"; }
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -451,17 +572,19 @@ function renderCurricula(){
 }
 
 function renderCourses(){
-  const t=mkTable(["ID","Nome","CdS","Curricula","Docenti","Stud.","Eventi","Azioni"]);
+  const t=mkTable(["ID","Nome","Sem.","CdS","Curricula","Docenti","Stud.","Eventi","Azioni"]);
   const tb=t.querySelector("tbody");
   for(const c of (db.courses||[]).filter(matchesSearch)){
     const p=db.programs.find(p=>p.id===c.programId);
     const curr=(c.curriculaIds||[]).map(id=>db.curricula.find(x=>x.id===id)?.name||id);
     const teach=(c.teacherIds||[]).map(id=>db.teachers.find(x=>x.id===id)?.name||id);
     const events=(c.weeklyEvents||[]).map(e=>`${e.durationHours}h`).join(", ");
+    const semLabel = c.semester === 1 ? '1°' : c.semester === 2 ? '2°' : '—';
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td><div class="mini">${c.id}</div></td>
       <td>${escapeHtml(c.name||"")}</td>
+      <td><span class="tag">${semLabel}</span></td>
       <td>${escapeHtml(p?.name||c.programId||"")}</td>
       <td>${curr.map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join("")||`<span class="tag">—</span>`}</td>
       <td>${teach.map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join("")||`<span class="tag">—</span>`}</td>
@@ -581,11 +704,18 @@ function renderTimetableSection(){
   div.className="tt-container";
 
   // Toolbar: filtri + genera
+  const hasSchedule = lastSchedule && lastSchedule.assignments?.length > 0 && lastSchedule.status !== 'none' && lastSchedule.status !== 'error';
+  const curSem = lastSchedule?.semester || null;
   let filterHtml=`
     <div class="tt-toolbar">
+      <div class="semester-toggle" style="display:flex;gap:0;margin-right:12px">
+        <button id="btnSem1" class="${curSem===1?'active':''} sem-btn" style="border-radius:6px 0 0 6px;padding:10px 14px;font-size:13px">1° Semestre</button>
+        <button id="btnSem2" class="${curSem===2?'active':''} sem-btn" style="border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px">2° Semestre</button>
+      </div>
       <button class="success" id="btnGenerate" style="font-size:14px;padding:10px 20px">
         ⚡ Genera Orario
       </button>
+      ${hasSchedule ? '<button class="pdf" id="btnExportPdf" style="font-size:14px;padding:10px 20px">📄 Esporta PDF</button>' : ''}
       <select id="ttFilterCurriculum"><option value="">Tutti i curricula</option></select>
       <select id="ttFilterTeacher"><option value="">Tutti i docenti</option></select>
       <select id="ttFilterRoom"><option value="">Tutte le aule</option></select>
@@ -602,8 +732,9 @@ function renderTimetableSection(){
     statusHtml=`<div class="warn"><strong>Soluzione non trovata.</strong> ${escapeHtml(lastSchedule.message||'Controlla i vincoli.')}</div>`;
   } else {
     const s=lastSchedule;
+    const semInfo = s.semester ? ` (${s.semester}° semestre)` : ' (tutti)';
     statusHtml=`<div class="success-box">
-      <strong>${s.status==='optimal'?'✓ Ottimale':'~ Ammissibile'}</strong> —
+      <strong>${s.status==='optimal'?'✓ Ottimale':'~ Ammissibile'}</strong>${semInfo} —
       ${s.assignments?.length||0} lezioni piazzate •
       Solver: ${escapeHtml(s.solverBackend||'N/A')} •
       Tempo: ${s.solveTimeSeconds||0}s •
@@ -630,6 +761,12 @@ function renderTimetableSection(){
     }
 
     document.getElementById("btnGenerate").onclick=generateSchedule;
+    const btnPdf=document.getElementById("btnExportPdf");
+    if(btnPdf) btnPdf.onclick=exportTimetablePdf;
+    // Semester toggle
+    document.getElementById("btnSem1").onclick=()=>{ selectedSemester=(selectedSemester===1?null:1); updateSemesterButtons(); };
+    document.getElementById("btnSem2").onclick=()=>{ selectedSemester=(selectedSemester===2?null:2); updateSemesterButtons(); };
+    updateSemesterButtons();
     fCurr.onchange=fTeach.onchange=fRoom.onchange=()=>renderTimetableGrid();
 
     renderTimetableGrid();
@@ -848,7 +985,7 @@ function openModal(section,mode,id){
     const existing=mode==="edit"?db.courses.find(x=>x.id===id):{
       id:uid("K"),name:"",programId:db.programs[0]?.id||"",
       curriculaIds:[],teacherIds:[],expectedStudents:30,roomType:"lecture",
-      patternPref:"",weeklyEvents:[{id:uid("E"),durationHours:2},{id:uid("E"),durationHours:2}]
+      patternPref:"",semester:1,weeklyEvents:[{id:uid("E"),durationHours:2},{id:uid("E"),durationHours:2}]
     };
     body.innerHTML=`
       <div class="row">
@@ -861,6 +998,12 @@ function openModal(section,mode,id){
         </div>
         <div><label class="muted">Tipo aula</label>
           <select id="f_roomType">${["lecture","lab","seminar"].map(t=>`<option ${existing.roomType===t?"selected":""}>${t}</option>`).join("")}</select>
+        </div>
+        <div><label class="muted">Semestre</label>
+          <select id="f_semester">
+            <option value="1" ${existing.semester===1?"selected":""}>1° Semestre</option>
+            <option value="2" ${existing.semester===2?"selected":""}>2° Semestre</option>
+          </select>
         </div>
       </div>
       <div class="row" style="margin-top:10px">
@@ -962,6 +1105,7 @@ function saveModal(){
       name:document.getElementById("f_name").value.trim(),
       programId:document.getElementById("f_programId").value,
       roomType:document.getElementById("f_roomType").value,
+      semester:Number(document.getElementById("f_semester").value),
       curriculaIds:readMultiSelect("f_curricula"),
       teacherIds:readMultiSelect("f_teachers"),
       expectedStudents:Number(document.getElementById("f_expectedStudents").value),
