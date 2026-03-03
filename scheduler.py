@@ -109,6 +109,46 @@ def _valid_starts(duration, ds, de, ls, le):
     return starts
 
 
+def _parse_day_pattern(pattern):
+    """Converte pattern come 'Mon-Wed' in tuple ordinata di indici giorno."""
+    if not isinstance(pattern, str):
+        return None
+    parts = [p.strip() for p in pattern.split('-') if p.strip()]
+    if not parts:
+        return None
+    try:
+        day_idx = [DAY_INDEX[p] for p in parts]
+    except KeyError:
+        return None
+    if len(set(day_idx)) != len(day_idx):
+        return None
+    return tuple(sorted(day_idx))
+
+
+def _course_allowed_patterns(course, preferred_patterns):
+    """Restituisce i pattern ammessi per un corso (tuple di day index ordinati)."""
+    weekly_events = course.get('weeklyEvents', [])
+    n_events = len(weekly_events)
+    if n_events < 2:
+        return []
+
+    raw_patterns = []
+    explicit = (course.get('patternPref') or '').strip()
+    if explicit:
+        raw_patterns = [explicit]
+    elif n_events == 2:
+        raw_patterns = preferred_patterns.get('twoEvents', [])
+    elif n_events == 3:
+        raw_patterns = preferred_patterns.get('threeEvents', [])
+
+    out = []
+    for p in raw_patterns:
+        parsed = _parse_day_pattern(p)
+        if parsed and len(parsed) == n_events and parsed not in out:
+            out.append(parsed)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Colori per i corsi (usati anche lato client, ma calcolati qui per coerenza)
 # ---------------------------------------------------------------------------
@@ -137,6 +177,7 @@ def _solve_cpsat(data, time_limit_s=30):
     events = _collect_events(data)
     rooms = data.get('rooms', [])
     n_rooms = len(rooms)
+    courses_by_id = {c['id']: c for c in data.get('courses', [])}
 
     if not events:
         return {'assignments': [], 'status': 'no_events',
@@ -275,6 +316,9 @@ def _solve_cpsat(data, time_limit_s=30):
     early_w = weights.get('earlyStartPenalty', 2)
     late_w = weights.get('lateStartPenalty', 3)
     consec_w = weights.get('teacherConsecutiveOver3PerHour', 30)
+    daily_w = weights.get('teacherDailyOver5PerHour', 20)
+    pattern_w = weights.get('patternViolation', 1000)
+    preferred_patterns = data.get('softPolicy', {}).get('preferredPatterns', {})
 
     obj_parts = []
 
@@ -367,6 +411,79 @@ def _solve_cpsat(data, time_limit_s=30):
                 model.Add(excess == 0).OnlyEnforceIf([sd, over3.Not()])
                 obj_parts.append(excess * consec_w)
 
+    # e) Penalità ore giornaliere docente oltre 5
+    for t, evts in by_teacher.items():
+        for d in range(len(DAYS)):
+            on_day_terms = []
+            for i in evts:
+                on_day = model.NewBoolVar(f'tday_{t}_{i}_{d}')
+                model.Add(day_v[i] == d).OnlyEnforceIf(on_day)
+                model.Add(day_v[i] != d).OnlyEnforceIf(on_day.Not())
+                on_day_terms.append(on_day * events[i]['duration'])
+
+            day_hours = model.NewIntVar(0, de - ds, f'thours_{t}_{d}')
+            model.Add(day_hours == sum(on_day_terms))
+
+            excess_day = model.NewIntVar(0, de - ds, f'tover_{t}_{d}')
+            model.Add(excess_day >= day_hours - 5)
+            obj_parts.append(excess_day * daily_w)
+
+    # f) Penalità violazione pattern preferito distribuzione settimanale
+    for cid, evts in by_course.items():
+        n_evts = len(evts)
+        if n_evts not in (2, 3):
+            continue
+
+        course = courses_by_id.get(cid, {})
+        allowed = _course_allowed_patterns(course, preferred_patterns)
+        if not allowed:
+            continue
+
+        min_day = model.NewIntVar(0, len(DAYS) - 1, f'pmin_{cid}')
+        max_day = model.NewIntVar(0, len(DAYS) - 1, f'pmax_{cid}')
+        model.AddMinEquality(min_day, [day_v[i] for i in evts])
+        model.AddMaxEquality(max_day, [day_v[i] for i in evts])
+
+        sum_day = None
+        if n_evts == 3:
+            sum_day = model.NewIntVar(0, 3 * (len(DAYS) - 1), f'psum_{cid}')
+            model.Add(sum_day == sum(day_v[i] for i in evts))
+
+        match_bools = []
+        for p in allowed:
+            key = '_'.join(str(x) for x in p)
+            eq_min = model.NewBoolVar(f'peqmin_{cid}_{key}')
+            eq_max = model.NewBoolVar(f'peqmax_{cid}_{key}')
+            model.Add(min_day == p[0]).OnlyEnforceIf(eq_min)
+            model.Add(min_day != p[0]).OnlyEnforceIf(eq_min.Not())
+            model.Add(max_day == p[-1]).OnlyEnforceIf(eq_max)
+            model.Add(max_day != p[-1]).OnlyEnforceIf(eq_max.Not())
+
+            if n_evts == 2:
+                match = model.NewBoolVar(f'pmatch_{cid}_{key}')
+                model.Add(match <= eq_min)
+                model.Add(match <= eq_max)
+                model.Add(match >= eq_min + eq_max - 1)
+                match_bools.append(match)
+            else:
+                eq_sum = model.NewBoolVar(f'peqsum_{cid}_{key}')
+                model.Add(sum_day == sum(p)).OnlyEnforceIf(eq_sum)
+                model.Add(sum_day != sum(p)).OnlyEnforceIf(eq_sum.Not())
+
+                match = model.NewBoolVar(f'pmatch_{cid}_{key}')
+                model.Add(match <= eq_min)
+                model.Add(match <= eq_max)
+                model.Add(match <= eq_sum)
+                model.Add(match >= eq_min + eq_max + eq_sum - 2)
+                match_bools.append(match)
+
+        if match_bools:
+            any_match = model.NewBoolVar(f'pany_{cid}')
+            model.AddMaxEquality(any_match, match_bools)
+            violation = model.NewBoolVar(f'pviol_{cid}')
+            model.Add(violation + any_match == 1)
+            obj_parts.append(violation * pattern_w)
+
     # Funzione obiettivo
     if obj_parts:
         model.Minimize(sum(obj_parts))
@@ -443,6 +560,19 @@ def _solve_greedy(data):
     events = _collect_events(data)
     rooms = data.get('rooms', [])
     teachers_by_id = {t['id']: t for t in data.get('teachers', [])}
+    courses_by_id = {c['id']: c for c in data.get('courses', [])}
+
+    weights = data.get('softPolicy', {}).get('weights', {})
+    gap_w = weights.get('curriculumGapPerHour', 10)
+    early_w = weights.get('earlyStartPenalty', 2)
+    late_w = weights.get('lateStartPenalty', 3)
+    daily_w = weights.get('teacherDailyOver5PerHour', 20)
+    pattern_w = weights.get('patternViolation', 1000)
+    preferred_patterns = data.get('softPolicy', {}).get('preferredPatterns', {})
+    allowed_patterns_by_course = {
+        cid: _course_allowed_patterns(course, preferred_patterns)
+        for cid, course in courses_by_id.items()
+    }
 
     if not events:
         return {'assignments': [], 'status': 'no_events',
@@ -517,21 +647,37 @@ def _solve_greedy(data):
                         # Non contare pausa pranzo come buco
                         if all_hours[k - 1] < ls and all_hours[k] >= le:
                             gap -= (le - ls)
-                        sc += max(0, gap - 1) * 10
+                        sc += max(0, gap - 1) * gap_w
 
         # Preferenze orarie
         if start == ds:
-            sc += 2
+            sc += early_w
             for tid in event['teacherIds']:
                 t = teachers_by_id.get(tid, {})
                 if t.get('preferences', {}).get('avoidEarly'):
-                    sc += 10
+                    sc += early_w * 5
         if start >= 17:
-            sc += 3
+            sc += late_w
             for tid in event['teacherIds']:
                 t = teachers_by_id.get(tid, {})
                 if t.get('preferences', {}).get('avoidLate'):
-                    sc += 15
+                    sc += late_w * 5
+
+        # Penalità ore giornaliere oltre soglia per docente
+        for tid in event['teacherIds']:
+            current_day_hours = sum(1 for (d, _) in teacher_slots[tid] if d == day_idx)
+            projected = current_day_hours + dur
+            if projected > 5:
+                sc += (projected - 5) * daily_w
+
+        # Penalità violazione pattern preferito quando la distribuzione è completa
+        allowed = allowed_patterns_by_course.get(event['courseId'], [])
+        expected_events = len(courses_by_id.get(event['courseId'], {}).get('weeklyEvents', []))
+        if allowed and expected_events in (2, 3):
+            projected_days = set(course_days[event['courseId']]) | {day_idx}
+            if len(projected_days) == expected_events:
+                if tuple(sorted(projected_days)) not in allowed:
+                    sc += pattern_w
 
         # Preferisci lezioni la mattina (9-12) o primo pomeriggio (14-16)
         if 9 <= start <= 11:

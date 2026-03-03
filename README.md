@@ -72,6 +72,8 @@ Il server si avvia su **http://127.0.0.1:5000**.
 - Minimizzazione buchi tra lezioni dello stesso curriculum
 - Penalità lezioni alle 8:00 o dopo le 17:00
 - Penalità ore consecutive eccessive per docente
+- Penalità ore giornaliere oltre soglia per docente
+- Penalità deviazione dai pattern di distribuzione settimanale preferiti
 - Rispetto preferenze orarie docenti
 
 ## Tecnologie

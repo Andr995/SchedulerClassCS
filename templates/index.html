@@ -301,99 +301,73 @@ async function loadLastSchedule() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ESPORTA PDF
+// ESPORTA PDF (via LaTeX server-side)
 // ═══════════════════════════════════════════════════════════════════════════
 async function exportTimetablePdf() {
-  const gridEl = document.getElementById("ttGridContainer");
-  if(!gridEl || !gridEl.querySelector(".tt-grid")) {
+  if(!lastSchedule || !lastSchedule.assignments?.length){
     alert("Nessun orario da esportare."); return;
   }
 
   const btn = document.getElementById("btnExportPdf");
-  if(btn){ btn.disabled=true; btn.textContent="⏳ Generazione PDF…"; }
+  if(btn){ btn.disabled=true; btn.textContent="⏳ Compilazione LaTeX…"; }
 
   try {
-    // Carica jsPDF da fallback se non disponibile
-    if(!window.jspdf) {
-      await new Promise((resolve, reject) => {
-        const s = document.createElement('script');
-        s.src = 'https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js';
-        s.onload = resolve;
-        s.onerror = reject;
-        document.head.appendChild(s);
-      });
-    }
-    if(!window.jspdf) { throw new Error("Impossibile caricare la libreria jsPDF."); }
-
-    // Determina filtro attivo per il titolo
+    const params = new URLSearchParams();
     const fCurr = document.getElementById("ttFilterCurriculum")?.value || "";
     const fTeach = document.getElementById("ttFilterTeacher")?.value || "";
     const fRoom = document.getElementById("ttFilterRoom")?.value || "";
-    let subtitle = "Orario completo";
-    if(fCurr) { const c=db.curricula.find(x=>x.id===fCurr); subtitle="Curriculum: "+(c?.name||fCurr); }
-    if(fTeach){ const t=db.teachers.find(x=>x.id===fTeach); subtitle+=(subtitle!=="Orario completo"?" — ":"")+"Docente: "+(t?.name||fTeach); }
-    if(fRoom) { const r=db.rooms.find(x=>x.id===fRoom); subtitle+=(subtitle!=="Orario completo"?" — ":"")+"Aula: "+(r?.name||fRoom); }
+    if(fCurr) params.set("curriculum", fCurr);
+    if(fTeach) params.set("teacher", fTeach);
+    if(fRoom) params.set("room", fRoom);
 
-    const ttGrid = gridEl.querySelector(".tt-grid");
-
-    // Cattura la griglia come canvas
-    const canvas = await html2canvas(ttGrid, {
-      backgroundColor: "#0b1220",
-      scale: 2,
-      useCORS: true,
-      logging: false
-    });
-
-    const { jsPDF } = window.jspdf;
-    // Orientamento landscape per adattare la griglia
-    const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-
-    const pageW = pdf.internal.pageSize.getWidth();
-    const pageH = pdf.internal.pageSize.getHeight();
-    const margin = 10;
-
-    // Titolo
-    pdf.setFontSize(16);
-    pdf.setTextColor(30, 30, 30);
-    const semTitle = lastSchedule?.semester ? ` — ${lastSchedule.semester}° Semestre` : '';
-    pdf.text("Orario delle Lezioni — LM-18 Informatica" + semTitle, margin, margin + 6);
-    pdf.setFontSize(10);
-    pdf.setTextColor(100, 100, 100);
-    pdf.text(subtitle, margin, margin + 13);
-    if(lastSchedule?.timestamp) {
-      pdf.text("Generato il: " + lastSchedule.timestamp, margin, margin + 18);
+    const url = "/api/export/pdf" + (params.toString() ? "?" + params.toString() : "");
+    const resp = await fetch(url);
+    if(!resp.ok){
+      const err = await resp.json().catch(()=>({error:"Errore sconosciuto"}));
+      throw new Error(err.error || `HTTP ${resp.status}`);
     }
 
-    // Inserisci immagine della griglia
-    const imgData = canvas.toDataURL("image/png");
-    const topOffset = margin + 22;
-    const availW = pageW - margin * 2;
-    const availH = pageH - topOffset - margin;
-    const imgRatio = canvas.width / canvas.height;
-    let imgW = availW;
-    let imgH = imgW / imgRatio;
-    if(imgH > availH) { imgH = availH; imgW = imgH * imgRatio; }
-
-    pdf.addImage(imgData, "PNG", margin, topOffset, imgW, imgH);
-
-    // Statistiche in footer
-    const placed = lastSchedule.assignments?.filter(a=>a.day!=='N/A').length || 0;
-    const totalH = (lastSchedule.assignments||[]).reduce((s,a)=>s+(a.day!=='N/A'?a.duration:0),0);
-    pdf.setFontSize(8);
-    pdf.setTextColor(140, 140, 140);
-    pdf.text(
-      `Lezioni: ${placed} | Ore settimanali: ${totalH}h | Solver: ${lastSchedule.solverBackend||'N/A'} | Tempo: ${lastSchedule.solveTimeSeconds||0}s`,
-      margin, pageH - 4
-    );
-
-    // Download
-    const filename = "orario_lm18" + (fCurr?"_"+fCurr:"") + ".pdf";
-    pdf.save(filename);
+    const blob = await resp.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "orario_lm18.pdf";
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(a.href);
   } catch(e) {
     console.error("Errore export PDF:", e);
-    alert("Errore nella generazione del PDF: " + e.message);
+    alert("Errore nella generazione del PDF LaTeX: " + e.message);
   } finally {
     if(btn){ btn.disabled=false; btn.textContent="📄 Esporta PDF"; }
+  }
+}
+
+async function exportTimetableTex() {
+  if(!lastSchedule || !lastSchedule.assignments?.length){
+    alert("Nessun orario da esportare."); return;
+  }
+  const btn = document.getElementById("btnExportTex");
+  if(btn){ btn.disabled=true; btn.textContent="⏳…"; }
+  try {
+    const params = new URLSearchParams();
+    const fCurr = document.getElementById("ttFilterCurriculum")?.value || "";
+    const fTeach = document.getElementById("ttFilterTeacher")?.value || "";
+    const fRoom = document.getElementById("ttFilterRoom")?.value || "";
+    if(fCurr) params.set("curriculum", fCurr);
+    if(fTeach) params.set("teacher", fTeach);
+    if(fRoom) params.set("room", fRoom);
+    const url = "/api/export/tex" + (params.toString() ? "?" + params.toString() : "");
+    const resp = await fetch(url);
+    if(!resp.ok){ throw new Error("Errore server"); }
+    const blob = await resp.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "orario.tex";
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(a.href);
+  } catch(e) {
+    alert("Errore export .tex: " + e.message);
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent="📝 .tex"; }
   }
 }
 
@@ -716,6 +690,7 @@ function renderTimetableSection(){
         ⚡ Genera Orario
       </button>
       ${hasSchedule ? '<button class="pdf" id="btnExportPdf" style="font-size:14px;padding:10px 20px">📄 Esporta PDF</button>' : ''}
+      ${hasSchedule ? '<button class="pdf" id="btnExportTex" style="font-size:13px;padding:10px 14px;border-color:rgba(180,130,255,.55);background:rgba(180,130,255,.12);color:#b482ff">📝 .tex</button>' : ''}
       <select id="ttFilterCurriculum"><option value="">Tutti i curricula</option></select>
       <select id="ttFilterTeacher"><option value="">Tutti i docenti</option></select>
       <select id="ttFilterRoom"><option value="">Tutte le aule</option></select>
@@ -763,6 +738,8 @@ function renderTimetableSection(){
     document.getElementById("btnGenerate").onclick=generateSchedule;
     const btnPdf=document.getElementById("btnExportPdf");
     if(btnPdf) btnPdf.onclick=exportTimetablePdf;
+    const btnTex=document.getElementById("btnExportTex");
+    if(btnTex) btnTex.onclick=exportTimetableTex;
     // Semester toggle
     document.getElementById("btnSem1").onclick=()=>{ selectedSemester=(selectedSemester===1?null:1); updateSemesterButtons(); };
     document.getElementById("btnSem2").onclick=()=>{ selectedSemester=(selectedSemester===2?null:2); updateSemesterButtons(); };

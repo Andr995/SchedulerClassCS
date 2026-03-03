@@ -9,7 +9,8 @@ Endpoints:
   POST /api/db        → Salva il database (JSON body)
   POST /api/schedule  → Esegue il solver e restituisce l'orario generato
   GET  /api/schedule  → Restituisce l'ultimo orario generato (cache)
-  POST /api/export    → Esporta il DB in formato flat per il solver
+  GET  /api/export/flat → Esporta il DB in formato flat per il solver
+  GET  /api/export/pdf  → Genera PDF via LaTeX (timetable compilato)
 """
 
 import json
@@ -17,9 +18,10 @@ import os
 import time
 from pathlib import Path
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response, make_response
 
 import scheduler
+import latex_export
 
 # ---------------------------------------------------------------------------
 # Configurazione
@@ -223,6 +225,58 @@ def export_flat():
         'softPolicy': db.get('softPolicy'),
     }
     return jsonify(flat)
+
+
+@app.route('/api/export/pdf', methods=['GET'])
+def export_pdf():
+    """Genera l'orario in PDF compilato da LaTeX."""
+    schedule = load_schedule()
+    if not schedule or schedule.get('status') in ('none', None):
+        return jsonify({'error': 'Nessun orario generato. Genera prima l\'orario.'}), 400
+
+    db = load_db()
+
+    # Filtri opzionali via query string
+    filters = {
+        'curriculum': request.args.get('curriculum', ''),
+        'teacher': request.args.get('teacher', ''),
+        'room': request.args.get('room', ''),
+    }
+
+    try:
+        pdf_bytes = latex_export.export_pdf(schedule, db, filters)
+    except RuntimeError as e:
+        return jsonify({'error': str(e)}), 500
+
+    semester = schedule.get('semester', '')
+    fname = f'orario_lm18_sem{semester}.pdf' if semester else 'orario_lm18.pdf'
+
+    resp = make_response(pdf_bytes)
+    resp.headers['Content-Type'] = 'application/pdf'
+    resp.headers['Content-Disposition'] = f'attachment; filename="{fname}"'
+    return resp
+
+
+@app.route('/api/export/tex', methods=['GET'])
+def export_tex():
+    """Restituisce il sorgente LaTeX (utile per personalizzazione manuale)."""
+    schedule = load_schedule()
+    if not schedule or schedule.get('status') in ('none', None):
+        return jsonify({'error': 'Nessun orario generato.'}), 400
+
+    db = load_db()
+    filters = {
+        'curriculum': request.args.get('curriculum', ''),
+        'teacher': request.args.get('teacher', ''),
+        'room': request.args.get('room', ''),
+    }
+
+    tex = latex_export.generate_latex(schedule, db, filters)
+
+    resp = make_response(tex)
+    resp.headers['Content-Type'] = 'application/x-tex; charset=utf-8'
+    resp.headers['Content-Disposition'] = 'attachment; filename="orario.tex"'
+    return resp
 
 
 # ---------------------------------------------------------------------------
