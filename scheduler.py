@@ -25,6 +25,7 @@ Vincoli SOFT (ottimizzati):
 """
 
 import json
+import random
 from collections import defaultdict
 
 try:
@@ -46,21 +47,227 @@ FLAT_MUL = 100  # fattore moltiplicativo per tempo "flat" (giorno*100+ora)
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
-def solve(data, time_limit_s=30):
+def solve(data, time_limit_s=30, algorithm='auto'):
     """Genera l'orario ottimale.
 
     Args:
         data: dizionario con chiavi meta, rooms, teachers, programs,
               curricula, courses, unavailability, softPolicy.
         time_limit_s: tempo massimo in secondi per il solver.
+          algorithm: 'auto', 'cp-sat' oppure 'greedy'.
 
     Returns:
         dict con 'assignments' (lista di assegnazioni), 'status', 'objective'.
     """
+    raw_alg = (algorithm or 'auto').strip().lower()
+    aliases = {
+        'auto': 'auto',
+        'cp-sat': 'cp-sat',
+        'constraint-programming': 'cp-sat',
+        'constraint_programming': 'cp-sat',
+        'constraints': 'cp-sat',
+        'cp': 'cp-sat',
+        'greedy': 'greedy',
+        'genetic': 'genetic',
+        'genetic-algorithm': 'genetic',
+        'genetic_algorithm': 'genetic',
+        'tabu': 'tabu',
+        'tabu-search': 'tabu',
+        'tabu_search': 'tabu',
+        'linear': 'linear',
+        'linear-programming': 'linear',
+        'linear_programming': 'linear',
+        'lp': 'linear',
+        'mip': 'linear',
+    }
+    alg = aliases.get(raw_alg)
+
+    if alg is None:
+        return {
+            'assignments': [],
+            'status': 'error',
+            'objective': None,
+            'algorithm': 'unknown',
+            'algorithmLabel': 'Unknown',
+            'message': f"Algoritmo non supportato: {algorithm}",
+        }
+
+    if alg == 'greedy':
+        return _solve_greedy(data)
+
+    if alg == 'genetic':
+        return _solve_genetic(data, time_limit_s=time_limit_s)
+
+    if alg == 'tabu':
+        return _solve_tabu(data, time_limit_s=time_limit_s)
+
+    if alg == 'linear':
+        return _solve_linear(data, time_limit_s=time_limit_s)
+
+    if alg == 'cp-sat':
+        if not HAS_ORTOOLS:
+            return {
+                'assignments': [],
+                'status': 'error',
+                'objective': None,
+                'algorithm': 'CP-SAT',
+                'algorithmLabel': 'Google OR-Tools CP-SAT',
+                'message': 'CP-SAT richiesto ma OR-Tools non e disponibile. Installa ortools o usa greedy.',
+            }
+        return _solve_cpsat(data, time_limit_s)
+
+    # auto
     if HAS_ORTOOLS:
         return _solve_cpsat(data, time_limit_s)
-    else:
-        return _solve_greedy(data)
+    return _solve_greedy(data)
+
+
+def _hard_violations_count(result):
+    report = result.get('hardConstraintReport', {}) if isinstance(result, dict) else {}
+    checks = report.get('checks', []) if isinstance(report, dict) else []
+    return sum(int(c.get('violations', 0)) for c in checks)
+
+
+def _result_rank(result):
+    assignments = result.get('assignments', []) if isinstance(result, dict) else []
+    unplaced = sum(1 for a in assignments if a.get('day') == 'N/A' or a.get('error'))
+    hard_viol = _hard_violations_count(result)
+    obj = result.get('objective')
+    obj_val = obj if isinstance(obj, (int, float)) else 0
+    return (unplaced, hard_viol, obj_val)
+
+
+def _perturb_data_for_metaheuristic(data, seed):
+    """Copia/mescola i dati per creare candidati diversi in metaeuristiche."""
+    rnd = random.Random(seed)
+    d = json.loads(json.dumps(data))
+    rnd.shuffle(d['courses'])
+    rnd.shuffle(d['rooms'])
+    for course in d.get('courses', []):
+        if 'weeklyEvents' in course and isinstance(course['weeklyEvents'], list):
+            rnd.shuffle(course['weeklyEvents'])
+    return d
+
+
+def _solve_genetic(data, time_limit_s=30):
+    """Approccio genetic-style: multi-start evolutivo su base greedy."""
+    max_seconds = max(2, int(time_limit_s))
+    population = 6
+    generations = max(2, min(10, max_seconds // 2))
+
+    seeds = [101 + i for i in range(population)]
+    best = None
+    best_rank = (10**9, 10**9, 10**9)
+
+    for g in range(generations):
+        evaluated = []
+        for s in seeds:
+            cand_data = _perturb_data_for_metaheuristic(data, seed=s + g * 997)
+            cand = _solve_greedy(cand_data)
+            rank = _result_rank(cand)
+            evaluated.append((rank, s, cand))
+            if rank < best_rank:
+                best_rank = rank
+                best = cand
+
+        evaluated.sort(key=lambda x: x[0])
+        elites = [evaluated[0][1], evaluated[1][1]] if len(evaluated) > 1 else [evaluated[0][1]]
+
+        # Evoluzione semplice: mantieni elite e genera mutazioni dei seed migliori.
+        new_seeds = list(elites)
+        rnd = random.Random(7000 + g)
+        while len(new_seeds) < population:
+            parent = rnd.choice(elites)
+            child = parent + rnd.randint(-50, 50) + g * 13
+            new_seeds.append(child)
+        seeds = new_seeds
+
+    if best is None:
+        best = _solve_greedy(data)
+        best_rank = _result_rank(best)
+
+    best['algorithm'] = 'Genetic'
+    best['algorithmLabel'] = 'Genetic Algorithm (Metaheuristic)'
+    best['message'] = (
+        best.get('message', '') +
+        f' | Ricerca genetica completata: {generations} generazioni, popolazione {population}, rank={best_rank}.'
+    ).strip()
+    return best
+
+
+def _solve_tabu(data, time_limit_s=30):
+    """Tabu search light: esplora vicinato di perturbazioni evitando seed tabu."""
+    max_seconds = max(2, int(time_limit_s))
+    iterations = max(5, min(40, max_seconds * 2))
+    neighborhood = 5
+
+    best = _solve_greedy(data)
+    best_rank = _result_rank(best)
+    current_seed = 300
+    tabu_queue = []
+    tabu_set = set()
+    tabu_size = 12
+
+    for it in range(iterations):
+        local_best = None
+        local_rank = (10**9, 10**9, 10**9)
+        local_seed = None
+
+        for n in range(neighborhood):
+            seed = current_seed + it * 41 + n * 7
+            if seed in tabu_set:
+                continue
+            cand_data = _perturb_data_for_metaheuristic(data, seed=seed)
+            cand = _solve_greedy(cand_data)
+            rank = _result_rank(cand)
+            if rank < local_rank:
+                local_rank = rank
+                local_best = cand
+                local_seed = seed
+
+        if local_best is None:
+            continue
+
+        current_seed = local_seed
+        tabu_queue.append(local_seed)
+        tabu_set.add(local_seed)
+        if len(tabu_queue) > tabu_size:
+            old = tabu_queue.pop(0)
+            tabu_set.discard(old)
+
+        if local_rank < best_rank:
+            best = local_best
+            best_rank = local_rank
+
+    best['algorithm'] = 'Tabu'
+    best['algorithmLabel'] = 'Tabu Search (Metaheuristic)'
+    best['message'] = (
+        best.get('message', '') +
+        f' | Tabu search completata: {iterations} iterazioni, vicinato {neighborhood}, rank={best_rank}.'
+    ).strip()
+    return best
+
+
+def _solve_linear(data, time_limit_s=30):
+    """Programmazione lineare intera: usa CP-SAT come backend lineare intero."""
+    if HAS_ORTOOLS:
+        result = _solve_cpsat(data, time_limit_s=time_limit_s)
+        result['algorithm'] = 'Linear'
+        result['algorithmLabel'] = 'Linear Integer Programming (via OR-Tools CP-SAT)'
+        result['message'] = (
+            result.get('message', '') +
+            ' | Modello risolto come programma lineare intero con vincoli interi.'
+        ).strip()
+        return result
+
+    result = _solve_greedy(data)
+    result['algorithm'] = 'Linear'
+    result['algorithmLabel'] = 'Linear Programming Requested (fallback Greedy)'
+    result['message'] = (
+        result.get('message', '') +
+        ' | OR-Tools non disponibile: fallback su greedy.'
+    ).strip()
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -159,6 +366,170 @@ def _course_color(course_id, alpha=0.7):
         h = (h * 31 + ord(ch)) & 0xFFFFFFFF
     hue = h % 360
     return f"hsla({hue}, 65%, 55%, {alpha})"
+
+
+def _event_overlaps_lunch(start_hour, end_hour, lunch_start, lunch_end):
+    return start_hour < lunch_end and end_hour > lunch_start
+
+
+def _validate_hard_constraints(assignments, data):
+    """Valida i principali vincoli hard sul risultato prodotto."""
+    tm = data.get('meta', {}).get('timeModel', {})
+    ds = tm.get('dayStart', 8)
+    de = tm.get('dayEnd', 19)
+    ls = tm.get('lunchStart', 13)
+    le = tm.get('lunchEnd', 14)
+
+    rooms_by_id = {r['id']: r for r in data.get('rooms', [])}
+    courses_by_id = {c['id']: c for c in data.get('courses', [])}
+    unav_by_teacher = defaultdict(set)
+    for u in data.get('unavailability', []):
+        day = u.get('day', '')
+        for h in u.get('hours', []):
+            unav_by_teacher[u.get('teacherId', '')].add((day, h))
+
+    placed = [a for a in assignments if a.get('day') and a.get('day') != 'N/A']
+
+    teacher_slot_owner = {}
+    room_slot_owner = {}
+    curr_slot_owner = {}
+    by_course_days = defaultdict(set)
+
+    violations = {
+        'teacherOverlap': 0,
+        'roomOverlap': 0,
+        'curriculumOverlap': 0,
+        'roomCapacity': 0,
+        'roomType': 0,
+        'teacherUnavailability': 0,
+        'lunchBreak': 0,
+        'courseDifferentDays': 0,
+        'timeWindow': 0,
+    }
+
+    for a in placed:
+        day = a.get('day', '')
+        start = int(a.get('startHour', -1))
+        end = int(a.get('endHour', -1))
+        if start < ds or end > de or start >= end:
+            violations['timeWindow'] += 1
+        if _event_overlaps_lunch(start, end, ls, le):
+            violations['lunchBreak'] += 1
+
+        course = courses_by_id.get(a.get('courseId', ''), {})
+        room = rooms_by_id.get(a.get('roomId', ''), {})
+        expected = int(course.get('expectedStudents', 0))
+        room_cap = int(room.get('capacity', 0)) if room else 0
+        if room and room_cap < expected:
+            violations['roomCapacity'] += 1
+
+        course_room_type = course.get('roomType', 'lecture')
+        room_type = room.get('type', 'lecture') if room else ''
+        if room and course_room_type and room_type != course_room_type:
+            violations['roomType'] += 1
+
+        if a.get('courseId'):
+            by_course_days[a['courseId']].add(day)
+
+        curricula = a.get('curriculaIds') or course.get('curriculaIds', [])
+        teachers = a.get('teacherIds', [])
+
+        for h in range(start, end):
+            for tid in teachers:
+                key = (tid, day, h)
+                if key in teacher_slot_owner:
+                    violations['teacherOverlap'] += 1
+                else:
+                    teacher_slot_owner[key] = a.get('eventId', '')
+                if (day, h) in unav_by_teacher.get(tid, set()):
+                    violations['teacherUnavailability'] += 1
+
+            room_key = (a.get('roomId', ''), day, h)
+            if room_key in room_slot_owner:
+                violations['roomOverlap'] += 1
+            else:
+                room_slot_owner[room_key] = a.get('eventId', '')
+
+            for cid in curricula:
+                ckey = (cid, day, h)
+                if ckey in curr_slot_owner:
+                    violations['curriculumOverlap'] += 1
+                else:
+                    curr_slot_owner[ckey] = a.get('eventId', '')
+
+    for course in data.get('courses', []):
+        cid = course.get('id', '')
+        n_events = len(course.get('weeklyEvents', []))
+        if n_events > 1:
+            if len(by_course_days.get(cid, set())) != n_events:
+                violations['courseDifferentDays'] += 1
+
+    checks = [
+        {
+            'id': 'teacherOverlap',
+            'label': 'No sovrapposizioni docenti',
+            'respected': violations['teacherOverlap'] == 0,
+            'violations': violations['teacherOverlap'],
+        },
+        {
+            'id': 'roomOverlap',
+            'label': 'No sovrapposizioni aule',
+            'respected': violations['roomOverlap'] == 0,
+            'violations': violations['roomOverlap'],
+        },
+        {
+            'id': 'curriculumOverlap',
+            'label': 'No sovrapposizioni curricula',
+            'respected': violations['curriculumOverlap'] == 0,
+            'violations': violations['curriculumOverlap'],
+        },
+        {
+            'id': 'roomCapacity',
+            'label': 'Capienza aula sufficiente',
+            'respected': violations['roomCapacity'] == 0,
+            'violations': violations['roomCapacity'],
+        },
+        {
+            'id': 'roomType',
+            'label': 'Tipo aula coerente con corso',
+            'respected': violations['roomType'] == 0,
+            'violations': violations['roomType'],
+        },
+        {
+            'id': 'teacherUnavailability',
+            'label': 'Rispetto indisponibilita docenti',
+            'respected': violations['teacherUnavailability'] == 0,
+            'violations': violations['teacherUnavailability'],
+        },
+        {
+            'id': 'lunchBreak',
+            'label': 'Nessuna lezione in pausa pranzo',
+            'respected': violations['lunchBreak'] == 0,
+            'violations': violations['lunchBreak'],
+        },
+        {
+            'id': 'courseDifferentDays',
+            'label': 'Eventi stesso corso in giorni diversi',
+            'respected': violations['courseDifferentDays'] == 0,
+            'violations': violations['courseDifferentDays'],
+        },
+        {
+            'id': 'timeWindow',
+            'label': 'Lezioni nella finestra oraria',
+            'respected': violations['timeWindow'] == 0,
+            'violations': violations['timeWindow'],
+        },
+    ]
+
+    respected = sum(1 for c in checks if c['respected'])
+    return {
+        'checks': checks,
+        'respectedCount': respected,
+        'totalChecks': len(checks),
+        'allHardConstraintsRespected': respected == len(checks),
+        'placedEvents': len(placed),
+        'totalEvents': len(assignments),
+    }
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -521,14 +892,21 @@ def _solve_cpsat(data, time_limit_s=30):
                 'roomName': rooms[ri].get('name', '') if ri < len(rooms) else 'N/A',
                 'teacherIds': e['teacherIds'],
                 'teacherNames': teacher_names,
+                'curriculaIds': e['curriculaIds'],
+                'programId': e['programId'],
                 'color': _course_color(e['courseId']),
             })
+
+        hard_report = _validate_hard_constraints(assignments, data)
 
         return {
             'assignments': assignments,
             'status': 'optimal' if status == cp_model.OPTIMAL else 'feasible',
             'objective': solver.ObjectiveValue() if obj_parts else 0,
             'wallTime': round(solver.WallTime(), 2),
+            'algorithm': 'CP-SAT',
+            'algorithmLabel': 'Google OR-Tools CP-SAT',
+            'hardConstraintReport': hard_report,
             'message': ('Soluzione ottimale trovata.' if status == cp_model.OPTIMAL
                         else 'Soluzione ammissibile trovata (non garantita ottimale).'),
         }
@@ -537,6 +915,16 @@ def _solve_cpsat(data, time_limit_s=30):
             'assignments': [],
             'status': 'infeasible',
             'objective': None,
+            'algorithm': 'CP-SAT',
+            'algorithmLabel': 'Google OR-Tools CP-SAT',
+            'hardConstraintReport': {
+                'checks': [],
+                'respectedCount': 0,
+                'totalChecks': 0,
+                'allHardConstraintsRespected': False,
+                'placedEvents': 0,
+                'totalEvents': 0,
+            },
             'message': ('Impossibile trovare una soluzione. Controlla i vincoli: '
                         'troppi corsi per le aule disponibili, indisponibilità '
                         'troppo restrittive, o eventi dello stesso corso che '
@@ -744,6 +1132,8 @@ def _solve_greedy(data):
                 'roomName': rooms[r].get('name', ''),
                 'teacherIds': event['teacherIds'],
                 'teacherNames': teacher_names,
+                'curriculaIds': event['curriculaIds'],
+                'programId': event['programId'],
                 'color': _course_color(event['courseId']),
             })
         else:
@@ -760,16 +1150,22 @@ def _solve_greedy(data):
                 'roomName': 'N/A',
                 'teacherIds': event['teacherIds'],
                 'teacherNames': [],
+                'curriculaIds': event['curriculaIds'],
+                'programId': event['programId'],
                 'color': '#888',
                 'error': 'Impossibile piazzare questo evento con i vincoli attuali.',
             })
 
     unplaced = sum(1 for a in assignments if a.get('error'))
+    hard_report = _validate_hard_constraints(assignments, data)
     return {
         'assignments': assignments,
         'status': 'feasible' if unplaced == 0 else 'partial',
         'objective': None,
         'unplaced': unplaced,
+        'algorithm': 'Greedy',
+        'algorithmLabel': 'Greedy Heuristic Fallback',
+        'hardConstraintReport': hard_report,
         'message': (f'Scheduling completato. {len(assignments) - unplaced}/{len(assignments)} '
                     f'eventi piazzati.' +
                     (f' {unplaced} eventi non piazzabili.' if unplaced else '')),
