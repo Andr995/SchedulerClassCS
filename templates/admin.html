@@ -230,6 +230,72 @@ let currentSearch = "";
 let modalState = null;
 let scheduleDirty = true;
 
+function ensureDbShape(input){
+  const out = (input && typeof input==='object') ? input : {};
+
+  if(!out.meta || typeof out.meta!=='object') out.meta={};
+  if(!out.meta.timeModel || typeof out.meta.timeModel!=='object'){
+    out.meta.timeModel={dayStart:8,dayEnd:19,lunchStart:13,lunchEnd:14,granularityHours:1};
+  } else {
+    out.meta.timeModel.dayStart = Number(out.meta.timeModel.dayStart ?? 8);
+    out.meta.timeModel.dayEnd = Number(out.meta.timeModel.dayEnd ?? 19);
+    out.meta.timeModel.lunchStart = Number(out.meta.timeModel.lunchStart ?? 13);
+    out.meta.timeModel.lunchEnd = Number(out.meta.timeModel.lunchEnd ?? 14);
+    out.meta.timeModel.granularityHours = Number(out.meta.timeModel.granularityHours ?? 1);
+  }
+
+  if(!Array.isArray(out.rooms)) out.rooms=[];
+  if(!Array.isArray(out.teachers)) out.teachers=[];
+  if(!Array.isArray(out.programs)) out.programs=[];
+  if(!Array.isArray(out.curricula)) out.curricula=[];
+  if(!Array.isArray(out.courses)) out.courses=[];
+  if(!Array.isArray(out.unavailability)) out.unavailability=[];
+
+  if(!out.softPolicy || typeof out.softPolicy!=='object') out.softPolicy={};
+  if(!out.softPolicy.weights || typeof out.softPolicy.weights!=='object'){
+    out.softPolicy.weights={
+      patternViolation:1000,
+      curriculumGapPerHour:10,
+      teacherConsecutiveOver3PerHour:30,
+      teacherDailyOver5PerHour:20,
+      lateStartPenalty:3,
+      earlyStartPenalty:2,
+      lunchOverlapPenalty:200,
+    };
+  }
+  if(!out.softPolicy.preferredPatterns || typeof out.softPolicy.preferredPatterns!=='object'){
+    out.softPolicy.preferredPatterns={twoEvents:["Mon-Wed","Wed-Fri","Tue-Thu"],threeEvents:["Mon-Wed-Fri"]};
+  }
+
+  return out;
+}
+
+function enforceProgramCurriculaCoherence(){
+  db = ensureDbShape(db);
+  const curriculaById = new Map((db.curricula||[]).map(c=>[c.id, c]));
+  for(const course of (db.courses||[])){
+    const pid = course.programId || '';
+    const raw = Array.isArray(course.curriculaIds) ? course.curriculaIds : [];
+    course.curriculaIds = raw.filter(cid=>{
+      const cur = curriculaById.get(cid);
+      return !!(cur && (!pid || cur.programId===pid));
+    });
+  }
+}
+
+function getCurriculaForProgram(programId){
+  return (db.curricula||[]).filter(c=>!programId || c.programId===programId);
+}
+
+function renderCurriculaOptionsForProgram(selectEl, programId, selectedIds=[]){
+  if(!selectEl) return;
+  const selected = new Set(selectedIds || []);
+  const allowed = getCurriculaForProgram(programId);
+  selectEl.innerHTML = allowed.map(c=>
+    `<option value="${escapeAttr(c.id)}" ${selected.has(c.id)?'selected':''}>${escapeHtml(c.name)} (${escapeHtml(c.yearCohort||'')})</option>`
+  ).join('');
+}
+
 const SECTIONS = [
   { key:"rooms", label:"🏫 Aule", hint:"Aule con capienza e tipologia" },
   { key:"teachers", label:"👨‍🏫 Docenti", hint:"Docenti e preferenze orarie" },
@@ -260,11 +326,13 @@ async function apiPost(url, body) {
 }
 
 async function loadDbFromServer() {
-  db = await apiGet('/api/db');
+  db = ensureDbShape(await apiGet('/api/db'));
+  enforceProgramCurriculaCoherence();
   render();
 }
 
 async function saveDbToServer() {
+  enforceProgramCurriculaCoherence();
   try {
     await apiPost('/api/db', db);
     setStatus("salvato ✓");
@@ -278,6 +346,8 @@ async function saveDbToServer() {
 
 let selectedSemester = null; // null = auto (usa ultimo), 1, 2
 let selectedAlgorithm = 'auto'; // auto, cp-sat, greedy
+let selectedProgramId = '';
+let selectedStudyYear = '';
 
 function normalizeAlgorithmKey(v){
   const x=(v||'auto').toLowerCase();
@@ -328,6 +398,48 @@ async function generateSchedule() {
   render();
 }
 
+async function generateScheduleForProgramYear() {
+  if(!selectedProgramId){
+    alert('Seleziona un corso di laurea.');
+    return;
+  }
+  if(!selectedStudyYear){
+    alert('Seleziona l\'anno di studio.');
+    return;
+  }
+
+  const yearNum = Number(selectedStudyYear);
+  if(!Number.isFinite(yearNum) || yearNum < 1){
+    alert('Anno di studio non valido.');
+    return;
+  }
+
+  const chosenAlg = normalizeAlgorithmKey(selectedAlgorithm);
+  const overwriteOk = confirm(
+    `Rigenerare da zero l'orario di ${selectedProgramId} anno ${yearNum}?\n` +
+    'Le assegnazioni precedenti di questo blocco saranno sovrascritte.'
+  );
+  if(!overwriteOk) return;
+
+  showLoading(true, `Generazione ${selectedProgramId} anno ${yearNum} in corso…`);
+  try {
+    lastSchedule = await apiPost('/api/schedule/program-year', {
+      programId: selectedProgramId,
+      year: yearNum,
+      timeLimitSeconds: 30,
+      algorithm: chosenAlg,
+    });
+    scheduleDirty = false;
+    setStatus(`orario ${selectedProgramId} anno ${yearNum} rigenerato ✓`);
+  } catch(e) {
+    const msg = (e && e.message) ? e.message : 'Errore di comunicazione con il server.';
+    lastSchedule = { assignments:[], status:'error', message: msg };
+    console.error(e);
+  }
+  showLoading(false);
+  render();
+}
+
 async function loadLastSchedule() {
   try {
     const r = await apiGet('/api/schedule');
@@ -335,6 +447,8 @@ async function loadLastSchedule() {
       lastSchedule = r;
       if(r.semester) selectedSemester = r.semester;
       if(r.requestedAlgorithm) selectedAlgorithm = normalizeAlgorithmKey(r.requestedAlgorithm);
+      if(r.targetProgramId) selectedProgramId = r.targetProgramId;
+      if(r.targetYear) selectedStudyYear = String(r.targetYear);
     }
   } catch(e) { /* ignore */ }
 }
@@ -352,9 +466,11 @@ async function exportTimetablePdf() {
 
   try {
     const params = new URLSearchParams();
+    const fProg = document.getElementById("ttFilterProgram")?.value || "";
     const fCurr = document.getElementById("ttFilterCurriculum")?.value || "";
     const fTeach = document.getElementById("ttFilterTeacher")?.value || "";
     const fRoom = document.getElementById("ttFilterRoom")?.value || "";
+    if(fProg) params.set("program", fProg);
     if(fCurr) params.set("curriculum", fCurr);
     if(fTeach) params.set("teacher", fTeach);
     if(fRoom) params.set("room", fRoom);
@@ -847,6 +963,22 @@ function renderTimetableSection(){
   const hasSchedule = lastSchedule && lastSchedule.assignments?.length > 0 && lastSchedule.status !== 'none' && lastSchedule.status !== 'error';
   const curSem = lastSchedule?.semester || null;
   const curAlg = normalizeAlgorithmKey(lastSchedule?.requestedAlgorithm || selectedAlgorithm || 'auto');
+  const currentProgram = selectedProgramId || '';
+  const availableYears = Array.from(new Set(
+    (db.courses||[])
+      .filter(c=>!currentProgram || c.programId===currentProgram)
+      .map(c=>Number(c.year ?? c.studyYear ?? c.anno))
+      .filter(n=>Number.isFinite(n) && n>0)
+  )).sort((a,b)=>a-b);
+  if(!selectedStudyYear && availableYears.length) selectedStudyYear = String(availableYears[0]);
+
+  const programOptions = (db.programs||[])
+    .map(p=>`<option value="${escapeAttr(p.id)}" ${p.id===currentProgram?'selected':''}>${escapeHtml(p.name||p.id)}</option>`)
+    .join('');
+  const yearOptions = availableYears.length
+    ? availableYears.map(y=>`<option value="${y}" ${String(y)===String(selectedStudyYear)?'selected':''}>${y}° anno</option>`).join('')
+    : '<option value="">Nessun anno disponibile</option>';
+
   let filterHtml=`
     <div class="tt-toolbar">
       <div class="semester-toggle" style="display:flex;gap:0;margin-right:12px">
@@ -864,11 +996,21 @@ function renderTimetableSection(){
       <button class="success" id="btnGenerate" style="font-size:14px;padding:10px 20px">
         ⚡ Genera Orario
       </button>
+      <span class="pill">CdL singolo</span>
+      <select id="ttProgramSingle" style="min-width:260px">
+        <option value="">Seleziona corso di laurea</option>
+        ${programOptions}
+      </select>
+      <select id="ttYearSingle" style="min-width:150px">${yearOptions}</select>
+      <button class="primary" id="btnGenerateSingle" style="font-size:13px;padding:10px 14px">
+        Crea orario per un singolo corso di laurea
+      </button>
       ${hasSchedule ? '<button class="pdf" id="btnExportPdf" style="font-size:14px;padding:10px 20px">📄 Esporta PDF</button>' : ''}
       ${hasSchedule ? '<button id="btnExportScheduleJson" style="font-size:13px;padding:10px 14px">⬇ JSON Orario</button>' : ''}
       ${hasSchedule ? '<label class="btn" style="cursor:pointer;font-size:13px;padding:10px 14px">⬆ Importa JSON Orario<input id="scheduleImportFile" type="file" accept=".json" style="display:none" /></label>' : ''}
       ${hasSchedule ? '<button id="btnManualEditSchedule" style="font-size:13px;padding:10px 14px">✏ Modifica Manuale</button>' : ''}
       ${hasSchedule ? '<button id="btnPrintCurricula" style="font-size:13px;padding:10px 14px">🖨 Stampa Tabelle Curricula</button>' : ''}
+      <select id="ttFilterProgram"><option value="">Tutti i CdL</option></select>
       <select id="ttFilterCurriculum"><option value="">Tutti i curricula</option></select>
       <select id="ttFilterTeacher"><option value="">Tutti i docenti</option></select>
       <select id="ttFilterRoom"><option value="">Tutte le aule</option></select>
@@ -887,11 +1029,14 @@ function renderTimetableSection(){
     const s=lastSchedule;
     const semInfo = s.semester ? ` (${s.semester}° semestre)` : ' (tutti)';
     const reqAlg = s.requestedAlgorithm ? ` (richiesto: ${escapeHtml(normalizeAlgorithmKey(s.requestedAlgorithm))})` : '';
+    const scopeInfo = (s.generationMode==='program-year')
+      ? ` • Scope: ${escapeHtml(s.targetProgramId||'')} anno ${escapeHtml(String(s.targetYear||''))}`
+      : '';
     statusHtml=`<div class="success-box">
       <strong>${s.status==='optimal'?'✓ Ottimale':'~ Ammissibile'}</strong>${semInfo} —
       ${s.assignments?.length||0} lezioni piazzate •
       Algoritmo: ${escapeHtml(s.algorithmLabel||s.solverBackend||'N/A')}${reqAlg} •
-      Tempo: ${s.solveTimeSeconds||0}s •
+      Tempo: ${s.solveTimeSeconds||0}s${scopeInfo} •
       ${s.timestamp||''}
       ${scheduleDirty?'<br><span style="color:var(--danger)">⚠ I dati sono stati modificati. Rigenera l\'orario per aggiornarlo.</span>':''}
     </div>`;
@@ -909,13 +1054,28 @@ function renderTimetableSection(){
 
   setTimeout(()=>{
     // Popola filtri
+    const fProg=document.getElementById("ttFilterProgram");
     const fCurr=document.getElementById("ttFilterCurriculum");
     const fTeach=document.getElementById("ttFilterTeacher");
     const fRoom=document.getElementById("ttFilterRoom");
     const fAlg=document.getElementById("ttAlgorithm");
-    for(const c of db.curricula||[]){
-      fCurr.innerHTML+=`<option value="${escapeAttr(c.id)}">${escapeHtml(c.name)} (${escapeHtml(c.yearCohort||"")})</option>`;
+
+    const selectedProgramFilter = selectedProgramId || '';
+    for(const p of db.programs||[]){
+      fProg.innerHTML += `<option value="${escapeAttr(p.id)}" ${p.id===selectedProgramFilter?'selected':''}>${escapeHtml(p.name||p.id)}</option>`;
     }
+
+    const populateCurriculumFilter = () => {
+      const pid = fProg.value || '';
+      const current = fCurr.value || '';
+      const allowed = getCurriculaForProgram(pid);
+      fCurr.innerHTML = '<option value="">Tutti i curricula</option>' + allowed.map(c=>
+        `<option value="${escapeAttr(c.id)}">${escapeHtml(c.name)} (${escapeHtml(c.yearCohort||'')})</option>`
+      ).join('');
+      if(current && allowed.some(c=>c.id===current)) fCurr.value = current;
+    };
+    populateCurriculumFilter();
+
     for(const t of db.teachers||[]){
       fTeach.innerHTML+=`<option value="${escapeAttr(t.id)}">${escapeHtml(t.name)}</option>`;
     }
@@ -944,10 +1104,45 @@ function renderTimetableSection(){
       fAlg.value = normalizeAlgorithmKey(selectedAlgorithm || 'auto');
       fAlg.onchange = () => { selectedAlgorithm = normalizeAlgorithmKey(fAlg.value || 'auto'); };
     }
+    const selProgram=document.getElementById('ttProgramSingle');
+    const selYear=document.getElementById('ttYearSingle');
+    if(selProgram){
+      selProgram.value = selectedProgramId || '';
+      selProgram.onchange = () => {
+        selectedProgramId = selProgram.value || '';
+        const years = Array.from(new Set(
+          (db.courses||[])
+            .filter(c=>!selectedProgramId || c.programId===selectedProgramId)
+            .map(c=>Number(c.year ?? c.studyYear ?? c.anno))
+            .filter(n=>Number.isFinite(n) && n>0)
+        )).sort((a,b)=>a-b);
+        const old = selectedStudyYear;
+        selYear.innerHTML = years.length
+          ? years.map(y=>`<option value="${y}" ${String(y)===String(old)?'selected':''}>${y}° anno</option>`).join('')
+          : '<option value="">Nessun anno disponibile</option>';
+        selectedStudyYear = years.length
+          ? (years.includes(Number(old)) ? String(old) : String(years[0]))
+          : '';
+      };
+    }
+    if(selYear){
+      if(selectedStudyYear) selYear.value = String(selectedStudyYear);
+      selYear.onchange = () => { selectedStudyYear = selYear.value || ''; };
+    }
+    const btnGenerateSingle=document.getElementById('btnGenerateSingle');
+    if(btnGenerateSingle) btnGenerateSingle.onclick = generateScheduleForProgramYear;
     // Semester toggle
     document.getElementById("btnSem1").onclick=()=>{ selectedSemester=(selectedSemester===1?null:1); updateSemesterButtons(); };
     document.getElementById("btnSem2").onclick=()=>{ selectedSemester=(selectedSemester===2?null:2); updateSemesterButtons(); };
     updateSemesterButtons();
+    fProg.onchange=()=>{
+      if(fProg.value) selectedProgramId = fProg.value;
+      populateCurriculumFilter();
+      renderTimetableGrid();
+      renderTimetableStats();
+      renderConstraintLog();
+      renderCurriculumTables();
+    };
     fCurr.onchange=fTeach.onchange=fRoom.onchange=()=>{
       renderTimetableGrid();
       renderTimetableStats();
@@ -975,11 +1170,16 @@ function renderTimetableGrid(){
   }
 
   // Filtri attivi
+  const fProg=document.getElementById("ttFilterProgram")?.value||"";
   const fCurr=document.getElementById("ttFilterCurriculum")?.value||"";
   const fTeach=document.getElementById("ttFilterTeacher")?.value||"";
   const fRoom=document.getElementById("ttFilterRoom")?.value||"";
 
   let assignments=lastSchedule.assignments.filter(a=>a.day!=='N/A');
+
+  if(fProg){
+    assignments=assignments.filter(a=>a.programId===fProg);
+  }
 
   if(fCurr){
     const currCourses=new Set((db.courses||[]).filter(c=>(c.curriculaIds||[]).includes(fCurr)).map(c=>c.id));
@@ -1056,7 +1256,19 @@ function renderTimetableStats(){
 
   if(!lastSchedule || !lastSchedule.assignments?.length) return;
 
-  const assignments=lastSchedule.assignments.filter(a=>a.day!=='N/A');
+  const fProg=document.getElementById("ttFilterProgram")?.value||"";
+  const fCurr=document.getElementById("ttFilterCurriculum")?.value||"";
+  const fTeach=document.getElementById("ttFilterTeacher")?.value||"";
+  const fRoom=document.getElementById("ttFilterRoom")?.value||"";
+
+  let assignments=lastSchedule.assignments.filter(a=>a.day!=='N/A');
+  if(fProg){ assignments=assignments.filter(a=>a.programId===fProg); }
+  if(fCurr){
+    const currCourses=new Set((db.courses||[]).filter(c=>(c.curriculaIds||[]).includes(fCurr)).map(c=>c.id));
+    assignments=assignments.filter(a=>currCourses.has(a.courseId));
+  }
+  if(fTeach){ assignments=assignments.filter(a=>(a.teacherIds||[]).includes(fTeach)); }
+  if(fRoom){ assignments=assignments.filter(a=>a.roomId===fRoom); }
   const totalEvents=lastSchedule.assignments.length;
   const placed=assignments.length;
   const unplaced=totalEvents-placed;
@@ -1138,10 +1350,12 @@ function renderCurriculumTables(){
   }
 
   const fCurr=document.getElementById("ttFilterCurriculum")?.value||"";
+  const fProg=document.getElementById("ttFilterProgram")?.value||"";
   const fTeach=document.getElementById("ttFilterTeacher")?.value||"";
   const fRoom=document.getElementById("ttFilterRoom")?.value||"";
 
   let assignments=lastSchedule.assignments.filter(a=>a.day!=='N/A');
+  if(fProg){ assignments=assignments.filter(a=>a.programId===fProg); }
   if(fTeach){ assignments=assignments.filter(a=>(a.teacherIds||[]).includes(fTeach)); }
   if(fRoom){ assignments=assignments.filter(a=>a.roomId===fRoom); }
 
@@ -1150,7 +1364,7 @@ function renderCurriculumTables(){
   const tm=db.meta?.timeModel||{};
   const ds=Number(tm.dayStart||8);
   const de=Number(tm.dayEnd||19);
-  const curricula=(db.curricula||[]).filter(c=>!fCurr || c.id===fCurr);
+  const curricula=(db.curricula||[]).filter(c=>(!fProg || c.programId===fProg) && (!fCurr || c.id===fCurr));
 
   box.innerHTML=curricula.map(cur=>{
     const courses=new Set((db.courses||[])
@@ -1364,9 +1578,7 @@ function openModal(section,mode,id){
       </div>
       <div class="row" style="margin-top:10px">
         <div><label class="muted">Curricula (CTRL per multipli)</label>
-          <select id="f_curricula" multiple size="5">
-            ${(db.curricula||[]).map(c=>`<option value="${escapeAttr(c.id)}" ${(existing.curriculaIds||[]).includes(c.id)?"selected":""}>${escapeHtml(c.name)} (${escapeHtml(c.yearCohort||"")})</option>`).join("")}
-          </select>
+          <select id="f_curricula" multiple size="5"></select>
         </div>
         <div><label class="muted">Docenti (CTRL per multipli)</label>
           <select id="f_teachers" multiple size="5">
@@ -1384,6 +1596,17 @@ function openModal(section,mode,id){
     setTimeout(()=>{
       const ta=document.getElementById("f_weeklyEvents");
       if(ta) ta.value=JSON.stringify(existing.weeklyEvents||[],null,2);
+
+      const pSel=document.getElementById('f_programId');
+      const cSel=document.getElementById('f_curricula');
+      const seedSelected=(existing.curriculaIds||[]);
+
+      const refreshCurricula=()=>{
+        const currentSelected = cSel ? readMultiSelect('f_curricula') : seedSelected;
+        renderCurriculaOptionsForProgram(cSel, pSel?.value || '', currentSelected.length ? currentSelected : seedSelected);
+      };
+      refreshCurricula();
+      if(pSel) pSel.onchange = refreshCurricula;
     },0);
   }
 
@@ -1461,13 +1684,16 @@ function saveModal(){
   if(s==="courses"){
     let we=[];
     try{we=JSON.parse(document.getElementById("f_weeklyEvents").value||"[]");}catch{alert("JSON eventi non valido");return;}
+    const selectedProgram = document.getElementById("f_programId").value;
+    const allowedCurricula = new Set(getCurriculaForProgram(selectedProgram).map(c=>c.id));
+    const selectedCurricula = readMultiSelect("f_curricula").filter(cid=>allowedCurricula.has(cid));
     upsert("courses",{
       id:document.getElementById("f_id").value.trim(),
       name:document.getElementById("f_name").value.trim(),
-      programId:document.getElementById("f_programId").value,
+      programId:selectedProgram,
       roomType:document.getElementById("f_roomType").value,
       semester:Number(document.getElementById("f_semester").value),
-      curriculaIds:readMultiSelect("f_curricula"),
+      curriculaIds:selectedCurricula,
       teacherIds:readMultiSelect("f_teachers"),
       expectedStudents:Number(document.getElementById("f_expectedStudents").value),
       patternPref:document.getElementById("f_patternPref").value.trim(),
@@ -1503,8 +1729,14 @@ function upsert(section,item){
 // EXPORT / IMPORT
 // ═══════════════════════════════════════════════════════════════════════════
 function exportDbTxt(){
-  const text=JSON.stringify(db,null,2);
-  download("database.json",text,"application/json");
+  const bundle={
+    exportType:"db+schedule",
+    exportedAt:new Date().toISOString(),
+    database:db,
+    schedule:(lastSchedule && Array.isArray(lastSchedule.assignments)) ? lastSchedule : null,
+  };
+  const text=JSON.stringify(bundle,null,2);
+  download("database_con_orario.json",text,"application/json");
 }
 function download(filename,content,mime){
   const blob=new Blob([content],{type:mime});
@@ -1527,6 +1759,14 @@ function looksLikeDb(obj){
     && Array.isArray(obj.programs) && Array.isArray(obj.curricula) && Array.isArray(obj.courses));
 }
 
+function looksLikeDbScheduleBundle(obj){
+  if(!obj || typeof obj!=='object') return false;
+  const database = obj.database || obj.db;
+  if(!looksLikeDb(database)) return false;
+  if(obj.schedule == null) return true;
+  return !!(obj.schedule && typeof obj.schedule==='object' && Array.isArray(obj.schedule.assignments));
+}
+
 function upsertById(list, item){
   const i=list.findIndex(x=>x.id===item.id);
   if(i>=0) list[i]={...list[i], ...item};
@@ -1546,6 +1786,7 @@ function uniqueId(prefix, base, existingIds){
 }
 
 function mergeExternalJsonIntoDb(payload){
+  db = ensureDbShape(db);
   const stats={rooms:0, programs:0, teachers:0};
   const roomIds=new Set((db.rooms||[]).map(x=>x.id));
   const progIds=new Set((db.programs||[]).map(x=>x.id));
@@ -1553,18 +1794,19 @@ function mergeExternalJsonIntoDb(payload){
 
   // Formato aule_dmi.json
   if(Array.isArray(payload?.aule)){
+    const rooms = db.rooms;
     for(const a of payload.aule){
       const name=(a.nome_aula||'').trim();
       if(!name) continue;
       const cap=Number(a.postazioni)||0;
 
-      const existing=db.rooms.find(r=>String(r.name||'').toLowerCase()===name.toLowerCase());
+      const existing=rooms.find(r=>String(r.name||'').toLowerCase()===name.toLowerCase());
       if(existing){
         existing.capacity = cap || existing.capacity || 0;
         if(!existing.type) existing.type = (cap>0 && cap<=40) ? 'lab' : 'lecture';
       }else{
         const id=uniqueId('R', name, roomIds);
-        db.rooms.push({
+        rooms.push({
           id,
           name,
           capacity: cap,
@@ -1577,6 +1819,7 @@ function mergeExternalJsonIntoDb(payload){
 
   // Formato corsi_dmi.json (corsi di laurea -> programs)
   if(Array.isArray(payload?.corsi_laurea)){
+    const programs = db.programs;
     for(const c of payload.corsi_laurea){
       const classCode=(c.classe||'').trim();
       const nome=(c.nome||'').trim();
@@ -1592,18 +1835,19 @@ function mergeExternalJsonIntoDb(payload){
       };
 
       if(!progIds.has(pid)) progIds.add(pid);
-      upsertById(db.programs, program);
+      upsertById(programs, program);
       stats.programs += 1;
     }
   }
 
   // Formato docenti.json
   if(Array.isArray(payload?.docenti)){
+    const teachers = db.teachers;
     for(const d of payload.docenti){
       const name=(d.nome_docente||'').trim();
       if(!name) continue;
 
-      let existing=db.teachers.find(t=>String(t.name||'').toLowerCase()===name.toLowerCase());
+      let existing=teachers.find(t=>String(t.name||'').toLowerCase()===name.toLowerCase());
       if(!existing){
         const id=uniqueId('T', name, teachIds);
         existing={
@@ -1612,7 +1856,7 @@ function mergeExternalJsonIntoDb(payload){
           email:'',
           preferences:{avoidEarly:false,avoidLate:false},
         };
-        db.teachers.push(existing);
+        teachers.push(existing);
       }
 
       if(!existing.preferences) existing.preferences={avoidEarly:false,avoidLate:false};
@@ -1629,8 +1873,20 @@ async function importDbFile(file){
   const text = await file.text();
   const parsed = JSON.parse(text);
 
+  if(looksLikeDbScheduleBundle(parsed)){
+    const importedDb = ensureDbShape(parsed.database || parsed.db);
+    const importedSchedule = parsed.schedule || null;
+    db = importedDb;
+    return {
+      kind:'bundle',
+      schedule: importedSchedule,
+      hasSchedule: !!(importedSchedule && Array.isArray(importedSchedule.assignments)),
+      rooms:0, programs:0, teachers:0,
+    };
+  }
+
   if(looksLikeDb(parsed)){
-    db = parsed;
+    db = ensureDbShape(parsed);
     return { kind:'db', rooms:0, programs:0, teachers:0 };
   }
 
@@ -1661,17 +1917,29 @@ document.getElementById("fileImport").addEventListener("change",(e)=>{
   (async()=>{
     if(!files.length) return;
     let rooms=0, programs=0, teachers=0, fullDb=false;
+    let importedSchedule = null;
     try{
       for(const f of files){
         const res=await importDbFile(f);
         if(res.kind==='db') fullDb=true;
+        if(res.kind==='bundle'){
+          fullDb=true;
+          if(res.hasSchedule) importedSchedule = res.schedule;
+        }
         rooms += res.rooms||0;
         programs += res.programs||0;
         teachers += res.teachers||0;
       }
       await saveDbToServer();
+
+      if(importedSchedule){
+        const sres = await apiPost('/api/schedule/import', importedSchedule);
+        lastSchedule = sres.schedule || importedSchedule;
+        scheduleDirty = false;
+      }
+
       if(fullDb){
-        setStatus("DB importato ✓");
+        setStatus(importedSchedule ? "DB+orario importati ✓" : "DB importato ✓");
       }else{
         setStatus(`import esterno ✓ (aule:${rooms}, cds:${programs}, docenti:${teachers})`);
       }
@@ -1707,6 +1975,7 @@ document.getElementById("btnSave").onclick=saveModal;
     db={meta:{version:1,timeModel:{dayStart:8,dayEnd:19,lunchStart:13,lunchEnd:14,granularityHours:1},note:""},
         rooms:[],teachers:[],programs:[],curricula:[],courses:[],unavailability:[],
         softPolicy:{weights:{},preferredPatterns:{}}};
+    db = ensureDbShape(db);
   }
   showLoading(false);
   render();

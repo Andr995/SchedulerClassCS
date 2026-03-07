@@ -277,6 +277,15 @@ def _collect_events(data):
     """Estrae tutti gli eventi schedulabili dai corsi."""
     events = []
     teachers_by_id = {t['id']: t for t in data.get('teachers', [])}
+
+    def _event_duration_hours(evt):
+        """Compatibilita: accetta sia durationHours (nuovo) sia duration (legacy)."""
+        raw = evt.get('durationHours', evt.get('duration', 1))
+        try:
+            return max(1, int(raw))
+        except (TypeError, ValueError):
+            return 1
+
     for course in data.get('courses', []):
         for evt in course.get('weeklyEvents', []):
             teacher_prefs = {}
@@ -290,7 +299,7 @@ def _collect_events(data):
                 'eventId': evt.get('id', f"E-{len(events)}"),
                 'courseId': course['id'],
                 'courseName': course.get('name', ''),
-                'duration': max(1, evt.get('durationHours', 1)),
+                'duration': _event_duration_hours(evt),
                 'teacherIds': course.get('teacherIds', []),
                 'curriculaIds': course.get('curriculaIds', []),
                 'programId': course.get('programId', ''),
@@ -388,6 +397,12 @@ def _validate_hard_constraints(assignments, data):
         for h in u.get('hours', []):
             unav_by_teacher[u.get('teacherId', '')].add((day, h))
 
+    room_unav_by_room = defaultdict(set)
+    for ru in data.get('roomUnavailability', []):
+        day = ru.get('day', '')
+        for h in ru.get('hours', []):
+            room_unav_by_room[ru.get('roomId', '')].add((day, h))
+
     placed = [a for a in assignments if a.get('day') and a.get('day') != 'N/A']
 
     teacher_slot_owner = {}
@@ -402,6 +417,7 @@ def _validate_hard_constraints(assignments, data):
         'roomCapacity': 0,
         'roomType': 0,
         'teacherUnavailability': 0,
+        'roomReserved': 0,
         'lunchBreak': 0,
         'courseDifferentDays': 0,
         'timeWindow': 0,
@@ -449,6 +465,9 @@ def _validate_hard_constraints(assignments, data):
                 violations['roomOverlap'] += 1
             else:
                 room_slot_owner[room_key] = a.get('eventId', '')
+
+            if (day, h) in room_unav_by_room.get(a.get('roomId', ''), set()):
+                violations['roomReserved'] += 1
 
             for cid in curricula:
                 ckey = (cid, day, h)
@@ -500,6 +519,12 @@ def _validate_hard_constraints(assignments, data):
             'label': 'Rispetto indisponibilita docenti',
             'respected': violations['teacherUnavailability'] == 0,
             'violations': violations['teacherUnavailability'],
+        },
+        {
+            'id': 'roomReserved',
+            'label': 'Rispetto prenotazioni aule esistenti',
+            'respected': violations['roomReserved'] == 0,
+            'violations': violations['roomReserved'],
         },
         {
             'id': 'lunchBreak',
@@ -559,6 +584,8 @@ def _solve_cpsat(data, time_limit_s=30):
         rooms = [{'id': 'VIRTUAL', 'name': 'Aula Virtuale',
                   'capacity': 9999, 'type': 'lecture'}]
         n_rooms = 1
+
+    room_idx_by_id = {r.get('id', ''): idx for idx, r in enumerate(rooms)}
 
     # -------------------------------------------------------------------
     # Variabili decisionali
@@ -678,6 +705,36 @@ def _solve_cpsat(data, time_limit_s=30):
                 model.Add(
                     start_v[i] + events[i]['duration'] <= h
                 ).OnlyEnforceIf([on_day, ab.Not()])
+
+    # 6. Prenotazioni aule già esistenti (blocchi room/day/hour)
+    room_unav_by_idx = defaultdict(set)
+    for ru in data.get('roomUnavailability', []):
+        room_id = ru.get('roomId', '')
+        di = DAY_INDEX.get(ru.get('day', ''), -1)
+        ri = room_idx_by_id.get(room_id, -1)
+        if di < 0 or ri < 0:
+            continue
+        for h in ru.get('hours', []):
+            room_unav_by_idx[ri].add((di, h))
+
+    for i in scheduled:
+        dur = events[i]['duration']
+        for ri, blocked_slots in room_unav_by_idx.items():
+            if ri not in compat_rooms[i]:
+                continue
+
+            on_room = model.NewBoolVar(f'rr{i}_{ri}')
+            model.Add(room_v[i] == ri).OnlyEnforceIf(on_room)
+            model.Add(room_v[i] != ri).OnlyEnforceIf(on_room.Not())
+
+            for di, h in blocked_slots:
+                on_day = model.NewBoolVar(f'rrd{i}_{ri}_{di}_{h}')
+                model.Add(day_v[i] == di).OnlyEnforceIf(on_day)
+                model.Add(day_v[i] != di).OnlyEnforceIf(on_day.Not())
+
+                ab = model.NewBoolVar(f'rra{i}_{ri}_{di}_{h}')
+                model.Add(start_v[i] >= h + 1).OnlyEnforceIf([on_room, on_day, ab])
+                model.Add(start_v[i] + dur <= h).OnlyEnforceIf([on_room, on_day, ab.Not()])
 
     # -------------------------------------------------------------------
     # VINCOLI SOFT (obiettivo da minimizzare)
@@ -986,6 +1043,15 @@ def _solve_greedy(data):
         for h in unav.get('hours', []):
             unav_lookup[tid].add((di, h))
 
+    room_unav_lookup = defaultdict(set)  # room_id -> set di (day_idx, hour)
+    for ru in data.get('roomUnavailability', []):
+        rid = ru.get('roomId', '')
+        di = DAY_INDEX.get(ru.get('day', ''), -1)
+        if di < 0:
+            continue
+        for h in ru.get('hours', []):
+            room_unav_lookup[rid].add((di, h))
+
     def _slots(day_idx, start, duration):
         """Restituisce l'insieme di (day, hour) occupati."""
         return {(day_idx, start + h) for h in range(duration)}
@@ -993,6 +1059,7 @@ def _solve_greedy(data):
     def is_valid(event, day_idx, start, room_idx):
         dur = event['duration']
         slots = _slots(day_idx, start, dur)
+        room_id = rooms[room_idx].get('id', '')
 
         # Stesso corso su giorno diverso
         if day_idx in course_days[event['courseId']]:
@@ -1012,6 +1079,10 @@ def _solve_greedy(data):
 
         # Conflitto aula
         if slots & room_slots[room_idx]:
+            return False
+
+        # Aula già prenotata da orari precedenti
+        if slots & room_unav_lookup.get(room_id, set()):
             return False
 
         return True

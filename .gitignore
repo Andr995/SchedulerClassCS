@@ -25,8 +25,8 @@ venv
 Thumbs.db
 
 # Data (generati a runtime)
-data/database.json
-data/last_schedule.json
+#data/database.json
+#data/last_schedule.json
 
 # Byte-compiled
 *.pyc
