@@ -225,6 +225,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 let db = null;
 let lastSchedule = null;
+let authUsers = [];
 let currentSection = "rooms";
 let currentSearch = "";
 let modalState = null;
@@ -299,6 +300,7 @@ function renderCurriculaOptionsForProgram(selectEl, programId, selectedIds=[]){
 const SECTIONS = [
   { key:"rooms", label:"🏫 Aule", hint:"Aule con capienza e tipologia" },
   { key:"teachers", label:"👨‍🏫 Docenti", hint:"Docenti e preferenze orarie" },
+  { key:"users", label:"🔐 Utenti", hint:"Gestione account amministrativi" },
   { key:"programs", label:"🎓 CdS", hint:"Corsi di Studio" },
   { key:"curricula", label:"📋 Curricula", hint:"Gruppi di studenti (no sovrapposizioni)" },
   { key:"courses", label:"📚 Insegnamenti", hint:"Corsi con eventi settimanali" },
@@ -313,7 +315,11 @@ const SECTIONS = [
 // ═══════════════════════════════════════════════════════════════════════════
 async function apiGet(url) {
   const r = await fetch(url);
-  if(!r.ok) throw new Error(`GET ${url}: ${r.status}`);
+  if(!r.ok){
+    let msg = `GET ${url}: ${r.status}`;
+    try{ const err = await r.json(); if(err?.error) msg = err.error; }catch{}
+    throw new Error(msg);
+  }
   return r.json();
 }
 async function apiPost(url, body) {
@@ -321,7 +327,20 @@ async function apiPost(url, body) {
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify(body)
   });
-  if(!r.ok) throw new Error(`POST ${url}: ${r.status}`);
+  if(!r.ok){
+    let msg = `POST ${url}: ${r.status}`;
+    try{ const err = await r.json(); if(err?.error) msg = err.error; }catch{}
+    throw new Error(msg);
+  }
+  return r.json();
+}
+async function apiDelete(url) {
+  const r = await fetch(url, { method:'DELETE' });
+  if(!r.ok){
+    let msg = `DELETE ${url}: ${r.status}`;
+    try{ const err = await r.json(); if(err?.error) msg = err.error; }catch{}
+    throw new Error(msg);
+  }
   return r.json();
 }
 
@@ -329,6 +348,11 @@ async function loadDbFromServer() {
   db = ensureDbShape(await apiGet('/api/db'));
   enforceProgramCurriculaCoherence();
   render();
+}
+
+async function loadUsersFromServer() {
+  const payload = await apiGet('/api/users');
+  authUsers = Array.isArray(payload?.users) ? payload.users : [];
 }
 
 async function saveDbToServer() {
@@ -727,6 +751,7 @@ function render(){
     btnAdd.onclick=()=>openModal(currentSection,"create",null);
     if(currentSection==="rooms") content.appendChild(renderRooms());
     else if(currentSection==="teachers") content.appendChild(renderTeachers());
+    else if(currentSection==="users") content.appendChild(renderUsers());
     else if(currentSection==="programs") content.appendChild(renderPrograms());
     else if(currentSection==="curricula") content.appendChild(renderCurricula());
     else if(currentSection==="courses") content.appendChild(renderCourses());
@@ -797,6 +822,61 @@ function renderTeachers(){
     const tr=document.createElement("tr");
     tr.innerHTML=`<td><div class="mini">${x.id}</div></td><td>${escapeHtml(x.name||"")}</td><td><div class="mini">${escapeHtml(x.email||"")}</div></td><td>${p}</td>`;
     tr.appendChild(actionsCell("teachers",x.id));
+    tb.appendChild(tr);
+  }
+  return tableWrapper(t);
+}
+
+function renderUsers(){
+  const t=mkTable(["Username","Ruolo","Stato","Creato","Ultimo accesso","Azioni"]);
+  const tb=t.querySelector("tbody");
+  for(const u of (authUsers||[]).filter(matchesSearch)){
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td><div class="mini">${escapeHtml(u.username||"")}</div></td>
+      <td><span class="tag">${escapeHtml(u.role||"admin")}</span></td>
+      <td>${u.isActive?'<span class="ok">attivo</span>':'<span class="dangerTxt">disattivo</span>'}</td>
+      <td><div class="mini">${escapeHtml(u.createdAt||"—")}</div></td>
+      <td><div class="mini">${escapeHtml(u.lastLoginAt||"—")}</div></td>`;
+
+    const td=document.createElement("td");
+    td.className="t-actions";
+
+    const bReset=document.createElement("button");
+    bReset.textContent="Reset pwd";
+    bReset.onclick=async()=>{
+      const p1=prompt(`Nuova password per ${u.username}:`);
+      if(p1===null) return;
+      const p2=prompt("Conferma nuova password:");
+      if(p2===null) return;
+      if(p1!==p2){ alert("Le password non coincidono."); return; }
+      try{
+        await apiPost(`/api/users/${encodeURIComponent(u.username)}/password`, {password:p1});
+        setStatus("password aggiornata ✓");
+      }catch(err){
+        alert(err?.message || "Errore reset password.");
+      }
+    };
+
+    const bDel=document.createElement("button");
+    bDel.textContent="Del";
+    bDel.className="danger";
+    bDel.onclick=async()=>{
+      if(!confirm(`Eliminare l'utente ${u.username}?`)) return;
+      try{
+        await apiDelete(`/api/users/${encodeURIComponent(u.username)}`);
+        await loadUsersFromServer();
+        setStatus("utente eliminato ✓");
+        render();
+      }catch(err){
+        alert(err?.message || "Errore eliminazione utente.");
+      }
+    };
+
+    td.appendChild(bReset);
+    td.append(" ");
+    td.appendChild(bDel);
+    tr.appendChild(td);
     tb.appendChild(tr);
   }
   return tableWrapper(t);
@@ -1630,6 +1710,20 @@ function openModal(section,mode,id){
       </div>`;
   }
 
+  if(section==="users"){
+    body.innerHTML=`
+      <div class="info-box">Le password sono salvate solo come hash sicuro (scrypt), mai in chiaro.</div>
+      <div class="row">
+        <div><label class="muted">Username</label><input id="u_username" type="text" placeholder="es. mario.rossi" /></div>
+        <div><label class="muted">Ruolo</label><input id="u_role" type="text" value="admin" readonly /></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <div><label class="muted">Password</label><input id="u_password" type="password" autocomplete="new-password" /></div>
+        <div><label class="muted">Conferma Password</label><input id="u_password2" type="password" autocomplete="new-password" /></div>
+      </div>
+      <div class="hint">Requisiti: almeno 12 caratteri con minuscola, maiuscola, numero e simbolo.</div>`;
+  }
+
   showModal(true);
 }
 
@@ -1641,12 +1735,32 @@ function readMultiSelect(id){
   return Array.from(el.selectedOptions).map(o=>o.value);
 }
 
-function saveModal(){
+async function saveModal(){
   const s=modalState?.section;
   if(!s) return;
 
   if(s==="schedule-manual"){
     saveManualScheduleFromModal();
+    return;
+  }
+
+  if(s==="users"){
+    const username=(document.getElementById("u_username")?.value||"").trim();
+    const password=document.getElementById("u_password")?.value||"";
+    const password2=document.getElementById("u_password2")?.value||"";
+
+    if(!username){ alert("Username obbligatorio."); return; }
+    if(password!==password2){ alert("Le password non coincidono."); return; }
+
+    try{
+      await apiPost('/api/users', { username, password });
+      await loadUsersFromServer();
+      setStatus("utente creato ✓");
+      showModal(false);
+      render();
+    }catch(err){
+      alert(err?.message || "Errore creazione utente.");
+    }
     return;
   }
 
@@ -1964,6 +2078,7 @@ document.getElementById("btnSave").onclick=saveModal;
   try{
     await loadDbFromServer();
     await loadLastSchedule();
+    await loadUsersFromServer();
     // Mostra info solver
     const info=await apiGet('/api/schedule');
     document.getElementById("solverPill").textContent=

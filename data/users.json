@@ -1,0 +1,10 @@
+[
+  {
+    "username": "admin",
+    "passwordHash": "scrypt:32768:8:1$UlCyNLKKfQfwRJ7D$e5bdc9647410340008c2b73cc0f3942ce2dfc6192f9ac4e632b979a9b4718724cfc0699765eedd3b28a2cc403bc7dbdbf611b36956783f5a9c0175d315999130",
+    "role": "admin",
+    "isActive": true,
+    "createdAt": "2026-03-07T09:04:14+00:00",
+    "lastLoginAt": "2026-03-07T09:05:03+00:00"
+  }
+]

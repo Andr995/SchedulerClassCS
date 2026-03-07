@@ -75,15 +75,18 @@
   </style>
 </head>
 <body>
-  <form class="card" method="post" action="/admin/login">
+  <form class="card" method="post" action="/admin/login" autocomplete="on">
     <h1>Accesso Amministratore</h1>
-    <div class="muted">Inserisci la password per accedere alle funzioni di modifica e generazione orario.</div>
+    <div class="muted">Inserisci username e password per accedere alle funzioni amministrative.</div>
     {% if error %}
       <div class="error">{{ error }}</div>
     {% endif %}
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" required autofocus autocomplete="username" />
     <label for="password">Password</label>
-    <input id="password" name="password" type="password" required autofocus />
+    <input id="password" name="password" type="password" required autocomplete="current-password" />
     <button type="submit">Accedi</button>
+    <div class="links">Credenziali iniziali: <code>admin</code> / <code>admin</code> (cambiale subito da area utenti)</div>
     <div class="links">Vista pubblica senza login: <a href="/">apri orario</a></div>
   </form>
 </body>

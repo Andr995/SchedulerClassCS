@@ -19,8 +19,10 @@ import os
 import time
 from pathlib import Path
 from functools import wraps
+from datetime import datetime, timezone
 
 from flask import Flask, render_template, request, jsonify, make_response, session, redirect, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
 
 import scheduler
 import pdf_export
@@ -32,15 +34,133 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / 'data'
 DB_FILE = DATA_DIR / 'database.json'
 SCHEDULE_FILE = DATA_DIR / 'last_schedule.json'
+USERS_FILE = DATA_DIR / 'users.json'
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'change-me-in-production')
 
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin')
+DEFAULT_ADMIN_USERNAME = os.environ.get('DEFAULT_ADMIN_USERNAME', 'admin')
+DEFAULT_ADMIN_PASSWORD = os.environ.get('DEFAULT_ADMIN_PASSWORD', 'admin')
+
+
+def _utc_now_iso():
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def _normalize_username(value):
+    return str(value or '').strip().lower()
+
+
+def _public_user(user):
+    return {
+        'username': user.get('username', ''),
+        'role': user.get('role', 'admin'),
+        'isActive': bool(user.get('isActive', True)),
+        'createdAt': user.get('createdAt', ''),
+        'lastLoginAt': user.get('lastLoginAt', ''),
+    }
+
+
+def _validate_password_strength(password, allow_weak_default=False):
+    pwd = str(password or '')
+
+    if allow_weak_default and pwd == 'admin':
+        return True, ''
+
+    if len(pwd) < 12:
+        return False, 'La password deve avere almeno 12 caratteri.'
+    if not any(ch.islower() for ch in pwd):
+        return False, 'La password deve includere almeno una lettera minuscola.'
+    if not any(ch.isupper() for ch in pwd):
+        return False, 'La password deve includere almeno una lettera maiuscola.'
+    if not any(ch.isdigit() for ch in pwd):
+        return False, 'La password deve includere almeno un numero.'
+    if not any(not ch.isalnum() for ch in pwd):
+        return False, 'La password deve includere almeno un simbolo.'
+
+    return True, ''
+
+
+def _hash_password(password):
+    # scrypt e robusto e supportato da Werkzeug moderno.
+    return generate_password_hash(password, method='scrypt')
+
+
+def _find_user(users, username):
+    u = _normalize_username(username)
+    for item in users:
+        if _normalize_username(item.get('username', '')) == u:
+            return item
+    return None
+
+
+def _active_admin_count(users):
+    return sum(1 for u in users if u.get('role') == 'admin' and u.get('isActive', True))
+
+
+def load_users():
+    _ensure_data_dir()
+    users = []
+
+    if USERS_FILE.exists():
+        try:
+            with open(USERS_FILE, 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                if isinstance(raw, list):
+                    users = raw
+        except (json.JSONDecodeError, IOError):
+            users = []
+
+    created = False
+    if not users:
+        users = [{
+            'username': _normalize_username(DEFAULT_ADMIN_USERNAME) or 'admin',
+            'passwordHash': _hash_password(DEFAULT_ADMIN_PASSWORD or 'admin'),
+            'role': 'admin',
+            'isActive': True,
+            'createdAt': _utc_now_iso(),
+            'lastLoginAt': '',
+        }]
+        created = True
+
+    # Garantisce che esista sempre almeno un admin attivo.
+    if _active_admin_count(users) == 0:
+        users.append({
+            'username': 'admin',
+            'passwordHash': _hash_password('admin'),
+            'role': 'admin',
+            'isActive': True,
+            'createdAt': _utc_now_iso(),
+            'lastLoginAt': '',
+        })
+        created = True
+
+    if created:
+        save_users(users)
+
+    return users
+
+
+def save_users(users):
+    _ensure_data_dir()
+    with open(USERS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(users, f, indent=2, ensure_ascii=False)
+
+
+def get_current_user():
+    username = _normalize_username(session.get('username', ''))
+    if not username:
+        return None
+    users = load_users()
+    user = _find_user(users, username)
+    if not user or not user.get('isActive', True):
+        return None
+    return user
 
 
 def is_admin_logged():
-    return bool(session.get('is_admin'))
+    user = get_current_user()
+    return bool(user and user.get('role') == 'admin')
 
 
 def admin_required(func):
@@ -322,6 +442,7 @@ def index():
 
 @app.route('/admin', methods=['GET'])
 def admin_page():
+    load_users()  # bootstrap utente admin di default se mancante
     if not is_admin_logged():
         return render_template('admin_login.html')
     return render_template('admin.html')
@@ -329,17 +450,117 @@ def admin_page():
 
 @app.route('/admin/login', methods=['POST'])
 def admin_login():
+    username = _normalize_username(request.form.get('username', ''))
     password = request.form.get('password', '')
-    if password == ADMIN_PASSWORD:
-        session['is_admin'] = True
+
+    users = load_users()
+    user = _find_user(users, username)
+    if user and user.get('isActive', True) and check_password_hash(user.get('passwordHash', ''), password):
+        session['username'] = user.get('username', '')
+        session['role'] = user.get('role', 'admin')
+        session['is_admin'] = user.get('role') == 'admin'  # retro-compatibilita
+        user['lastLoginAt'] = _utc_now_iso()
+        save_users(users)
         return redirect(url_for('admin_page'))
-    return render_template('admin_login.html', error='Password non corretta.')
+    return render_template('admin_login.html', error='Credenziali non valide.')
 
 
 @app.route('/admin/logout', methods=['POST'])
 def admin_logout():
-    session.pop('is_admin', None)
+    session.clear()
     return redirect(url_for('admin_page'))
+
+
+@app.route('/api/users', methods=['GET'])
+@admin_required
+def api_users_get():
+    users = load_users()
+    return jsonify({'users': [_public_user(u) for u in users]})
+
+
+@app.route('/api/users', methods=['POST'])
+@admin_required
+def api_users_create():
+    body = request.get_json(force=True)
+    if not isinstance(body, dict):
+        return jsonify({'error': 'Payload non valido.'}), 400
+
+    username = _normalize_username(body.get('username', ''))
+    password = str(body.get('password', ''))
+
+    if not username or len(username) < 3:
+        return jsonify({'error': 'Username non valido (minimo 3 caratteri).'}), 400
+    if any(ch not in 'abcdefghijklmnopqrstuvwxyz0123456789._-' for ch in username):
+        return jsonify({'error': 'Username contiene caratteri non consentiti.'}), 400
+
+    ok_pwd, msg_pwd = _validate_password_strength(password)
+    if not ok_pwd:
+        return jsonify({'error': msg_pwd}), 400
+
+    users = load_users()
+    if _find_user(users, username):
+        return jsonify({'error': 'Username gia esistente.'}), 409
+
+    new_user = {
+        'username': username,
+        'passwordHash': _hash_password(password),
+        'role': 'admin',
+        'isActive': True,
+        'createdAt': _utc_now_iso(),
+        'lastLoginAt': '',
+    }
+    users.append(new_user)
+    save_users(users)
+    return jsonify({'ok': True, 'user': _public_user(new_user)})
+
+
+@app.route('/api/users/<username>/password', methods=['POST'])
+@admin_required
+def api_users_reset_password(username):
+    body = request.get_json(force=True)
+    if not isinstance(body, dict):
+        return jsonify({'error': 'Payload non valido.'}), 400
+
+    new_password = str(body.get('password', ''))
+    ok_pwd, msg_pwd = _validate_password_strength(new_password)
+    if not ok_pwd:
+        return jsonify({'error': msg_pwd}), 400
+
+    users = load_users()
+    user = _find_user(users, username)
+    if not user:
+        return jsonify({'error': 'Utente non trovato.'}), 404
+
+    user['passwordHash'] = _hash_password(new_password)
+    save_users(users)
+    return jsonify({'ok': True})
+
+
+@app.route('/api/users/<username>', methods=['DELETE'])
+@admin_required
+def api_users_delete(username):
+    target = _normalize_username(username)
+    current = _normalize_username(session.get('username', ''))
+    if target == current:
+        return jsonify({'error': 'Non puoi eliminare il tuo utente mentre sei loggato.'}), 400
+
+    users = load_users()
+    idx = -1
+    for i, u in enumerate(users):
+        if _normalize_username(u.get('username', '')) == target:
+            idx = i
+            break
+
+    if idx < 0:
+        return jsonify({'error': 'Utente non trovato.'}), 404
+
+    deleting = users[idx]
+    if deleting.get('role') == 'admin' and _active_admin_count(users) <= 1:
+        return jsonify({'error': 'Deve esistere almeno un amministratore attivo.'}), 400
+
+    users.pop(idx)
+    save_users(users)
+    return jsonify({'ok': True})
 
 
 @app.route('/api/db', methods=['GET'])
@@ -693,11 +914,13 @@ def export_pdf():
 # ---------------------------------------------------------------------------
 if __name__ == '__main__':
     _ensure_data_dir()
+    load_users()
     print(f"╔════════════════════════════════════════════════════╗")
     print(f"║  University Timetabling System                    ║")
     print(f"║  Server: http://127.0.0.1:5000                   ║")
     print(f"║  Solver: {'OR-Tools CP-SAT' if scheduler.HAS_ORTOOLS else 'Greedy (installa ortools per CP-SAT)':40s} ║")
-    print(f"║  Admin password env var: ADMIN_PASSWORD           ║")
+    print(f"║  Default admin user: {DEFAULT_ADMIN_USERNAME:28s} ║")
+    print(f"║  Override env vars: DEFAULT_ADMIN_USERNAME/PASSWORD ║")
     print(f"║  Data:   {str(DATA_DIR):40s}   ║")
     print(f"╚════════════════════════════════════════════════════╝")
     app.run(debug=True, host='0.0.0.0', port=5000)
