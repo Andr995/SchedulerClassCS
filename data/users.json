@@ -5,6 +5,14 @@
     "role": "admin",
     "isActive": true,
     "createdAt": "2026-03-07T09:04:14+00:00",
-    "lastLoginAt": "2026-03-07T09:05:03+00:00"
+    "lastLoginAt": "2026-03-07T09:06:43+00:00"
+  },
+  {
+    "username": "mario123",
+    "passwordHash": "scrypt:32768:8:1$GhW6Fxxzou8XaHvQ$c9a9d7ee8bf19110bfb83594db147ebfe04e0156cb715afc710686746c05016668f2ccbc859ff8cebf58d38b1c51a6aa9e859a13a5f64b0726837299e1ea1983",
+    "role": "admin",
+    "isActive": true,
+    "createdAt": "2026-03-07T09:37:24+00:00",
+    "lastLoginAt": "2026-03-07T09:37:59+00:00"
   }
 ]

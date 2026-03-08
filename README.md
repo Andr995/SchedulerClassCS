@@ -1,114 +1,106 @@
-# SchedulerClassCS
-
 # University Timetabling System
 
-Applicazione web per la generazione automatica dell'orario universitario con ottimizzazione vincolata.
+Applicazione web per la gestione dati accademici e la generazione automatica dell'orario universitario con ottimizzazione vincolata.
 
 ## Panoramica
 
-Il progetto implementa una pipeline completa:
+Il progetto include:
 
-1. gestione dati accademici (aule, docenti, corsi, curricula, vincoli),
-2. generazione orario con scelta algoritmo da menu (CP-SAT, greedy, genetico, tabu, lineare),
-3. validazione vincoli hard e log in pagina,
-4. modifica manuale orario (giorno/ora/aula) con salvataggio,
-5. import/export JSON (DB e orario), esportazione PDF (senza LaTeX).
+1. Gestione dataset: aule, docenti, corsi, curricula, indisponibilita, policy soft.
+2. Generazione orario con algoritmi selezionabili: `auto`, `cp-sat`, `greedy`, `genetic`, `tabu-search`, `linear-programming`.
+3. Validazione vincoli hard e report nel risultato.
+4. Modifica manuale dell'orario con salvataggio persistente.
+5. Import/Export JSON (DB, orario, bundle DB+orario) e export PDF.
+6. Autenticazione admin multiutente con password hashate (scrypt), gestione utenti da UI admin.
 
-L'app è pensata per uso locale/laboratorio e persiste i dati in file JSON nella cartella `data/`.
+I dati sono persistiti in file JSON nella cartella `data/`.
 
-## Struttura del progetto
+## Struttura progetto
 
-```
-├── app.py                 # Backend Flask + API REST + persistenza JSON
-├── scheduler.py           # Motore scheduling (CP-SAT + fallback greedy)
-├── pdf_export.py          # Generazione PDF senza LaTeX (ReportLab)
+```text
+.
+├── app.py
+├── scheduler.py
+├── pdf_export.py
+├── latex_export.py
 ├── templates/
-│   └── index.html         # Frontend single-page (HTML/CSS/JS vanilla)
+│   ├── admin.html
+│   ├── admin_login.html
+│   └── index.html
 ├── data/
-│   ├── database.json      # Database applicativo
-│   └── last_schedule.json # Ultimo risultato generato
-├── Classes.html           # Prototipo storico UI (riferimento)
-├── requirements.txt       # Dipendenze Python
+│   ├── database.json
+│   ├── last_schedule.json
+│   └── users.json
+├── requirements.txt
 └── README.md
 ```
 
 ## Architettura
 
-### 1) Frontend
-- `templates/admin.html`: interfaccia amministrativa (CRUD + generazione orario).
-- `templates/index.html`: interfaccia pubblica read-only (solo visualizzazione orario).
-- `templates/admin_login.html`: login con password per accesso area admin.
+### Frontend
 
-### 2) Backend (`app.py`)
-- Espone endpoint HTTP per dati e scheduling.
-- Carica/salva JSON su disco (`database.json`, `last_schedule.json`).
-- Orchestration: prepara input, invoca `scheduler.solve(...)`, arricchisce output con metadati.
-- Espone export flat/PDF e endpoint pubblico read-only per consultazione orario.
+- `templates/admin.html`: UI amministrativa (CRUD, scheduling, import/export, gestione utenti).
+- `templates/admin_login.html`: login admin con `username + password`.
+- `templates/index.html`: vista pubblica read-only dell'orario.
 
-### 3) Solver (`scheduler.py`)
-- Crea eventi da `courses[*].weeklyEvents`.
-- Applica vincoli hard e minimizza penalità soft.
-- Supporta più famiglie di algoritmi selezionabili da UI/API.
+### Backend (`app.py`)
 
-## Funzionalita Principali
+- API REST per DB, scheduling, import/export.
+- Persistenza file-based (`database.json`, `last_schedule.json`, `users.json`).
+- Autenticazione admin con sessione Flask.
+- Password protette con hash `scrypt` (`werkzeug.security`).
 
-- Gestione completa dataset (aule, docenti, corsi, curricula, indisponibilità, policy soft).
-- Import DB completo (`database.json`) o import intelligente JSON esterni (aule/corsi di laurea/docenti).
-- Generazione orario per semestre (`1`, `2`) o completa.
-- Selezione algoritmo da menu in area admin.
-- Log vincoli hard rispettati/violati su ogni soluzione.
-- Visualizzazione pubblica read-only dell'orario.
-- Tabelle curriculum in formato griglia settimanale.
-- Export PDF dell'orario senza dipendenza LaTeX.
-- Export JSON orario generato.
-- Import JSON orario nel sistema.
-- Editing manuale orario (spostamento giorno/ora/aula) e salvataggio persistente.
+### Solver (`scheduler.py`)
 
-## Algoritmi Disponibili
+- Generazione eventi dai `weeklyEvents` dei corsi.
+- Vincoli hard + obiettivo soft.
+- Supporto multi algoritmo.
+- Fallback backend: se algoritmo richiesto restituisce `infeasible`, il backend tenta automaticamente `greedy` e ritorna soluzione `partial` se disponibile.
 
-Il backend accetta il parametro `algorithm` in `POST /api/schedule`.
+## Sicurezza e autenticazione
 
-- `auto`: usa CP-SAT se disponibile, altrimenti fallback greedy.
-- `cp-sat`: programmazione a vincoli con OR-Tools CP-SAT.
-- `constraint-programming`: alias di `cp-sat`.
-- `greedy`: euristica deterministica a costo locale.
-- `genetic`: metaeuristica stile algoritmo genetico (multi-start + evoluzione seed).
-- `tabu-search`: metaeuristica tabu search (vicinato + lista tabu).
-- `linear-programming`: modellazione lineare intera risolta via backend OR-Tools CP-SAT; fallback greedy se OR-Tools non disponibile.
+### Modello utenti
 
-Alias supportati lato API: `cp`, `constraints`, `tabu`, `lp`, `mip`, ecc.
+- Gli utenti admin sono salvati in `data/users.json`.
+- Le password non sono mai salvate in chiaro.
+- Hash password: `scrypt` (metodo moderno, memory-hard).
 
-### Tabella Comparativa Algoritmi
+### Bootstrap default
 
-| Algoritmo | Punti di forza | Limiti | Quando usarlo |
-|---|---|---|---|
-| `auto` | Sceglie automaticamente il miglior backend disponibile | Comportamento dipendente dall'ambiente (OR-Tools presente o meno) | Scelta predefinita consigliata |
-| `cp-sat` / `constraint-programming` | Migliore qualità soluzione su vincoli complessi, supporta ottimalità/feasibility | Più pesante computazionalmente su istanze grandi | Pianificazione principale in produzione/locale |
-| `greedy` | Molto veloce, robusto anche senza OR-Tools | Qualità soluzione inferiore, può lasciare eventi non piazzati | Prototipi rapidi, fallback, debug dati |
-| `genetic` | Esplora più candidati, utile per evitare minimi locali semplici | Tempi maggiori del greedy, qualità variabile per seed/tempo | Ricerca euristica alternativa quando CP-SAT non è ideale |
-| `tabu-search` | Migliora iterativamente soluzioni euristiche con memoria tabu | Parametri sensibili (iterazioni/vicinato), non garantisce ottimo globale | Affinamento euristico di soluzioni greedy |
-| `linear-programming` | Modello MILP-like con backend OR-Tools CP-SAT, approccio formale | In questa implementazione usa backend intero CP-SAT (non LP continuo puro) | Casi in cui si preferisce formulazione lineare intera |
+Alla prima esecuzione, se non esiste alcun utente, viene creato:
 
-Suggerimento pratico:
-- inizia con `auto` o `cp-sat`;
-- usa `greedy` per test veloci;
-- prova `genetic`/`tabu-search` quando vuoi confrontare strategie euristiche;
-- usa `linear-programming` quando vuoi esplicitare un'impostazione MILP-like.
+- Username: `admin`
+- Password: `admin`
 
-### 4) Export (`pdf_export.py`)
-- Genera PDF direttamente in Python con ReportLab (nessuna dipendenza LaTeX).
-- Include log vincoli hard e tabelle separate per ogni curriculum.
-- Supporta filtri opzionali: curriculum, docente, aula.
+Cambiare subito la password dopo il primo accesso.
 
-## Requisiti
+Variabili ambiente supportate per bootstrap:
 
-- Python 3.10+
-- pip
-- Nessuna dipendenza LaTeX richiesta per il PDF
+- `DEFAULT_ADMIN_USERNAME` (default: `admin`)
+- `DEFAULT_ADMIN_PASSWORD` (default: `admin`)
 
-Dipendenze Python principali:
-- Flask
-- ortools
+### Policy password (creazione/reset da admin)
+
+Password obbligatoriamente robuste:
+
+- minimo 12 caratteri
+- almeno una minuscola
+- almeno una maiuscola
+- almeno un numero
+- almeno un simbolo
+
+## Funzionalita principali
+
+- CRUD completo su risorse e vincoli.
+- Generazione orario per semestre o globale.
+- Generazione per singolo CdL/anno (`program-year`).
+- Report vincoli hard.
+- Edit manuale orario.
+- Export PDF senza dipendenza LaTeX.
+- Export JSON orario.
+- Export bundle `DB+orario` (`database_con_orario.json`).
+- Import DB classico, import JSON esterni (aule/corsi/docenti), import bundle `DB+orario`.
+- Gestione utenti admin (crea, reset password, elimina).
 
 ## Installazione
 
@@ -127,230 +119,124 @@ python3 app.py
 ```
 
 Server di sviluppo:
-- URL locale: `http://127.0.0.1:5000`
-- Bind: `0.0.0.0:5000`
-- Modalità: `debug=True`
 
-## API REST
+- URL: `http://127.0.0.1:5000`
+- Host: `0.0.0.0`
+- Porta: `5000`
 
-### Health/UI
-- `GET /`
-	- Ritorna la pagina pubblica read-only (solo orario).
-- `GET /admin`
-	- Ritorna la pagina admin (se non autenticato mostra login).
-- `POST /admin/login`
-	- Login area admin (password via variabile `ADMIN_PASSWORD`, default `admin`).
-- `POST /admin/logout`
-	- Logout area admin.
+## Algoritmi disponibili
+
+Parametro `algorithm` in `POST /api/schedule`:
+
+- `auto`
+- `cp-sat`
+- `greedy`
+- `genetic`
+- `tabu-search`
+- `linear-programming`
+
+Alias principali supportati: `cp`, `constraints`, `tabu`, `lp`, `mip`, ecc.
+
+### Spiegazione rapida
+
+- `auto`: prova CP-SAT (se disponibile), altrimenti usa greedy.
+- `cp-sat`: solver a vincoli (OR-Tools), migliore qualita media su vincoli complessi.
+- `greedy`: euristica veloce; robusta, ma puo lasciare piu eventi non piazzati.
+- `genetic`: metaeuristica multi-start/evolutiva; utile per esplorare alternative.
+- `tabu-search`: metaeuristica con memoria tabu; migliora candidati euristici evitando cicli.
+- `linear-programming`: formulazione lineare intera via backend OR-Tools CP-SAT.
+
+### Tabella comparativa
+
+| Algoritmo | Punti di forza | Limiti | Quando usarlo |
+|---|---|---|---|
+| `auto` | Semplice e bilanciato, sceglie il backend migliore disponibile | Dipende dall'ambiente (OR-Tools installato o no) | Scelta predefinita consigliata |
+| `cp-sat` | Soluzioni migliori su vincoli hard complessi, buona qualita globale | Piu pesante su istanze molto grandi | Pianificazione principale |
+| `greedy` | Molto veloce e prevedibile | Qualita inferiore rispetto a CP-SAT | Test rapidi, fallback, debug dati |
+| `genetic` | Esplora piu configurazioni, puo trovare alternative utili | Variabilita nei risultati, tempi maggiori del greedy | Confronto euristico quando CP-SAT fatica |
+| `tabu-search` | Affina soluzioni euristiche con memoria delle mosse | Parametri sensibili (iterazioni/vicinato) | Miglioramento euristico iterativo |
+| `linear-programming` | Approccio formale MILP-like | In questa implementazione usa backend CP-SAT intero | Casi in cui vuoi impostazione lineare intera |
+
+### Suggerimento pratico
+
+1. Parti da `auto`.
+2. Se vuoi qualita massima, prova `cp-sat`.
+3. Se vuoi tempi brevi, usa `greedy`.
+4. Per confronti sperimentali, prova `genetic` e `tabu-search`.
+5. Se il solver richiesto va in `infeasible`, il backend puo tornare `partial` tramite fallback `greedy`.
+
+## API principali
+
+### UI/Auth
+
+- `GET /` -> pagina pubblica
+- `GET /admin` -> area admin (o login)
+- `POST /admin/login` -> login con `username`, `password`
+- `POST /admin/logout` -> logout
+
+### Utenti admin
+
+- `GET /api/users` -> lista utenti (senza hash)
+- `POST /api/users` -> crea utente admin
+- `POST /api/users/<username>/password` -> reset password
+- `DELETE /api/users/<username>` -> elimina utente
+
+Note di protezione:
+
+- non puoi eliminare l'utente loggato
+- deve rimanere almeno un admin attivo
 
 ### Database
+
 - `GET /api/db`
-	- Ritorna il database corrente (solo admin).
 - `POST /api/db`
-	- Salva il database inviato come JSON (solo admin).
-	- Errore `400` se payload non è un oggetto JSON.
 
 ### Scheduling
+
 - `POST /api/schedule`
-	- Esegue la generazione orario (solo admin).
-	- Body opzionale:
-		- `timeLimitSeconds` (default `30`)
-		- `semester` (`1`, `2` oppure `null` per tutti)
-		- `algorithm` (`auto`, `cp-sat`, `greedy`, `genetic`, `tabu-search`, `linear-programming`)
-	- Ritorna risultato con:
-		- `assignments`
-		- `status`
-		- `objective`
-		- `message`
-		- `solveTimeSeconds`
-		- `solverBackend`
-		- `requestedAlgorithm`
-		- `timestamp`
-		- `semester`
-
+- `POST /api/schedule/program-year`
 - `GET /api/schedule`
-	- Ritorna l'ultimo orario generato.
-	- Se assente: `status: "none"`.
-
 - `POST /api/schedule/import`
-	- Importa un JSON orario (solo admin).
-	- Normalizza il payload e salva `last_schedule.json`.
-
 - `POST /api/schedule/manual-update`
-	- Salva modifiche manuali alle assegnazioni orario (solo admin).
-	- Ricalcola il report vincoli hard.
-
 - `GET /api/public/timetable`
-	- Restituisce dati read-only per vista pubblica.
-	- Include anche tabelle separate per curriculum.
 
 ### Export
+
 - `GET /api/export/flat`
-	- Esporta il DB in formato "flat" con riferimenti risolti (solo admin).
-
 - `GET /api/export/schedule-json`
-	- Esporta l'ultimo orario in JSON (solo admin).
-
 - `GET /api/export/pdf`
-	- Ritorna PDF compilato (`application/pdf`).
-	- Richiede che esista un orario generato.
-	- Query params opzionali:
-		- `curriculum`
-		- `teacher`
-		- `room`
 
-## Modello dati (schema logico)
+## Import/Export JSON
 
-Root JSON:
-- `meta`
-- `rooms[]`
-- `teachers[]`
-- `programs[]`
-- `curricula[]`
-- `courses[]`
-- `unavailability[]`
-- `softPolicy`
+### Export DB (UI admin)
 
-### `rooms[]`
-- `id`, `name`, `capacity`, `type` (`lecture`/`lab`/`seminar`)
+Il pulsante `Esporta DB` genera un bundle:
 
-### `teachers[]`
-- `id`, `name`
-- `preferences` opzionali (es. `avoidEarly`, `avoidLate`)
+- file: `database_con_orario.json`
+- campi principali: `database`, `schedule`, metadati export
 
-### `courses[]`
-- `id`, `name`, `programId`
-- `curriculaIds[]`
-- `teacherIds[]`
-- `expectedStudents`
-- `roomType`
-- `semester`
-- `patternPref` opzionale (es. `Mon-Wed`, `Mon-Wed-Fri`)
-- `weeklyEvents[]` con eventi settimanali (`id`, `durationHours`)
+### Reimport bundle
 
-### `unavailability[]`
-- `teacherId`, `day` (`Mon..Fri`), `hours[]`
+Lo stesso file puo essere importato per ripristinare:
 
-### `softPolicy`
-- `weights` per penalità soft
-- `preferredPatterns` per distribuzione eventi (2 o 3 eventi/settimana)
+1. Database
+2. Ultimo orario
 
-## Algoritmo di scheduling
+in un unico passaggio.
 
-### Strategia primaria: CP-SAT
+## Stato solver e fallback
 
-Variabili principali per ogni evento:
-- giorno (`day_v`)
-- ora inizio (`start_v`)
-- aula (`room_v`)
-- intervallo temporale (`interval_v`)
+Possibili `status`:
 
-#### Vincoli hard implementati
-- No overlap docenti (`AddNoOverlap`)
-- No overlap curricula/studenti (`AddNoOverlap`)
-- No overlap aule (intervalli opzionali per aula)
-- Eventi dello stesso corso in giorni diversi (`AddAllDifferent` sui giorni)
-- Rispetto indisponibilità docenti
-- Compatibilità aula per tipo/capienza
-- Rispetto finestra oraria giornaliera
-- Esclusione sovrapposizione con pausa pranzo (in fase di start validi)
+- `optimal`, `feasible`, `partial`, `infeasible`, `error`, `none`, ecc.
 
-#### Obiettivo soft (minimizzazione)
-- buchi tra lezioni dello stesso curriculum/giorno,
-- lezioni troppo presto,
-- lezioni troppo tardi,
-- eccesso ore consecutive docente,
-- eccesso ore giornaliere docente,
-- violazione pattern distribuzione preferita.
+Se l'algoritmo richiesto produce `infeasible`, il backend puo restituire una soluzione `partial` tramite fallback automatico a `greedy`.
 
-### Fallback greedy
+## Note sviluppo
 
-Se OR-Tools non è installato/importabile:
-- ordina gli eventi per "difficoltà" (docenti/curricula/durata),
-- prova slot compatibili,
-- sceglie il migliore con scoring locale,
-- produce stato `feasible` o `partial`.
-
-## Stati di output
-
-Possibili `status` restituiti:
-- `optimal`
-- `feasible`
-- `partial` (greedy con eventi non piazzati)
-- `infeasible`
-- `no_events`
-- `no_valid_slots`
-- `error`
-- `none` (solo `GET /api/schedule` se non c'è cache)
-
-## Flusso d'uso consigliato
-
-1. Inserisci aule/docenti/corsi/curricula.
-2. Definisci indisponibilità e policy soft.
-3. Salva DB (`POST /api/db`).
-4. Genera orario (`POST /api/schedule`).
-5. Controlla risultato (`GET /api/schedule`).
-6. Esporta (`/api/export/flat`, `/api/export/pdf`).
-
-## Esempi API rapidi
-
-Genera orario per semestre 1 con timeout 45s:
-
-```bash
-curl -X POST http://127.0.0.1:5000/api/schedule \
-	-H "Content-Type: application/json" \
-	-d '{"semester": 1, "timeLimitSeconds": 45, "algorithm": "cp-sat"}'
-```
-
-Importa un JSON orario già pronto:
-
-```bash
-curl -X POST http://127.0.0.1:5000/api/schedule/import \
-	-H "Content-Type: application/json" \
-	-d @orario_generato.json
-```
-
-Esporta PDF filtrato per curriculum:
-
-```bash
-curl -L "http://127.0.0.1:5000/api/export/pdf?curriculum=CURR-ID" \
-	-o orario.pdf
-```
-
-## Troubleshooting
-
-### `status: infeasible`
-Cause tipiche:
-- troppe lezioni rispetto aule/slot disponibili,
-- indisponibilità docenti troppo restrittive,
-- pattern o durata eventi incompatibili con finestra oraria.
-
-Suggerimenti:
-- aumenta aule o capienza,
-- alleggerisci indisponibilità,
-- riduci durata/numero eventi,
-- prova `semester` separati.
-
-### Export PDF fallisce
-- Verifica che il pacchetto Python `reportlab` sia installato nell'ambiente attivo.
-- Verifica che esista un orario già generato (`GET /api/schedule`).
-
-### OR-Tools non disponibile
-- Il sistema continua in modalità greedy.
-- Installa/reinstalla dipendenze da `requirements.txt` per riattivare CP-SAT.
-
-## Note di sviluppo
-
-- Persistenza file-based: adatta a prototipi e uso locale.
-- Per ambienti multiutente/produzione valutare:
-	- DB relazionale,
-	- autenticazione,
-	- versioning dati,
-	- gestione job asincroni.
-
-## Tecnologie
-
-- Backend: Python + Flask
-- Solver: Google OR-Tools CP-SAT + fallback greedy
-- Frontend: HTML/CSS/JS vanilla
-- Export: PDF nativo (`reportlab`)
+- Persistenza file-based: ottima per prototipo/uso locale.
+- Per produzione consigliato:
+  - server WSGI/ASGI (es. gunicorn)
+  - gestione segreti robusta
+  - database relazionale
+  - rate limit login e audit log
