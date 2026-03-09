@@ -84,6 +84,12 @@
     .warn{border:1px solid rgba(255,90,106,.35);background:rgba(255,90,106,.10);padding:10px 12px;border-radius:14px;color:rgba(255,255,255,.85);font-size:12px}
     .info-box{border:1px solid rgba(122,167,255,.35);background:rgba(122,167,255,.08);padding:10px 12px;border-radius:14px;color:rgba(255,255,255,.85);font-size:12px;margin-bottom:12px}
     .success-box{border:1px solid rgba(78,230,168,.35);background:rgba(78,230,168,.08);padding:10px 12px;border-radius:14px;color:rgba(255,255,255,.85);font-size:13px;margin-bottom:12px}
+    .import-report{border:1px solid rgba(255,193,7,.38);background:rgba(255,193,7,.10);padding:10px 12px;border-radius:12px;margin:10px 14px 0 14px}
+    .import-report.ok{border-color:rgba(78,230,168,.38);background:rgba(78,230,168,.10)}
+    .import-report .hdline{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .import-report .title{font-size:13px;font-weight:700}
+    .import-report .meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .import-report .body{margin-top:8px;max-height:190px;overflow:auto;font-family:var(--mono);font-size:12px;line-height:1.4;color:rgba(255,255,255,.90);white-space:pre-wrap}
 
     /* Timetable Grid */
     .tt-container{position:relative}
@@ -197,6 +203,14 @@
             </div>
             <span class="pill" id="sectionHint">—</span>
           </div>
+        </div>
+        <div class="import-report" id="importReport" style="display:none">
+          <div class="hdline">
+            <div class="title" id="importReportTitle">Report import</div>
+            <button id="btnCloseImportReport" type="button">Chiudi</button>
+          </div>
+          <div class="meta" id="importReportMeta"></div>
+          <div class="body" id="importReportBody"></div>
         </div>
         <div class="bd" id="sectionContent"></div>
       </div>
@@ -689,6 +703,26 @@ function setStatus(msg){
   el.textContent=msg;
   setTimeout(()=>{ el.textContent="connesso"; },2000);
 }
+
+function showImportReport({title='', meta='', lines=[], ok=false}={}){
+  const box=document.getElementById('importReport');
+  const titleEl=document.getElementById('importReportTitle');
+  const metaEl=document.getElementById('importReportMeta');
+  const bodyEl=document.getElementById('importReportBody');
+  if(!box || !titleEl || !metaEl || !bodyEl) return;
+  box.classList.toggle('ok', !!ok);
+  titleEl.textContent=title || 'Report import';
+  metaEl.textContent=meta || '';
+  bodyEl.textContent=Array.isArray(lines) ? lines.join('\n') : String(lines||'');
+  box.style.display='block';
+}
+
+function hideImportReport(){
+  const box=document.getElementById('importReport');
+  if(!box) return;
+  box.style.display='none';
+}
+
 function showLoading(show, text){
   const ov=document.getElementById("loadingOverlay");
   if(text) document.getElementById("loadingText").textContent=text;
@@ -1899,23 +1933,80 @@ function uniqueId(prefix, base, existingIds){
   return id;
 }
 
-function mergeExternalJsonIntoDb(payload){
+function mergeExternalJsonIntoDb(payload, sourceName=''){
   db = ensureDbShape(db);
-  const stats={rooms:0, programs:0, teachers:0};
+  const stats={rooms:0, programs:0, teachers:0, courses:0, duplicates:0, skipped:0, notes:[]};
   const roomIds=new Set((db.rooms||[]).map(x=>x.id));
   const progIds=new Set((db.programs||[]).map(x=>x.id));
   const teachIds=new Set((db.teachers||[]).map(x=>x.id));
+  const courseIds=new Set((db.courses||[]).map(x=>x.id));
+
+  function addNote(kind, label){
+    if(!label) return;
+    const arr = stats.notes;
+    if(arr.length >= 30) return;
+    arr.push(`${kind}: ${label}`);
+  }
+
+  function firstValidEmail(...values){
+    for(const v of values){
+      const s=String(v||'').trim();
+      if(!s || s.toLowerCase()==='altro') continue;
+      if(s.includes('@')) return s;
+    }
+    return '';
+  }
+
+  function upsertTeacherByName(name, patch){
+    const cleanName=String(name||'').trim();
+    if(!cleanName) return null;
+    const teachers=db.teachers;
+    let existing=teachers.find(t=>String(t.name||'').toLowerCase()===cleanName.toLowerCase());
+    const existedBefore = !!existing;
+    if(!existing){
+      const id=uniqueId('T', cleanName, teachIds);
+      existing={
+        id,
+        name: cleanName,
+        email:'',
+        preferences:{avoidEarly:false,avoidLate:false},
+      };
+      teachers.push(existing);
+    }
+    existing.email = firstValidEmail(existing.email, patch?.email);
+    if(!existing.preferences) existing.preferences={avoidEarly:false,avoidLate:false};
+    if(patch && patch.role) existing.role = patch.role;
+    if(patch && patch.phone) existing.phone = String(patch.phone||'').trim();
+    if(existedBefore){
+      stats.duplicates += 1;
+      addNote('duplicato docente', cleanName);
+    }
+    return existing;
+  }
+
+  function inferProgramIdFromSource(){
+    const n=String(sourceName||'').toLowerCase();
+    if(n.includes('l31') || n.includes('l-31')) return 'L-31';
+    if(n.includes('lm18') || n.includes('lm-18')) return 'LM-18';
+    return '';
+  }
 
   // Formato aule_dmi.json
   if(Array.isArray(payload?.aule)){
     const rooms = db.rooms;
     for(const a of payload.aule){
       const name=(a.nome_aula||'').trim();
-      if(!name) continue;
+      if(!name){
+        stats.skipped += 1;
+        addNote('scartato aula', '(nome mancante)');
+        continue;
+      }
       const cap=Number(a.postazioni)||0;
 
       const existing=rooms.find(r=>String(r.name||'').toLowerCase()===name.toLowerCase());
       if(existing){
+        stats.duplicates += 1;
+        addNote('duplicato aula', name);
         existing.capacity = cap || existing.capacity || 0;
         if(!existing.type) existing.type = (cap>0 && cap<=40) ? 'lab' : 'lecture';
       }else{
@@ -1937,7 +2028,11 @@ function mergeExternalJsonIntoDb(payload){
     for(const c of payload.corsi_laurea){
       const classCode=(c.classe||'').trim();
       const nome=(c.nome||'').trim();
-      if(!classCode) continue;
+      if(!classCode){
+        stats.skipped += 1;
+        addNote('scartato cds', nome || '(classe mancante)');
+        continue;
+      }
 
       const pid = classCode.toUpperCase();
       const program={
@@ -1948,7 +2043,12 @@ function mergeExternalJsonIntoDb(payload){
         classCode,
       };
 
-      if(!progIds.has(pid)) progIds.add(pid);
+      if(progIds.has(pid)){
+        stats.duplicates += 1;
+        addNote('duplicato cds', pid);
+      } else {
+        progIds.add(pid);
+      }
       upsertById(programs, program);
       stats.programs += 1;
     }
@@ -1956,27 +2056,130 @@ function mergeExternalJsonIntoDb(payload){
 
   // Formato docenti.json
   if(Array.isArray(payload?.docenti)){
-    const teachers = db.teachers;
     for(const d of payload.docenti){
-      const name=(d.nome_docente||'').trim();
-      if(!name) continue;
-
-      let existing=teachers.find(t=>String(t.name||'').toLowerCase()===name.toLowerCase());
-      if(!existing){
-        const id=uniqueId('T', name, teachIds);
-        existing={
-          id,
-          name,
-          email:'',
-          preferences:{avoidEarly:false,avoidLate:false},
-        };
-        teachers.push(existing);
+      const name=(d.nome_docente||d.nome_ta||'').trim();
+      if(!name){
+        stats.skipped += 1;
+        addNote('scartato docente', '(nome mancante)');
+        continue;
       }
 
-      if(!existing.preferences) existing.preferences={avoidEarly:false,avoidLate:false};
+      const existing=upsertTeacherByName(name, {
+        email:firstValidEmail(d.email, d.Email),
+        role:d.nome_ta ? 'TA' : 'Docente',
+        phone:d.telefono,
+      });
+      if(!existing) continue;
       existing.role = (d.ruolo||existing.role||'');
       existing.ssd = (d.ssd||existing.ssd||'');
       stats.teachers += 1;
+    }
+  }
+
+  // Formato assegnisti_dmi.json
+  if(Array.isArray(payload?.assegnisti)){
+    for(const a of payload.assegnisti){
+      if(!String(a.nome||'').trim()){
+        stats.skipped += 1;
+        addNote('scartato assegnista', '(nome mancante)');
+        continue;
+      }
+      const existing=upsertTeacherByName(a.nome, {
+        email:firstValidEmail(a.email, a.Email),
+        role:'Assegnista',
+      });
+      if(!existing) continue;
+      stats.teachers += 1;
+    }
+  }
+
+  // Formato contrattisti_dmi.json
+  if(Array.isArray(payload?.contrattisti_di_ricerca)){
+    for(const c of payload.contrattisti_di_ricerca){
+      if(!String(c.nome||'').trim()){
+        stats.skipped += 1;
+        addNote('scartato contrattista', '(nome mancante)');
+        continue;
+      }
+      const existing=upsertTeacherByName(c.nome, {
+        email:firstValidEmail(c.email, c.Email),
+        role:'Contrattista di ricerca',
+      });
+      if(!existing) continue;
+      stats.teachers += 1;
+    }
+  }
+
+  // Formato dottorandi.json
+  if(Array.isArray(payload?.dottorandi)){
+    for(const d of payload.dottorandi){
+      const dn = String(d.nome_dottorandi || d.nome || '').trim();
+      if(!dn){
+        stats.skipped += 1;
+        addNote('scartato dottorando', '(nome mancante)');
+        continue;
+      }
+      const existing=upsertTeacherByName(d.nome_dottorandi || d.nome, {
+        email:firstValidEmail(d.email, d.Email),
+        role:'Dottorando',
+      });
+      if(!existing) continue;
+      if(d.ciclo) existing.phdCycle = String(d.ciclo);
+      stats.teachers += 1;
+    }
+  }
+
+  // Formato insegnamenti_*.json
+  if(Array.isArray(payload?.insegnamenti)){
+    const inferredProgramId = inferProgramIdFromSource();
+    if(inferredProgramId){
+      const programName = inferredProgramId === 'LM-18' ? 'Informatica Magistrale (LM-18)' : 'Informatica (L-31)';
+      upsertById(db.programs, {
+        id: inferredProgramId,
+        name: programName,
+        department: 'DMI',
+      });
+      progIds.add(inferredProgramId);
+    }
+
+    for(const ins of payload.insegnamenti){
+      const code=String(ins.codice||'').trim();
+      const name=String(ins.nome_insegnamento||ins.nome||'').trim();
+      if(!code && !name){
+        stats.skipped += 1;
+        addNote('scartato insegnamento', '(codice e nome mancanti)');
+        continue;
+      }
+
+      const cid = uniqueId('C', code || name, courseIds);
+      const existing = (db.courses||[]).find(c => c.sourceCode===code || (name && String(c.name||'').toLowerCase()===name.toLowerCase()));
+      if(existing){
+        stats.duplicates += 1;
+        addNote('duplicato insegnamento', code || name);
+        if(code) existing.sourceCode = code;
+        if(name) existing.name = code ? `${code} - ${name}` : name;
+        if(inferredProgramId && !existing.programId) existing.programId = inferredProgramId;
+        if(!Array.isArray(existing.teacherIds)) existing.teacherIds = [];
+        if(!Array.isArray(existing.curriculaIds)) existing.curriculaIds = [];
+        if(!Array.isArray(existing.weeklyEvents) || !existing.weeklyEvents.length){
+          existing.weeklyEvents = [{durationHours:2}];
+        }
+      }else{
+        db.courses.push({
+          id: cid,
+          sourceCode: code,
+          name: code && name ? `${code} - ${name}` : (name || code),
+          semester: 1,
+          year: 1,
+          programId: inferredProgramId || '',
+          curriculaIds: [],
+          teacherIds: [],
+          expectedStudents: 0,
+          roomType: 'lecture',
+          weeklyEvents: [{durationHours:2}],
+        });
+      }
+      stats.courses += 1;
     }
   }
 
@@ -2004,10 +2207,10 @@ async function importDbFile(file){
     return { kind:'db', rooms:0, programs:0, teachers:0 };
   }
 
-  const stats = mergeExternalJsonIntoDb(parsed);
-  const total = stats.rooms + stats.programs + stats.teachers;
+  const stats = mergeExternalJsonIntoDb(parsed, file.name || '');
+  const total = stats.rooms + stats.programs + stats.teachers + (stats.courses||0);
   if(total===0){
-    throw new Error(`Formato non riconosciuto in ${file.name}. Attesi DB completo o JSON con chiavi: aule/corsi_laurea/docenti.`);
+    throw new Error(`Formato non riconosciuto in ${file.name}. Attesi DB completo o JSON con chiavi: aule/corsi_laurea/docenti/assegnisti/contrattisti_di_ricerca/dottorandi/insegnamenti.`);
   }
   return { kind:'external', ...stats };
 }
@@ -2030,7 +2233,10 @@ document.getElementById("fileImport").addEventListener("change",(e)=>{
   const files=Array.from(e.target.files||[]);
   (async()=>{
     if(!files.length) return;
-    let rooms=0, programs=0, teachers=0, fullDb=false;
+    hideImportReport();
+    let rooms=0, programs=0, teachers=0, courses=0, fullDb=false;
+    let duplicates=0, skipped=0;
+    const importNotes=[];
     let importedSchedule = null;
     try{
       for(const f of files){
@@ -2043,6 +2249,15 @@ document.getElementById("fileImport").addEventListener("change",(e)=>{
         rooms += res.rooms||0;
         programs += res.programs||0;
         teachers += res.teachers||0;
+        courses += res.courses||0;
+        duplicates += res.duplicates||0;
+        skipped += res.skipped||0;
+        if(Array.isArray(res.notes) && res.notes.length){
+          for(const n of res.notes){
+            if(importNotes.length >= 40) break;
+            importNotes.push(`${f.name}: ${n}`);
+          }
+        }
       }
       await saveDbToServer();
 
@@ -2055,7 +2270,35 @@ document.getElementById("fileImport").addEventListener("change",(e)=>{
       if(fullDb){
         setStatus(importedSchedule ? "DB+orario importati ✓" : "DB importato ✓");
       }else{
-        setStatus(`import esterno ✓ (aule:${rooms}, cds:${programs}, docenti:${teachers})`);
+        setStatus(`import esterno ✓ (aule:${rooms}, cds:${programs}, docenti:${teachers}, insegnamenti:${courses})`);
+      }
+
+      const reportMeta = `Aule:${rooms}  CdS:${programs}  Docenti:${teachers}  Insegnamenti:${courses}`;
+      if(duplicates>0 || skipped>0){
+        const lines = [
+          `Duplicati rilevati: ${duplicates}`,
+          `Elementi scartati: ${skipped}`,
+          ''
+        ];
+        if(importNotes.length){
+          lines.push(...importNotes.slice(0, 20));
+          if(importNotes.length > 20) lines.push(`... altri ${importNotes.length-20} elementi`);
+        } else {
+          lines.push('(nessun dettaglio disponibile)');
+        }
+        showImportReport({
+          title:'Import completato con note',
+          meta: reportMeta,
+          lines,
+          ok:false,
+        });
+      }else{
+        showImportReport({
+          title:'Import completato',
+          meta: reportMeta,
+          lines:['Nessuna anomalia rilevata.'],
+          ok:true,
+        });
       }
       render();
     }catch(err){
@@ -2069,6 +2312,7 @@ document.getElementById("search").addEventListener("input",(e)=>{currentSearch=e
 document.getElementById("btnCloseModal").onclick=()=>showModal(false);
 document.getElementById("btnCancel").onclick=()=>showModal(false);
 document.getElementById("btnSave").onclick=saveModal;
+document.getElementById("btnCloseImportReport").onclick=hideImportReport;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // INIT
