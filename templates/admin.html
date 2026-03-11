@@ -168,6 +168,7 @@
         ⬆ Importa DB/JSON Esterni
         <input id="fileImport" type="file" accept=".json,.txt" multiple style="display:none" />
       </label>
+      <button id="btnImportUrlTop" type="button">⬆ Importa da URL</button>
       <button class="danger" id="btnReset">Reset</button>
       <form method="post" action="/admin/logout" style="margin:0">
         <button class="danger" type="submit">Logout</button>
@@ -770,12 +771,20 @@ function render(){
 
   const btnAdd=document.getElementById("btnAdd");
   const btnImportUrl=document.getElementById("btnImportUrl");
+  const btnImportUrlTop=document.getElementById("btnImportUrlTop");
   const searchInput=document.getElementById("search");
 
   const canImportByUrl = ["teachers","programs","courses","curricula"].includes(currentSection);
   if(btnImportUrl){
     btnImportUrl.style.display = canImportByUrl ? "inline-flex" : "none";
     btnImportUrl.onclick = ()=>importCurrentSectionFromUrl();
+  }
+  if(btnImportUrlTop){
+    btnImportUrlTop.onclick = ()=>importCurrentSectionFromUrl();
+    btnImportUrlTop.disabled = !canImportByUrl;
+    btnImportUrlTop.title = canImportByUrl
+      ? "Importa dati da URL per la sezione corrente"
+      : "Disponibile solo in: Docenti, CdS, Curricula, Insegnamenti";
   }
 
   if(currentSection==="timetable"){
@@ -808,6 +817,12 @@ function matchesSearch(obj){
 }
 
 async function importCurrentSectionFromUrl(){
+  const allowed=["teachers","programs","courses","curricula"];
+  if(!allowed.includes(currentSection)){
+    alert("Importa da URL disponibile solo per Docenti, CdS, Curricula e Insegnamenti.");
+    return;
+  }
+
   const labels={
     teachers:'docenti/assegnisti/contrattisti/dottorandi/TA',
     programs:'corsi di laurea',
