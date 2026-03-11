@@ -88,7 +88,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Nota macOS: se `python3` non e disponibile, installa Python dal sito ufficiale o via Homebrew.
+Nota macOS: se `python3` non è disponibile, installa Python dal sito ufficiale o via Homebrew.
 
 ## Windows (PowerShell)
 
