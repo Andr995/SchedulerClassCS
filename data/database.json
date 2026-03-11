@@ -12,7 +12,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1000411",
       "isCommonBetweenCurricula": true,
-      "name": "1000411 - RETI DI CALCOLATORI",
+      "name": "1000411 - RETI DI CALCOLATORI M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -50,7 +50,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1000416",
       "isCommonBetweenCurricula": true,
-      "name": "1000416 - BASI DI DATI",
+      "name": "1000416 - BASI DI DATI M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -110,7 +110,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1000418",
       "isCommonBetweenCurricula": true,
-      "name": "1000418 - SISTEMI OPERATIVI",
+      "name": "1000418 - SISTEMI OPERATIVI M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -147,7 +147,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1000422",
       "isCommonBetweenCurricula": true,
-      "name": "1000422 - METODI MATEMATICI E STATISTICI",
+      "name": "1000422 - METODI MATEMATICI E STATISTICI M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -184,7 +184,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1000430",
       "isCommonBetweenCurricula": true,
-      "name": "1000430 - INGEGNERIA DEL SOFTWARE",
+      "name": "1000430 - INGEGNERIA DEL SOFTWARE M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -438,7 +438,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1008059",
       "isCommonBetweenCurricula": true,
-      "name": "1008059 - FISICA",
+      "name": "1008059 - FISICA M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -506,7 +506,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1014263",
       "isCommonBetweenCurricula": true,
-      "name": "1014263 - ALGORITMI E LABORATORIO",
+      "name": "1014263 - ALGORITMI E LABORATORIO M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -562,7 +562,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1015123",
       "isCommonBetweenCurricula": true,
-      "name": "1015123 - ELEMENTI DI ANALISI MATEMATICA 2",
+      "name": "1015123 - ELEMENTI DI ANALISI MATEMATICA 2 O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -621,7 +621,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1015128",
       "isCommonBetweenCurricula": true,
-      "name": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1",
+      "name": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1 O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -682,7 +682,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1015912",
       "isCommonBetweenCurricula": true,
-      "name": "1015912 - PROGRAMMAZIONE I E LABORATORIO",
+      "name": "1015912 - PROGRAMMAZIONE I E LABORATORIO O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -716,7 +716,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1015928",
       "isCommonBetweenCurricula": true,
-      "name": "1015928 - INTERAZIONE E MULTIMEDIA E LABORATORIO",
+      "name": "1015928 - INTERAZIONE E MULTIMEDIA E LABORATORIO M - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -750,7 +750,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-1015938",
       "isCommonBetweenCurricula": true,
-      "name": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO",
+      "name": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -806,7 +806,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-72439",
       "isCommonBetweenCurricula": true,
-      "name": "72439 - FONDAMENTI DI INFORMATICA",
+      "name": "72439 - FONDAMENTI DI INFORMATICA O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -928,7 +928,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-9795525",
       "isCommonBetweenCurricula": true,
-      "name": "9795525 - STRUTTURE DISCRETE",
+      "name": "9795525 - STRUTTURE DISCRETE O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -965,7 +965,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-9795526",
       "isCommonBetweenCurricula": true,
-      "name": "9795526 - ALGEBRA LINEARE E GEOMETRIA",
+      "name": "9795526 - ALGEBRA LINEARE E GEOMETRIA O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -1025,7 +1025,7 @@
       "expectedStudents": 50,
       "id": "C-L-31-9795537",
       "isCommonBetweenCurricula": true,
-      "name": "9795537 - PROGRAMMAZIONE II E LABORATORIO",
+      "name": "9795537 - PROGRAMMAZIONE II E LABORATORIO O - Z",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
@@ -1254,12 +1254,12 @@
       ],
       "expectedStudents": 50,
       "id": "C-L-31-9796747",
-      "name": "9796747 - QUANTUM COMPUTER PROGRAMMING",
+      "name": "9795447 - QUANTUM COMPUTER PROGRAMMING",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
       "semester": 2,
-      "sourceCode": "9796747",
+      "sourceCode": "9795447",
       "teacherIds": [
         "T-FARO-SIMONE"
       ],
@@ -1298,12 +1298,12 @@
       ],
       "expectedStudents": 50,
       "id": "C-L-31-9796749",
-      "name": "9796749 - QUANTUM INFORMATION",
+      "name": "9799536 - Quantum Information",
       "patternPref": "",
       "programId": "L-31",
       "roomType": "lecture",
       "semester": 2,
-      "sourceCode": "9796749",
+      "sourceCode": "9799536",
       "teacherIds": [
         "T-CATALANO-DARIO",
         "T-VIOLA-CATERINA"
@@ -1857,7 +1857,7 @@
       "expectedStudents": 50,
       "id": "C-L-35-1002967",
       "isCommonBetweenCurricula": true,
-      "name": "1002967 - ULTERIORI CONOSCENZE LINGUISTICHE",
+      "name": "1003552 - ULTERIORI CONOSCENZE LINGUISTICHE",
       "patternPref": "",
       "programId": "L-35",
       "roomType": "lecture",
@@ -1866,7 +1866,7 @@
         "CUR-L-35-APPLICATIVO",
         "CUR-L-35-GENERALE"
       ],
-      "sourceCode": "1002967",
+      "sourceCode": "1003552",
       "teacherIds": [
         "T-CACCIOLA-GIULIANA"
       ],
@@ -3023,12 +3023,12 @@
       ],
       "expectedStudents": 30,
       "id": "C-LM-18-9795538",
-      "name": "9795538 - DEEP LEARNING",
+      "name": "9799560 - Deep Learning",
       "patternPref": "",
       "programId": "LM-18",
       "roomType": "lecture",
       "semester": 2,
-      "sourceCode": "9795538",
+      "sourceCode": "9799560",
       "teacherIds": [
         "T-FURNARI-ANTONINO"
       ],
@@ -4069,7 +4069,7 @@
       "expectedStudents": 30,
       "id": "C-LM-40-1014158",
       "isCommonBetweenCurricula": true,
-      "name": "1014158 - ISTITUZIONI GEOMETRIA SUPERIORE",
+      "name": "9799375 - Geometria Superiore",
       "patternPref": "",
       "programId": "LM-40",
       "roomType": "lecture",
@@ -4078,7 +4078,7 @@
         "CUR-LM-40-DIDATTICO",
         "CUR-LM-40-TEORICO"
       ],
-      "sourceCode": "1014158",
+      "sourceCode": "9799375",
       "teacherIds": [],
       "weeklyEvents": [
         {
@@ -4327,12 +4327,12 @@
       ],
       "expectedStudents": 30,
       "id": "C-LM-40-1016277",
-      "name": "1016277 - ALGEBRA COMMUTATIVA",
+      "name": "50220 - ALGEBRA COMMUTATIVA",
       "patternPref": "",
       "programId": "LM-40",
       "roomType": "lecture",
       "semester": 1,
-      "sourceCode": "1016277",
+      "sourceCode": "50220",
       "teacherIds": [
         "T-D-ANNA-MARCO"
       ],
@@ -6423,7 +6423,7 @@
       "id": "L-31",
       "name": "Informatica (L-31)",
       "sourceUid": "f223b014-788e-465e-8559-bfa7a054c7f3",
-      "type": "Laurea Triennale"
+      "type": "triennale"
     },
     {
       "academicYear": 2025,
@@ -6432,7 +6432,7 @@
       "id": "L-35",
       "name": "Matematica (L-35)",
       "sourceUid": "104be2c1-0128-45f0-84b2-22dd48f24e4a",
-      "type": "Laurea Triennale"
+      "type": "triennale"
     },
     {
       "academicYear": 2025,
@@ -6441,7 +6441,7 @@
       "id": "LM-18",
       "name": "Informatica (LM-18)",
       "sourceUid": "7a6c796f-8f18-4fde-a987-0bd77b3b0e6c",
-      "type": "Laurea Magistrale"
+      "type": "magistrale"
     },
     {
       "academicYear": 2025,
@@ -6450,16 +6450,16 @@
       "id": "LM-40",
       "name": "Matematica (LM-40)",
       "sourceUid": "8190bbeb-37b1-41a4-ab13-529b873b688e",
-      "type": "Laurea Magistrale"
+      "type": "magistrale"
     },
     {
       "academicYear": 2025,
-      "classCode": "LM-Data",
+      "classCode": "LM-DATA",
       "department": "DMI",
       "id": "LM-DATA",
-      "name": "Data Science (LM-Data)",
+      "name": "Data Science (LM-DATA)",
       "sourceUid": "b1c953f8-a476-4bbc-b8eb-b12646940851",
-      "type": "Laurea Magistrale"
+      "type": "magistrale"
     }
   ],
   "rooms": [
@@ -6637,7 +6637,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6664,7 +6665,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -6682,7 +6684,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6691,7 +6694,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6700,7 +6704,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6718,7 +6723,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice"
     },
     {
       "email": "",
@@ -6736,7 +6742,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6772,7 +6779,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6781,7 +6789,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6799,7 +6808,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6817,7 +6827,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -6826,7 +6837,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -6835,7 +6847,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore"
     },
     {
       "email": "",
@@ -6844,7 +6857,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -6853,7 +6867,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6862,7 +6877,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -6880,7 +6896,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6889,7 +6906,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6898,7 +6916,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6907,7 +6926,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa ordinaria"
     },
     {
       "email": "",
@@ -6916,7 +6936,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -6934,7 +6955,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore"
     },
     {
       "email": "",
@@ -6943,7 +6965,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -6961,7 +6984,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -6970,7 +6994,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -6979,7 +7004,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -6988,7 +7014,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -6997,7 +7024,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7006,7 +7034,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7024,7 +7053,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7033,7 +7063,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7042,7 +7073,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7060,7 +7092,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore emerito"
     },
     {
       "email": "",
@@ -7087,7 +7120,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa ordinaria"
     },
     {
       "email": "",
@@ -7096,7 +7130,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7105,7 +7140,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7114,7 +7150,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-b"
     },
     {
       "email": "",
@@ -7123,7 +7160,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7132,7 +7170,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7141,7 +7180,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -7150,7 +7190,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -7159,7 +7200,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7168,7 +7210,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -7204,7 +7247,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7231,7 +7275,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore"
     },
     {
       "email": "",
@@ -7240,7 +7285,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7249,7 +7295,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7258,7 +7305,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7267,7 +7315,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -7276,7 +7325,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa associata"
     },
     {
       "email": "",
@@ -7294,7 +7344,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7303,7 +7354,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7321,7 +7373,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7339,7 +7392,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -7375,7 +7429,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7384,7 +7439,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7393,7 +7449,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa ordinaria"
     },
     {
       "email": "",
@@ -7402,7 +7459,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7420,7 +7478,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7438,7 +7497,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-b"
     },
     {
       "email": "",
@@ -7447,7 +7507,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7456,7 +7517,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7465,7 +7527,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7492,7 +7555,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professoressa ordinaria"
     },
     {
       "email": "",
@@ -7501,7 +7565,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7510,7 +7575,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatore TD-a"
     },
     {
       "email": "",
@@ -7519,7 +7585,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
     },
     {
       "email": "",
@@ -7528,7 +7595,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7546,7 +7614,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7555,7 +7624,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore ordinario"
     },
     {
       "email": "",
@@ -7573,7 +7643,8 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Ricercatrice TD-a"
     },
     {
       "email": "",
@@ -7600,7 +7671,1364 @@
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
-      }
+      },
+      "role": "Professore associato"
+    },
+    {
+      "id": "T-BONACINI-PAOLA",
+      "name": "BONACINI Paola",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professoressa associata",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-CALVAGNA-ANDREA",
+      "name": "CALVAGNA Andrea",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore TD-a",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-CARUSO-ANDREA-ORAZIO",
+      "name": "CARUSO Andrea Orazio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-CAUSA-ANTONIO",
+      "name": "CAUSA Antonio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-GIACOBBE-ANDREA",
+      "name": "GIACOBBE Andrea",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professore ordinario",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-JARAMILLO-PUENTES-GIOVANNY-ANDRES",
+      "name": "JARAMILLO PUENTES Giovanny Andres",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore TD-b",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-PUGLISI-DANIELE",
+      "name": "PUGLISI Daniele",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professore associato",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-RUSSO-FRANCESCO",
+      "name": "RUSSO Francesco",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professore ordinario",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-SANTAMARIA-DANIELE-FRANCESCO",
+      "name": "SANTAMARIA Daniele Francesco",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore TD-b",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-SCAPELLATO-ANDREA",
+      "name": "SCAPELLATO Andrea",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professore associato",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-TRACINA-RITA",
+      "name": "TRACINA' Rita",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professoressa associata",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-URSINO-PIETRO",
+      "name": "URSINO Pietro",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Ricercatore",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-ZAMBONI-PIETRO",
+      "name": "ZAMBONI Pietro",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Professore associato",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-DILIP-HRIDYA",
+      "name": "DILIP Hridya",
+      "email": "hridya.dilip@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Assegnista",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-MANDARINO-VALERIO",
+      "name": "MANDARINO Valerio",
+      "email": "valerio.mandarino@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Assegnista",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-MAUGERI-PIETRO",
+      "name": "MAUGERI Pietro",
+      "email": "pietro.maugeri@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Assegnista",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-LEONARDI-ROSARIO",
+      "name": "LEONARDI Rosario",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Contrattista di ricerca",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-MIDOLO-ALESSANDRO",
+      "name": "MIDOLO Alessandro",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Contrattista di ricerca",
+      "phone": "",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-BONANNO-MARIO",
+      "name": "BONANNO Mario",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-BONAVENTURA-DAVIDE",
+      "name": "BONAVENTURA Davide",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-FINOCCHIARO-ANTONIO",
+      "name": "FINOCCHIARO Antonio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-MESSINA-GABRIELE",
+      "name": "MESSINA Gabriele",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-SAMBATARO-SALVATORE-ALFIO",
+      "name": "SAMBATARO Salvatore Alfio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-SCARDACE-ANTONIO",
+      "name": "SCARDACE Antonio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 41°"
+    },
+    {
+      "id": "T-BARBAGALLO-SIMONE-PIO",
+      "name": "BARBAGALLO Simone Pio",
+      "email": "simone.barbagallo@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-BERITELLI-LUDOVICA",
+      "name": "BERITELLI Ludovica",
+      "email": "ludovica.beritelli@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-CARNEMOLLA-DAVIDE",
+      "name": "CARNEMOLLA Davide",
+      "email": "davide.carnemolla@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-CERNUTO-FEDERICA",
+      "name": "CERNUTO Federica",
+      "email": "federica.cernuto@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-FORTE-ROSARIO",
+      "name": "FORTE Rosario",
+      "email": "rosario.forte@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-FRASCA-VALENTINA",
+      "name": "FRASCA Valentina",
+      "email": "valentina.frasca@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-LITRICO-GIOELE",
+      "name": "LITRICO Gioele",
+      "email": "gioele.litrico@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-MANGANO-SOFIA",
+      "name": "MANGANO Sofia",
+      "email": "sofia.mangano@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-MEZZINA-ALESSIO",
+      "name": "MEZZINA Alessio",
+      "email": "alessio.mezzina@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-PISHVAI-DARIO-SAMUELE",
+      "name": "PISHVAI Dario Samuele",
+      "email": "dario.pishvai@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-RACITI-RICCARDO",
+      "name": "RACITI Riccardo",
+      "email": "riccardo.raciti@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-SAVINO-STEFANO",
+      "name": "SAVINO Stefano",
+      "email": "stefano.savino@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-SCALETTA-ERIKA",
+      "name": "SCALETTA Erika",
+      "email": "erika.scaletta@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-SPINA-FRANCESCO",
+      "name": "SPINA Francesco",
+      "email": "francesco.spina@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-TUCCIO-GABRIELE",
+      "name": "TUCCIO Gabriele",
+      "email": "gabriele.tuccio@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-ZUCCARA-ROSA",
+      "name": "ZUCCARA' Rosa",
+      "email": "rosa.zuccara@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 40°"
+    },
+    {
+      "id": "T-CASU-MIRKO",
+      "name": "CASU Mirko",
+      "email": "mirko.casu@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-MANNO-CLAUDIO",
+      "name": "MANNO Claudio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-MARINO-FRANCESCO-PIO",
+      "name": "MARINO Francesco Pio",
+      "email": "francesco.marino@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-PUGLISI-LEMUEL",
+      "name": "PUGLISI Lemuel",
+      "email": "lemuel.puglisi@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-RAGAGLIA-CLAUDIO-VITTORIO",
+      "name": "RAGAGLIA Claudio Vittorio",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-SEMINARA-LUIGI",
+      "name": "SEMINARA Luigi",
+      "email": "luigi.seminara@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-TUCCARI-DI-SAN-CARLO-GIUSY-GIULIA",
+      "name": "TUCCARI di SAN CARLO Giusy Giulia",
+      "email": "giusy.tuccaridisancarlo@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-ZANGARA-IGNAZIO-GIUSEPPE",
+      "name": "ZANGARA Ignazio Giuseppe",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 39°"
+    },
+    {
+      "id": "T-BONANNO-CLAUDIA",
+      "name": "BONANNO Claudia",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-BULLA-LUANA",
+      "name": "BULLA Luana",
+      "email": "luana.bulla@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-CASTIGLIONE-GIANPIETRO",
+      "name": "CASTIGLIONE Gianpietro",
+      "email": "gianpietro.castiglione@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-LITRICO-MATTIA",
+      "name": "LITRICO Mattia",
+      "email": "mattia.litrico@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-MANZOOR-ARSLAN",
+      "name": "MANZOOR Arslan",
+      "email": "arslan.manzoor@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-MARLETTA-DANIELE",
+      "name": "MARLETTA Daniele",
+      "email": "daniele.marletta@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-MERLINO-VALENTINO",
+      "name": "MERLINO Valentino",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-MIGLIARO-FRANCESCO",
+      "name": "MIGLIARO Francesco",
+      "email": "francesco.migliaro@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-SAITTA-SUSANNA",
+      "name": "SAITTA Susanna",
+      "email": "susanna.saitta@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-TUCCARI-DI-SAN-CARLO-NICOLA",
+      "name": "TUCCARI di SAN CARLO Nicola",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-VARTORE-ANDRE",
+      "name": "VARTORE Andrè",
+      "email": "andre.vartore@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 38°"
+    },
+    {
+      "id": "T-ARCERI-NICOLO-FABIO",
+      "name": "ARCERI Nicolò Fabio",
+      "email": "1000041690@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-BORZI-STEFANO",
+      "name": "BORZI' Stefano",
+      "email": "1000040703@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-CHISARI-ALESSIO-BARBARO",
+      "name": "CHISARI Alessio Barbaro",
+      "email": "1000041824@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-KOSARI-KOOSHYAR",
+      "name": "KOSARI Kooshyar",
+      "email": "kooshyarkosari@gmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-MALEKI-AVISA",
+      "name": "MALEKI Avisa",
+      "email": "1000041709@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-MAUGERI-MARCELLO",
+      "name": "MAUGERI Marcello",
+      "email": "1000012427@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-NAPOLI-SPATAFORA-MARIA-AUSILIA",
+      "name": "NAPOLI SPATAFORA Maria Ausilia",
+      "email": "1000008638@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-ONORATO-SALVATORE",
+      "name": "ONORATO Salvatore",
+      "email": "1000041792@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 37°"
+    },
+    {
+      "id": "T-BUSACCA-ANDREA",
+      "name": "BUSACCA Andrea",
+      "email": "1000027085@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-CAVALLARO-ANGELO",
+      "name": "CAVALLARO Angelo",
+      "email": "1000026591@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-FURNARI-GIUSEPPE",
+      "name": "FURNARI Giuseppe",
+      "email": "giuseppe.furnari@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-GIURATO-SALVATORE",
+      "name": "GIURATO Salvatore",
+      "email": "salvatore.giurato@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-GRISANTI-MARCO",
+      "name": "GRISANTI Marco",
+      "email": "1000027077@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-PASQUALINO-GIOVANNI",
+      "name": "PASQUALINO Giovanni",
+      "email": "1000026437@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-PUGLISI-VALERIO",
+      "name": "PUGLISI Valerio",
+      "email": "1000027006@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-SCAFITI-STEFANO",
+      "name": "SCAFITI Stefano",
+      "email": "1000026438@studium.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-THAKSHNAMURTY-SELVAKUMAR",
+      "name": "THAKSHNAMURTY Selvakumar",
+      "email": "thakshnamurthy.selvakumar@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 36°"
+    },
+    {
+      "id": "T-AMATO-GABRIELE",
+      "name": "AMATO Gabriele",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-BIONDI-PIETRO",
+      "name": "BIONDI Pietro",
+      "email": "pietro.biondi@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-FERRARA-GIUSEPPE",
+      "name": "FERRARA Giuseppe",
+      "email": "giuseppe.ferrara4@enel.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-MAROTTA-GIOVANNI",
+      "name": "MAROTTA Giovanni",
+      "email": "gionnoig@gmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-MAZHAR-HUSSAIN",
+      "name": "MAZHAR Hussain",
+      "email": "mazhar.h@nu.edu.pk",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-MICALE-DAVIDE",
+      "name": "MICALE Davide",
+      "email": "dav.micale@gmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-PARASILITI-GIUSEPPE",
+      "name": "PARASILITI Giuseppe",
+      "email": "",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-PELONERO-LEONARDO",
+      "name": "PELONERO Leonardo",
+      "email": "leo.pelonero@hotmail.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-SCOLLO-ROCCO",
+      "name": "SCOLLO Rocco",
+      "email": "roccoalessandro.scollo@gmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-SPINA-ROBERTO",
+      "name": "SPINA Roberto",
+      "email": "roberto.spina@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "Ciclo 35°"
+    },
+    {
+      "id": "T-ALIFFI-GIULIA-ELENA",
+      "name": "ALIFFI Giulia Elena",
+      "email": "giulia.aliffi@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVIII"
+    },
+    {
+      "id": "T-CARPENTIERE-DAVIDE",
+      "name": "CARPENTIERE Davide",
+      "email": "davide.carpentiere@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVIII"
+    },
+    {
+      "id": "T-CASTRO-RACHELE",
+      "name": "CASTRO Rachele",
+      "email": "rachele.castro@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVIII"
+    },
+    {
+      "id": "T-GAMBERA-LAURA",
+      "name": "GAMBERA Laura",
+      "email": "laura.gambera@unipa.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVII"
+    },
+    {
+      "id": "T-SACCONE-DAMIANO",
+      "name": "SACCONE Damiano",
+      "email": "damiano.saccone@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVII"
+    },
+    {
+      "id": "T-CANGEMI-DOMENICO",
+      "name": "CANGEMI Domenico",
+      "email": "domenico.cangemi@you.unipa.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVI"
+    },
+    {
+      "id": "T-PERRONE-CARLA",
+      "name": "PERRONE Carla",
+      "email": "carla.perrone@unipa.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVI"
+    },
+    {
+      "id": "T-VITANZA-GIORGIA",
+      "name": "VITANZA Giorgia",
+      "email": "giorgia.vitanza@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXVI"
+    },
+    {
+      "id": "T-CUTRUFELLO-FRANCESCO",
+      "name": "CUTRUFELLO Francesco",
+      "email": "francesco.ctr@hotmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXV"
+    },
+    {
+      "id": "T-FRIGENTI-FABIO",
+      "name": "FRIGENTI Fabio",
+      "email": "fabiofrigenti94@gmail.com",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXV"
+    },
+    {
+      "id": "T-MOHAMMED-MAHER-ABDELRAHIM",
+      "name": "MOHAMMED Maher Abdelrahim",
+      "email": "maher.mohammed@phd.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "Dottorando",
+      "phone": "",
+      "phdCycle": "XXXIX"
+    },
+    {
+      "id": "T-BELFIORE-CAROLINA",
+      "name": "BELFIORE Carolina",
+      "email": "carolina.belfiore@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "095 7383090",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-BELLA-VINCENZO",
+      "name": "BELLA Vincenzo",
+      "email": "vbella@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957382529",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-COCO-ROSANNA",
+      "name": "COCO Rosanna",
+      "email": "rosanna.coco@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383104",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-CRISCIONE-MARTA",
+      "name": "CRISCIONE Marta",
+      "email": "marta.criscione@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383027",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-D-AMBRA-IRENE",
+      "name": "D'AMBRA Irene",
+      "email": "irene.dambra@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383057",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-DISTEFANO-BRUNO",
+      "name": "DISTEFANO Bruno",
+      "email": "bruno.distefano@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383028",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-FALLICO-MARTA",
+      "name": "FALLICO Marta",
+      "email": "marta.fallico@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383094",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-GIUSA-LORENA",
+      "name": "GIUSA Lorena",
+      "email": "lorena.giusa@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383024",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-LEONE-RAFFAELA",
+      "name": "LEONE Raffaela",
+      "email": "rleone@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "095738 3025",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-LIBERTINI-EUGENIA",
+      "name": "LIBERTINI Eugenia",
+      "email": "eugenia.libertini@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383101",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-LIBRANDO-GIUSEPPE",
+      "name": "LIBRANDO Giuseppe",
+      "email": "giuseppe.librando@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383086",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-RAPISARDA-CONCETTA",
+      "name": "RAPISARDA Concetta",
+      "email": "rapisarda@dmi.unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383093",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-SANTAGATI-PAOLO",
+      "name": "SANTAGATI Paolo",
+      "email": "paolo.santagati@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383023",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-SCIMONETTI-ANTONIO",
+      "name": "SCIMONETTI Antonio",
+      "email": "antonio.scimonetti@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383091",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-SORBELLO-FABIO",
+      "name": "SORBELLO Fabio",
+      "email": "fabio.sorbello@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383085",
+      "phdCycle": ""
+    },
+    {
+      "id": "T-VITALE-MONICA",
+      "name": "VITALE Monica",
+      "email": "monica.vitale@unict.it",
+      "preferences": {
+        "avoidEarly": false,
+        "avoidLate": false
+      },
+      "role": "TA",
+      "phone": "0957383092",
+      "phdCycle": ""
     }
   ],
   "unavailability": [

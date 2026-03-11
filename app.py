@@ -16,13 +16,17 @@ Endpoints:
 
 import json
 import os
+import re
 import time
+import unicodedata
 from pathlib import Path
 from functools import wraps
 from datetime import datetime, timezone
 
 from flask import Flask, render_template, request, jsonify, make_response, session, redirect, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
+import requests
+from bs4 import BeautifulSoup
 
 import scheduler
 import pdf_export
@@ -431,6 +435,446 @@ def _solve_with_infeasible_fallback(db, time_limit, requested_algorithm):
     return result
 
 
+def _ensure_db_shape(data):
+    if not isinstance(data, dict):
+        data = {}
+    for key, default in (
+        ('rooms', []), ('teachers', []), ('programs', []), ('curricula', []),
+        ('courses', []), ('unavailability', []),
+    ):
+        if not isinstance(data.get(key), list):
+            data[key] = list(default)
+    if not isinstance(data.get('meta'), dict):
+        data['meta'] = json.loads(json.dumps(DEFAULT_DB['meta']))
+    if not isinstance(data.get('softPolicy'), dict):
+        data['softPolicy'] = json.loads(json.dumps(DEFAULT_DB['softPolicy']))
+    return data
+
+
+def _normalize_for_id(value):
+    text = str(value or '').strip().lower()
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(ch for ch in text if unicodedata.category(ch) != 'Mn')
+    text = re.sub(r'[^a-z0-9]+', '-', text)
+    return text.strip('-')[:36]
+
+
+def _unique_id(prefix, base, existing_ids):
+    clean = _normalize_for_id(base) or prefix.lower()
+    candidate = f'{prefix}-{clean}'.upper()
+    n = 2
+    while candidate in existing_ids:
+        candidate = f'{prefix}-{clean}-{n}'.upper()
+        n += 1
+    existing_ids.add(candidate)
+    return candidate
+
+
+def _first_valid_email(*values):
+    for val in values:
+        email = str(val or '').strip()
+        if not email or email.lower() == 'altro':
+            continue
+        if '@' in email:
+            return email
+    return ''
+
+
+def _fetch_soup(url):
+    resp = requests.get(url, timeout=20)
+    resp.raise_for_status()
+    return BeautifulSoup(resp.text, 'html.parser')
+
+
+def _scrape_docenti(url='https://web.dmi.unict.it/docenti'):
+    soup = _fetch_soup(url)
+    out = []
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) < 1:
+            continue
+        out.append({
+            'nome_docente': cols[0].get_text(strip=True),
+            'ruolo': cols[1].get_text(strip=True) if len(cols) > 1 else '',
+            'ssd': cols[2].get_text(strip=True) if len(cols) > 2 else '',
+        })
+    return {'docenti': out}
+
+
+def _scrape_assegnisti(url='https://web.dmi.unict.it/it/assegnisti-di-ricerca'):
+    soup = _fetch_soup(url)
+    out = []
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) >= 2:
+            out.append({
+                'nome': cols[0].get_text(strip=True),
+                'email': cols[1].get_text(strip=True),
+            })
+    return {'assegnisti': out}
+
+
+def _scrape_contrattisti(url='https://web.dmi.unict.it/elenchi/contrattisti-di-ricerca'):
+    soup = _fetch_soup(url)
+    out = []
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) >= 2:
+            out.append({
+                'nome': cols[0].get_text(strip=True),
+                'email': cols[1].get_text(strip=True),
+            })
+    return {'contrattisti_di_ricerca': out}
+
+
+def _scrape_dottorandi(url='https://web.dmi.unict.it/dottorandi'):
+    soup = _fetch_soup(url)
+    out = []
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) >= 3:
+            out.append({
+                'nome_dottorandi': cols[0].get_text(strip=True),
+                'email': cols[1].get_text(strip=True),
+                'ciclo': cols[2].get_text(strip=True),
+            })
+    return {'dottorandi': out}
+
+
+def _scrape_personale_ta(url='https://web.dmi.unict.it/personale-ta'):
+    soup = _fetch_soup(url)
+    out = []
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) >= 3:
+            out.append({
+                'nome_ta': cols[0].get_text(strip=True),
+                'email': cols[1].get_text(strip=True),
+                'telefono': cols[2].get_text(strip=True),
+            })
+    return {'docenti': out}
+
+
+def _scrape_corsi_laurea(url='https://web.dmi.unict.it/it/content/didattica'):
+    soup = _fetch_soup(url)
+    out = []
+    for item in soup.find_all('li'):
+        text = item.get_text(strip=True)
+        if 'CdL' not in text:
+            continue
+        nome_match = re.search(r'in (.*?) \(', text)
+        classe_match = re.search(r'\((.*?)\)', text)
+        if not (nome_match and classe_match):
+            continue
+        nome = nome_match.group(1).strip()
+        classe = classe_match.group(1).strip()
+        tipo = 'magistrale' if 'magistrale' in text.lower() else 'triennale'
+        out.append({'nome': nome, 'classe': classe, 'tipo': tipo})
+    return {'corsi_laurea': out}
+
+
+def _scrape_insegnamenti(url):
+    soup = _fetch_soup(url)
+    found = set()
+    for row in soup.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if not cols:
+            continue
+        text = cols[0].get_text(strip=True)
+        match = re.match(r'(\d+)\s*-\s*(.*)', text)
+        if not match:
+            continue
+        code = match.group(1).strip()
+        name = match.group(2).strip()
+        if code and name:
+            found.add((code, name))
+    return {'insegnamenti': [{'codice': c, 'nome_insegnamento': n} for c, n in sorted(found)]}
+
+
+def _scrape_curriculum_l31(url='https://web.dmi.unict.it/it/corsi/l-31/piani-di-studio'):
+    soup = _fetch_soup(url)
+    names = set()
+    for header in soup.find_all(['h1', 'h2', 'h3', 'h4']):
+        text = header.get_text(strip=True)
+        if 'CURRICULUM' not in text.upper():
+            continue
+        match = re.search(r'["“](.*?)["”]', text)
+        if match:
+            names.add(match.group(1).strip())
+    return {'curriculum': sorted(names)}
+
+
+def _scrape_curriculum_lm18(url='https://web.dmi.unict.it/it/corsi/lm-18/piani-di-studio'):
+    soup = _fetch_soup(url)
+    names = set()
+    for li in soup.find_all('li'):
+        text = li.get_text(strip=True)
+        if not text:
+            continue
+        if 'curriculum' in text.lower() or (' - ' in text and len(text) <= 120):
+            names.add(text)
+    return {'curriculum_lm18': sorted(names)}
+
+
+def _merge_external_payload_into_db(data, payload, source_name=''):
+    data = _ensure_db_shape(data)
+    stats = {
+        'rooms': 0, 'programs': 0, 'teachers': 0, 'courses': 0, 'curricula': 0,
+        'added': 0, 'updated': 0, 'duplicates': 0, 'skipped': 0,
+        'notes': [],
+    }
+
+    room_ids = {x.get('id', '') for x in data.get('rooms', [])}
+    prog_ids = {x.get('id', '') for x in data.get('programs', [])}
+    teach_ids = {x.get('id', '') for x in data.get('teachers', [])}
+    curr_ids = {x.get('id', '') for x in data.get('curricula', [])}
+    course_ids = {x.get('id', '') for x in data.get('courses', [])}
+
+    def _note(kind, label):
+        if label and len(stats['notes']) < 50:
+            stats['notes'].append(f'{kind}: {label}')
+
+    def _infer_program_id_from_source(name):
+        n = str(name or '').lower()
+        if 'l31' in n or 'l-31' in n:
+            return 'L-31'
+        if 'lm18' in n or 'lm-18' in n:
+            return 'LM-18'
+        if 'l35' in n or 'l-35' in n:
+            return 'L-35'
+        if 'lm40' in n or 'lm-40' in n:
+            return 'LM-40'
+        return ''
+
+    def _upsert_teacher(name, email='', role='', phone='', cycle=''):
+        clean = str(name or '').strip()
+        if not clean:
+            stats['skipped'] += 1
+            _note('scartato docente', '(nome mancante)')
+            return
+
+        teachers = data.get('teachers', [])
+        existing = next((t for t in teachers if str(t.get('name', '')).strip().lower() == clean.lower()), None)
+        if existing:
+            stats['duplicates'] += 1
+            changed = False
+            new_email = _first_valid_email(existing.get('email', ''), email)
+            if new_email and new_email != existing.get('email', ''):
+                existing['email'] = new_email
+                changed = True
+            if role and role != existing.get('role', ''):
+                existing['role'] = role
+                changed = True
+            if phone and phone != existing.get('phone', ''):
+                existing['phone'] = phone
+                changed = True
+            if cycle and cycle != existing.get('phdCycle', ''):
+                existing['phdCycle'] = cycle
+                changed = True
+            if changed:
+                stats['updated'] += 1
+            _note('duplicato docente', clean)
+            stats['teachers'] += 1
+            return
+
+        tid = _unique_id('T', clean, teach_ids)
+        teachers.append({
+            'id': tid,
+            'name': clean,
+            'email': _first_valid_email(email),
+            'preferences': {'avoidEarly': False, 'avoidLate': False},
+            'role': role,
+            'phone': phone,
+            'phdCycle': cycle,
+        })
+        stats['added'] += 1
+        stats['teachers'] += 1
+
+    if isinstance(payload.get('docenti'), list):
+        for d in payload['docenti']:
+            _upsert_teacher(
+                d.get('nome_docente') or d.get('nome_ta'),
+                d.get('email') or d.get('Email'),
+                d.get('ruolo') or ('TA' if d.get('nome_ta') else 'Docente'),
+                d.get('telefono', ''),
+            )
+
+    if isinstance(payload.get('assegnisti'), list):
+        for a in payload['assegnisti']:
+            _upsert_teacher(a.get('nome'), a.get('email') or a.get('Email'), 'Assegnista')
+
+    if isinstance(payload.get('contrattisti_di_ricerca'), list):
+        for c in payload['contrattisti_di_ricerca']:
+            _upsert_teacher(c.get('nome'), c.get('email') or c.get('Email'), 'Contrattista di ricerca')
+
+    if isinstance(payload.get('dottorandi'), list):
+        for d in payload['dottorandi']:
+            _upsert_teacher(
+                d.get('nome_dottorandi') or d.get('nome'),
+                d.get('email') or d.get('Email'),
+                'Dottorando',
+                cycle=d.get('ciclo', ''),
+            )
+
+    if isinstance(payload.get('corsi_laurea'), list):
+        for c in payload['corsi_laurea']:
+            class_code = str(c.get('classe', '')).strip().upper()
+            name = str(c.get('nome', '')).strip()
+            if not class_code:
+                stats['skipped'] += 1
+                _note('scartato cds', name or '(classe mancante)')
+                continue
+
+            item = {
+                'id': class_code,
+                'name': f'{name} ({class_code})' if name else class_code,
+                'department': 'DMI',
+                'type': str(c.get('tipo', '')).strip(),
+                'classCode': class_code,
+            }
+            programs = data.get('programs', [])
+            existing = next((p for p in programs if p.get('id') == class_code), None)
+            if existing:
+                stats['duplicates'] += 1
+                existing.update({k: v for k, v in item.items() if v or k in ('id',)})
+                stats['updated'] += 1
+                _note('duplicato cds', class_code)
+            else:
+                programs.append(item)
+                prog_ids.add(class_code)
+                stats['added'] += 1
+            stats['programs'] += 1
+
+    curricula_candidates = []
+    if isinstance(payload.get('curriculum'), list):
+        curricula_candidates.extend([(x, 'L-31') for x in payload['curriculum']])
+    if isinstance(payload.get('curriculum_lm18'), list):
+        curricula_candidates.extend([(x, 'LM-18') for x in payload['curriculum_lm18']])
+
+    for curr_name, fallback_program in curricula_candidates:
+        name = str(curr_name or '').strip()
+        if not name:
+            stats['skipped'] += 1
+            _note('scartato curriculum', '(nome mancante)')
+            continue
+
+        program_id = _infer_program_id_from_source(source_name) or fallback_program
+        if program_id and not any(p.get('id') == program_id for p in data.get('programs', [])):
+            data['programs'].append({'id': program_id, 'name': program_id, 'department': 'DMI'})
+            prog_ids.add(program_id)
+            stats['added'] += 1
+
+        existing = next((c for c in data.get('curricula', [])
+                         if str(c.get('name', '')).strip().lower() == name.lower()
+                         and (not program_id or c.get('programId', '') == program_id)), None)
+        if existing:
+            stats['duplicates'] += 1
+            _note('duplicato curriculum', name)
+        else:
+            cid = _unique_id('CUR', f'{program_id}-{name}', curr_ids)
+            data['curricula'].append({
+                'id': cid,
+                'programId': program_id,
+                'name': name,
+                'yearCohort': '',
+            })
+            stats['added'] += 1
+        stats['curricula'] += 1
+
+    if isinstance(payload.get('insegnamenti'), list):
+        inferred_program = _infer_program_id_from_source(source_name)
+        if inferred_program and not any(p.get('id') == inferred_program for p in data.get('programs', [])):
+            data['programs'].append({'id': inferred_program, 'name': inferred_program, 'department': 'DMI'})
+            prog_ids.add(inferred_program)
+            stats['added'] += 1
+
+        for ins in payload['insegnamenti']:
+            code = str(ins.get('codice', '')).strip()
+            name = str(ins.get('nome_insegnamento', '')).strip()
+            if not code and not name:
+                stats['skipped'] += 1
+                _note('scartato insegnamento', '(codice e nome mancanti)')
+                continue
+
+            courses = data.get('courses', [])
+            existing = next((c for c in courses
+                             if (code and str(c.get('sourceCode', '')).strip() == code)
+                             or (name and str(c.get('name', '')).strip().lower().endswith(name.lower()))), None)
+
+            if existing:
+                stats['duplicates'] += 1
+                changed = False
+                if code and existing.get('sourceCode') != code:
+                    existing['sourceCode'] = code
+                    changed = True
+                target_name = f'{code} - {name}' if code and name else (name or code)
+                if target_name and existing.get('name') != target_name:
+                    existing['name'] = target_name
+                    changed = True
+                if inferred_program and not existing.get('programId'):
+                    existing['programId'] = inferred_program
+                    changed = True
+                if not isinstance(existing.get('teacherIds'), list):
+                    existing['teacherIds'] = []
+                    changed = True
+                if not isinstance(existing.get('curriculaIds'), list):
+                    existing['curriculaIds'] = []
+                    changed = True
+                if not isinstance(existing.get('weeklyEvents'), list) or not existing.get('weeklyEvents'):
+                    existing['weeklyEvents'] = [{'durationHours': 2}]
+                    changed = True
+                if changed:
+                    stats['updated'] += 1
+                _note('duplicato insegnamento', code or name)
+            else:
+                cid = _unique_id('C', code or name, course_ids)
+                courses.append({
+                    'id': cid,
+                    'sourceCode': code,
+                    'name': f'{code} - {name}' if code and name else (name or code),
+                    'semester': 1,
+                    'year': 1,
+                    'programId': inferred_program,
+                    'curriculaIds': [],
+                    'teacherIds': [],
+                    'expectedStudents': 0,
+                    'roomType': 'lecture',
+                    'weeklyEvents': [{'durationHours': 2}],
+                })
+                stats['added'] += 1
+            stats['courses'] += 1
+
+    return data, stats
+
+
+def _scrape_payloads_for_section(section):
+    if section == 'teachers':
+        return [
+            ('docenti', _scrape_docenti()),
+            ('assegnisti', _scrape_assegnisti()),
+            ('contrattisti', _scrape_contrattisti()),
+            ('dottorandi', _scrape_dottorandi()),
+            ('personale-ta', _scrape_personale_ta()),
+        ]
+    if section == 'programs':
+        return [('corsi-laurea', _scrape_corsi_laurea())]
+    if section == 'courses':
+        return [
+            ('insegnamenti_l31', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/l-31/programmi')),
+            ('insegnamenti_lm18', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/lm-18/programmi')),
+            ('insegnamenti_l35', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/l-35/programmi')),
+            ('insegnamenti_lm40', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/lm-40/programmi')),
+        ]
+    if section == 'curricula':
+        return [
+            ('curriculum_l31', _scrape_curriculum_l31()),
+            ('curriculum_lm18', _scrape_curriculum_lm18()),
+        ]
+    raise ValueError(f'Sezione non supportata per import da URL: {section}')
+
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
@@ -578,6 +1022,59 @@ def post_db():
         return jsonify({'error': 'Payload deve essere un oggetto JSON.'}), 400
     save_db(data)
     return jsonify({'ok': True, 'message': 'Database salvato.'})
+
+
+@app.route('/api/import/url', methods=['POST'])
+@admin_required
+def import_from_url():
+    body = request.get_json(silent=True) or {}
+    section = str(body.get('section', '')).strip().lower()
+    if not section:
+        return jsonify({'error': 'Sezione mancante.'}), 400
+
+    try:
+        payloads = _scrape_payloads_for_section(section)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except requests.RequestException as e:
+        return jsonify({'error': f'Errore di rete durante lo scraping: {str(e)}'}), 502
+
+    db = _ensure_db_shape(load_db())
+    merged = {
+        'rooms': 0,
+        'programs': 0,
+        'teachers': 0,
+        'courses': 0,
+        'curricula': 0,
+        'added': 0,
+        'updated': 0,
+        'duplicates': 0,
+        'skipped': 0,
+        'notes': [],
+    }
+
+    try:
+        for source_name, payload in payloads:
+            db, stats = _merge_external_payload_into_db(db, payload, source_name=source_name)
+            for key in ('rooms', 'programs', 'teachers', 'courses', 'curricula',
+                        'added', 'updated', 'duplicates', 'skipped'):
+                merged[key] += int(stats.get(key, 0))
+            for note in stats.get('notes', []):
+                if len(merged['notes']) >= 80:
+                    break
+                merged['notes'].append(f'{source_name}: {note}')
+    except requests.RequestException as e:
+        return jsonify({'error': f'Errore di rete durante lo scraping: {str(e)}'}), 502
+    except Exception as e:
+        return jsonify({'error': f'Errore durante import da URL: {str(e)}'}), 500
+
+    save_db(db)
+    return jsonify({
+        'ok': True,
+        'section': section,
+        'summary': merged,
+        'message': 'Import da URL completato.',
+    })
 
 
 @app.route('/api/schedule', methods=['POST'])

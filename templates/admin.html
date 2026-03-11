@@ -199,6 +199,7 @@
           <div class="toolbar">
             <div class="left">
               <button class="primary" id="btnAdd">Aggiungi</button>
+              <button id="btnImportUrl" type="button" style="display:none">Aggiungi da URL</button>
               <input id="search" type="text" placeholder="Cerca…" style="width:min(320px,40vw)" />
             </div>
             <span class="pill" id="sectionHint">—</span>
@@ -768,7 +769,14 @@ function render(){
   content.innerHTML="";
 
   const btnAdd=document.getElementById("btnAdd");
+  const btnImportUrl=document.getElementById("btnImportUrl");
   const searchInput=document.getElementById("search");
+
+  const canImportByUrl = ["teachers","programs","courses","curricula"].includes(currentSection);
+  if(btnImportUrl){
+    btnImportUrl.style.display = canImportByUrl ? "inline-flex" : "none";
+    btnImportUrl.onclick = ()=>importCurrentSectionFromUrl();
+  }
 
   if(currentSection==="timetable"){
     btnAdd.style.display="none";
@@ -797,6 +805,51 @@ function matchesSearch(obj){
   const q=currentSearch.trim().toLowerCase();
   if(!q) return true;
   return JSON.stringify(obj).toLowerCase().includes(q);
+}
+
+async function importCurrentSectionFromUrl(){
+  const labels={
+    teachers:'docenti/assegnisti/contrattisti/dottorandi/TA',
+    programs:'corsi di laurea',
+    courses:'insegnamenti',
+    curricula:'curricula',
+  };
+  const label = labels[currentSection] || currentSection;
+  if(!confirm(`Importare da URL per la sezione ${label}?\nVerranno evitati i duplicati e aggiornati i dati esistenti quando possibile.`)) return;
+
+  showLoading(true, `Import da URL in corso (${label})…`);
+  hideImportReport();
+  try{
+    const res = await apiPost('/api/import/url', { section: currentSection });
+    await loadDbFromServer();
+
+    const s = res?.summary || {};
+    const lines = [
+      `Aggiunti: ${Number(s.added||0)}`,
+      `Aggiornati: ${Number(s.updated||0)}`,
+      `Duplicati: ${Number(s.duplicates||0)}`,
+      `Scartati: ${Number(s.skipped||0)}`,
+    ];
+    const details = Array.isArray(s.notes) ? s.notes : [];
+    if(details.length){
+      lines.push('');
+      lines.push(...details.slice(0, 25));
+      if(details.length > 25) lines.push(`... altri ${details.length-25} dettagli`);
+    }
+
+    showImportReport({
+      title:`Import da URL completato (${label})`,
+      meta:`Aule:${Number(s.rooms||0)}  CdS:${Number(s.programs||0)}  Docenti:${Number(s.teachers||0)}  Insegnamenti:${Number(s.courses||0)}  Curricula:${Number(s.curricula||0)}`,
+      lines,
+      ok:Number(s.skipped||0)===0,
+    });
+    setStatus('import da URL ✓');
+  }catch(e){
+    alert(`Errore import da URL: ${e?.message || e}`);
+  }finally{
+    showLoading(false);
+    render();
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
