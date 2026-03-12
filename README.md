@@ -1,19 +1,22 @@
 # University Timetabling System
 
-Applicazione web per la gestione dati accademici e la generazione automatica dell'orario universitario con ottimizzazione vincolata.
+Applicazione web (Flask) per gestire dati accademici e generare automaticamente l'orario universitario con vincoli hard/soft.
 
-## Panoramica
+## Novita recenti
 
-Il progetto include:
+- Login admin multiutente con password hashate (`scrypt`) e gestione utenti da pannello admin.
+- Import/Export bundle unico `DB + orario` (`database_con_orario.json`).
+- Import di JSON esterni con normalizzazione schema e report dettagliato (duplicati/scartati).
+- Import da URL lato backend (`Aggiungi da URL`), con scraping server-side e deduplica automatica.
+- Fallback solver automatico: se algoritmo richiesto e `infeasible`, tenta `greedy` e puo restituire `partial`.
 
-1. Gestione dataset: aule, docenti, corsi, curricula, indisponibilita, policy soft.
-2. Generazione orario con algoritmi selezionabili: `auto`, `cp-sat`, `greedy`, `genetic`, `tabu-search`, `linear-programming`.
-3. Validazione vincoli hard e report nel risultato.
-4. Modifica manuale dell'orario con salvataggio persistente.
-5. Import/Export JSON (DB, orario, bundle DB+orario) e export PDF.
-6. Autenticazione admin multiutente con password hashate (scrypt), gestione utenti da UI admin.
+## Funzionalita principali
 
-I dati sono persistiti in file JSON nella cartella `data/`.
+- CRUD completo su aule, docenti, CdS, curricula, insegnamenti, indisponibilita e policy.
+- Generazione orario globale/semestre e rigenerazione per singolo `CdL + anno`.
+- Modifica manuale orario e salvataggio persistente.
+- Export PDF orario, export JSON orario, export bundle DB+orario.
+- Import DB completo, bundle DB+orario, JSON esterni eterogenei, import da URL.
 
 ## Struttura progetto
 
@@ -31,98 +34,129 @@ I dati sono persistiti in file JSON nella cartella `data/`.
 │   ├── database.json
 │   ├── last_schedule.json
 │   └── users.json
+├── script/
+│   └── *.py (scraper di supporto)
 ├── requirements.txt
 └── README.md
 ```
 
-## Architettura
+## Requisiti
 
-### Frontend
+- Python 3.10+ (consigliato 3.12)
+- `pip`
+- Connessione internet per `Importa da URL`
 
-- `templates/admin.html`: UI amministrativa (CRUD, scheduling, import/export, gestione utenti).
-- `templates/admin_login.html`: login admin con `username + password`.
-- `templates/index.html`: vista pubblica read-only dell'orario.
+Dipendenze principali (`requirements.txt`):
 
-### Backend (`app.py`)
+- Flask
+- ortools
+- reportlab
+- requests
+- beautifulsoup4
 
-- API REST per DB, scheduling, import/export.
-- Persistenza file-based (`database.json`, `last_schedule.json`, `users.json`).
-- Autenticazione admin con sessione Flask.
-- Password protette con hash `scrypt` (`werkzeug.security`).
+## Tutorial installazione ed esecuzione
 
-### Solver (`scheduler.py`)
+## Linux
 
-- Generazione eventi dai `weeklyEvents` dei corsi.
-- Vincoli hard + obiettivo soft.
-- Supporto multi algoritmo.
-- Fallback backend: se algoritmo richiesto restituisce `infeasible`, il backend tenta automaticamente `greedy` e ritorna soluzione `partial` se disponibile.
+1. Apri terminale nella cartella progetto.
+2. Crea virtual environment.
+3. Installa dipendenze.
+4. Avvia server.
 
-## Sicurezza e autenticazione
+```bash
+cd /percorso/del/progetto
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python app.py
+```
 
-### Modello utenti
+## macOS
 
-- Gli utenti admin sono salvati in `data/users.json`.
-- Le password non sono mai salvate in chiaro.
-- Hash password: `scrypt` (metodo moderno, memory-hard).
+1. Apri Terminal.
+2. Vai nella cartella del progetto.
+3. Crea e attiva virtual environment.
+4. Installa dipendenze e avvia.
 
-### Bootstrap default
+```bash
+cd /percorso/del/progetto
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python app.py
+```
 
-Alla prima esecuzione, se non esiste alcun utente, viene creato:
+Nota macOS: se `python3` non è disponibile, installa Python dal sito ufficiale o via Homebrew.
+
+## Windows (PowerShell)
+
+1. Apri PowerShell nella cartella progetto.
+2. Crea virtual environment.
+3. Attiva virtual environment.
+4. Installa dipendenze e avvia.
+
+```powershell
+cd C:\percorso\del\progetto
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python app.py
+```
+
+Se PowerShell blocca script locali, esegui una volta:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+## Avvio e accesso
+
+- Server: `http://127.0.0.1:5000`
+- Admin: `http://127.0.0.1:5000/admin`
+
+Bootstrap iniziale (se non esiste `data/users.json`):
 
 - Username: `admin`
 - Password: `admin`
 
-Cambiare subito la password dopo il primo accesso.
+Variabili ambiente opzionali:
 
-Variabili ambiente supportate per bootstrap:
+- `DEFAULT_ADMIN_USERNAME`
+- `DEFAULT_ADMIN_PASSWORD`
+- `FLASK_SECRET_KEY`
 
-- `DEFAULT_ADMIN_USERNAME` (default: `admin`)
-- `DEFAULT_ADMIN_PASSWORD` (default: `admin`)
+## Import da URL (backend Flask)
 
-### Policy password (creazione/reset da admin)
+Il pulsante `Importa da URL` usa endpoint backend `POST /api/import/url` e non scraping browser.
 
-Password obbligatoriamente robuste:
+Sezioni supportate:
 
-- minimo 12 caratteri
-- almeno una minuscola
-- almeno una maiuscola
-- almeno un numero
-- almeno un simbolo
+- `Docenti`
+- `CdS`
+- `Curricula`
+- `Insegnamenti`
 
-## Funzionalita principali
+Sorgenti usate per `Docenti`:
 
-- CRUD completo su risorse e vincoli.
-- Generazione orario per semestre o globale.
-- Generazione per singolo CdL/anno (`program-year`).
-- Report vincoli hard.
-- Edit manuale orario.
-- Export PDF senza dipendenza LaTeX.
-- Export JSON orario.
-- Export bundle `DB+orario` (`database_con_orario.json`).
-- Import DB classico, import JSON esterni (aule/corsi/docenti), import bundle `DB+orario`.
-- Gestione utenti admin (crea, reset password, elimina).
+- `https://web.dmi.unict.it/docenti`
+- `https://web.dmi.unict.it/it/assegnisti-di-ricerca`
+- `https://web.dmi.unict.it/elenchi/contrattisti-di-ricerca`
+- `https://web.dmi.unict.it/dottorandi`
+- `https://web.dmi.unict.it/personale-ta`
 
-## Installazione
+Il merge applica deduplica e ritorna un report con `added`, `updated`, `duplicates`, `skipped`.
 
-```bash
-cd ~/Scrivania/Tirocinio
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+## Import/Export JSON
 
-## Avvio
-
-```bash
-source venv/bin/activate
-python3 app.py
-```
-
-Server di sviluppo:
-
-- URL: `http://127.0.0.1:5000`
-- Host: `0.0.0.0`
-- Porta: `5000`
+- `Esporta DB` genera bundle `database_con_orario.json` con:
+  - `database`
+  - `schedule`
+  - metadati export
+- Import dello stesso bundle: ripristina DB + ultimo orario in un solo passaggio.
+- Import JSON esterni: normalizza schemi non omogenei (docenti/assegnisti/contrattisti/dottorandi/insegnamenti, ecc.).
 
 ## Algoritmi disponibili
 
@@ -135,64 +169,49 @@ Parametro `algorithm` in `POST /api/schedule`:
 - `tabu-search`
 - `linear-programming`
 
-Alias principali supportati: `cp`, `constraints`, `tabu`, `lp`, `mip`, ecc.
+Alias supportati: `cp`, `constraints`, `tabu`, `lp`, `mip`, ecc.
 
-### Spiegazione rapida
+## Spiegazione rapida
 
-- `auto`: prova CP-SAT (se disponibile), altrimenti usa greedy.
-- `cp-sat`: solver a vincoli (OR-Tools), migliore qualita media su vincoli complessi.
-- `greedy`: euristica veloce; robusta, ma puo lasciare piu eventi non piazzati.
-- `genetic`: metaeuristica multi-start/evolutiva; utile per esplorare alternative.
-- `tabu-search`: metaeuristica con memoria tabu; migliora candidati euristici evitando cicli.
-- `linear-programming`: formulazione lineare intera via backend OR-Tools CP-SAT.
+- `auto`: usa backend migliore disponibile.
+- `cp-sat`: migliore qualita media su vincoli complessi.
+- `greedy`: piu rapido, utile per test e fallback.
+- `genetic`: metaeuristica esplorativa.
+- `tabu-search`: metaeuristica con memoria tabu.
+- `linear-programming`: formulazione lineare intera (backend OR-Tools).
 
-### Tabella comparativa
+## Stato solver e fallback
 
-| Algoritmo | Punti di forza | Limiti | Quando usarlo |
-|---|---|---|---|
-| `auto` | Semplice e bilanciato, sceglie il backend migliore disponibile | Dipende dall'ambiente (OR-Tools installato o no) | Scelta predefinita consigliata |
-| `cp-sat` | Soluzioni migliori su vincoli hard complessi, buona qualita globale | Piu pesante su istanze molto grandi | Pianificazione principale |
-| `greedy` | Molto veloce e prevedibile | Qualita inferiore rispetto a CP-SAT | Test rapidi, fallback, debug dati |
-| `genetic` | Esplora piu configurazioni, puo trovare alternative utili | Variabilita nei risultati, tempi maggiori del greedy | Confronto euristico quando CP-SAT fatica |
-| `tabu-search` | Affina soluzioni euristiche con memoria delle mosse | Parametri sensibili (iterazioni/vicinato) | Miglioramento euristico iterativo |
-| `linear-programming` | Approccio formale MILP-like | In questa implementazione usa backend CP-SAT intero | Casi in cui vuoi impostazione lineare intera |
+Status tipici: `optimal`, `feasible`, `partial`, `infeasible`, `error`, `none`.
 
-### Suggerimento pratico
-
-1. Parti da `auto`.
-2. Se vuoi qualita massima, prova `cp-sat`.
-3. Se vuoi tempi brevi, usa `greedy`.
-4. Per confronti sperimentali, prova `genetic` e `tabu-search`.
-5. Se il solver richiesto va in `infeasible`, il backend puo tornare `partial` tramite fallback `greedy`.
+Se algoritmo richiesto produce `infeasible`, il backend attiva fallback automatico su `greedy` e puo restituire soluzione `partial`.
 
 ## API principali
 
-### UI/Auth
+## UI/Auth
 
-- `GET /` -> pagina pubblica
-- `GET /admin` -> area admin (o login)
-- `POST /admin/login` -> login con `username`, `password`
-- `POST /admin/logout` -> logout
+- `GET /`
+- `GET /admin`
+- `POST /admin/login`
+- `POST /admin/logout`
 
-### Utenti admin
+## Utenti admin
 
-- `GET /api/users` -> lista utenti (senza hash)
-- `POST /api/users` -> crea utente admin
-- `POST /api/users/<username>/password` -> reset password
-- `DELETE /api/users/<username>` -> elimina utente
+- `GET /api/users`
+- `POST /api/users`
+- `POST /api/users/<username>/password`
+- `DELETE /api/users/<username>`
 
-Note di protezione:
+Regole:
 
 - non puoi eliminare l'utente loggato
-- deve rimanere almeno un admin attivo
+- deve esistere almeno un admin attivo
 
-### Database
+## Dati e scheduling
 
 - `GET /api/db`
 - `POST /api/db`
-
-### Scheduling
-
+- `POST /api/import/url`
 - `POST /api/schedule`
 - `POST /api/schedule/program-year`
 - `GET /api/schedule`
@@ -200,43 +219,21 @@ Note di protezione:
 - `POST /api/schedule/manual-update`
 - `GET /api/public/timetable`
 
-### Export
+## Export
 
 - `GET /api/export/flat`
 - `GET /api/export/schedule-json`
 - `GET /api/export/pdf`
 
-## Import/Export JSON
+## Sicurezza
 
-### Export DB (UI admin)
+- Password sempre hashate (`scrypt`, Werkzeug).
+- Sessione admin lato Flask.
+- Policy password robusta in creazione/reset utenti.
 
-Il pulsante `Esporta DB` genera un bundle:
+## Note per produzione
 
-- file: `database_con_orario.json`
-- campi principali: `database`, `schedule`, metadati export
-
-### Reimport bundle
-
-Lo stesso file puo essere importato per ripristinare:
-
-1. Database
-2. Ultimo orario
-
-in un unico passaggio.
-
-## Stato solver e fallback
-
-Possibili `status`:
-
-- `optimal`, `feasible`, `partial`, `infeasible`, `error`, `none`, ecc.
-
-Se l'algoritmo richiesto produce `infeasible`, il backend puo restituire una soluzione `partial` tramite fallback automatico a `greedy`.
-
-## Note sviluppo
-
-- Persistenza file-based: ottima per prototipo/uso locale.
-- Per produzione consigliato:
-  - server WSGI/ASGI (es. gunicorn)
-  - gestione segreti robusta
-  - database relazionale
-  - rate limit login e audit log
+- Usa server WSGI/ASGI (es. `gunicorn`) dietro reverse proxy.
+- Imposta `FLASK_SECRET_KEY` robusta.
+- Valuta DB relazionale invece di file JSON.
+- Aggiungi rate limit login, audit log e backup pianificati.
