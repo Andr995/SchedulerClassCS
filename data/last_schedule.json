@@ -2244,9 +2244,9 @@
     "totalEvents": 93
   },
   "message": "Scheduling completato. 86/93 eventi piazzati. 7 eventi non piazzabili. | Ricerca genetica completata: 10 generazioni, popolazione 6, rank=(7, 0, 0).",
-  "solveTimeSeconds": 10.6,
+  "solveTimeSeconds": 7.47,
   "requestedAlgorithm": "genetic",
   "solverBackend": "Genetic Algorithm (Metaheuristic)",
-  "timestamp": "2026-03-11 16:41:11",
+  "timestamp": "2026-03-12 15:16:28",
   "semester": 1
 }
