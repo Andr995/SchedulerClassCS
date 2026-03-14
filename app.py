@@ -219,13 +219,23 @@ def _ensure_data_dir():
 def load_db():
     """Carica il database da disco. Se non esiste, usa il default."""
     _ensure_data_dir()
+    db = None
     if DB_FILE.exists():
         try:
             with open(DB_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                db = json.load(f)
         except (json.JSONDecodeError, IOError):
-            pass
-    return json.loads(json.dumps(DEFAULT_DB))
+            db = None
+
+    if db is None:
+        db = json.loads(json.dumps(DEFAULT_DB))
+
+    db = _ensure_db_shape(db)
+    db, _, sync_stats = _ensure_unique_teacher_ids(db)
+    if DB_FILE.exists() and (sync_stats.get('teacherIdsChanged', 0) > 0 or sync_stats.get('referenceUpdates', 0) > 0):
+        save_db(db)
+
+    return db
 
 
 def save_db(data):
@@ -269,6 +279,7 @@ def _normalize_schedule_payload(payload, db, base_schedule=None, source='manual'
     rooms_by_id = {r.get('id', ''): r for r in db.get('rooms', [])}
     courses_by_id = {c.get('id', ''): c for c in db.get('courses', [])}
     teachers_by_id = {t.get('id', ''): t for t in db.get('teachers', [])}
+    programs_by_id = {p.get('id', ''): p for p in db.get('programs', [])}
 
     def _to_int(value, default):
         try:
@@ -320,6 +331,8 @@ def _normalize_schedule_payload(payload, db, base_schedule=None, source='manual'
             teachers_by_id.get(tid, {}).get('name', tid) for tid in teacher_ids
         ]
 
+        program_id = a.get('programId') or course.get('programId', '')
+
         normalized_assignments.append({
             'eventId': event_id,
             'courseId': course_id,
@@ -334,7 +347,8 @@ def _normalize_schedule_payload(payload, db, base_schedule=None, source='manual'
             'teacherIds': teacher_ids,
             'teacherNames': teacher_names,
             'curriculaIds': a.get('curriculaIds') or course.get('curriculaIds', []),
-            'programId': a.get('programId') or course.get('programId', ''),
+            'programId': program_id,
+            'programName': a.get('programName') or programs_by_id.get(program_id, {}).get('name', program_id),
             'color': a.get('color') or scheduler._course_color(course_id),
         })
 
@@ -468,6 +482,105 @@ def _unique_id(prefix, base, existing_ids):
         n += 1
     existing_ids.add(candidate)
     return candidate
+
+
+def _ensure_unique_teacher_ids(data, schedule=None):
+    """Garantisce ID docenti univoci e riallinea i riferimenti nel DB/orario."""
+    teachers = data.get('teachers', []) if isinstance(data, dict) else []
+    if not isinstance(teachers, list):
+        return data, schedule, {'teacherIdsChanged': 0, 'referenceUpdates': 0}
+
+    used_ids = set()
+    canonical_by_old = {}
+    teacher_id_changes = 0
+
+    for i, teacher in enumerate(teachers):
+        if not isinstance(teacher, dict):
+            continue
+
+        old_id = str(teacher.get('id', '')).strip()
+        if old_id and old_id not in used_ids:
+            new_id = old_id
+            used_ids.add(new_id)
+            canonical_by_old.setdefault(old_id, new_id)
+        else:
+            base = old_id or teacher.get('name') or f'teacher-{i + 1}'
+            new_id = _unique_id('T', base, used_ids)
+
+        if teacher.get('id') != new_id:
+            teacher['id'] = new_id
+            teacher_id_changes += 1
+
+    def _canonical_teacher_id(value):
+        tid = str(value or '').strip()
+        if not tid:
+            return ''
+        return canonical_by_old.get(tid, tid)
+
+    reference_updates = 0
+
+    for course in data.get('courses', []):
+        if not isinstance(course, dict):
+            continue
+        original = course.get('teacherIds', [])
+        source_ids = original if isinstance(original, list) else []
+
+        seen = set()
+        normalized = []
+        for tid in source_ids:
+            mapped = _canonical_teacher_id(tid)
+            if mapped and mapped not in seen:
+                seen.add(mapped)
+                normalized.append(mapped)
+
+        if normalized != original:
+            course['teacherIds'] = normalized
+            reference_updates += 1
+
+    for unav in data.get('unavailability', []):
+        if not isinstance(unav, dict):
+            continue
+        original_tid = str(unav.get('teacherId', '')).strip()
+        mapped_tid = _canonical_teacher_id(original_tid)
+        if mapped_tid and mapped_tid != original_tid:
+            unav['teacherId'] = mapped_tid
+            reference_updates += 1
+
+    if isinstance(schedule, dict):
+        assignments = schedule.get('assignments', [])
+        if isinstance(assignments, list):
+            teachers_by_id = {
+                str(t.get('id', '')).strip(): t
+                for t in teachers
+                if isinstance(t, dict)
+            }
+
+            for assignment in assignments:
+                if not isinstance(assignment, dict):
+                    continue
+
+                original = assignment.get('teacherIds', [])
+                source_ids = original if isinstance(original, list) else []
+
+                seen = set()
+                normalized = []
+                for tid in source_ids:
+                    mapped = _canonical_teacher_id(tid)
+                    if mapped and mapped not in seen:
+                        seen.add(mapped)
+                        normalized.append(mapped)
+
+                if normalized != original:
+                    assignment['teacherIds'] = normalized
+                    assignment['teacherNames'] = [
+                        teachers_by_id.get(tid, {}).get('name', tid) for tid in normalized
+                    ]
+                    reference_updates += 1
+
+    return data, schedule, {
+        'teacherIdsChanged': teacher_id_changes,
+        'referenceUpdates': reference_updates,
+    }
 
 
 def _first_valid_email(*values):
@@ -827,7 +940,14 @@ def _merge_external_payload_into_db(data, payload, source_name=''):
                     stats['updated'] += 1
                 _note('duplicato insegnamento', code or name)
             else:
-                cid = _unique_id('C', code or name, course_ids)
+                if code:
+                    cid = code
+                    if cid in course_ids:
+                        cid = _unique_id('C', f'{code}-{name}', course_ids)
+                    else:
+                        course_ids.add(cid)
+                else:
+                    cid = _unique_id('C', name, course_ids)
                 courses.append({
                     'id': cid,
                     'sourceCode': code,
@@ -1020,7 +1140,12 @@ def post_db():
     data = request.get_json(force=True)
     if not isinstance(data, dict):
         return jsonify({'error': 'Payload deve essere un oggetto JSON.'}), 400
+    data = _ensure_db_shape(data)
+    schedule = load_schedule()
+    data, schedule, _ = _ensure_unique_teacher_ids(data, schedule)
     save_db(data)
+    if isinstance(schedule, dict):
+        save_schedule(schedule)
     return jsonify({'ok': True, 'message': 'Database salvato.'})
 
 
@@ -1068,6 +1193,7 @@ def import_from_url():
     except Exception as e:
         return jsonify({'error': f'Errore durante import da URL: {str(e)}'}), 500
 
+    db, _, _ = _ensure_unique_teacher_ids(db)
     save_db(db)
     return jsonify({
         'ok': True,
@@ -1289,6 +1415,7 @@ def get_public_timetable():
 
     courses_by_id = {c['id']: c for c in db.get('courses', [])}
     curricula_by_id = {c['id']: c for c in db.get('curricula', [])}
+    programs_by_id = {p['id']: p for p in db.get('programs', [])}
 
     curriculum_tables = []
     for curriculum in db.get('curricula', []):
@@ -1299,12 +1426,24 @@ def get_public_timetable():
                 continue
             course = courses_by_id.get(a.get('courseId', ''), {})
             if cid in course.get('curriculaIds', []):
-                rows.append(a)
+                row = dict(a)
+                program_id = row.get('programId') or course.get('programId', '')
+                row['programId'] = program_id
+                row['programName'] = row.get('programName') or programs_by_id.get(program_id, {}).get('name', program_id)
+                rows.append(row)
         rows.sort(key=lambda x: (x.get('day', ''), x.get('startHour', 0), x.get('courseName', '')))
+        curriculum_program_id = curriculum.get('programId', '')
+        curriculum_program_name = programs_by_id.get(curriculum_program_id, {}).get('name', curriculum_program_id)
+        if not curriculum_program_name and rows:
+            curriculum_program_name = rows[0].get('programName', '')
+            curriculum_program_id = rows[0].get('programId', curriculum_program_id)
+
         curriculum_tables.append({
             'curriculumId': cid,
             'curriculumName': curriculum.get('name', cid),
             'yearCohort': curriculum.get('yearCohort', ''),
+            'programId': curriculum_program_id,
+            'programName': curriculum_program_name,
             'rows': rows,
         })
 

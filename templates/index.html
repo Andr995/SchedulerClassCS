@@ -256,6 +256,12 @@ function renderCurriculumTables() {
   }
 
   container.innerHTML = tables.map(block => {
+    const titleParts = [];
+    if (block.programName || block.programId) titleParts.push(`CdL ${block.programName || block.programId}`);
+    titleParts.push(block.curriculumName || 'Curriculum');
+    if (block.yearCohort) titleParts.push(block.yearCohort);
+    const fullTitle = titleParts.join(' - ');
+
     const rows = [...(block.rows || [])]
       .sort((a, b) => {
         const dd = dayOrder(a.day) - dayOrder(b.day);
@@ -284,11 +290,16 @@ function renderCurriculumTables() {
         const key = `${d}_${h}`;
         const ev = startMap[key];
         if (ev) {
-          const teacher = (ev.teacherNames || ev.teacherIds || []).join(', ');
+          const teacherList = (ev.teacherNames || ev.teacherIds || []);
+          const primaryTeacher = Array.isArray(teacherList) && teacherList.length ? teacherList[0] : '';
+          const roomLabel = ev.roomName || ev.roomId || '';
+          const program = ev.programName || ev.programId || '';
           const dur = Math.max(1, Number(ev.duration) || (Number(ev.endHour) - Number(ev.startHour)) || 1);
           body += `<td class="cw-event" rowspan="${dur}">
             <div>${esc(ev.courseName || '')}</div>
-            <div class="meta">(${esc(teacher || '')})</div>
+            ${program ? `<div class="meta">CdL: ${esc(program)}</div>` : ''}
+            ${roomLabel ? `<div class="meta">Aula: ${esc(roomLabel)}</div>` : ''}
+            ${primaryTeacher ? `<div class="meta">Docente: ${esc(primaryTeacher)}</div>` : ''}
           </td>`;
         } else if (coverMap[key]) {
           // Coperta da un evento con rowspan iniziato in una riga precedente.
@@ -301,7 +312,7 @@ function renderCurriculumTables() {
 
     return `
       <div class="cw-wrap">
-        <div class="cw-title">${esc(block.curriculumName)}${block.yearCohort ? ' - ' + esc(block.yearCohort) : ''}</div>
+        <div class="cw-title">${esc(fullTitle)}</div>
         <div style="overflow:auto">
           <table class="cw-table">
             <thead>
