@@ -1,18 +1,10 @@
 [
   {
     "username": "admin",
-    "passwordHash": "scrypt:32768:8:1$UlCyNLKKfQfwRJ7D$e5bdc9647410340008c2b73cc0f3942ce2dfc6192f9ac4e632b979a9b4718724cfc0699765eedd3b28a2cc403bc7dbdbf611b36956783f5a9c0175d315999130",
+    "passwordHash": "scrypt:32768:8:1$EtoEmOPMcQBZuFlM$288c154fb2cbd326b4b592db050128ba7c37909c867200932862054f73b95c8b8b68397444bc606a72559e7e1ab98cd077d92efb38689ec82e358cf46b920b4d",
     "role": "admin",
     "isActive": true,
-    "createdAt": "2026-03-07T09:04:14+00:00",
-    "lastLoginAt": "2026-03-16T10:12:51+00:00"
-  },
-  {
-    "username": "mario123",
-    "passwordHash": "scrypt:32768:8:1$GhW6Fxxzou8XaHvQ$c9a9d7ee8bf19110bfb83594db147ebfe04e0156cb715afc710686746c05016668f2ccbc859ff8cebf58d38b1c51a6aa9e859a13a5f64b0726837299e1ea1983",
-    "role": "admin",
-    "isActive": true,
-    "createdAt": "2026-03-07T09:37:24+00:00",
-    "lastLoginAt": "2026-03-07T09:37:59+00:00"
+    "createdAt": "2026-03-18T07:37:41+00:00",
+    "lastLoginAt": "2026-03-18T07:48:39+00:00"
   }
 ]

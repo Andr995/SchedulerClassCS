@@ -1,21 +1,21 @@
 {
   "assignments": [
     {
-      "eventId": "E-34",
-      "courseId": "C-L-31-1015128",
+      "eventId": "E-1",
+      "courseId": "92568327",
       "courseName": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1 O - Z",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [
-        "T-D-ASERO-SALVATORE",
-        "T-NASELLI-ORNELLA",
-        "T-FANCIULLO-MARIA",
-        "T-MOSCONI-SUNRA-JOHANNES-NIKOLAJ"
+        "75567359",
+        "56402091",
+        "94072636",
+        "56692910"
       ],
       "teacherNames": [
         "D'ASERO Salvatore",
@@ -24,31 +24,31 @@
         "MOSCONI SUNRA JOHANNES NIKOLAJ"
       ],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(8, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(186, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-61",
-      "courseId": "C-L-31-72439",
+      "eventId": "E-4",
+      "courseId": "36117189",
       "courseName": "72439 - FONDAMENTI DI INFORMATICA O - Z",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [
-        "T-BARBANERA-FRANCO",
-        "T-MADONIA-MARIA-SERAFINA",
-        "T-FARGETTA-GEORGIA"
+        "82301386",
+        "30330147",
+        "62245432"
       ],
       "teacherNames": [
         "BARBANERA Franco",
@@ -56,31 +56,31 @@
         "FARGETTA GEORGIA"
       ],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(291, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(142, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-87",
-      "courseId": "C-L-31-9795526",
+      "eventId": "E-6",
+      "courseId": "74257934",
       "courseName": "9795526 - ALGEBRA LINEARE E GEOMETRIA O - Z",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [
-        "T-MARINO-LUCIA-MARIA",
-        "T-ZAPPALA-GIUSEPPE",
-        "T-STAGLIANO-GIOVANNI"
+        "31464069",
+        "28716514",
+        "65026054"
       ],
       "teacherNames": [
         "MARINO LUCIA MARIA",
@@ -88,120 +88,148 @@
         "STAGLIANO' GIOVANNI"
       ],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
+      "programId": "66526837",
       "color": "hsla(227, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-24",
-      "courseId": "C-L-31-9795525",
-      "courseName": "9795525 - STRUTTURE DISCRETE O - Z",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-CUTELLO-VINCENZO",
-        "T-CAVALLARO-CLAUDIA"
-      ],
-      "teacherNames": [
-        "CUTELLO Vincenzo",
-        "CAVALLARO CLAUDIA"
-      ],
-      "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
-      ],
-      "programId": "L-31",
-      "color": "hsla(226, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-40",
-      "courseId": "C-L-31-1002967",
+      "eventId": "E-0",
+      "courseId": "22823975",
       "courseName": "1002967 - ULTERIORI CONOSCENZE LINGUISTICHE",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [
-        "T-CACCIOLA-GIULIANA",
-        "T-ALESSI-GIUSTINO-MICHELANGELO-IACONO"
+        "70594314",
+        "79290972"
       ],
       "teacherNames": [
         "CACCIOLA GIULIANA",
         "ALESSI GIUSTINO MICHELANGELO IACONO"
       ],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(45, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(286, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-69",
-      "courseId": "C-LM-18-9799607",
+      "eventId": "E-5",
+      "courseId": "94337264",
+      "courseName": "9795525 - STRUTTURE DISCRETE O - Z",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "61836657",
+        "28366579"
+      ],
+      "teacherNames": [
+        "CUTELLO Vincenzo",
+        "CAVALLARO CLAUDIA"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(316, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-46",
+      "courseId": "29769785",
       "courseName": "9799607 - Numerical Methods for Scientific Computing",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [
-        "T-BOSCARINO-SEBASTIANO",
-        "T-RUSSO-GIOVANNI"
+        "90954761",
+        "61068914"
       ],
       "teacherNames": [
         "BOSCARINO SEBASTIANO",
         "RUSSO Giovanni"
       ],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "94312330",
+        "48952648",
+        "44399015",
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(3, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(105, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-23",
-      "courseId": "C-LM-40-1016285",
+      "eventId": "E-22",
+      "courseId": "55980296",
+      "courseName": "72368 - ALGORITMI E COMPLESSITA'",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "43630229"
+      ],
+      "teacherNames": [
+        "CANTONE Domenico"
+      ],
+      "curriculaIds": [
+        "94312330",
+        "48952648",
+        "44399015",
+        "68142346",
+        "49464289",
+        "91724030"
+      ],
+      "programId": "31569366",
+      "color": "hsla(78, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-65",
+      "courseId": "17663504",
       "courseName": "1016285 - FLUIDODINAMICA COMPUTAZIONALE",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [
-        "T-COCO-ARMANDO",
-        "T-BOSCARINO-SEBASTIANO",
-        "T-MACCA-EMANUELE"
+        "52613041",
+        "90954761",
+        "21836240"
       ],
       "teacherNames": [
         "COCO ARMANDO",
@@ -209,1851 +237,1782 @@
         "MACCA EMANUELE"
       ],
       "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
+        "74880747",
+        "93975478",
+        "26065258"
       ],
-      "programId": "LM-40",
-      "color": "hsla(212, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(76, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-35",
-      "courseId": "C-LM-18-72368",
-      "courseName": "72368 - ALGORITMI E COMPLESSITA'",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [
-        "T-CANTONE-DOMENICO"
-      ],
-      "teacherNames": [
-        "CANTONE Domenico"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-HEALTH-INFORMATICS",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(310, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-3",
-      "courseId": "C-L-31-1015938",
-      "courseName": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO O - Z",
+      "eventId": "E-2",
+      "courseId": "76333226",
+      "courseName": "1015912 - PROGRAMMAZIONE I E LABORATORIO O - Z",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(167, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(218, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-9",
-      "courseId": "C-LM-18-9799520",
-      "courseName": "9799520 - Principi della Programmazione Parallela",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
-      "teacherIds": [
-        "T-VITELLO-FABIO-ROBERTO",
-        "T-SCIACCA-EVA"
-      ],
-      "teacherNames": [
-        "VITELLO FABIO ROBERTO",
-        "SCIACCA EVA"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(177, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-22",
-      "courseId": "C-L-31-1015912",
-      "courseName": "1015912 - PROGRAMMAZIONE I E LABORATORIO O - Z",
+      "eventId": "E-3",
+      "courseId": "94581518",
+      "courseName": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO O - Z",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(99, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(169, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-56",
-      "courseId": "C-L-31-9795537",
+      "eventId": "E-7",
+      "courseId": "80959491",
       "courseName": "9795537 - PROGRAMMAZIONE II E LABORATORIO O - Z",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-L-31-ARTIFICIAL-INTELLIGENCE-AND-ROBOTICS",
-        "CUR-L-31-COMPUTATIONAL-THEORY-AND-QUANTUM-ALGORITHMS",
-        "CUR-L-31-COMPUTER-GRAPHICS-AND-GAMES",
-        "CUR-L-31-CYBERSECURITY-AND-DIGITAL-FORENSICS",
-        "CUR-L-31-DATA-SCIENCE",
-        "CUR-L-31-PROGRAMMING-WEB-MOBILE-AND-VIRTUALIZED-ENVIRONME"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "L-31",
-      "color": "hsla(259, 65%, 55%, 0.7)"
+      "programId": "66526837",
+      "color": "hsla(15, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-67",
-      "courseId": "C-LM-40-1016232",
-      "courseName": "1016232 - METODI MATEMATICI E STATISTICI PER LE APPLICAZIONI 2",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 9,
-      "endHour": 11,
+      "eventId": "E-31",
+      "courseId": "40360142",
+      "courseName": "9799520 - Principi della Programmazione Parallela",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 14,
+      "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-ROMANO-VITTORIO",
-        "T-PICCITTO-GIULIA"
+        "24252531",
+        "88794922"
       ],
       "teacherNames": [
-        "ROMANO Vittorio",
-        "PICCITTO Giulia"
+        "VITELLO FABIO ROBERTO",
+        "SCIACCA EVA"
       ],
       "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
+        "44399015",
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-40",
-      "color": "hsla(54, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(286, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-83",
-      "courseId": "C-LM-40-9798952",
-      "courseName": "9798952 - Elementi di meccanica dei continui e meccanica quantistica",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [
-        "T-CAMIOLA-VITO-DARIO",
-        "T-ROMANO-VITTORIO"
-      ],
-      "teacherNames": [
-        "CAMIOLA VITO DARIO",
-        "ROMANO Vittorio"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(266, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-88",
-      "courseId": "C-LM-40-1015020",
+      "eventId": "E-59",
+      "courseId": "95994549",
       "courseName": "1015020 - FONDAMENTI DI FISICA MODERNA",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-FALCI-GIUSEPPE",
-        "T-AMICO-LUIGI"
+        "71486277",
+        "95329047"
       ],
       "teacherNames": [
         "FALCI Giuseppe",
         "AMICO Luigi"
       ],
       "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
+        "74880747",
+        "93975478",
+        "26065258"
       ],
-      "programId": "LM-40",
-      "color": "hsla(348, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(2, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-41",
-      "courseId": "C-LM-18-9799485",
+      "eventId": "E-60",
+      "courseId": "20388248",
+      "courseName": "1016232 - METODI MATEMATICI E STATISTICI PER LE APPLICAZIONI 2",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "23522930",
+        "93337404"
+      ],
+      "teacherNames": [
+        "ROMANO Vittorio",
+        "PICCITTO Giulia"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(89, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-77",
+      "courseId": "52994498",
+      "courseName": "9798952 - Elementi di meccanica dei continui e meccanica quantistica",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "13565051",
+        "23522930"
+      ],
+      "teacherNames": [
+        "CAMIOLA VITO DARIO",
+        "ROMANO Vittorio"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(324, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-26",
+      "courseId": "35402324",
       "courseName": "9799485 - Semantic Web",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-NICOLOSI-ASMUNDO-MARIANNA"
+        "95206344"
       ],
       "teacherNames": [
         "NICOLOSI ASMUNDO MARIANNA"
       ],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "94312330",
+        "48952648",
+        "44399015",
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(127, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(129, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-52",
-      "courseId": "C-LM-18-9799580",
+      "eventId": "E-43",
+      "courseId": "29325107",
       "courseName": "9799580 - Advanced Computer Graphics",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-GALLO-GIOVANNI"
+        "15006002"
       ],
       "teacherNames": [
         "GALLO Giovanni"
       ],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "94312330",
+        "48952648",
+        "44399015",
+        "68142346"
       ],
-      "programId": "LM-18",
-      "color": "hsla(3, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(201, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-20",
-      "courseId": "C-L-35-72446",
-      "courseName": "72446 - GEOMETRIA I",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
-      "teacherIds": [
-        "T-GUARDO-ELENA-MARIA",
-        "T-SPADARO-SANTI-DOMENICO"
-      ],
-      "teacherNames": [
-        "GUARDO ELENA MARIA",
-        "SPADARO SANTI DOMENICO"
-      ],
-      "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
-      ],
-      "programId": "L-35",
-      "color": "hsla(67, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-26",
-      "courseId": "C-LM-18-9799536",
-      "courseName": "9799536 - Quantum Information",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
-      "teacherIds": [
-        "T-CATALANO-DARIO",
-        "T-VIOLA-CATERINA"
-      ],
-      "teacherNames": [
-        "CATALANO Dario",
-        "VIOLA Caterina"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(214, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-33",
-      "courseId": "C-LM-18-9795444",
-      "courseName": "9795444 - BLOCKCHAIN E CRYPTOCURRENCIES",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [
-        "T-CATALANO-DARIO",
-        "T-DI-RAIMONDO-MARIO"
-      ],
-      "teacherNames": [
-        "CATALANO Dario",
-        "DI RAIMONDO MARIO"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(358, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-72",
-      "courseId": "C-L-35-72445",
+      "eventId": "E-11",
+      "courseId": "10336349",
       "courseName": "72445 - ALGEBRA",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-MICALE-VINCENZO",
-        "T-D-ANNA-MARCO"
+        "73689660",
+        "57203776"
       ],
       "teacherNames": [
         "MICALE VINCENZO",
         "D'ANNA Marco"
       ],
       "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
+        "99016358",
+        "72903764"
       ],
-      "programId": "L-35",
-      "color": "hsla(66, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(329, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-82",
-      "courseId": "C-LM-18-9799506",
+      "eventId": "E-12",
+      "courseId": "39236409",
+      "courseName": "72446 - GEOMETRIA I",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "17311790",
+      "roomName": "Aula 4",
+      "teacherIds": [
+        "26590378",
+        "82946557"
+      ],
+      "teacherNames": [
+        "GUARDO ELENA MARIA",
+        "SPADARO SANTI DOMENICO"
+      ],
+      "curriculaIds": [
+        "99016358",
+        "72903764"
+      ],
+      "programId": "68829610",
+      "color": "hsla(22, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-23",
+      "courseId": "58620548",
+      "courseName": "9795444 - BLOCKCHAIN E CRYPTOCURRENCIES",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "20562960",
+        "75713088"
+      ],
+      "teacherNames": [
+        "CATALANO Dario",
+        "DI RAIMONDO MARIO"
+      ],
+      "curriculaIds": [
+        "44399015",
+        "49464289"
+      ],
+      "programId": "31569366",
+      "color": "hsla(296, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-28",
+      "courseId": "11689274",
       "courseName": "9799506 - Insegnamento a Scelta",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-HEALTH-INFORMATICS",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "94312330",
+        "48952648",
+        "68142346",
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(121, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(248, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-6",
-      "courseId": "C-LM-40-9796615",
-      "courseName": "9796615 - STATISTICS",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
-      "teacherIds": [
-        "T-MARTINO-LUCA"
-      ],
-      "teacherNames": [
-        "MARTINO Luca"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(320, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-13",
-      "courseId": "C-LM-40-9795551",
-      "courseName": "9795551 - PREFERENCE MODELING AND CHOICE THEORY",
+      "eventId": "E-37",
+      "courseId": "34342696",
+      "courseName": "9799536 - Quantum Information",
       "day": "Tue",
       "dayIt": "Martedì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
-      "teacherIds": [
-        "T-GIARLOTTA-ALFIO"
-      ],
-      "teacherNames": [
-        "GIARLOTTA Alfio"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(288, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-28",
-      "courseId": "C-LM-40-1006294",
-      "courseName": "1006294 - METODI NUMERICI PER EQUAZIONI DIFFERENZIALI ORDINARIE",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
-      "teacherIds": [
-        "T-BOSCARINO-SEBASTIANO"
-      ],
-      "teacherNames": [
-        "BOSCARINO SEBASTIANO"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(121, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-44",
-      "courseId": "C-LM-40-1016244",
-      "courseName": "1016244 - OTTIMIZZAZIONE SU RETI",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-COLAJANNI-GABRIELLA"
-      ],
-      "teacherNames": [
-        "COLAJANNI GABRIELLA"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(87, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-45",
-      "courseId": "C-LM-40-50219",
-      "courseName": "50219 - EQUAZIONI DIFFERENZIALI DELLA FISICA MATEMATICA",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-MUSCATO-ORAZIO"
+        "20562960",
+        "28508733"
       ],
       "teacherNames": [
-        "MUSCATO Orazio"
+        "CATALANO Dario",
+        "VIOLA Caterina"
       ],
       "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-40",
-      "color": "hsla(264, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(219, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-55",
-      "courseId": "C-LM-40-1016317",
-      "courseName": "1016317 - METODI MATEMATICI PER L'OTTIMIZZAZIONE",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-SCRIMALI-LAURA-ROSA-MARIA"
-      ],
-      "teacherNames": [
-        "SCRIMALI Laura Rosa Maria"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(238, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-63",
-      "courseId": "C-LM-40-1004117",
-      "courseName": "1004117 - ASTROFISICA",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-GIUNTA-ALESSANDRA"
-      ],
-      "teacherNames": [
-        "GIUNTA ALESSANDRA"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(173, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-70",
-      "courseId": "C-LM-40-9793953",
-      "courseName": "9793953 - MODELLI MATEMATICI PER L'OTTIMIZZAZIONE",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-DANIELE-PATRIZIA"
-      ],
-      "teacherNames": [
-        "DANIELE Patrizia"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(352, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-73",
-      "courseId": "C-LM-18-1015109",
+      "eventId": "E-20",
+      "courseId": "30247009",
       "courseName": "1015109 - CRITTOGRAFIA",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [
-        "T-CATALANO-DARIO"
+        "20562960"
       ],
       "teacherNames": [
         "CATALANO Dario"
       ],
       "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "44399015",
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(155, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(313, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-77",
-      "courseId": "C-LM-40-1014144",
-      "courseName": "1014144 - COMPUTABILITA'",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-CANTONE-DOMENICO"
-      ],
-      "teacherNames": [
-        "CANTONE Domenico"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(24, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-80",
-      "courseId": "C-LM-40-1016247",
-      "courseName": "1016247 - METODI MATEMATICI E STATISTICI PER LE APPLICAZIONI 1",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-ROMANO-VITTORIO"
-      ],
-      "teacherNames": [
-        "ROMANO Vittorio"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(90, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-84",
-      "courseId": "C-LM-18-9799486",
+      "eventId": "E-27",
+      "courseId": "41125520",
       "courseName": "9799486 - Computer Security",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
       "teacherIds": [
-        "T-BELLA-GIAMPAOLO"
+        "66302528"
       ],
       "teacherNames": [
         "BELLA Giampaolo"
       ],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES",
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "94312330",
+        "48952648",
+        "68142346"
       ],
-      "programId": "LM-18",
-      "color": "hsla(128, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(316, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-85",
-      "courseId": "C-LM-40-1016278",
-      "courseName": "1016278 - METODI NUMERICI PER EQUAZIONI ALLE DERIVATE PARZIALI",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-RUSSO-GIOVANNI"
-      ],
-      "teacherNames": [
-        "RUSSO Giovanni"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(184, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-37",
-      "courseId": "C-LM-18-9799527",
-      "courseName": "9799527 - Omics Data Analysis",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
-      "teacherIds": [
-        "T-ALAIMO-SALVATORE",
-        "T-MICALE-GIOVANNI"
-      ],
-      "teacherNames": [
-        "ALAIMO SALVATORE",
-        "MICALE GIOVANNI"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(184, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-53",
-      "courseId": "C-LM-18-9799542",
-      "courseName": "9799542 - Teoria dei Grafi",
+      "eventId": "E-54",
+      "courseId": "28720095",
+      "courseName": "1004117 - ASTROFISICA",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-GUARDO-ELENA-MARIA",
-        "T-GIONFRIDDO-MARIO"
+        "98437111"
       ],
       "teacherNames": [
-        "GUARDO ELENA MARIA",
-        "GIONFRIDDO Mario"
+        "GIUNTA ALESSANDRA"
       ],
       "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "74880747",
+        "93975478",
+        "26065258"
       ],
-      "programId": "LM-18",
-      "color": "hsla(241, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(205, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-59",
-      "courseId": "C-LM-18-9799511",
+      "eventId": "E-55",
+      "courseId": "24176059",
+      "courseName": "1006294 - METODI NUMERICI PER EQUAZIONI DIFFERENZIALI ORDINARIE",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "89374473",
+      "roomName": "Aula 3",
+      "teacherIds": [
+        "90954761"
+      ],
+      "teacherNames": [
+        "BOSCARINO SEBASTIANO"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(222, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-56",
+      "courseId": "22491935",
+      "courseName": "1014144 - COMPUTABILITA'",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "89374473",
+      "roomName": "Aula 3",
+      "teacherIds": [
+        "43630229"
+      ],
+      "teacherNames": [
+        "CANTONE Domenico"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(119, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-61",
+      "courseId": "52560099",
+      "courseName": "1016244 - OTTIMIZZAZIONE SU RETI",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "82472156"
+      ],
+      "teacherNames": [
+        "COLAJANNI GABRIELLA"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(190, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-62",
+      "courseId": "61976088",
+      "courseName": "1016247 - METODI MATEMATICI E STATISTICI PER LE APPLICAZIONI 1",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "89374473",
+      "roomName": "Aula 3",
+      "teacherIds": [
+        "23522930"
+      ],
+      "teacherNames": [
+        "ROMANO Vittorio"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(283, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-64",
+      "courseId": "24513110",
+      "courseName": "1016278 - METODI NUMERICI PER EQUAZIONI ALLE DERIVATE PARZIALI",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "61068914"
+      ],
+      "teacherNames": [
+        "RUSSO Giovanni"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(115, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-66",
+      "courseId": "98903638",
+      "courseName": "1016317 - METODI MATEMATICI PER L'OTTIMIZZAZIONE",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "93941438"
+      ],
+      "teacherNames": [
+        "SCRIMALI Laura Rosa Maria"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(38, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-67",
+      "courseId": "31485070",
+      "courseName": "50219 - EQUAZIONI DIFFERENZIALI DELLA FISICA MATEMATICA",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "83178916"
+      ],
+      "teacherNames": [
+        "MUSCATO Orazio"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(150, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-68",
+      "courseId": "56397385",
+      "courseName": "9793953 - MODELLI MATEMATICI PER L'OTTIMIZZAZIONE",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "53612004"
+      ],
+      "teacherNames": [
+        "DANIELE Patrizia"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(64, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-75",
+      "courseId": "14379550",
+      "courseName": "9795551 - PREFERENCE MODELING AND CHOICE THEORY",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "73084492"
+      ],
+      "teacherNames": [
+        "GIARLOTTA Alfio"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(334, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-76",
+      "courseId": "17571313",
+      "courseName": "9796615 - STATISTICS",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "73579246"
+      ],
+      "teacherNames": [
+        "MARTINO Luca"
+      ],
+      "curriculaIds": [
+        "74880747",
+        "93975478",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(132, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-29",
+      "courseId": "99849758",
       "courseName": "9799511 - Multimedia Forensics",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-GUARNERA-LUCA",
-        "T-GUARNERA-FRANCESCO"
+        "25912316",
+        "79320379"
       ],
       "teacherNames": [
         "GUARNERA LUCA",
         "GUARNERA FRANCESCO"
       ],
       "curriculaIds": [
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES"
+        "48952648"
       ],
-      "programId": "LM-18",
-      "color": "hsla(147, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(141, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-65",
-      "courseId": "C-LM-18-9799512",
+      "eventId": "E-30",
+      "courseId": "79412522",
       "courseName": "9799512 - Medical Imaging",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-BATTIATO-SEBASTIANO",
-        "T-RUNDO-FRANCESCO"
+        "77780680",
+        "82303264"
       ],
       "teacherNames": [
         "BATTIATO SEBASTIANO",
         "RUNDO FRANCESCO"
       ],
       "curriculaIds": [
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES"
+        "48952648"
       ],
-      "programId": "LM-18",
-      "color": "hsla(148, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(322, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-75",
-      "courseId": "C-LM-18-9799525",
+      "eventId": "E-32",
+      "courseId": "59993651",
       "courseName": "9799525 - Bioinformatic Foundations",
-      "day": "Tue",
-      "dayIt": "Martedì",
+      "day": "Mon",
+      "dayIt": "Lunedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-PULVIRENTI-ALFREDO",
-        "T-ALAIMO-SALVATORE"
+        "93270182",
+        "68421069"
       ],
       "teacherNames": [
         "PULVIRENTI ALFREDO",
         "ALAIMO SALVATORE"
       ],
       "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "68142346"
       ],
-      "programId": "LM-18",
-      "color": "hsla(182, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(155, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-7",
-      "courseId": "C-L-35-1008048",
-      "courseName": "1008048 - INFORMATICA I",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
-      "teacherIds": [
-        "T-CINCOTTI-GIANLUCA"
-      ],
-      "teacherNames": [
-        "CINCOTTI Gianluca"
-      ],
-      "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
-      ],
-      "programId": "L-35",
-      "color": "hsla(181, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-10",
-      "courseId": "C-LM-DATA-9796564",
-      "courseName": "9796564 - DIGITAL INNOVATION AND TRANSFORMATION MANAGEMENT",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-4",
-      "roomName": "Aula 4",
-      "teacherIds": [
-        "T-ROMANO-MARCO"
-      ],
-      "teacherNames": [
-        "ROMANO Marco"
-      ],
-      "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
-      ],
-      "programId": "LM-DATA",
-      "color": "hsla(63, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-17",
-      "courseId": "C-LM-18-1014421",
-      "courseName": "1014421 - COMPUTER VISION",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [
-        "T-BATTIATO-SEBASTIANO"
-      ],
-      "teacherNames": [
-        "BATTIATO SEBASTIANO"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(301, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-21",
-      "courseId": "C-LM-DATA-9793954",
-      "courseName": "9793954 - BASICS OF COMPUTING",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
-      "teacherIds": [
-        "T-GALLO-GIOVANNI"
-      ],
-      "teacherNames": [
-        "GALLO Giovanni"
-      ],
-      "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
-      ],
-      "programId": "LM-DATA",
-      "color": "hsla(183, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-30",
-      "courseId": "C-L-35-1001829",
-      "courseName": "1001829 - ULTERIORI ATTIVITA' FORMATIVE",
+      "eventId": "E-34",
+      "courseId": "19088919",
+      "courseName": "9799527 - Omics Data Analysis",
       "day": "Tue",
       "dayIt": "Martedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [
+        "68421069",
+        "62365728"
+      ],
+      "teacherNames": [
+        "ALAIMO SALVATORE",
+        "MICALE GIOVANNI"
+      ],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(329, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-39",
+      "courseId": "33551793",
+      "courseName": "9799542 - Teoria dei Grafi",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [
+        "26590378",
+        "53497602"
+      ],
+      "teacherNames": [
+        "GUARDO ELENA MARIA",
+        "GIONFRIDDO Mario"
+      ],
+      "curriculaIds": [
+        "91724030"
+      ],
+      "programId": "31569366",
+      "color": "hsla(248, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-8",
+      "courseId": "27523372",
+      "courseName": "1001829 - ULTERIORI ATTIVITA' FORMATIVE",
+      "day": "Mon",
+      "dayIt": "Lunedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
       "teacherIds": [
-        "T-ASTUTO-CLARISSA"
+        "51985983"
       ],
       "teacherNames": [
         "ASTUTO CLARISSA"
       ],
       "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
+        "99016358",
+        "72903764"
       ],
-      "programId": "L-35",
-      "color": "hsla(151, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(293, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-39",
-      "courseId": "C-LM-DATA-9793940",
-      "courseName": "9793940 - STATISTICAL LABORATORY",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 14,
-      "endHour": 16,
+      "eventId": "E-9",
+      "courseId": "36695267",
+      "courseName": "1003552 - ULTERIORI CONOSCENZE LINGUISTICHE",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 9,
+      "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-4",
+      "roomId": "17311790",
       "roomName": "Aula 4",
       "teacherIds": [
-        "T-PUNZO-ANTONIO"
+        "70594314"
       ],
       "teacherNames": [
-        "PUNZO ANTONIO"
+        "CACCIOLA GIULIANA"
       ],
       "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
+        "99016358",
+        "72903764"
       ],
-      "programId": "LM-DATA",
-      "color": "hsla(148, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(60, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-46",
-      "courseId": "C-L-35-9796614",
-      "courseName": "9796614 - ANALISI MATEMATICA 1 PARTE A",
+      "eventId": "E-10",
+      "courseId": "22639021",
+      "courseName": "1008048 - INFORMATICA I",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
       "teacherIds": [
-        "T-CIRMI-GIUSEPPA-RITA"
+        "56757503"
       ],
       "teacherNames": [
-        "CIRMI Giuseppa Rita"
+        "CINCOTTI Gianluca"
       ],
       "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
+        "99016358",
+        "72903764"
       ],
-      "programId": "L-35",
-      "color": "hsla(110, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(19, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-62",
-      "courseId": "C-L-35-9796613",
+      "eventId": "E-13",
+      "courseId": "25773199",
       "courseName": "9796613 - ANALISI MATEMATICA 1 PARTE B",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-4",
-      "roomName": "Aula 4",
+      "roomId": "23453694",
+      "roomName": "Aula 24",
       "teacherIds": [
-        "T-DI-FAZIO-GIUSEPPE"
+        "80478537"
       ],
       "teacherNames": [
         "DI FAZIO Giuseppe"
       ],
       "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
+        "99016358",
+        "72903764"
       ],
-      "programId": "L-35",
-      "color": "hsla(109, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(321, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-68",
-      "courseId": "C-LM-DATA-9798825",
-      "courseName": "9798825 - DATA PROTECTION LAW",
-      "day": "Tue",
-      "dayIt": "Martedì",
+      "eventId": "E-14",
+      "courseId": "11309869",
+      "courseName": "9796614 - ANALISI MATEMATICA 1 PARTE A",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-4",
+      "roomId": "17311790",
       "roomName": "Aula 4",
       "teacherIds": [
-        "T-AMORE-GIULIANA"
+        "32526873"
       ],
       "teacherNames": [
-        "AMORE GIULIANA"
+        "CIRMI Giuseppa Rita"
       ],
       "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
+        "99016358",
+        "72903764"
       ],
-      "programId": "LM-DATA",
-      "color": "hsla(125, 65%, 55%, 0.7)"
+      "programId": "68829610",
+      "color": "hsla(247, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-76",
-      "courseId": "C-L-35-1002967",
-      "courseName": "1003552 - ULTERIORI CONOSCENZE LINGUISTICHE",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
-      "teacherIds": [
-        "T-CACCIOLA-GIULIANA"
-      ],
-      "teacherNames": [
-        "CACCIOLA GIULIANA"
-      ],
-      "curriculaIds": [
-        "CUR-L-35-APPLICATIVO",
-        "CUR-L-35-GENERALE"
-      ],
-      "programId": "L-35",
-      "color": "hsla(65, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-79",
-      "courseId": "C-LM-DATA-9793879",
-      "courseName": "9793879 - OPTIMIZATION",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
-      "teacherIds": [
-        "T-RACITI-FABIO"
-      ],
-      "teacherNames": [
-        "RACITI Fabio"
-      ],
-      "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
-      ],
-      "programId": "LM-DATA",
-      "color": "hsla(9, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-81",
-      "courseId": "C-LM-18-9799531",
-      "courseName": "9799531 - Sistemi Cloud",
+      "eventId": "E-15",
+      "courseId": "89648290",
+      "courseName": "1014421 - COMPUTER VISION",
       "day": "Thu",
       "dayIt": "Giovedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [
-        "T-PAPPALARDO-GIUSEPPE"
+        "77780680"
       ],
       "teacherNames": [
-        "PAPPALARDO Giuseppe"
+        "BATTIATO SEBASTIANO"
       ],
       "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS",
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI"
+        "94312330",
+        "44399015"
       ],
-      "programId": "LM-18",
-      "color": "hsla(209, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(240, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-91",
-      "courseId": "C-LM-18-9796654",
+      "eventId": "E-24",
+      "courseId": "39531985",
       "courseName": "9796654 - FUNCTIONAL AND CONCURRENT PROGRAMMING PRINCIPLES",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [
-        "T-BARBANERA-FRANCO"
+        "82301386"
       ],
       "teacherNames": [
         "BARBANERA Franco"
       ],
       "curriculaIds": [
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI",
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "49464289",
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(62, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(209, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-14",
-      "courseId": "C-LM-40-1016277",
-      "courseName": "50220 - ALGEBRA COMMUTATIVA",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [
-        "T-D-ANNA-MARCO"
-      ],
-      "teacherNames": [
-        "D'ANNA Marco"
-      ],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(183, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-25",
-      "courseId": "C-LM-18-9799541",
-      "courseName": "9799541 - Logica Matematica per l'Informatica",
+      "eventId": "E-36",
+      "courseId": "46834610",
+      "courseName": "9799531 - Sistemi Cloud",
       "day": "Thu",
       "dayIt": "Giovedì",
-      "startHour": 14,
-      "endHour": 16,
+      "startHour": 9,
+      "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [
-        "T-NICOLOSI-ASMUNDO-MARIANNA"
+        "92817962"
       ],
       "teacherNames": [
-        "NICOLOSI ASMUNDO MARIANNA"
+        "PAPPALARDO Giuseppe"
       ],
       "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "68142346",
+        "49464289"
       ],
-      "programId": "LM-18",
-      "color": "hsla(240, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(102, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-29",
-      "courseId": "C-LM-18-1014456",
-      "courseName": "1014456 - OTTIMIZZAZIONE",
-      "day": "Thu",
-      "dayIt": "Giovedì",
+      "eventId": "E-86",
+      "courseId": "40468096",
+      "courseName": "9793879 - OPTIMIZATION",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [
+        "39891063"
+      ],
+      "teacherNames": [
+        "RACITI Fabio"
+      ],
+      "curriculaIds": [
+        "97526580",
+        "77253503"
+      ],
+      "programId": "88927583",
+      "color": "hsla(3, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-88",
+      "courseId": "30807478",
+      "courseName": "9793940 - STATISTICAL LABORATORY",
+      "day": "Mon",
+      "dayIt": "Lunedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
       "teacherIds": [
-        "T-SCRIMALI-LAURA-ROSA-MARIA"
+        "94836364"
       ],
       "teacherNames": [
-        "SCRIMALI Laura Rosa Maria"
+        "PUNZO ANTONIO"
       ],
       "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY"
+        "97526580",
+        "77253503"
       ],
-      "programId": "LM-18",
-      "color": "hsla(39, 65%, 55%, 0.7)"
+      "programId": "88927583",
+      "color": "hsla(115, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-31",
-      "courseId": "C-LM-18-9799543",
-      "courseName": "9799543 - Sistemi Dinamici",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
-      "teacherIds": [
-        "T-ROMANO-VITTORIO"
-      ],
-      "teacherNames": [
-        "ROMANO Vittorio"
-      ],
-      "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(242, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-48",
-      "courseId": "C-LM-18-9796656",
-      "courseName": "9796656 - HEURISTICS AND METAHEURISTICS FOR OPTIMIZATION AND LEARNING",
-      "day": "Tue",
-      "dayIt": "Martedì",
+      "eventId": "E-89",
+      "courseId": "73313740",
+      "courseName": "9793954 - BASICS OF COMPUTING",
+      "day": "Mon",
+      "dayIt": "Lunedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-1",
-      "roomName": "Aula 1",
+      "roomId": "46114758",
+      "roomName": "Aula 23",
       "teacherIds": [
-        "T-PAVONE-MARIO-FRANCESCO"
+        "15006002"
       ],
       "teacherNames": [
-        "PAVONE MARIO FRANCESCO"
+        "GALLO Giovanni"
       ],
       "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "97526580",
+        "77253503"
       ],
-      "programId": "LM-18",
-      "color": "hsla(64, 65%, 55%, 0.7)"
+      "programId": "88927583",
+      "color": "hsla(154, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-49",
-      "courseId": "C-LM-18-1014450",
+      "eventId": "E-90",
+      "courseId": "57464942",
+      "courseName": "9796564 - DIGITAL INNOVATION AND TRANSFORMATION MANAGEMENT",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [
+        "27771036"
+      ],
+      "teacherNames": [
+        "ROMANO Marco"
+      ],
+      "curriculaIds": [
+        "97526580",
+        "77253503"
+      ],
+      "programId": "88927583",
+      "color": "hsla(359, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-92",
+      "courseId": "38371058",
+      "courseName": "9798825 - DATA PROTECTION LAW",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [
+        "14919808"
+      ],
+      "teacherNames": [
+        "AMORE GIULIANA"
+      ],
+      "curriculaIds": [
+        "97526580",
+        "77253503"
+      ],
+      "programId": "88927583",
+      "color": "hsla(291, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-17",
+      "courseId": "54978536",
       "courseName": "1014450 - MACHINE LEARNING",
       "day": "Thu",
       "dayIt": "Giovedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [
-        "T-FARINELLA-GIOVANNI-MARIA"
+        "32327870"
       ],
       "teacherNames": [
         "FARINELLA GIOVANNI MARIA"
       ],
       "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(33, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(141, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-50",
-      "courseId": "C-LM-40-9799375",
+      "eventId": "E-18",
+      "courseId": "52935155",
+      "courseName": "1014456 - OTTIMIZZAZIONE",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "89374473",
+      "roomName": "Aula 3",
+      "teacherIds": [
+        "93941438"
+      ],
+      "teacherNames": [
+        "SCRIMALI Laura Rosa Maria"
+      ],
+      "curriculaIds": [
+        "44399015"
+      ],
+      "programId": "31569366",
+      "color": "hsla(99, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-25",
+      "courseId": "91446628",
+      "courseName": "9796656 - HEURISTICS AND METAHEURISTICS FOR OPTIMIZATION AND LEARNING",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [
+        "28471714"
+      ],
+      "teacherNames": [
+        "PAVONE MARIO FRANCESCO"
+      ],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(334, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-38",
+      "courseId": "79553364",
+      "courseName": "9799541 - Logica Matematica per l'Informatica",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "95206344"
+      ],
+      "teacherNames": [
+        "NICOLOSI ASMUNDO MARIANNA"
+      ],
+      "curriculaIds": [
+        "91724030"
+      ],
+      "programId": "31569366",
+      "color": "hsla(152, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-40",
+      "courseId": "29135442",
+      "courseName": "9799543 - Sistemi Dinamici",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [
+        "23522930"
+      ],
+      "teacherNames": [
+        "ROMANO Vittorio"
+      ],
+      "curriculaIds": [
+        "91724030"
+      ],
+      "programId": "31569366",
+      "color": "hsla(142, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-63",
+      "courseId": "29035259",
+      "courseName": "50220 - ALGEBRA COMMUTATIVA",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [
+        "57203776"
+      ],
+      "teacherNames": [
+        "D'ANNA Marco"
+      ],
+      "curriculaIds": [
+        "93975478"
+      ],
+      "programId": "39325618",
+      "color": "hsla(267, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-78",
+      "courseId": "83736659",
       "courseName": "9799375 - Geometria Superiore",
       "day": "Mon",
       "dayIt": "Lunedì",
       "startHour": 16,
       "endHour": 18,
       "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
+      "roomId": "17529019",
+      "roomName": "Aula 1",
       "teacherIds": [
-        "T-SPADARO-SANTI-DOMENICO"
+        "82946557"
       ],
       "teacherNames": [
         "SPADARO SANTI DOMENICO"
       ],
       "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
+        "93975478"
       ],
-      "programId": "LM-40",
-      "color": "hsla(236, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(107, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-2",
-      "courseId": "C-LM-40-GRUPPO-OPZIONALE-APPLICATIVO-I-SEM-E-II-SEM",
-      "courseName": "GRUPPO OPZIONALE APPLICATIVO I SEM. e II SEM.",
-      "day": "Mon",
-      "dayIt": "Lunedì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(122, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-4",
-      "courseId": "C-LM-40-1014158",
-      "courseName": "9799375 - Geometria Superiore",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(59, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-19",
-      "courseId": "C-LM-40-9794100",
-      "courseName": "9794100 - ISTITUZIONI DI ALGEBRA SUPERIORE",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(337, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-36",
-      "courseId": "C-LM-DATA-9793926",
-      "courseName": "9793926 - DATA BASE AND BIG DATA ANALYTICS",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-4",
-      "roomName": "Aula 4",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
-      ],
-      "programId": "LM-DATA",
-      "color": "hsla(92, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-38",
-      "courseId": "C-LM-40-1014152",
-      "courseName": "1014152 - ISTITUZIONI DI ANALISI SUPERIORE",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(53, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-60",
-      "courseId": "C-LM-40-GRUPPO-OPZIONALE-AFFINE-TEORICO-E-APPLICATIVO-I-",
-      "courseName": "GRUPPO OPZIONALE AFFINE  teorico e Applicativo I anno",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-25",
-      "roomName": "Aula 25",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-TEORICO",
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(30, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-66",
-      "courseId": "C-LM-18-9799560",
+      "eventId": "E-41",
+      "courseId": "97365821",
       "courseName": "9799560 - Deep Learning",
       "day": "Thu",
       "dayIt": "Giovedì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "89374473",
+      "roomName": "Aula 3",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING",
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES"
+        "94312330",
+        "48952648"
       ],
-      "programId": "LM-18",
-      "color": "hsla(301, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(19, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-74",
-      "courseId": "C-LM-DATA-9798801",
-      "courseName": "9798801 - Statistical Learning",
+      "eventId": "E-57",
+      "courseId": "63588064",
+      "courseName": "1014152 - ISTITUZIONI DI ANALISI SUPERIORE",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "74880747",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(278, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-58",
+      "courseId": "83736659",
+      "courseName": "9799375 - Geometria Superiore",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "75448243",
+      "roomName": "Aula 2",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "74880747",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(107, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-72",
+      "courseId": "56899252",
+      "courseName": "9794100 - ISTITUZIONI DI ALGEBRA SUPERIORE",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "74880747",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(304, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-79",
+      "courseId": "12258527",
+      "courseName": "GRUPPO OPZIONALE AFFINE  teorico e Applicativo I anno",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "74880747",
+        "93975478"
+      ],
+      "programId": "39325618",
+      "color": "hsla(302, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-81",
+      "courseId": "96972272",
+      "courseName": "GRUPPO OPZIONALE APPLICATIVO I SEM. e II SEM.",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "17529019",
+      "roomName": "Aula 1",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "74880747",
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "hsla(22, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-87",
+      "courseId": "50623637",
+      "courseName": "9793926 - DATA BASE AND BIG DATA ANALYTICS",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-MAGNA",
-      "roomName": "Aula Magna",
+      "roomId": "90545852",
+      "roomName": "Aula 25",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-DATA-DATA-ANALYSIS-AND-MODELLING",
-        "CUR-LM-DATA-DATA-DRIVEN-APPLICATIONS"
+        "97526580",
+        "77253503"
       ],
-      "programId": "LM-DATA",
-      "color": "hsla(59, 65%, 55%, 0.7)"
+      "programId": "88927583",
+      "color": "hsla(22, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-0",
-      "courseId": "C-LM-18-1014444",
+      "eventId": "E-91",
+      "courseId": "43531606",
+      "courseName": "9798801 - Statistical Learning",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "97526580",
+        "77253503"
+      ],
+      "programId": "88927583",
+      "color": "hsla(248, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-16",
+      "courseId": "84741968",
       "courseName": "1014444 - MULTIMEDIA E LABORATORIO",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "17311790",
+      "roomName": "Aula 4",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES"
+        "48952648"
       ],
-      "programId": "LM-18",
-      "color": "hsla(6, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(347, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-1",
-      "courseId": "C-LM-40-9793974",
-      "courseName": "9793974 - ISTITUZIONI DI RICERCA OPERATIVA",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(55, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-5",
-      "courseId": "C-LM-40-9794104",
-      "courseName": "9794104 - ISTITUZIONI DI MATEMATICHE COMPLEMENTARI",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-DIDATTICO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(341, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-8",
-      "courseId": "C-LM-40-GRUPPO-OPZIONALE-DELLE-ISTITUZIONI-APPLICATIVE",
-      "courseName": "GRUPPO OPZIONALE DELLE ISTITUZIONI APPLICATIVE",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 16,
-      "endHour": 18,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "hsla(282, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-11",
-      "courseId": "C-LM-18-9799528",
-      "courseName": "9799528 - Computational Genomics",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(185, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-12",
-      "courseId": "C-LM-40-I-GRUPPO-OPZIONALE-TEORICO",
-      "courseName": "I° GRUPPO OPZIONALE TEORICO",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
-      "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
-    },
-    {
-      "eventId": "E-15",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-C-I-ANNO-II-SEMESTRE",
-      "courseName": "Gruppo opzionale C, I anno II semestre",
+      "eventId": "E-19",
+      "courseId": "63193314",
+      "courseName": "1014458 - COMPUTER SECURITY E LABORATORIO",
       "day": "Wed",
       "dayIt": "Mercoledì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-4",
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "44399015"
+      ],
+      "programId": "31569366",
+      "color": "hsla(88, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-21",
+      "courseId": "10753984",
+      "courseName": "1015941 - INGEGNERIA DEI SISTEMI DISTRIBUITI E LABORATORIO",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "17311790",
       "roomName": "Aula 4",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY"
+        "44399015"
       ],
-      "programId": "LM-18",
-      "color": "hsla(280, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(127, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-16",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-A-I-ANNO-II-SEMESTRE",
-      "courseName": "Gruppo opzionale A,  I anno II Semestre",
+      "eventId": "E-33",
+      "courseId": "48227399",
+      "courseName": "9799526 - Molecular and Computational Biology",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(248, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-35",
+      "courseId": "61317298",
+      "courseName": "9799528 - Computational Genomics",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(155, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-42",
+      "courseId": "21195323",
+      "courseName": "9799579 - Fondamenti e Architetture della Computazione Quantistica",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "23453694",
+      "roomName": "Aula 24",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "49464289"
+      ],
+      "programId": "31569366",
+      "color": "hsla(350, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-44",
+      "courseId": "47155114",
+      "courseName": "9799583 - Computational Molecular Diagnostics",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(158, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-45",
+      "courseId": "78337000",
+      "courseName": "9799585 - Artificial and Evolutionary Intelligence",
       "day": "Tue",
       "dayIt": "Martedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-3",
-      "roomName": "Aula 3",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(274, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-18",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-F-I-ANNO-II-SEMESTRE",
-      "courseName": "Gruppo opzionale F, I anno II semestre",
-      "day": "Fri",
-      "dayIt": "Venerdì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(85, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-27",
-      "courseId": "C-LM-18-9799583",
-      "courseName": "9799583 - Computational Molecular Diagnostics",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 14,
-      "endHour": 16,
-      "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(6, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-32",
-      "courseId": "C-LM-18-9799526",
-      "courseName": "9799526 - Molecular and Computational Biology",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-126",
+      "roomId": "50047024",
       "roomName": "Aula 126",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "94312330"
       ],
-      "programId": "LM-18",
-      "color": "hsla(183, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(138, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-42",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-D-I-ANNO-II-SEMESTRE",
-      "courseName": "Gruppo opzionale D, I anno II semestre",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 14,
-      "endHour": 16,
+      "eventId": "E-47",
+      "courseId": "41724522",
+      "courseName": "Gruppo opzionale A,  I anno II Semestre",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 11,
+      "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-F",
-      "roomName": "Aula F",
+      "roomId": "46114758",
+      "roomName": "Aula 23",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-HEALTH-INFORMATICS"
+        "94312330"
       ],
-      "programId": "LM-18",
-      "color": "hsla(335, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(233, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-43",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-B-I-ANNO-II-SEMESTRE",
+      "eventId": "E-48",
+      "courseId": "46520658",
       "courseName": "Gruppo opzionale B, I anno II semestre",
       "day": "Thu",
       "dayIt": "Giovedì",
       "startHour": 9,
       "endHour": 11,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "50410656",
+      "roomName": "Aula 22 “Chiarenza”",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-COMPUTER-VISION-AND-MULTIMEDIA-TECHNOLOGIES"
+        "48952648"
       ],
-      "programId": "LM-18",
-      "color": "hsla(329, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(16, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-47",
-      "courseId": "C-LM-40-9793973",
-      "courseName": "9793973 - ISTITUZIONI DI ANALISI NUMERICA",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
-      "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
-    },
-    {
-      "eventId": "E-51",
-      "courseId": "C-LM-18-1015941",
-      "courseName": "1015941 - INGEGNERIA DEI SISTEMI DISTRIBUITI E LABORATORIO",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
+      "eventId": "E-49",
+      "courseId": "49627655",
+      "courseName": "Gruppo opzionale C, I anno II semestre",
+      "day": "Thu",
+      "dayIt": "Giovedì",
       "startHour": 14,
       "endHour": 16,
       "duration": 2,
-      "roomId": "R-AULA-126",
-      "roomName": "Aula 126",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY"
+        "44399015"
       ],
-      "programId": "LM-18",
-      "color": "hsla(39, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(8, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-54",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-F-I-ANNO-I-SEMESTRE",
+      "eventId": "E-50",
+      "courseId": "28947956",
+      "courseName": "Gruppo opzionale D, I anno II semestre",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "89374473",
+      "roomName": "Aula 3",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "68142346"
+      ],
+      "programId": "31569366",
+      "color": "hsla(12, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-51",
+      "courseId": "74369155",
+      "courseName": "Gruppo opzionale E, I anno II semestre",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
+      "duration": 2,
+      "roomId": "46114758",
+      "roomName": "Aula 23",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "49464289"
+      ],
+      "programId": "31569366",
+      "color": "hsla(256, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-52",
+      "courseId": "61009202",
       "courseName": "Gruppo opzionale F, I anno I semestre",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "17311790",
+      "roomName": "Aula 4",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "91724030"
+      ],
+      "programId": "31569366",
+      "color": "hsla(198, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-53",
+      "courseId": "55370875",
+      "courseName": "Gruppo opzionale F, I anno II semestre",
       "day": "Fri",
       "dayIt": "Venerdì",
       "startHour": 11,
       "endHour": 13,
       "duration": 2,
-      "roomId": "R-AULA-128",
-      "roomName": "Aula 128",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-THEORETICAL-COMPUTER-SCIENCE"
+        "91724030"
       ],
-      "programId": "LM-18",
-      "color": "hsla(8, 65%, 55%, 0.7)"
+      "programId": "31569366",
+      "color": "hsla(74, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-57",
-      "courseId": "C-LM-40-GRUPPO-OPZIONALE-AFFINI-CURRICULUM-DIDATTICO",
-      "courseName": "GRUPPO OPZIONALE AFFINI CURRICULUM DIDATTICO",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
+      "eventId": "E-69",
+      "courseId": "56734390",
+      "courseName": "9793972 - ISTITUZIONI DI FISICA MATEMATICA",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 16,
+      "endHour": 18,
       "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-40-DIDATTICO"
+        "93975478"
       ],
-      "programId": "LM-40",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+      "programId": "39325618",
+      "color": "hsla(235, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-58",
-      "courseId": "C-LM-18-1014458",
-      "courseName": "1014458 - COMPUTER SECURITY E LABORATORIO",
-      "day": "Thu",
-      "dayIt": "Giovedì",
-      "startHour": 14,
-      "endHour": 16,
+      "eventId": "E-70",
+      "courseId": "25661899",
+      "courseName": "9793973 - ISTITUZIONI DI ANALISI NUMERICA",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 16,
+      "endHour": 18,
       "duration": 2,
-      "roomId": "R-AULA-127",
-      "roomName": "Aula 127",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-DISTRIBUTED-ARCHITECTURES-AND-CYBERSECURITY"
+        "93975478"
       ],
-      "programId": "LM-18",
-      "color": "hsla(41, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-64",
-      "courseId": "C-LM-18-GRUPPO-OPZIONALE-E-I-ANNO-II-SEMESTRE",
-      "courseName": "Gruppo opzionale E, I anno II semestre",
-      "day": "Tue",
-      "dayIt": "Martedì",
-      "startHour": 9,
-      "endHour": 11,
-      "duration": 2,
-      "roomId": "R-AULA-1",
-      "roomName": "Aula 1",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(30, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(114, 65%, 55%, 0.7)"
     },
     {
       "eventId": "E-71",
-      "courseId": "C-LM-40-GRUPPO-OPZIONALE-DELLE-ISTITUZIONI-DIDATTICHE",
-      "courseName": "GRUPPO OPZIONALE DELLE ISTITUZIONI DIDATTICHE",
+      "courseId": "73229581",
+      "courseName": "9793974 - ISTITUZIONI DI RICERCA OPERATIVA",
       "day": "N/A",
       "dayIt": "N/A",
       "startHour": -1,
@@ -2064,93 +2023,34 @@
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-40-DIDATTICO"
+        "93975478"
       ],
-      "programId": "LM-40",
+      "programId": "39325618",
       "color": "#888",
       "error": "Impossibile piazzare questo evento con i vincoli attuali."
     },
     {
-      "eventId": "E-78",
-      "courseId": "C-LM-18-9799579",
-      "courseName": "9799579 - Fondamenti e Architetture della Computazione Quantistica",
+      "eventId": "E-73",
+      "courseId": "68177697",
+      "courseName": "9794104 - ISTITUZIONI DI MATEMATICHE COMPLEMENTARI",
       "day": "Thu",
       "dayIt": "Giovedì",
-      "startHour": 11,
-      "endHour": 13,
+      "startHour": 16,
+      "endHour": 18,
       "duration": 2,
-      "roomId": "R-AULA-4",
-      "roomName": "Aula 4",
+      "roomId": "75448243",
+      "roomName": "Aula 2",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-18-QUANTUM-PROGRAMMING-AND-HIGH-PERFORMANCE-COMPUTI"
+        "26065258"
       ],
-      "programId": "LM-18",
-      "color": "hsla(341, 65%, 55%, 0.7)"
+      "programId": "39325618",
+      "color": "hsla(213, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-86",
-      "courseId": "C-LM-40-I-GRUPPO-OPZIONALE-APPLICATIVO-CURRICULUM-APPLIC",
-      "courseName": "I° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
-      "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
-    },
-    {
-      "eventId": "E-89",
-      "courseId": "C-LM-18-9799585",
-      "courseName": "9799585 - Artificial and Evolutionary Intelligence",
-      "day": "Wed",
-      "dayIt": "Mercoledì",
-      "startHour": 11,
-      "endHour": 13,
-      "duration": 2,
-      "roomId": "R-AULA-4",
-      "roomName": "Aula 4",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-18-ARTIFICIAL-INTELLIGENCE-AND-MACHINE-LEARNING"
-      ],
-      "programId": "LM-18",
-      "color": "hsla(8, 65%, 55%, 0.7)"
-    },
-    {
-      "eventId": "E-90",
-      "courseId": "C-LM-40-9793972",
-      "courseName": "9793972 - ISTITUZIONI DI FISICA MATEMATICA",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
-      "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
-      ],
-      "programId": "LM-40",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
-    },
-    {
-      "eventId": "E-92",
-      "courseId": "C-LM-40-9794156",
+      "eventId": "E-74",
+      "courseId": "91805508",
       "courseName": "9794156 - ISTITUZIONI DI ANALISI PER LE APPLICAZIONI",
       "day": "N/A",
       "dayIt": "N/A",
@@ -2162,9 +2062,109 @@
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "CUR-LM-40-APPLICATIVO"
+        "93975478"
       ],
-      "programId": "LM-40",
+      "programId": "39325618",
+      "color": "#888",
+      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+    },
+    {
+      "eventId": "E-80",
+      "courseId": "12367224",
+      "courseName": "GRUPPO OPZIONALE AFFINI CURRICULUM DIDATTICO",
+      "day": "N/A",
+      "dayIt": "N/A",
+      "startHour": -1,
+      "endHour": -1,
+      "duration": 2,
+      "roomId": "N/A",
+      "roomName": "N/A",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "#888",
+      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+    },
+    {
+      "eventId": "E-82",
+      "courseId": "75571942",
+      "courseName": "GRUPPO OPZIONALE DELLE ISTITUZIONI APPLICATIVE",
+      "day": "N/A",
+      "dayIt": "N/A",
+      "startHour": -1,
+      "endHour": -1,
+      "duration": 2,
+      "roomId": "N/A",
+      "roomName": "N/A",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "93975478"
+      ],
+      "programId": "39325618",
+      "color": "#888",
+      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+    },
+    {
+      "eventId": "E-83",
+      "courseId": "59021620",
+      "courseName": "GRUPPO OPZIONALE DELLE ISTITUZIONI DIDATTICHE",
+      "day": "N/A",
+      "dayIt": "N/A",
+      "startHour": -1,
+      "endHour": -1,
+      "duration": 2,
+      "roomId": "N/A",
+      "roomName": "N/A",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "26065258"
+      ],
+      "programId": "39325618",
+      "color": "#888",
+      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+    },
+    {
+      "eventId": "E-84",
+      "courseId": "53742109",
+      "courseName": "I° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
+      "day": "N/A",
+      "dayIt": "N/A",
+      "startHour": -1,
+      "endHour": -1,
+      "duration": 2,
+      "roomId": "N/A",
+      "roomName": "N/A",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "93975478"
+      ],
+      "programId": "39325618",
+      "color": "#888",
+      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+    },
+    {
+      "eventId": "E-85",
+      "courseId": "58485379",
+      "courseName": "I° GRUPPO OPZIONALE TEORICO",
+      "day": "N/A",
+      "dayIt": "N/A",
+      "startHour": -1,
+      "endHour": -1,
+      "duration": 2,
+      "roomId": "N/A",
+      "roomName": "N/A",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "93975478"
+      ],
+      "programId": "39325618",
       "color": "#888",
       "error": "Impossibile piazzare questo evento con i vincoli attuali."
     }
@@ -2172,8 +2172,8 @@
   "status": "partial",
   "objective": null,
   "unplaced": 7,
-  "algorithm": "Genetic",
-  "algorithmLabel": "Genetic Algorithm (Metaheuristic)",
+  "algorithm": "Greedy",
+  "algorithmLabel": "Greedy Heuristic Fallback",
   "hardConstraintReport": {
     "checks": [
       {
@@ -2243,10 +2243,11 @@
     "placedEvents": 86,
     "totalEvents": 93
   },
-  "message": "Scheduling completato. 86/93 eventi piazzati. 7 eventi non piazzabili. | Ricerca genetica completata: 10 generazioni, popolazione 6, rank=(7, 0, 0).",
-  "solveTimeSeconds": 7.47,
-  "requestedAlgorithm": "genetic",
-  "solverBackend": "Genetic Algorithm (Metaheuristic)",
-  "timestamp": "2026-03-12 15:16:28",
+  "message": "Impossibile trovare una soluzione. Controlla i vincoli: troppi corsi per le aule disponibili, indisponibilità troppo restrittive, o eventi dello stesso corso che superano i 5 giorni disponibili. | Modello risolto come programma lineare intero con vincoli interi. Fallback automatico su Greedy attivato. Scheduling completato. 86/93 eventi piazzati. 7 eventi non piazzabili.",
+  "fallbackFromAlgorithm": "linear-programming",
+  "solveTimeSeconds": 30.39,
+  "requestedAlgorithm": "linear-programming",
+  "solverBackend": "Greedy Heuristic Fallback",
+  "timestamp": "2026-03-13 20:11:32",
   "semester": 1
 }

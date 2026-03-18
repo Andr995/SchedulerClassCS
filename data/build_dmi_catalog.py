@@ -50,9 +50,11 @@ def curriculum_id(program_id, curriculum_name, path_id):
 
 
 def course_id(program_id, code, name):
-    if code:
-        return f"C-{program_id}-{slug(code)}".upper()[:72]
-    return f"C-{program_id}-{slug(name)}".upper()[:72]
+    code_text = str(code or '').strip()
+    if code_text:
+        return code_text
+    name_text = str(name or '').strip()
+    return slug(name_text).upper()[:72]
 
 
 def dedup_keep_order(items):

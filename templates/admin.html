@@ -1546,6 +1546,7 @@ function renderCurriculumTables(){
   const tm=db.meta?.timeModel||{};
   const ds=Number(tm.dayStart||8);
   const de=Number(tm.dayEnd||19);
+  const programsById = Object.fromEntries((db.programs||[]).map(p => [p.id, p]));
   const curricula=(db.curricula||[]).filter(c=>(!fProg || c.programId===fProg) && (!fCurr || c.id===fCurr));
 
   box.innerHTML=curricula.map(cur=>{
@@ -1579,11 +1580,14 @@ function renderCurriculumTables(){
         const key=`${d}_${h}`;
         const ev=startMap[key];
         if(ev){
-          const teacher=(ev.teacherNames||ev.teacherIds||[]).join(', ');
+          const teacherList=(ev.teacherNames||ev.teacherIds||[]);
+          const primaryTeacher=Array.isArray(teacherList) && teacherList.length ? teacherList[0] : '';
+          const roomLabel=ev.roomName || ev.roomId || '';
           const dur=Math.max(1, Number(ev.duration) || (Number(ev.endHour)-Number(ev.startHour)) || 1);
           body += `<td class="cw-event" rowspan="${dur}">
             <div>${escapeHtml(ev.courseName||'')}</div>
-            <div class="meta">(${escapeHtml(teacher||'')})</div>
+            ${roomLabel ? `<div class="meta">Aula: ${escapeHtml(roomLabel)}</div>` : ''}
+            ${primaryTeacher ? `<div class="meta">Docente: ${escapeHtml(primaryTeacher)}</div>` : ''}
           </td>`;
         }else if(coverMap[key]){
           // Cella coperta da rowspan.
@@ -1594,7 +1598,16 @@ function renderCurriculumTables(){
       body += '</tr>';
     }
 
-    const title = escapeHtml(cur.name||cur.id) + (cur.yearCohort ? ' - ' + escapeHtml(cur.yearCohort) : '');
+    let programLabel = (programsById[cur.programId]?.name || cur.programId || '').trim();
+    if(!programLabel && rows.length){
+      programLabel = String(rows[0].programName || rows[0].programId || '').trim();
+    }
+
+    const titleParts = [];
+    if(programLabel) titleParts.push(`CdL ${escapeHtml(programLabel)}`);
+    titleParts.push(escapeHtml(cur.name||cur.id));
+    if(cur.yearCohort) titleParts.push(escapeHtml(cur.yearCohort));
+    const title = titleParts.join(' - ');
 
     return `<div class="cw-wrap">
       <div class="cw-title">${title}</div>

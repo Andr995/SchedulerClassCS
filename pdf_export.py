@@ -43,6 +43,7 @@ def _apply_filters(assignments, db, filters):
 
 def _build_curriculum_tables(assignments, db):
     courses_by_id = {c['id']: c for c in db.get('courses', [])}
+    programs_by_id = {p['id']: p for p in db.get('programs', [])}
     curricula = db.get('curricula', [])
 
     tables = []
@@ -52,7 +53,11 @@ def _build_curriculum_tables(assignments, db):
         for a in assignments:
             course = courses_by_id.get(a.get('courseId', ''), {})
             if cid in course.get('curriculaIds', []):
-                rows.append(a)
+                row = dict(a)
+                program_id = row.get('programId') or course.get('programId', '')
+                row['programId'] = program_id
+                row['programName'] = row.get('programName') or programs_by_id.get(program_id, {}).get('name', program_id)
+                rows.append(row)
 
         rows.sort(key=lambda x: (DAYS.index(x['day']) if x.get('day') in DAYS else 99,
                                  x.get('startHour', 0),
@@ -62,6 +67,8 @@ def _build_curriculum_tables(assignments, db):
             'curriculumId': cid,
             'curriculumName': curr.get('name', cid),
             'yearCohort': curr.get('yearCohort', ''),
+            'programId': curr.get('programId', ''),
+            'programName': programs_by_id.get(curr.get('programId', ''), {}).get('name', curr.get('programId', '')),
             'rows': rows,
         })
 
@@ -152,26 +159,31 @@ def export_pdf(schedule, db, filters=None):
         story.append(Paragraph('Nessun curriculum disponibile.', styles['Normal']))
 
     for idx, table_data in enumerate(tables):
-        title = f"Curriculum: {table_data['curriculumName']}"
+        title_parts = []
+        if table_data.get('programName') or table_data.get('programId'):
+            title_parts.append(f"CdL {table_data.get('programName') or table_data.get('programId')}")
+        title_parts.append(table_data['curriculumName'])
         if table_data.get('yearCohort'):
-            title += f" ({table_data['yearCohort']})"
+            title_parts.append(str(table_data['yearCohort']))
+        title = ' - '.join(title_parts)
         story.append(Paragraph(title, styles['Heading3']))
 
-        rows = [['Giorno', 'Ora', 'Insegnamento', 'Aula', 'Docenti']]
+        rows = [['Giorno', 'Ora', 'Insegnamento', 'CdL', 'Aula', 'Docenti']]
         for a in table_data['rows']:
             teachers = ', '.join(a.get('teacherNames', []) or a.get('teacherIds', []))
             rows.append([
                 DAY_IT.get(a.get('day', ''), a.get('day', '')),
                 f"{a.get('startHour', '')}:00-{a.get('endHour', '')}:00",
                 a.get('courseName', ''),
+                a.get('programName', a.get('programId', '')),
                 a.get('roomName', ''),
                 teachers,
             ])
 
         if len(rows) == 1:
-            rows.append(['-', '-', 'Nessuna lezione per questo curriculum', '-', '-'])
+            rows.append(['-', '-', 'Nessuna lezione per questo curriculum', '-', '-', '-'])
 
-        t = Table(rows, colWidths=[30 * mm, 28 * mm, 90 * mm, 42 * mm, 80 * mm])
+        t = Table(rows, colWidths=[24 * mm, 24 * mm, 70 * mm, 36 * mm, 36 * mm, 63 * mm])
         t.setStyle(TableStyle([
             ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#ececec')),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
