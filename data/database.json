@@ -12,7 +12,7 @@
       "expectedStudents": 50,
       "id": "74229100",
       "isCommonBetweenCurricula": true,
-      "name": "1000411 - RETI DI CALCOLATORI M - Z",
+      "name": "1000411 - RETI DI CALCOLATORI A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -36,7 +36,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -50,7 +54,7 @@
       "expectedStudents": 50,
       "id": "39722416",
       "isCommonBetweenCurricula": true,
-      "name": "1000416 - BASI DI DATI M - Z",
+      "name": "1000416 - BASI DI DATI A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -74,7 +78,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -96,7 +104,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -110,7 +122,7 @@
       "expectedStudents": 50,
       "id": "48569126",
       "isCommonBetweenCurricula": true,
-      "name": "1000418 - SISTEMI OPERATIVI M - Z",
+      "name": "1000418 - SISTEMI OPERATIVI A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -133,7 +145,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -147,7 +163,7 @@
       "expectedStudents": 50,
       "id": "46850960",
       "isCommonBetweenCurricula": true,
-      "name": "1000422 - METODI MATEMATICI E STATISTICI M - Z",
+      "name": "1000422 - METODI MATEMATICI E STATISTICI A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -170,7 +186,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -184,7 +204,7 @@
       "expectedStudents": 50,
       "id": "45400891",
       "isCommonBetweenCurricula": true,
-      "name": "1000430 - INGEGNERIA DEL SOFTWARE M - Z",
+      "name": "1000430 - INGEGNERIA DEL SOFTWARE A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -207,71 +227,11 @@
           "duration": 2
         }
       ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "37624967",
-        "19080634",
-        "78033281",
-        "13739711"
-      ],
-      "expectedStudents": 50,
-      "id": "93307171",
-      "isCommonBetweenCurricula": true,
-      "name": "1000977 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "37624967",
-        "19080634",
-        "78033281",
-        "13739711"
-      ],
-      "sourceCode": "1000977",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "48594436",
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ],
-      "expectedStudents": 50,
-      "id": "23206625",
-      "isCommonBetweenCurricula": true,
-      "name": "1001172 - PROVA FINALE",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "48594436",
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ],
-      "sourceCode": "1001172",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -308,7 +268,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -330,7 +294,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -352,7 +320,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -380,7 +352,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -402,7 +378,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -424,7 +404,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -438,7 +422,7 @@
       "expectedStudents": 50,
       "id": "71047590",
       "isCommonBetweenCurricula": true,
-      "name": "1008059 - FISICA M - Z",
+      "name": "1008059 - FISICA A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -460,39 +444,11 @@
           "duration": 2
         }
       ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ],
-      "expectedStudents": 50,
-      "id": "87965680",
-      "isCommonBetweenCurricula": true,
-      "name": "1011145 - STAGE E TIROCINI",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ],
-      "sourceCode": "1011145",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -506,7 +462,7 @@
       "expectedStudents": 50,
       "id": "39697665",
       "isCommonBetweenCurricula": true,
-      "name": "1014263 - ALGORITMI E LABORATORIO M - Z",
+      "name": "1014263 - ALGORITMI E LABORATORIO A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -526,7 +482,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -548,7 +508,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -562,7 +526,7 @@
       "expectedStudents": 50,
       "id": "56412818",
       "isCommonBetweenCurricula": true,
-      "name": "1015123 - ELEMENTI DI ANALISI MATEMATICA 2 O - Z",
+      "name": "1015123 - ELEMENTI DI ANALISI MATEMATICA 2 A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -584,7 +548,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -607,7 +575,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -621,7 +593,7 @@
       "expectedStudents": 50,
       "id": "92568327",
       "isCommonBetweenCurricula": true,
-      "name": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1 O - Z",
+      "name": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1 A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -646,7 +618,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -668,7 +644,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -682,7 +662,7 @@
       "expectedStudents": 50,
       "id": "76333226",
       "isCommonBetweenCurricula": true,
-      "name": "1015912 - PROGRAMMAZIONE I E LABORATORIO O - Z",
+      "name": "1015912 - PROGRAMMAZIONE I E LABORATORIO A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -702,7 +682,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -716,7 +700,7 @@
       "expectedStudents": 50,
       "id": "27010014",
       "isCommonBetweenCurricula": true,
-      "name": "1015928 - INTERAZIONE E MULTIMEDIA E LABORATORIO M - Z",
+      "name": "1015928 - INTERAZIONE E MULTIMEDIA E LABORATORIO A - L",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -736,7 +720,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -750,7 +738,7 @@
       "expectedStudents": 50,
       "id": "94581518",
       "isCommonBetweenCurricula": true,
-      "name": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO O - Z",
+      "name": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -770,7 +758,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -792,7 +784,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -806,7 +802,7 @@
       "expectedStudents": 50,
       "id": "36117189",
       "isCommonBetweenCurricula": true,
-      "name": "72439 - FONDAMENTI DI INFORMATICA O - Z",
+      "name": "72439 - FONDAMENTI DI INFORMATICA A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -830,7 +826,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -850,7 +850,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -872,7 +876,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -894,7 +902,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -914,7 +926,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -928,7 +944,7 @@
       "expectedStudents": 50,
       "id": "94337264",
       "isCommonBetweenCurricula": true,
-      "name": "9795525 - STRUTTURE DISCRETE O - Z",
+      "name": "9795525 - STRUTTURE DISCRETE A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -951,7 +967,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -965,7 +985,7 @@
       "expectedStudents": 50,
       "id": "74257934",
       "isCommonBetweenCurricula": true,
-      "name": "9795526 - ALGEBRA LINEARE E GEOMETRIA O - Z",
+      "name": "9795526 - ALGEBRA LINEARE E GEOMETRIA A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -989,7 +1009,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1011,7 +1035,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1025,7 +1053,7 @@
       "expectedStudents": 50,
       "id": "80959491",
       "isCommonBetweenCurricula": true,
-      "name": "9795537 - PROGRAMMAZIONE II E LABORATORIO O - Z",
+      "name": "9795537 - PROGRAMMAZIONE II E LABORATORIO A - E",
       "patternPref": "",
       "programId": "66526837",
       "roomType": "lecture",
@@ -1045,7 +1073,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1067,7 +1099,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1089,7 +1125,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1111,7 +1151,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1134,7 +1178,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1156,7 +1204,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1178,33 +1230,11 @@
           "duration": 2
         }
       ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "48594436",
-        "90827153"
-      ],
-      "expectedStudents": 50,
-      "id": "98495818",
-      "isCommonBetweenCurricula": true,
-      "name": "9796735 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "48594436",
-        "90827153"
-      ],
-      "sourceCode": "9796735",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1226,27 +1256,35 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
+      "id": "60251555",
+      "name": "9796746 - COMPUTABILITA' E COMPLESSITA'",
+      "programId": "66526837",
+      "year": 3,
+      "roomType": "lecture",
+      "semester": 2,
       "curriculaIds": [
         "37624967"
       ],
-      "expectedStudents": 50,
-      "id": "60251555",
-      "name": "9796746 - COMPUTABILITA' E COMPLESSITA'",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "9796746",
       "teacherIds": [],
+      "expectedStudents": 50,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": "computabilità",
+      "patternPref": "",
       "weeklyEvents": [
         {
           "duration": 2
         }
       ],
-      "year": 3
+      "sourceCode": "9796746"
     },
     {
       "curriculaIds": [
@@ -1268,7 +1306,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1290,7 +1332,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1313,7 +1359,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1335,7 +1385,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1357,7 +1411,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1379,7 +1437,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1401,7 +1463,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1423,7 +1489,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1443,7 +1513,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1465,7 +1539,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1485,7 +1563,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1507,127 +1589,11 @@
           "duration": 2
         }
       ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "48594436"
-      ],
-      "expectedStudents": 50,
-      "id": "46950694",
-      "name": "Nuovo gruppo OPZIONALE A1",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "37624967"
-      ],
-      "expectedStudents": 50,
-      "id": "39834823",
-      "name": "Nuovo gruppo OPZIONALE A2",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "19080634"
-      ],
-      "expectedStudents": 50,
-      "id": "89076930",
-      "name": "Nuovo gruppo OPZIONALE A3",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "90827153"
-      ],
-      "expectedStudents": 50,
-      "id": "13563590",
-      "name": "Nuovo gruppo OPZIONALE A4",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "78033281"
-      ],
-      "expectedStudents": 50,
-      "id": "42272930",
-      "name": "Nuovo gruppo OPZIONALE A5",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "13739711"
-      ],
-      "expectedStudents": 50,
-      "id": "90254401",
-      "name": "Nuovo gruppo OPZIONALE A6",
-      "patternPref": "",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1653,7 +1619,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1681,7 +1651,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1710,7 +1684,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1739,59 +1717,11 @@
           "duration": 2
         }
       ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "72903764",
-        "99016358"
-      ],
-      "expectedStudents": 50,
-      "id": "19197906",
-      "isCommonBetweenCurricula": true,
-      "name": "1001164 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "99016358",
-        "72903764"
-      ],
-      "sourceCode": "1001164",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "72903764",
-        "99016358"
-      ],
-      "expectedStudents": 50,
-      "id": "23206625",
-      "isCommonBetweenCurricula": true,
-      "name": "1001172 - PROVA FINALE",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "99016358",
-        "72903764"
-      ],
-      "sourceCode": "1001172",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1819,7 +1749,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1847,7 +1781,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1875,7 +1813,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1897,7 +1839,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1919,7 +1865,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1947,7 +1897,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -1975,7 +1929,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2003,7 +1961,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2031,7 +1993,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2053,7 +2019,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2081,7 +2051,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2109,7 +2083,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2132,7 +2110,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2154,7 +2136,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2177,7 +2163,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2199,7 +2189,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2228,7 +2222,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 15,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2257,7 +2255,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2285,7 +2287,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2308,7 +2314,11 @@
           "duration": 2
         }
       ],
-      "year": 3
+      "year": 3,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2336,7 +2346,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2364,113 +2378,11 @@
           "duration": 2
         }
       ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "99016358"
-      ],
-      "expectedStudents": 50,
-      "id": "50171541",
-      "name": "Gruppo opzionale applicativo",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "72903764"
-      ],
-      "expectedStudents": 50,
-      "id": "45509383",
-      "name": "Gruppo opzionale generale I",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "72903764"
-      ],
-      "expectedStudents": 50,
-      "id": "32971543",
-      "name": "Gruppo opzionale generale II",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "72903764"
-      ],
-      "expectedStudents": 50,
-      "id": "46525818",
-      "name": "Gruppo opzionale generale III",
-      "patternPref": "",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 3
-    },
-    {
-      "curriculaIds": [
-        "15328892",
-        "16257291"
-      ],
-      "expectedStudents": 30,
-      "id": "75239916",
-      "isCommonBetweenCurricula": true,
-      "name": "1000975 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "16257291",
-        "15328892"
-      ],
-      "sourceCode": "1000975",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2498,33 +2410,11 @@
           "duration": 2
         }
       ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "15328892",
-        "16257291"
-      ],
-      "expectedStudents": 30,
-      "id": "14724626",
-      "isCommonBetweenCurricula": true,
-      "name": "1002356 - PROVA FINALE",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "16257291",
-        "15328892"
-      ],
-      "sourceCode": "1002356",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
+      "year": 2,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2556,39 +2446,11 @@
           "duration": 2
         }
       ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "15328892",
-        "16257291",
-        "94312330",
-        "48952648",
-        "49464289"
-      ],
-      "expectedStudents": 30,
-      "id": "85712187",
-      "isCommonBetweenCurricula": true,
-      "name": "1004570 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "94312330",
-        "48952648",
-        "16257291",
-        "49464289",
-        "15328892"
-      ],
-      "sourceCode": "1004570",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
+      "year": 1,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2616,7 +2478,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2644,7 +2510,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2667,7 +2537,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2687,7 +2561,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2707,7 +2585,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2729,7 +2611,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2751,7 +2637,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2771,7 +2661,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2791,7 +2685,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2821,7 +2719,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2843,7 +2745,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2863,7 +2769,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2883,7 +2793,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2919,7 +2833,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2942,7 +2860,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2971,7 +2893,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -2993,7 +2919,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3015,7 +2945,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3037,7 +2971,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3059,7 +2997,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3079,7 +3021,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3107,7 +3053,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3129,7 +3079,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3151,7 +3105,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3183,7 +3141,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3213,39 +3175,11 @@
           "duration": 2
         }
       ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "94312330",
-        "48952648",
-        "68142346",
-        "49464289",
-        "91724030"
-      ],
-      "expectedStudents": 30,
-      "id": "11689274",
-      "isCommonBetweenCurricula": true,
-      "name": "9799506 - Insegnamento a Scelta",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sharedWithCurriculaIds": [
-        "94312330",
-        "48952648",
-        "68142346",
-        "49464289",
-        "91724030"
-      ],
-      "sourceCode": "9799506",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3268,7 +3202,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3291,7 +3229,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3322,7 +3264,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3345,7 +3291,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3365,7 +3315,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3388,7 +3342,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3408,7 +3366,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3436,7 +3398,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3465,7 +3431,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3487,7 +3457,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3510,7 +3484,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3532,7 +3510,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3558,7 +3540,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3578,7 +3564,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3610,7 +3600,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3630,7 +3624,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3650,7 +3648,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3685,243 +3687,11 @@
           "duration": 2
         }
       ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "16257291"
-      ],
-      "expectedStudents": 30,
-      "id": "42398493",
-      "name": "GRUPPO OPZIONALE  Data Science  SECONDO ANNO I SEM. e II SEM.",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "15328892"
-      ],
-      "expectedStudents": 30,
-      "id": "50689713",
-      "name": "GRUPPO OPZIONALE Sistemi e sicurezza SECONDO ANNO I° SEMESTRE",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "94312330"
-      ],
-      "expectedStudents": 30,
-      "id": "41724522",
-      "name": "Gruppo opzionale A,  I anno II Semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "48952648"
-      ],
-      "expectedStudents": 30,
-      "id": "46520658",
-      "name": "Gruppo opzionale B, I anno II semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "44399015"
-      ],
-      "expectedStudents": 30,
-      "id": "49627655",
-      "name": "Gruppo opzionale C, I anno II semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "68142346"
-      ],
-      "expectedStudents": 30,
-      "id": "28947956",
-      "name": "Gruppo opzionale D, I anno II semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "49464289"
-      ],
-      "expectedStudents": 30,
-      "id": "74369155",
-      "name": "Gruppo opzionale E, I anno II semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "91724030"
-      ],
-      "expectedStudents": 30,
-      "id": "61009202",
-      "name": "Gruppo opzionale F, I anno I semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "91724030"
-      ],
-      "expectedStudents": 30,
-      "id": "55370875",
-      "name": "Gruppo opzionale F, I anno II semestre",
-      "patternPref": "",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "19197906",
-      "isCommonBetweenCurricula": true,
-      "name": "1001164 - INSEGNAMENTO A SCELTA",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ],
-      "sourceCode": "1001164",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "94463053",
-      "isCommonBetweenCurricula": true,
-      "name": "1002572 - PROVA FINALE",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ],
-      "sourceCode": "1002572",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3951,7 +3721,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -3981,7 +3755,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4003,7 +3781,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4033,7 +3815,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4059,7 +3845,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4085,7 +3875,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4116,7 +3910,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 5,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4147,7 +3945,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4175,7 +3977,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4205,7 +4011,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4233,7 +4043,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4263,7 +4077,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4291,7 +4109,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4319,7 +4141,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4341,7 +4167,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4371,7 +4201,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4403,7 +4237,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4433,7 +4271,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4455,7 +4297,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4477,7 +4323,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4507,7 +4357,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4529,7 +4383,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4559,7 +4417,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4581,7 +4443,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4603,7 +4469,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4623,7 +4493,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4643,7 +4517,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4663,7 +4541,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4691,7 +4573,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4719,7 +4605,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4747,7 +4637,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4773,7 +4667,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4801,7 +4699,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4821,7 +4723,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4841,7 +4747,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 12,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4869,7 +4779,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4899,7 +4813,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4921,7 +4839,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4950,7 +4872,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -4978,35 +4904,11 @@
           "duration": 2
         }
       ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "36552239",
-      "isCommonBetweenCurricula": true,
-      "name": "9796508 - PROVA FINALE",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ],
-      "sourceCode": "9796508",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5036,7 +4938,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5065,7 +4971,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5096,7 +5006,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5118,7 +5032,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5148,267 +5066,11 @@
           "duration": 2
         }
       ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "93975478"
-      ],
-      "expectedStudents": 30,
-      "id": "12258527",
-      "isCommonBetweenCurricula": true,
-      "name": "GRUPPO OPZIONALE AFFINE  teorico e Applicativo I anno",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "74880747"
-      ],
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "12367224",
-      "name": "GRUPPO OPZIONALE AFFINI CURRICULUM DIDATTICO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "96972272",
-      "isCommonBetweenCurricula": true,
-      "name": "GRUPPO OPZIONALE APPLICATIVO I SEM. e II SEM.",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sharedWithCurriculaIds": [
-        "26065258",
-        "74880747"
-      ],
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "93975478"
-      ],
-      "expectedStudents": 30,
-      "id": "75571942",
-      "name": "GRUPPO OPZIONALE DELLE ISTITUZIONI APPLICATIVE",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "59021620",
-      "name": "GRUPPO OPZIONALE DELLE ISTITUZIONI DIDATTICHE",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "74880747"
-      ],
-      "expectedStudents": 30,
-      "id": "56750081",
-      "name": "GRUPPO OPZIONALE TEORICO II anno I sem. curriculum TEORICO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "10895904",
-      "name": "II° GRUPPO OPZIONALE APPLICATIVO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "93975478"
-      ],
-      "expectedStudents": 30,
-      "id": "87287970",
-      "name": "II° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "60851539",
-      "name": "II° GRUPPO OPZIONALE DIDATTICO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
-    },
-    {
-      "curriculaIds": [
-        "93975478"
-      ],
-      "expectedStudents": 30,
-      "id": "53742109",
-      "name": "I° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "93975478"
-      ],
-      "expectedStudents": 30,
-      "id": "58485379",
-      "name": "I° GRUPPO OPZIONALE TEORICO",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 1
-    },
-    {
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "expectedStudents": 30,
-      "id": "89585034",
-      "isCommonBetweenCurricula": true,
-      "name": "PROVA FINALE",
-      "patternPref": "",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ],
-      "sourceCode": "",
-      "teacherIds": [],
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "year": 2
+      "year": 2,
+      "cfu": 3,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5436,7 +5098,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5458,7 +5124,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5486,7 +5156,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5514,7 +5188,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5540,7 +5218,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5568,7 +5250,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5597,7 +5283,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5625,7 +5315,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 9,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5654,7 +5348,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5680,7 +5378,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5702,7 +5404,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5724,7 +5430,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5750,7 +5460,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5776,7 +5490,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5804,7 +5522,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5832,7 +5554,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5860,7 +5586,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5886,7 +5616,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5914,7 +5648,11 @@
           "duration": 2
         }
       ],
-      "year": 1
+      "year": 1,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5936,7 +5674,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5964,7 +5706,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -5990,7 +5736,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6016,7 +5766,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6042,7 +5796,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6068,7 +5826,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6094,7 +5856,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6120,7 +5886,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6146,7 +5916,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6166,7 +5940,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6186,7 +5964,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6206,7 +5988,11 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
     },
     {
       "curriculaIds": [
@@ -6226,7 +6012,32 @@
           "duration": 2
         }
       ],
-      "year": 2
+      "year": 2,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 0,
+      "mutuationGroup": ""
+    },
+    {
+      "id": "1014158",
+      "sourceCode": "1014158",
+      "name": "1014158 - ISTITUZIONI GEOMETRIA SUPERIORE",
+      "semester": 1,
+      "year": 1,
+      "programId": "LM-40",
+      "curriculaIds": [],
+      "teacherIds": [],
+      "expectedStudents": 0,
+      "cfu": 6,
+      "weeklyHours": 2,
+      "preferredSlotHours": 2,
+      "mutuationGroup": "",
+      "roomType": "lecture",
+      "weeklyEvents": [
+        {
+          "durationHours": 2
+        }
+      ]
     }
   ],
   "curricula": [
@@ -6460,133 +6271,153 @@
       "name": "Data Science (LM-DATA)",
       "sourceUid": "19901902",
       "type": "magistrale"
+    },
+    {
+      "id": "L-31",
+      "name": "L-31",
+      "department": "DMI"
+    },
+    {
+      "id": "LM-18",
+      "name": "LM-18",
+      "department": "DMI"
+    },
+    {
+      "id": "L-35",
+      "name": "L-35",
+      "department": "DMI"
+    },
+    {
+      "id": "LM-40",
+      "name": "LM-40",
+      "department": "DMI"
     }
   ],
   "rooms": [
     {
+      "capacity": 140,
       "id": "17529019",
       "name": "Aula 1",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "75448243",
       "name": "Aula 2",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "89374473",
       "name": "Aula 3",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "17311790",
       "name": "Aula 4",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "50410656",
       "name": "Aula 22 “Chiarenza”",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "46114758",
       "name": "Aula 23",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "23453694",
       "name": "Aula 24",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "90545852",
       "name": "Aula 25",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 60,
       "id": "50047024",
       "name": "Aula 126",
-      "capacity": 60,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "41984056",
       "name": "Aula 127",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 140,
       "id": "86994409",
       "name": "Aula 128",
-      "capacity": 140,
       "type": "lecture"
     },
     {
+      "capacity": 16,
       "id": "96604218",
       "name": "Aula 36",
-      "capacity": 16,
       "type": "lab"
     },
     {
+      "capacity": 16,
       "id": "53141747",
       "name": "Aula 41",
-      "capacity": 16,
       "type": "lab"
     },
     {
+      "capacity": 48,
       "id": "55659182",
       "name": "Aula F",
-      "capacity": 48,
       "type": "lecture"
     },
     {
+      "capacity": 32,
       "id": "85903266",
       "name": "Aula MI6",
-      "capacity": 32,
       "type": "lab"
     },
     {
+      "capacity": 24,
       "id": "30346950",
       "name": "Aula G",
-      "capacity": 24,
       "type": "lab"
     },
     {
+      "capacity": 180,
       "id": "72350729",
       "name": "Aula Magna",
-      "capacity": 180,
       "type": "lecture"
     },
     {
+      "capacity": 36,
       "id": "60174120",
       "name": "Aula 124 “Anile”",
-      "capacity": 36,
       "type": "lab"
     },
     {
+      "capacity": 22,
       "id": "42149089",
       "name": "Aula 125 “Archimede”",
-      "capacity": 22,
       "type": "lab"
     },
     {
+      "capacity": 23,
       "id": "49146548",
       "name": "Aula 236",
-      "capacity": 23,
       "type": "lab"
     },
     {
+      "capacity": 19,
       "id": "35956618",
       "name": "Aula 145",
-      "capacity": 19,
       "type": "lab"
     }
   ],
@@ -6603,6 +6434,7 @@
     },
     "weights": {
       "curriculumGapPerHour": 10,
+      "curriculumRoomChangePenalty": 6,
       "earlyStartPenalty": 2,
       "lateStartPenalty": 3,
       "lunchOverlapPenalty": 200,
@@ -7675,3507 +7507,3507 @@
       "role": "Professore associato"
     },
     {
+      "email": "",
       "id": "54793911",
       "name": "BONACINI Paola",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professoressa associata",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professoressa associata"
     },
     {
+      "email": "",
       "id": "76003927",
       "name": "CALVAGNA Andrea",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore TD-a",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore TD-a"
     },
     {
+      "email": "",
       "id": "85445472",
       "name": "CARUSO Andrea Orazio",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore"
     },
     {
+      "email": "",
       "id": "20460525",
       "name": "CAUSA Antonio",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore"
     },
     {
+      "email": "",
       "id": "98177841",
       "name": "GIACOBBE Andrea",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professore ordinario",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professore ordinario"
     },
     {
+      "email": "",
       "id": "26366465",
       "name": "JARAMILLO PUENTES Giovanny Andres",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore TD-b",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore TD-b"
     },
     {
+      "email": "",
       "id": "12991016",
       "name": "PUGLISI Daniele",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professore associato",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professore associato"
     },
     {
+      "email": "",
       "id": "20946362",
       "name": "RUSSO Francesco",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professore ordinario",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professore ordinario"
     },
     {
+      "email": "",
       "id": "36410937",
       "name": "SANTAMARIA Daniele Francesco",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore TD-b",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore TD-b"
     },
     {
+      "email": "",
       "id": "19710733",
       "name": "SCAPELLATO Andrea",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professore associato",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professore associato"
     },
     {
+      "email": "",
       "id": "67539798",
       "name": "TRACINA' Rita",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professoressa associata",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professoressa associata"
     },
     {
+      "email": "",
       "id": "45072596",
       "name": "URSINO Pietro",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Ricercatore",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Ricercatore"
     },
     {
+      "email": "",
       "id": "31639539",
       "name": "ZAMBONI Pietro",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Professore associato",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Professore associato"
     },
     {
+      "email": "hridya.dilip@unict.it",
       "id": "77868111",
       "name": "DILIP Hridya",
-      "email": "hridya.dilip@unict.it",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Assegnista",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Assegnista"
     },
     {
+      "email": "valerio.mandarino@phd.unict.it",
       "id": "85830153",
       "name": "MANDARINO Valerio",
-      "email": "valerio.mandarino@phd.unict.it",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Assegnista",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Assegnista"
     },
     {
+      "email": "pietro.maugeri@unict.it",
       "id": "10048210",
       "name": "MAUGERI Pietro",
-      "email": "pietro.maugeri@unict.it",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Assegnista",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Assegnista"
     },
     {
+      "email": "",
       "id": "29754167",
       "name": "LEONARDI Rosario",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Contrattista di ricerca",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Contrattista di ricerca"
     },
     {
+      "email": "",
       "id": "42222310",
       "name": "MIDOLO Alessandro",
-      "email": "",
+      "phdCycle": "",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Contrattista di ricerca",
-      "phone": "",
-      "phdCycle": ""
+      "role": "Contrattista di ricerca"
     },
     {
+      "email": "",
       "id": "26531730",
       "name": "BONANNO Mario",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "22033522",
       "name": "BONAVENTURA Davide",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "66050060",
       "name": "FINOCCHIARO Antonio",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "10385721",
       "name": "MESSINA Gabriele",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "40657958",
       "name": "SAMBATARO Salvatore Alfio",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "14046676",
       "name": "SCARDACE Antonio",
-      "email": "",
+      "phdCycle": "Ciclo 41°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 41°"
+      "role": "Dottorando"
     },
     {
+      "email": "simone.barbagallo@phd.unict.it",
       "id": "74328839",
       "name": "BARBAGALLO Simone Pio",
-      "email": "simone.barbagallo@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "ludovica.beritelli@phd.unict.it",
       "id": "56020141",
       "name": "BERITELLI Ludovica",
-      "email": "ludovica.beritelli@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "davide.carnemolla@phd.unict.it",
       "id": "64805678",
       "name": "CARNEMOLLA Davide",
-      "email": "davide.carnemolla@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "federica.cernuto@phd.unict.it",
       "id": "50278640",
       "name": "CERNUTO Federica",
-      "email": "federica.cernuto@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "rosario.forte@phd.unict.it",
       "id": "72425096",
       "name": "FORTE Rosario",
-      "email": "rosario.forte@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "valentina.frasca@phd.unict.it",
       "id": "93105075",
       "name": "FRASCA Valentina",
-      "email": "valentina.frasca@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "gioele.litrico@phd.unict.it",
       "id": "34991472",
       "name": "LITRICO Gioele",
-      "email": "gioele.litrico@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "sofia.mangano@phd.unict.it",
       "id": "73966734",
       "name": "MANGANO Sofia",
-      "email": "sofia.mangano@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "alessio.mezzina@phd.unict.it",
       "id": "93115009",
       "name": "MEZZINA Alessio",
-      "email": "alessio.mezzina@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "dario.pishvai@phd.unict.it",
       "id": "73983437",
       "name": "PISHVAI Dario Samuele",
-      "email": "dario.pishvai@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "riccardo.raciti@phd.unict.it",
       "id": "48873102",
       "name": "RACITI Riccardo",
-      "email": "riccardo.raciti@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "stefano.savino@phd.unict.it",
       "id": "29283875",
       "name": "SAVINO Stefano",
-      "email": "stefano.savino@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "erika.scaletta@phd.unict.it",
       "id": "19259857",
       "name": "SCALETTA Erika",
-      "email": "erika.scaletta@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "francesco.spina@phd.unict.it",
       "id": "55326717",
       "name": "SPINA Francesco",
-      "email": "francesco.spina@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "gabriele.tuccio@phd.unict.it",
       "id": "55698461",
       "name": "TUCCIO Gabriele",
-      "email": "gabriele.tuccio@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "rosa.zuccara@phd.unict.it",
       "id": "85982557",
       "name": "ZUCCARA' Rosa",
-      "email": "rosa.zuccara@phd.unict.it",
+      "phdCycle": "Ciclo 40°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 40°"
+      "role": "Dottorando"
     },
     {
+      "email": "mirko.casu@phd.unict.it",
       "id": "10393077",
       "name": "CASU Mirko",
-      "email": "mirko.casu@phd.unict.it",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "20314555",
       "name": "MANNO Claudio",
-      "email": "",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "francesco.marino@phd.unict.it",
       "id": "57985657",
       "name": "MARINO Francesco Pio",
-      "email": "francesco.marino@phd.unict.it",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "lemuel.puglisi@phd.unict.it",
       "id": "76791069",
       "name": "PUGLISI Lemuel",
-      "email": "lemuel.puglisi@phd.unict.it",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "52041613",
       "name": "RAGAGLIA Claudio Vittorio",
-      "email": "",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "luigi.seminara@phd.unict.it",
       "id": "63001899",
       "name": "SEMINARA Luigi",
-      "email": "luigi.seminara@phd.unict.it",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "giusy.tuccaridisancarlo@phd.unict.it",
       "id": "92099029",
       "name": "TUCCARI di SAN CARLO Giusy Giulia",
-      "email": "giusy.tuccaridisancarlo@phd.unict.it",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "61023985",
       "name": "ZANGARA Ignazio Giuseppe",
-      "email": "",
+      "phdCycle": "Ciclo 39°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 39°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "91974354",
       "name": "BONANNO Claudia",
-      "email": "",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "luana.bulla@phd.unict.it",
       "id": "73635756",
       "name": "BULLA Luana",
-      "email": "luana.bulla@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "gianpietro.castiglione@phd.unict.it",
       "id": "33732674",
       "name": "CASTIGLIONE Gianpietro",
-      "email": "gianpietro.castiglione@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "mattia.litrico@phd.unict.it",
       "id": "43151429",
       "name": "LITRICO Mattia",
-      "email": "mattia.litrico@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "arslan.manzoor@phd.unict.it",
       "id": "12224870",
       "name": "MANZOOR Arslan",
-      "email": "arslan.manzoor@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "daniele.marletta@phd.unict.it",
       "id": "63125331",
       "name": "MARLETTA Daniele",
-      "email": "daniele.marletta@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "34969657",
       "name": "MERLINO Valentino",
-      "email": "",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "francesco.migliaro@phd.unict.it",
       "id": "83695812",
       "name": "MIGLIARO Francesco",
-      "email": "francesco.migliaro@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "susanna.saitta@phd.unict.it",
       "id": "85284634",
       "name": "SAITTA Susanna",
-      "email": "susanna.saitta@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "35078233",
       "name": "TUCCARI di SAN CARLO Nicola",
-      "email": "",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "andre.vartore@phd.unict.it",
       "id": "15522541",
       "name": "VARTORE Andrè",
-      "email": "andre.vartore@phd.unict.it",
+      "phdCycle": "Ciclo 38°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 38°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000041690@studium.unict.it",
       "id": "86382828",
       "name": "ARCERI Nicolò Fabio",
-      "email": "1000041690@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000040703@studium.unict.it",
       "id": "65174967",
       "name": "BORZI' Stefano",
-      "email": "1000040703@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000041824@studium.unict.it",
       "id": "54865860",
       "name": "CHISARI Alessio Barbaro",
-      "email": "1000041824@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "kooshyarkosari@gmail.com",
       "id": "30073194",
       "name": "KOSARI Kooshyar",
-      "email": "kooshyarkosari@gmail.com",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000041709@studium.unict.it",
       "id": "37444295",
       "name": "MALEKI Avisa",
-      "email": "1000041709@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000012427@studium.unict.it",
       "id": "11685702",
       "name": "MAUGERI Marcello",
-      "email": "1000012427@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000008638@studium.unict.it",
       "id": "33055694",
       "name": "NAPOLI SPATAFORA Maria Ausilia",
-      "email": "1000008638@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000041792@studium.unict.it",
       "id": "49637649",
       "name": "ONORATO Salvatore",
-      "email": "1000041792@studium.unict.it",
+      "phdCycle": "Ciclo 37°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 37°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000027085@studium.unict.it",
       "id": "30440601",
       "name": "BUSACCA Andrea",
-      "email": "1000027085@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000026591@studium.unict.it",
       "id": "98644837",
       "name": "CAVALLARO Angelo",
-      "email": "1000026591@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "giuseppe.furnari@phd.unict.it",
       "id": "33448769",
       "name": "FURNARI Giuseppe",
-      "email": "giuseppe.furnari@phd.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "salvatore.giurato@phd.unict.it",
       "id": "10022582",
       "name": "GIURATO Salvatore",
-      "email": "salvatore.giurato@phd.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000027077@studium.unict.it",
       "id": "26955566",
       "name": "GRISANTI Marco",
-      "email": "1000027077@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000026437@studium.unict.it",
       "id": "15350308",
       "name": "PASQUALINO Giovanni",
-      "email": "1000026437@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000027006@studium.unict.it",
       "id": "48959551",
       "name": "PUGLISI Valerio",
-      "email": "1000027006@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "1000026438@studium.unict.it",
       "id": "67673146",
       "name": "SCAFITI Stefano",
-      "email": "1000026438@studium.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "thakshnamurthy.selvakumar@phd.unict.it",
       "id": "71621896",
       "name": "THAKSHNAMURTY Selvakumar",
-      "email": "thakshnamurthy.selvakumar@phd.unict.it",
+      "phdCycle": "Ciclo 36°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 36°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "58289927",
       "name": "AMATO Gabriele",
-      "email": "",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "pietro.biondi@phd.unict.it",
       "id": "38886012",
       "name": "BIONDI Pietro",
-      "email": "pietro.biondi@phd.unict.it",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "giuseppe.ferrara4@enel.com",
       "id": "22119042",
       "name": "FERRARA Giuseppe",
-      "email": "giuseppe.ferrara4@enel.com",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "gionnoig@gmail.com",
       "id": "89486506",
       "name": "MAROTTA Giovanni",
-      "email": "gionnoig@gmail.com",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "mazhar.h@nu.edu.pk",
       "id": "82439890",
       "name": "MAZHAR Hussain",
-      "email": "mazhar.h@nu.edu.pk",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "dav.micale@gmail.com",
       "id": "12506456",
       "name": "MICALE Davide",
-      "email": "dav.micale@gmail.com",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "",
       "id": "85891371",
       "name": "PARASILITI Giuseppe",
-      "email": "",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "leo.pelonero@hotmail.it",
       "id": "86791410",
       "name": "PELONERO Leonardo",
-      "email": "leo.pelonero@hotmail.it",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "roccoalessandro.scollo@gmail.com",
       "id": "16410749",
       "name": "SCOLLO Rocco",
-      "email": "roccoalessandro.scollo@gmail.com",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "roberto.spina@phd.unict.it",
       "id": "62651520",
       "name": "SPINA Roberto",
-      "email": "roberto.spina@phd.unict.it",
+      "phdCycle": "Ciclo 35°",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "Ciclo 35°"
+      "role": "Dottorando"
     },
     {
+      "email": "giulia.aliffi@phd.unict.it",
       "id": "48931686",
       "name": "ALIFFI Giulia Elena",
-      "email": "giulia.aliffi@phd.unict.it",
+      "phdCycle": "XXXVIII",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVIII"
+      "role": "Dottorando"
     },
     {
+      "email": "davide.carpentiere@phd.unict.it",
       "id": "86302746",
       "name": "CARPENTIERE Davide",
-      "email": "davide.carpentiere@phd.unict.it",
+      "phdCycle": "XXXVIII",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVIII"
+      "role": "Dottorando"
     },
     {
+      "email": "rachele.castro@phd.unict.it",
       "id": "28920669",
       "name": "CASTRO Rachele",
-      "email": "rachele.castro@phd.unict.it",
+      "phdCycle": "XXXVIII",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVIII"
+      "role": "Dottorando"
     },
     {
+      "email": "laura.gambera@unipa.it",
       "id": "24724407",
       "name": "GAMBERA Laura",
-      "email": "laura.gambera@unipa.it",
+      "phdCycle": "XXXVII",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVII"
+      "role": "Dottorando"
     },
     {
+      "email": "damiano.saccone@phd.unict.it",
       "id": "15001802",
       "name": "SACCONE Damiano",
-      "email": "damiano.saccone@phd.unict.it",
+      "phdCycle": "XXXVII",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVII"
+      "role": "Dottorando"
     },
     {
+      "email": "domenico.cangemi@you.unipa.it",
       "id": "80117773",
       "name": "CANGEMI Domenico",
-      "email": "domenico.cangemi@you.unipa.it",
+      "phdCycle": "XXXVI",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVI"
+      "role": "Dottorando"
     },
     {
+      "email": "carla.perrone@unipa.it",
       "id": "47179957",
       "name": "PERRONE Carla",
-      "email": "carla.perrone@unipa.it",
+      "phdCycle": "XXXVI",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVI"
+      "role": "Dottorando"
     },
     {
+      "email": "giorgia.vitanza@phd.unict.it",
       "id": "98466898",
       "name": "VITANZA Giorgia",
-      "email": "giorgia.vitanza@phd.unict.it",
+      "phdCycle": "XXXVI",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXVI"
+      "role": "Dottorando"
     },
     {
+      "email": "francesco.ctr@hotmail.com",
       "id": "11475382",
       "name": "CUTRUFELLO Francesco",
-      "email": "francesco.ctr@hotmail.com",
+      "phdCycle": "XXXV",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXV"
+      "role": "Dottorando"
     },
     {
+      "email": "fabiofrigenti94@gmail.com",
       "id": "12074424",
       "name": "FRIGENTI Fabio",
-      "email": "fabiofrigenti94@gmail.com",
+      "phdCycle": "XXXV",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXV"
+      "role": "Dottorando"
     },
     {
+      "email": "maher.mohammed@phd.unict.it",
       "id": "94818287",
       "name": "MOHAMMED Maher Abdelrahim",
-      "email": "maher.mohammed@phd.unict.it",
+      "phdCycle": "XXXIX",
+      "phone": "",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "Dottorando",
-      "phone": "",
-      "phdCycle": "XXXIX"
+      "role": "Dottorando"
     },
     {
+      "email": "carolina.belfiore@unict.it",
       "id": "46282833",
       "name": "BELFIORE Carolina",
-      "email": "carolina.belfiore@unict.it",
+      "phdCycle": "",
+      "phone": "095 7383090",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "095 7383090",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "vbella@unict.it",
       "id": "60170204",
       "name": "BELLA Vincenzo",
-      "email": "vbella@unict.it",
+      "phdCycle": "",
+      "phone": "0957382529",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957382529",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "rosanna.coco@unict.it",
       "id": "35670188",
       "name": "COCO Rosanna",
-      "email": "rosanna.coco@unict.it",
+      "phdCycle": "",
+      "phone": "0957383104",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383104",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "marta.criscione@unict.it",
       "id": "49407446",
       "name": "CRISCIONE Marta",
-      "email": "marta.criscione@unict.it",
+      "phdCycle": "",
+      "phone": "0957383027",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383027",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "irene.dambra@unict.it",
       "id": "17281147",
       "name": "D'AMBRA Irene",
-      "email": "irene.dambra@unict.it",
+      "phdCycle": "",
+      "phone": "0957383057",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383057",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "bruno.distefano@unict.it",
       "id": "31154277",
       "name": "DISTEFANO Bruno",
-      "email": "bruno.distefano@unict.it",
+      "phdCycle": "",
+      "phone": "0957383028",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383028",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "marta.fallico@unict.it",
       "id": "15866222",
       "name": "FALLICO Marta",
-      "email": "marta.fallico@unict.it",
+      "phdCycle": "",
+      "phone": "0957383094",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383094",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "lorena.giusa@unict.it",
       "id": "91678656",
       "name": "GIUSA Lorena",
-      "email": "lorena.giusa@unict.it",
+      "phdCycle": "",
+      "phone": "0957383024",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383024",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "rleone@unict.it",
       "id": "28381646",
       "name": "LEONE Raffaela",
-      "email": "rleone@unict.it",
+      "phdCycle": "",
+      "phone": "095738 3025",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "095738 3025",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "eugenia.libertini@unict.it",
       "id": "61313811",
       "name": "LIBERTINI Eugenia",
-      "email": "eugenia.libertini@unict.it",
+      "phdCycle": "",
+      "phone": "0957383101",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383101",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "giuseppe.librando@unict.it",
       "id": "42190165",
       "name": "LIBRANDO Giuseppe",
-      "email": "giuseppe.librando@unict.it",
+      "phdCycle": "",
+      "phone": "0957383086",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383086",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "rapisarda@dmi.unict.it",
       "id": "80430450",
       "name": "RAPISARDA Concetta",
-      "email": "rapisarda@dmi.unict.it",
+      "phdCycle": "",
+      "phone": "0957383093",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383093",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "paolo.santagati@unict.it",
       "id": "62668018",
       "name": "SANTAGATI Paolo",
-      "email": "paolo.santagati@unict.it",
+      "phdCycle": "",
+      "phone": "0957383023",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383023",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "antonio.scimonetti@unict.it",
       "id": "24329808",
       "name": "SCIMONETTI Antonio",
-      "email": "antonio.scimonetti@unict.it",
+      "phdCycle": "",
+      "phone": "0957383091",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383091",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "fabio.sorbello@unict.it",
       "id": "73646028",
       "name": "SORBELLO Fabio",
-      "email": "fabio.sorbello@unict.it",
+      "phdCycle": "",
+      "phone": "0957383085",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383085",
-      "phdCycle": ""
+      "role": "TA"
     },
     {
+      "email": "monica.vitale@unict.it",
       "id": "53831901",
       "name": "VITALE Monica",
-      "email": "monica.vitale@unict.it",
+      "phdCycle": "",
+      "phone": "0957383092",
       "preferences": {
         "avoidEarly": false,
         "avoidLate": false
       },
-      "role": "TA",
-      "phone": "0957383092",
-      "phdCycle": ""
+      "role": "TA"
     }
   ],
   "unavailability": [
     {
       "_id": "51827498",
-      "teacherId": "68421069",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "68421069"
     },
     {
       "_id": "60543440",
-      "teacherId": "68421069",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "68421069"
     },
     {
       "_id": "30134366",
-      "teacherId": "79290972",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "79290972"
     },
     {
       "_id": "84888394",
-      "teacherId": "79290972",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "79290972"
     },
     {
       "_id": "81796080",
-      "teacherId": "81236505",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "81236505"
     },
     {
       "_id": "72034435",
-      "teacherId": "81236505",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "81236505"
     },
     {
       "_id": "99420551",
-      "teacherId": "95329047",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "95329047"
     },
     {
       "_id": "92818358",
-      "teacherId": "95329047",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "95329047"
     },
     {
       "_id": "63996554",
-      "teacherId": "14919808",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "14919808"
     },
     {
       "_id": "26677018",
-      "teacherId": "14919808",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "14919808"
     },
     {
       "_id": "53001182",
-      "teacherId": "51985983",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "51985983"
     },
     {
       "_id": "95179619",
-      "teacherId": "51985983",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "51985983"
     },
     {
       "_id": "12516308",
-      "teacherId": "20298354",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "20298354"
     },
     {
       "_id": "50535901",
-      "teacherId": "20298354",
       "day": "Thu",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "20298354"
     },
     {
       "_id": "23726929",
-      "teacherId": "82301386",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "82301386"
     },
     {
       "_id": "47698939",
-      "teacherId": "82301386",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "82301386"
     },
     {
       "_id": "53403387",
-      "teacherId": "77780680",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "77780680"
     },
     {
       "_id": "55914281",
-      "teacherId": "77780680",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "77780680"
     },
     {
       "_id": "87654392",
-      "teacherId": "23821793",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "23821793"
     },
     {
       "_id": "16927343",
-      "teacherId": "23821793",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "23821793"
     },
     {
       "_id": "72841310",
-      "teacherId": "66302528",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "66302528"
     },
     {
       "_id": "60980299",
-      "teacherId": "66302528",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "66302528"
     },
     {
       "_id": "85087249",
-      "teacherId": "87706206",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "87706206"
     },
     {
       "_id": "83718555",
-      "teacherId": "87706206",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "87706206"
     },
     {
       "_id": "75879857",
-      "teacherId": "44690057",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "44690057"
     },
     {
       "_id": "88008847",
-      "teacherId": "44690057",
       "day": "Thu",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "44690057"
     },
     {
       "_id": "13662485",
-      "teacherId": "90954761",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "90954761"
     },
     {
       "_id": "67682712",
-      "teacherId": "90954761",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "90954761"
     },
     {
       "_id": "14626969",
-      "teacherId": "53341709",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "53341709"
     },
     {
       "_id": "38977184",
-      "teacherId": "53341709",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "53341709"
     },
     {
       "_id": "59243015",
-      "teacherId": "70594314",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "70594314"
     },
     {
       "_id": "55085965",
-      "teacherId": "70594314",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "70594314"
     },
     {
       "_id": "17671921",
-      "teacherId": "41304421",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "41304421"
     },
     {
       "_id": "32498066",
-      "teacherId": "41304421",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "41304421"
     },
     {
       "_id": "35747623",
-      "teacherId": "13565051",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "13565051"
     },
     {
       "_id": "85538011",
-      "teacherId": "13565051",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "13565051"
     },
     {
       "_id": "53017274",
-      "teacherId": "43630229",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "43630229"
     },
     {
       "_id": "35074964",
-      "teacherId": "43630229",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "43630229"
     },
     {
       "_id": "64392250",
-      "teacherId": "92756246",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "92756246"
     },
     {
       "_id": "66390471",
-      "teacherId": "92756246",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "92756246"
     },
     {
       "_id": "46650004",
-      "teacherId": "20562960",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "20562960"
     },
     {
       "_id": "55114063",
-      "teacherId": "20562960",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "20562960"
     },
     {
       "_id": "78789124",
-      "teacherId": "99160898",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "99160898"
     },
     {
       "_id": "46027267",
-      "teacherId": "99160898",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "99160898"
     },
     {
       "_id": "52431404",
-      "teacherId": "28366579",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "28366579"
     },
     {
       "_id": "99538835",
-      "teacherId": "28366579",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "28366579"
     },
     {
       "_id": "69520018",
-      "teacherId": "44100612",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "44100612"
     },
     {
       "_id": "44590828",
-      "teacherId": "44100612",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "44100612"
     },
     {
       "_id": "99796371",
-      "teacherId": "56757503",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "56757503"
     },
     {
       "_id": "81314889",
-      "teacherId": "56757503",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "56757503"
     },
     {
       "_id": "46165981",
-      "teacherId": "32526873",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "32526873"
     },
     {
       "_id": "97998012",
-      "teacherId": "32526873",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "32526873"
     },
     {
       "_id": "81015652",
-      "teacherId": "52613041",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "52613041"
     },
     {
       "_id": "34130305",
-      "teacherId": "52613041",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "52613041"
     },
     {
       "_id": "45041476",
-      "teacherId": "82472156",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "82472156"
     },
     {
       "_id": "91022347",
-      "teacherId": "82472156",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "82472156"
     },
     {
       "_id": "51958864",
-      "teacherId": "57681926",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "57681926"
     },
     {
       "_id": "56770879",
-      "teacherId": "57681926",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "57681926"
     },
     {
       "_id": "66501468",
-      "teacherId": "61836657",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "61836657"
     },
     {
       "_id": "87760208",
-      "teacherId": "61836657",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "61836657"
     },
     {
       "_id": "33144566",
-      "teacherId": "57203776",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "57203776"
     },
     {
       "_id": "69844525",
-      "teacherId": "57203776",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "57203776"
     },
     {
       "_id": "79207754",
-      "teacherId": "75567359",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "75567359"
     },
     {
       "_id": "97007193",
-      "teacherId": "75567359",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "75567359"
     },
     {
       "_id": "46898481",
-      "teacherId": "53612004",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "53612004"
     },
     {
       "_id": "32515419",
-      "teacherId": "53612004",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "53612004"
     },
     {
       "_id": "31920878",
-      "teacherId": "80478537",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "80478537"
     },
     {
       "_id": "57753880",
-      "teacherId": "80478537",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "80478537"
     },
     {
       "_id": "47315252",
-      "teacherId": "49187461",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "49187461"
     },
     {
       "_id": "83590450",
-      "teacherId": "49187461",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "49187461"
     },
     {
       "_id": "69278779",
-      "teacherId": "75713088",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "75713088"
     },
     {
       "_id": "53396943",
-      "teacherId": "75713088",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "75713088"
     },
     {
       "_id": "48651903",
-      "teacherId": "73750238",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "73750238"
     },
     {
       "_id": "14736050",
-      "teacherId": "73750238",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "73750238"
     },
     {
       "_id": "28065161",
-      "teacherId": "71486277",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "71486277"
     },
     {
       "_id": "60678915",
-      "teacherId": "71486277",
       "day": "Thu",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "71486277"
     },
     {
       "_id": "93390215",
-      "teacherId": "56491515",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "56491515"
     },
     {
       "_id": "71584884",
-      "teacherId": "56491515",
       "day": "Thu",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "56491515"
     },
     {
       "_id": "61773257",
-      "teacherId": "94072636",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "94072636"
     },
     {
       "_id": "68347231",
-      "teacherId": "94072636",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "94072636"
     },
     {
       "_id": "34966208",
-      "teacherId": "60751742",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "60751742"
     },
     {
       "_id": "46253242",
-      "teacherId": "60751742",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "60751742"
     },
     {
       "_id": "55194304",
-      "teacherId": "62245432",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "62245432"
     },
     {
       "_id": "62334221",
-      "teacherId": "62245432",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "62245432"
     },
     {
       "_id": "62322450",
-      "teacherId": "32327870",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "32327870"
     },
     {
       "_id": "26476217",
-      "teacherId": "32327870",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "32327870"
     },
     {
       "_id": "27819217",
-      "teacherId": "45427089",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "45427089"
     },
     {
       "_id": "74014744",
-      "teacherId": "45427089",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "45427089"
     },
     {
       "_id": "88880328",
-      "teacherId": "75422148",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "75422148"
     },
     {
       "_id": "97284233",
-      "teacherId": "75422148",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "75422148"
     },
     {
       "_id": "17639408",
-      "teacherId": "29008509",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "29008509"
     },
     {
       "_id": "71410530",
-      "teacherId": "29008509",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "29008509"
     },
     {
       "_id": "94184707",
-      "teacherId": "98292693",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "98292693"
     },
     {
       "_id": "75587269",
-      "teacherId": "98292693",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "98292693"
     },
     {
       "_id": "96263818",
-      "teacherId": "15006002",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "15006002"
     },
     {
       "_id": "58546893",
-      "teacherId": "15006002",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "15006002"
     },
     {
       "_id": "23807710",
-      "teacherId": "73084492",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "73084492"
     },
     {
       "_id": "27881827",
-      "teacherId": "73084492",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "73084492"
     },
     {
       "_id": "68096754",
-      "teacherId": "53497602",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "53497602"
     },
     {
       "_id": "64991299",
-      "teacherId": "53497602",
       "day": "Thu",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "53497602"
     },
     {
       "_id": "18145798",
-      "teacherId": "98437111",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "98437111"
     },
     {
       "_id": "21257137",
-      "teacherId": "98437111",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "98437111"
     },
     {
       "_id": "12587452",
-      "teacherId": "89480281",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "89480281"
     },
     {
       "_id": "24794539",
-      "teacherId": "89480281",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "89480281"
     },
     {
       "_id": "12195711",
-      "teacherId": "26590378",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "26590378"
     },
     {
       "_id": "47819889",
-      "teacherId": "26590378",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "26590378"
     },
     {
       "_id": "58835288",
-      "teacherId": "79320379",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "79320379"
     },
     {
       "_id": "13236629",
-      "teacherId": "79320379",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "79320379"
     },
     {
       "_id": "35169487",
-      "teacherId": "25912316",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "25912316"
     },
     {
       "_id": "89441268",
-      "teacherId": "25912316",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "25912316"
     },
     {
       "_id": "99219988",
-      "teacherId": "10859544",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "10859544"
     },
     {
       "_id": "41387746",
-      "teacherId": "10859544",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "10859544"
     },
     {
       "_id": "37469718",
-      "teacherId": "51467690",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "51467690"
     },
     {
       "_id": "17612304",
-      "teacherId": "51467690",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "51467690"
     },
     {
       "_id": "97652619",
-      "teacherId": "21836240",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "21836240"
     },
     {
       "_id": "24378389",
-      "teacherId": "21836240",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "21836240"
     },
     {
       "_id": "45233117",
-      "teacherId": "30330147",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "30330147"
     },
     {
       "_id": "38527265",
-      "teacherId": "30330147",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "30330147"
     },
     {
       "_id": "32121010",
-      "teacherId": "82997538",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "82997538"
     },
     {
       "_id": "74617984",
-      "teacherId": "82997538",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "82997538"
     },
     {
       "_id": "96040623",
-      "teacherId": "78158727",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "78158727"
     },
     {
       "_id": "25457081",
-      "teacherId": "78158727",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "78158727"
     },
     {
       "_id": "64592812",
-      "teacherId": "31464069",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "31464069"
     },
     {
       "_id": "61394367",
-      "teacherId": "31464069",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "31464069"
     },
     {
       "_id": "71627441",
-      "teacherId": "73579246",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "73579246"
     },
     {
       "_id": "19004371",
-      "teacherId": "73579246",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "73579246"
     },
     {
       "_id": "47977889",
-      "teacherId": "48088320",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "48088320"
     },
     {
       "_id": "60318211",
-      "teacherId": "48088320",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "48088320"
     },
     {
       "_id": "20454785",
-      "teacherId": "29824955",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "29824955"
     },
     {
       "_id": "64666903",
-      "teacherId": "29824955",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "29824955"
     },
     {
       "_id": "22173967",
-      "teacherId": "83141858",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "83141858"
     },
     {
       "_id": "19394578",
-      "teacherId": "83141858",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "83141858"
     },
     {
       "_id": "86231106",
-      "teacherId": "28883656",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "28883656"
     },
     {
       "_id": "64184224",
-      "teacherId": "28883656",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "28883656"
     },
     {
       "_id": "86598944",
-      "teacherId": "62365728",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "62365728"
     },
     {
       "_id": "98666725",
-      "teacherId": "62365728",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "62365728"
     },
     {
       "_id": "99966659",
-      "teacherId": "73689660",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "73689660"
     },
     {
       "_id": "10752563",
-      "teacherId": "73689660",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "73689660"
     },
     {
       "_id": "39031296",
-      "teacherId": "86405108",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "86405108"
     },
     {
       "_id": "30846852",
-      "teacherId": "86405108",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "86405108"
     },
     {
       "_id": "68315271",
-      "teacherId": "56692910",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "56692910"
     },
     {
       "_id": "25196760",
-      "teacherId": "56692910",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "56692910"
     },
     {
       "_id": "91445249",
-      "teacherId": "83178916",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "83178916"
     },
     {
       "_id": "88334806",
-      "teacherId": "83178916",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "83178916"
     },
     {
       "_id": "11722667",
-      "teacherId": "56402091",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "56402091"
     },
     {
       "_id": "61885918",
-      "teacherId": "56402091",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "56402091"
     },
     {
       "_id": "96901973",
-      "teacherId": "95206344",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "95206344"
     },
     {
       "_id": "93851533",
-      "teacherId": "95206344",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "95206344"
     },
     {
       "_id": "16744825",
-      "teacherId": "48750260",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "48750260"
     },
     {
       "_id": "74623387",
-      "teacherId": "48750260",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "48750260"
     },
     {
       "_id": "94774784",
-      "teacherId": "49056274",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "49056274"
     },
     {
       "_id": "37242505",
-      "teacherId": "49056274",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "49056274"
     },
     {
       "_id": "54609885",
-      "teacherId": "92817962",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "92817962"
     },
     {
       "_id": "12617678",
-      "teacherId": "92817962",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "92817962"
     },
     {
       "_id": "76872213",
-      "teacherId": "60438918",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "60438918"
     },
     {
       "_id": "46348363",
-      "teacherId": "60438918",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "60438918"
     },
     {
       "_id": "73941076",
-      "teacherId": "28471714",
       "day": "Thu",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "28471714"
     },
     {
       "_id": "65274671",
-      "teacherId": "28471714",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "28471714"
     },
     {
       "_id": "80550512",
-      "teacherId": "27199630",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "27199630"
     },
     {
       "_id": "50404073",
-      "teacherId": "27199630",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "27199630"
     },
     {
       "_id": "38886131",
-      "teacherId": "93337404",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "93337404"
     },
     {
       "_id": "79559224",
-      "teacherId": "93337404",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "93337404"
     },
     {
       "_id": "36009977",
-      "teacherId": "93511059",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "93511059"
     },
     {
       "_id": "95925718",
-      "teacherId": "93511059",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "93511059"
     },
     {
       "_id": "44718898",
-      "teacherId": "93270182",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "93270182"
     },
     {
       "_id": "97868876",
-      "teacherId": "93270182",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "93270182"
     },
     {
       "_id": "25189404",
-      "teacherId": "94836364",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "94836364"
     },
     {
       "_id": "12496828",
-      "teacherId": "94836364",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "94836364"
     },
     {
       "_id": "93012593",
-      "teacherId": "39891063",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "39891063"
     },
     {
       "_id": "26856366",
-      "teacherId": "39891063",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "39891063"
     },
     {
       "_id": "63159828",
-      "teacherId": "46110758",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "46110758"
     },
     {
       "_id": "64390649",
-      "teacherId": "46110758",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "46110758"
     },
     {
       "_id": "25359021",
-      "teacherId": "87751762",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "87751762"
     },
     {
       "_id": "52782704",
-      "teacherId": "87751762",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "87751762"
     },
     {
       "_id": "11357601",
-      "teacherId": "78509413",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "78509413"
     },
     {
       "_id": "55548502",
-      "teacherId": "78509413",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "78509413"
     },
     {
       "_id": "55090801",
-      "teacherId": "27771036",
       "day": "Tue",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "27771036"
     },
     {
       "_id": "91634456",
-      "teacherId": "27771036",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "27771036"
     },
     {
       "_id": "87400726",
-      "teacherId": "23522930",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "23522930"
     },
     {
       "_id": "27506282",
-      "teacherId": "23522930",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "23522930"
     },
     {
       "_id": "59605397",
-      "teacherId": "35878609",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "35878609"
     },
     {
       "_id": "43289674",
-      "teacherId": "35878609",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "35878609"
     },
     {
       "_id": "22439878",
-      "teacherId": "82303264",
       "day": "Fri",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "82303264"
     },
     {
       "_id": "80711536",
-      "teacherId": "82303264",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "82303264"
     },
     {
       "_id": "46126951",
-      "teacherId": "61068914",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "61068914"
     },
     {
       "_id": "87418184",
-      "teacherId": "61068914",
       "day": "Mon",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "61068914"
     },
     {
       "_id": "93925514",
-      "teacherId": "74173957",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "74173957"
     },
     {
       "_id": "77916057",
-      "teacherId": "74173957",
       "day": "Tue",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "74173957"
     },
     {
       "_id": "98668408",
-      "teacherId": "52716603",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "52716603"
     },
     {
       "_id": "50544107",
-      "teacherId": "52716603",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "52716603"
     },
     {
       "_id": "51702523",
-      "teacherId": "88161508",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "88161508"
     },
     {
       "_id": "23798325",
-      "teacherId": "88161508",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "88161508"
     },
     {
       "_id": "14394305",
-      "teacherId": "88794922",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "88794922"
     },
     {
       "_id": "41952690",
-      "teacherId": "88794922",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "88794922"
     },
     {
       "_id": "19621824",
-      "teacherId": "93941438",
       "day": "Wed",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "93941438"
     },
     {
       "_id": "84564783",
-      "teacherId": "93941438",
       "day": "Mon",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "93941438"
     },
     {
       "_id": "26830420",
-      "teacherId": "82946557",
       "day": "Mon",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "82946557"
     },
     {
       "_id": "93512976",
-      "teacherId": "82946557",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "82946557"
     },
     {
       "_id": "82578677",
-      "teacherId": "51852515",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "51852515"
     },
     {
       "_id": "23474956",
-      "teacherId": "51852515",
       "day": "Wed",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "51852515"
     },
     {
       "_id": "92341726",
-      "teacherId": "65026054",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "65026054"
     },
     {
       "_id": "15057528",
-      "teacherId": "65026054",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "65026054"
     },
     {
       "_id": "97259117",
-      "teacherId": "75094221",
       "day": "Wed",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "75094221"
     },
     {
       "_id": "34736610",
-      "teacherId": "75094221",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "75094221"
     },
     {
       "_id": "89502875",
-      "teacherId": "93135596",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "93135596"
     },
     {
       "_id": "43083007",
-      "teacherId": "93135596",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "93135596"
     },
     {
       "_id": "50805219",
-      "teacherId": "57797760",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "57797760"
     },
     {
       "_id": "69541807",
-      "teacherId": "57797760",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "57797760"
     },
     {
       "_id": "52163370",
-      "teacherId": "76372886",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "76372886"
     },
     {
       "_id": "56230139",
-      "teacherId": "76372886",
       "day": "Wed",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "76372886"
     },
     {
       "_id": "69943427",
-      "teacherId": "61062178",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "61062178"
     },
     {
       "_id": "46472150",
-      "teacherId": "61062178",
       "day": "Thu",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "61062178"
     },
     {
       "_id": "75163398",
-      "teacherId": "28508733",
       "day": "Mon",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "28508733"
     },
     {
       "_id": "53788508",
-      "teacherId": "28508733",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "28508733"
     },
     {
       "_id": "64240046",
-      "teacherId": "95478482",
       "day": "Thu",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "95478482"
     },
     {
       "_id": "65245274",
-      "teacherId": "95478482",
       "day": "Fri",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "95478482"
     },
     {
       "_id": "52700153",
-      "teacherId": "24252531",
       "day": "Tue",
       "hours": [
         9,
         10,
         11
-      ]
+      ],
+      "teacherId": "24252531"
     },
     {
       "_id": "64645534",
-      "teacherId": "24252531",
       "day": "Fri",
       "hours": [
         17,
         18
-      ]
+      ],
+      "teacherId": "24252531"
     },
     {
       "_id": "88177841",
-      "teacherId": "28716514",
       "day": "Fri",
       "hours": [
         8,
         9,
         10
-      ]
+      ],
+      "teacherId": "28716514"
     },
     {
       "_id": "84576974",
-      "teacherId": "28716514",
       "day": "Tue",
       "hours": [
         16,
         17,
         18
-      ]
+      ],
+      "teacherId": "28716514"
     }
   ]
 }

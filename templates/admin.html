@@ -246,6 +246,7 @@ let currentSection = "rooms";
 let currentSearch = "";
 let modalState = null;
 let scheduleDirty = true;
+let scheduleEventEditState = null;
 
 function ensureDbShape(input){
   const out = (input && typeof input==='object') ? input : {};
@@ -268,6 +269,19 @@ function ensureDbShape(input){
   if(!Array.isArray(out.courses)) out.courses=[];
   if(!Array.isArray(out.unavailability)) out.unavailability=[];
 
+  out.courses = out.courses.map((c)=>{
+    const x = (c && typeof c==='object') ? c : {};
+    if(!Array.isArray(x.weeklyEvents) || !x.weeklyEvents.length){
+      x.weeklyEvents = [{id:uid('E'), durationHours:2}];
+    }
+    x.year = Number(x.year ?? x.studyYear ?? x.anno ?? 1) || 1;
+    x.cfu = Number(x.cfu ?? 0) || 0;
+    x.weeklyHours = Number(x.weeklyHours ?? x.weeklyEvents.reduce((s,e)=>s+Number(e?.durationHours||e?.duration||0),0)) || 0;
+    x.preferredSlotHours = Number(x.preferredSlotHours ?? 0) || 0;
+    x.mutuationGroup = String(x.mutuationGroup || x.sharedWithCourseId || '').trim();
+    return x;
+  });
+
   if(!out.softPolicy || typeof out.softPolicy!=='object') out.softPolicy={};
   if(!out.softPolicy.weights || typeof out.softPolicy.weights!=='object'){
     out.softPolicy.weights={
@@ -278,7 +292,10 @@ function ensureDbShape(input){
       lateStartPenalty:3,
       earlyStartPenalty:2,
       lunchOverlapPenalty:200,
+      curriculumRoomChangePenalty:6,
     };
+  } else {
+    out.softPolicy.weights.curriculumRoomChangePenalty = Number(out.softPolicy.weights.curriculumRoomChangePenalty ?? 6);
   }
   if(!out.softPolicy.preferredPatterns || typeof out.softPolicy.preferredPatterns!=='object'){
     out.softPolicy.preferredPatterns={twoEvents:["Mon-Wed","Wed-Fri","Tue-Thu"],threeEvents:["Mon-Wed-Fri"]};
@@ -320,6 +337,7 @@ const SECTIONS = [
   { key:"programs", label:"🎓 CdS", hint:"Corsi di Studio" },
   { key:"curricula", label:"📋 Curricula", hint:"Gruppi di studenti (no sovrapposizioni)" },
   { key:"courses", label:"📚 Insegnamenti", hint:"Corsi con eventi settimanali" },
+  { key:"mutuations", label:"🔁 Mutuati", hint:"Materie mutuate con orario condiviso" },
   { key:"unavailability", label:"🚫 Indisponibilità", hint:"Vincoli docenti per giorno/ore" },
   { key:"softPolicy", label:"⚙️ Policy", hint:"Pesi ottimizzazione vincoli soft" },
   { key:"meta", label:"🔧 Meta", hint:"Parametri modello temporale" },
@@ -345,7 +363,16 @@ async function apiPost(url, body) {
   });
   if(!r.ok){
     let msg = `POST ${url}: ${r.status}`;
-    try{ const err = await r.json(); if(err?.error) msg = err.error; }catch{}
+    try{
+      const err = await r.json();
+      if(err?.error) msg = err.error;
+      if(Array.isArray(err?.violatedConstraints) && err.violatedConstraints.length){
+        const labels = err.violatedConstraints
+          .map(c=>`${c.label||c.id}: ${Number(c.violations||0)}`)
+          .join('; ');
+        msg += ` (${labels})`;
+      }
+    }catch{}
     throw new Error(msg);
   }
   return r.json();
@@ -609,7 +636,10 @@ function openManualScheduleEditor(){
   document.getElementById('modalTitle').textContent='Modifica Manuale Orario';
   document.getElementById('modalBody').innerHTML=`
     <div class="info-box">
-      Modifica giorno, ora inizio e aula per ogni insegnamento. Poi clicca <strong>Salva</strong>.
+      Modifica giorno, ora inizio e aula per ogni insegnamento. Le modifiche vengono salvate solo se rispettano tutti i vincoli hard.
+    </div>
+    <div style="margin-bottom:8px">
+      <input id="manualSearch" type="text" placeholder="Cerca insegnamento/docente/aula..." />
     </div>
     <div style="overflow:auto;max-height:58vh">
       <table>
@@ -631,6 +661,17 @@ function openManualScheduleEditor(){
       if(startSel){ startSel.value = String(Number(a.startHour ?? -1)); }
       if(roomSel){ roomSel.value = String(a.roomId || 'N/A'); }
     });
+
+    const searchEl = document.getElementById('manualSearch');
+    if(searchEl){
+      searchEl.oninput = ()=>{
+        const q = String(searchEl.value || '').toLowerCase().trim();
+        rowsEl.forEach((tr)=>{
+          const text = String(tr.textContent || '').toLowerCase();
+          tr.style.display = (!q || text.includes(q)) ? '' : 'none';
+        });
+      };
+    }
   },0);
 
   showModal(true);
@@ -690,6 +731,219 @@ async function saveManualScheduleFromModal(){
     render();
   }catch(e){
     alert('Errore nel salvataggio manuale: ' + (e?.message||e));
+  }
+}
+
+function hasOverlap(aStart, aEnd, bStart, bEnd){
+  return aStart < bEnd && bStart < aEnd;
+}
+
+function setIntersect(a, b){
+  const sb = new Set(b || []);
+  return (a || []).some(x => sb.has(x));
+}
+
+function collectLocalConflictsForAssignment(assignments, targetIdx){
+  const issues = [];
+  const target = assignments[targetIdx];
+  if(!target) return issues;
+
+  const tm = db.meta?.timeModel || {};
+  const ds = Number(tm.dayStart || 8);
+  const de = Number(tm.dayEnd || 19);
+  const ls = Number(tm.lunchStart || 13);
+  const le = Number(tm.lunchEnd || 14);
+
+  if(target.day !== 'N/A'){
+    if(target.startHour < ds || target.endHour > de){
+      issues.push(`Fuori fascia oraria (${target.startHour}:00-${target.endHour}:00, consentita ${ds}:00-${de}:00).`);
+    }
+    if(hasOverlap(target.startHour, target.endHour, ls, le)){
+      issues.push('Sovrapposizione con pausa pranzo.');
+    }
+  }
+
+  const byCourse = Object.fromEntries((db.courses||[]).map(c=>[c.id,c]));
+  const tCourse = byCourse[target.courseId] || {};
+  const tCurr = tCourse.curriculaIds || [];
+  const tTeachers = target.teacherIds || tCourse.teacherIds || [];
+  const tMut = String(tCourse.mutuationGroup || '').trim();
+
+  for(let i=0;i<assignments.length;i++){
+    if(i===targetIdx) continue;
+    const other = assignments[i];
+    if(!other || other.day==='N/A' || target.day==='N/A') continue;
+    if(other.day !== target.day) continue;
+    if(!hasOverlap(target.startHour, target.endHour, other.startHour, other.endHour)) continue;
+
+    const oCourse = byCourse[other.courseId] || {};
+    const oCurr = oCourse.curriculaIds || [];
+    const oTeachers = other.teacherIds || oCourse.teacherIds || [];
+
+    if(target.roomId && other.roomId && target.roomId===other.roomId && target.roomId!=='N/A'){
+      issues.push(`Conflitto aula con "${other.courseName}" (${target.day} ${target.startHour}:00-${target.endHour}:00).`);
+    }
+    if(setIntersect(tTeachers, oTeachers)){
+      issues.push(`Conflitto docente con "${other.courseName}".`);
+    }
+    if(setIntersect(tCurr, oCurr)){
+      issues.push(`Conflitto curriculum con "${other.courseName}".`);
+    }
+  }
+
+  // Stesso corso in giorni diversi: eventi dello stesso corso non devono condividere il giorno.
+  if(target.day !== 'N/A'){
+    for(let i=0;i<assignments.length;i++){
+      if(i===targetIdx) continue;
+      const other = assignments[i];
+      if(!other || other.day==='N/A') continue;
+      if(other.courseId===target.courseId && other.day===target.day){
+        issues.push(`Più eventi dello stesso corso nello stesso giorno (${target.day}).`);
+        break;
+      }
+    }
+  }
+
+  // Vincolo mutuazioni: se il corso è mutuato, deve restare sincronizzato con i corsi dello stesso gruppo.
+  if(tMut && target.day !== 'N/A'){
+    for(let i=0;i<assignments.length;i++){
+      if(i===targetIdx) continue;
+      const other = assignments[i];
+      if(!other || other.day==='N/A') continue;
+      const oCourse = byCourse[other.courseId] || {};
+      const oMut = String(oCourse.mutuationGroup || '').trim();
+      if(!oMut || oMut!==tMut) continue;
+      const synced = (
+        other.day===target.day &&
+        Number(other.startHour)===Number(target.startHour) &&
+        String(other.roomId||'')===String(target.roomId||'')
+      );
+      if(!synced){
+        issues.push(`Vincolo mutuazione non rispettato con "${other.courseName}".`);
+        break;
+      }
+    }
+  }
+
+  return Array.from(new Set(issues));
+}
+
+function openScheduleEventEditor(assignment){
+  if(!lastSchedule || !Array.isArray(lastSchedule.assignments)){
+    alert('Nessun orario disponibile.');
+    return;
+  }
+
+  const idx = lastSchedule.assignments.findIndex(a =>
+    String(a.eventId||'')===String(assignment.eventId||'') &&
+    String(a.courseId||'')===String(assignment.courseId||'')
+  );
+  if(idx<0){
+    alert('Lezione non trovata nell\'orario corrente.');
+    return;
+  }
+
+  const a = lastSchedule.assignments[idx];
+  const tm = db.meta?.timeModel || {};
+  const ds = Number(tm.dayStart || 8);
+  const de = Number(tm.dayEnd || 19);
+  const days=['N/A','Mon','Tue','Wed','Thu','Fri'];
+  const dayLabel={ 'N/A':'Non assegnato','Mon':'Lunedì','Tue':'Martedì','Wed':'Mercoledì','Thu':'Giovedì','Fri':'Venerdì' };
+
+  const dayOpts = days.map(d=>`<option value="${d}" ${a.day===d?'selected':''}>${dayLabel[d]}</option>`).join('');
+  const hourOpts = ['<option value="-1">Non assegnata</option>']
+    .concat(Array.from({length:Math.max(0,de-ds)},(_,k)=>{
+      const h=ds+k;
+      return `<option value="${h}" ${Number(a.startHour)===h?'selected':''}>${h}:00</option>`;
+    })).join('');
+  const roomOpts = ['<option value="N/A">N/A</option>']
+    .concat((db.rooms||[]).map(r=>`<option value="${escapeAttr(r.id)}" ${String(a.roomId||'N/A')===String(r.id)?'selected':''}>${escapeHtml(r.name)} (${r.capacity||0})</option>`))
+    .join('');
+
+  const duration = Math.max(1, Number(a.duration||1));
+  const teacherStr = (a.teacherNames||a.teacherIds||[]).join(', ');
+
+  scheduleEventEditState = { idx, duration };
+  modalState = { section:'schedule-event-edit', mode:'edit', id: a.eventId || a.courseId };
+  document.getElementById('modalTitle').textContent='Modifica rapida lezione';
+  document.getElementById('modalBody').innerHTML=`
+    <div class="info-box">
+      Modifica giorno, ora e aula per la lezione selezionata. Al salvataggio vengono controllati conflitti e vincoli hard.
+    </div>
+    <div class="warn" style="margin-bottom:10px">
+      <strong>${escapeHtml(a.courseName||a.courseId||'')}</strong><br>
+      Durata: ${duration}h ${a.programName?`• CdL: ${escapeHtml(a.programName)}`:''}<br>
+      ${teacherStr?`Docente: ${escapeHtml(teacherStr)}`:''}
+    </div>
+    <div class="row3">
+      <div><label class="muted">Giorno</label><select id="se_day">${dayOpts}</select></div>
+      <div><label class="muted">Ora inizio</label><select id="se_start">${hourOpts}</select></div>
+      <div><label class="muted">Aula</label><select id="se_room">${roomOpts}</select></div>
+    </div>
+  `;
+  showModal(true);
+}
+
+async function saveSingleScheduleEventFromModal(){
+  if(!scheduleEventEditState || !lastSchedule || !Array.isArray(lastSchedule.assignments)){
+    alert('Editor evento non inizializzato.');
+    return;
+  }
+
+  const idx = Number(scheduleEventEditState.idx);
+  const duration = Math.max(1, Number(scheduleEventEditState.duration || 1));
+  const day = document.getElementById('se_day')?.value || 'N/A';
+  const start = Number(document.getElementById('se_start')?.value || -1);
+  const roomId = document.getElementById('se_room')?.value || 'N/A';
+  const dayIt={Mon:'Lunedì',Tue:'Martedì',Wed:'Mercoledì',Thu:'Giovedì',Fri:'Venerdì','N/A':'N/A'};
+  const roomsById = Object.fromEntries((db.rooms||[]).map(r=>[r.id,r]));
+
+  const updated = lastSchedule.assignments.map(a=>({ ...a }));
+  const target = updated[idx];
+  if(!target){
+    alert('Lezione non trovata.');
+    return;
+  }
+
+  if(day==='N/A' || start < 0){
+    target.day='N/A';
+    target.dayIt='N/A';
+    target.startHour=-1;
+    target.endHour=-1;
+  }else{
+    target.day=day;
+    target.dayIt=dayIt[day]||day;
+    target.startHour=start;
+    target.endHour=start+duration;
+  }
+  target.roomId=roomId;
+  target.roomName=roomsById[roomId]?.name || (roomId==='N/A'?'N/A':roomId);
+
+  const localIssues = collectLocalConflictsForAssignment(updated, idx);
+  if(localIssues.length){
+    alert('Cambio non applicabile per conflitti:\n- ' + localIssues.join('\n- '));
+    return;
+  }
+
+  try{
+    const payload={
+      ...lastSchedule,
+      assignments: updated,
+      status: 'manual',
+      message: 'Orario modificato manualmente da admin.',
+      algorithm: 'Manual',
+      algorithmLabel: 'Manual Editing',
+      solverBackend: 'Manual editing',
+    };
+    const res = await apiPost('/api/schedule/manual-update', payload);
+    lastSchedule = res.schedule || payload;
+    scheduleDirty = false;
+    setStatus('lezione aggiornata ✓');
+    scheduleEventEditState = null;
+    showModal(false);
+    render();
+  }catch(e){
+    alert('Errore nel salvataggio: ' + (e?.message||e));
   }
 }
 
@@ -774,7 +1028,7 @@ function render(){
   const btnImportUrlTop=document.getElementById("btnImportUrlTop");
   const searchInput=document.getElementById("search");
 
-  const canImportByUrl = ["teachers","programs","courses","curricula"].includes(currentSection);
+  const canImportByUrl = ["teachers","programs","courses","curricula","mutuations"].includes(currentSection);
   if(btnImportUrl){
     btnImportUrl.style.display = canImportByUrl ? "inline-flex" : "none";
     btnImportUrl.onclick = ()=>importCurrentSectionFromUrl();
@@ -784,13 +1038,17 @@ function render(){
     btnImportUrlTop.disabled = !canImportByUrl;
     btnImportUrlTop.title = canImportByUrl
       ? "Importa dati da URL per la sezione corrente"
-      : "Disponibile solo in: Docenti, CdS, Curricula, Insegnamenti";
+      : "Disponibile solo in: Docenti, CdS, Curricula, Insegnamenti, Mutuati";
   }
 
   if(currentSection==="timetable"){
     btnAdd.style.display="none";
     searchInput.style.display="none";
     content.appendChild(renderTimetableSection());
+  } else if(currentSection==="mutuations"){
+    btnAdd.style.display="none";
+    searchInput.style.display="inline-block";
+    content.appendChild(renderMutuations());
   } else if(["meta","softPolicy"].includes(currentSection)){
     btnAdd.style.display="none";
     searchInput.style.display="inline-block";
@@ -806,6 +1064,7 @@ function render(){
     else if(currentSection==="programs") content.appendChild(renderPrograms());
     else if(currentSection==="curricula") content.appendChild(renderCurricula());
     else if(currentSection==="courses") content.appendChild(renderCourses());
+    else if(currentSection==="mutuations") content.appendChild(renderMutuations());
     else if(currentSection==="unavailability") content.appendChild(renderUnavailability());
   }
 }
@@ -817,9 +1076,9 @@ function matchesSearch(obj){
 }
 
 async function importCurrentSectionFromUrl(){
-  const allowed=["teachers","programs","courses","curricula"];
+  const allowed=["teachers","programs","courses","curricula","mutuations"];
   if(!allowed.includes(currentSection)){
-    alert("Importa da URL disponibile solo per Docenti, CdS, Curricula e Insegnamenti.");
+    alert("Importa da URL disponibile solo per Docenti, CdS, Curricula, Insegnamenti e Mutuati.");
     return;
   }
 
@@ -828,6 +1087,7 @@ async function importCurrentSectionFromUrl(){
     programs:'corsi di laurea',
     courses:'insegnamenti',
     curricula:'curricula',
+    mutuations:'mutuazioni (corsi mutuati)',
   };
   const label = labels[currentSection] || currentSection;
   if(!confirm(`Importare da URL per la sezione ${label}?\nVerranno evitati i duplicati e aggiornati i dati esistenti quando possibile.`)) return;
@@ -1010,7 +1270,7 @@ function renderCurricula(){
 }
 
 function renderCourses(){
-  const t=mkTable(["ID","Nome","Sem.","CdS","Curricula","Docenti","Stud.","Eventi","Azioni"]);
+  const t=mkTable(["ID","Nome","Anno","Sem.","CdS","Curricula","Docenti","Stud.","CFU/Ore","Mutuazione","Eventi","Azioni"]);
   const tb=t.querySelector("tbody");
   for(const c of (db.courses||[]).filter(matchesSearch)){
     const p=db.programs.find(p=>p.id===c.programId);
@@ -1018,20 +1278,152 @@ function renderCourses(){
     const teach=(c.teacherIds||[]).map(id=>db.teachers.find(x=>x.id===id)?.name||id);
     const events=(c.weeklyEvents||[]).map(e=>`${e.durationHours}h`).join(", ");
     const semLabel = c.semester === 1 ? '1°' : c.semester === 2 ? '2°' : '—';
+    const yearLabel = Number(c.year ?? c.studyYear ?? c.anno ?? 0) || '—';
+    const cfu = Number(c.cfu ?? 0) || 0;
+    const weeklyHours = Number(c.weeklyHours ?? 0) || 0;
+    const prefSlot = Number(c.preferredSlotHours ?? 0) || 0;
+    const mutLabel = String(c.mutuationGroup || '').trim();
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td><div class="mini">${c.id}</div></td>
       <td>${escapeHtml(c.name||"")}</td>
+      <td><span class="tag">${escapeHtml(String(yearLabel))}°</span></td>
       <td><span class="tag">${semLabel}</span></td>
       <td>${escapeHtml(p?.name||c.programId||"")}</td>
       <td>${curr.map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join("")||`<span class="tag">—</span>`}</td>
       <td>${teach.map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join("")||`<span class="tag">—</span>`}</td>
       <td>${c.expectedStudents||0}</td>
+      <td><span class="tag">${cfu} CFU</span><span class="tag">${weeklyHours}h/sett</span>${prefSlot?`<span class="tag">slot ${prefSlot}h</span>`:''}</td>
+      <td>${mutLabel?`<span class="tag">${escapeHtml(mutLabel)}</span>`:'<span class="tag">—</span>'}</td>
       <td><div class="mini">${escapeHtml(events||"—")}</div></td>`;
     tr.appendChild(actionsCell("courses",c.id));
     tb.appendChild(tr);
   }
   return tableWrapper(t);
+}
+
+function renderMutuations(){
+  const wrap=document.createElement("div");
+  const allCourses=(db.courses||[]).filter(matchesSearch);
+  const groups=new Map();
+  const single=[];
+
+  for(const c of allCourses){
+    const g=String(c.mutuationGroup||'').trim();
+    if(!g){
+      single.push(c);
+      continue;
+    }
+    if(!groups.has(g)) groups.set(g, []);
+    groups.get(g).push(c);
+  }
+
+  const rows=[...groups.entries()].sort((a,b)=>String(a[0]).localeCompare(String(b[0])));
+  const t=mkTable(["Gruppo","Insegnamenti mutuati","CFU","CdL/Anno","Azioni"]);
+  const tb=t.querySelector("tbody");
+  for(const [gid, items] of rows){
+    const tr=document.createElement("tr");
+    const names=items.map(c=>c.name||c.id).join(" | ");
+    const cfu=items.map(c=>`${c.id}:${Number(c.cfu||0)} CFU`).join(" • ");
+    const where=items.map(c=>`${c.programId||'—'} ${Number(c.year||0)||'—'}°`).join(" • ");
+    tr.innerHTML=`
+      <td><div class="mini">${escapeHtml(gid)}</div></td>
+      <td>${escapeHtml(names)}</td>
+      <td><div class="mini">${escapeHtml(cfu||'—')}</div></td>
+      <td><div class="mini">${escapeHtml(where||'—')}</div></td>
+    `;
+    const td=document.createElement('td');
+    td.className='t-actions';
+    const btn=document.createElement('button');
+    btn.textContent='Apri corso';
+    btn.onclick=()=>openModal('courses','edit',items[0]?.id||null);
+    td.appendChild(btn);
+    tr.appendChild(td);
+    tb.appendChild(tr);
+  }
+
+  const info=document.createElement('div');
+  info.className='info-box';
+  info.innerHTML=`
+    <strong>Mutuazioni:</strong> i corsi nello stesso gruppo condividono lo stesso slot orario (vincolo hard).<br>
+    Import automatico disponibile da web.dmi.unict.it: prova a leggere "mutuato da" nelle pagine dei programmi.
+  `;
+
+  const actions=document.createElement('div');
+  actions.className='toolbar';
+  actions.style.margin='10px 0';
+  actions.innerHTML=`
+    <div class="left">
+      <button class="primary" id="btnSyncMutuations">Sincronizza mutuati da web.dmi.unict.it</button>
+      <span class="pill">Gruppi: ${rows.length}</span>
+      <span class="pill">Corsi senza gruppo: ${single.length}</span>
+    </div>
+  `;
+
+  const orphan=document.createElement('div');
+  orphan.style.marginTop='10px';
+  orphan.innerHTML=`<h3 style="margin:8px 0">Corsi senza gruppo mutuazione</h3>`;
+  const ot=mkTable(["ID","Nome","CFU","CdL","Anno","Azione"]);
+  const otb=ot.querySelector('tbody');
+  for(const c of single.slice(0,120)){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td><div class="mini">${escapeHtml(c.id||'')}</div></td>
+      <td>${escapeHtml(c.name||'')}</td>
+      <td>${Number(c.cfu||0)}</td>
+      <td>${escapeHtml(c.programId||'')}</td>
+      <td>${Number(c.year||0)||'—'}°</td>
+    `;
+    const td=document.createElement('td');
+    td.className='t-actions';
+    const b=document.createElement('button');
+    b.textContent='Imposta';
+    b.onclick=()=>openModal('courses','edit',c.id);
+    td.appendChild(b);
+    tr.appendChild(td);
+    otb.appendChild(tr);
+  }
+  orphan.appendChild(tableWrapper(ot));
+
+  wrap.appendChild(info);
+  wrap.appendChild(actions);
+  wrap.appendChild(tableWrapper(t));
+  wrap.appendChild(orphan);
+
+  setTimeout(()=>{
+    const btn=document.getElementById('btnSyncMutuations');
+    if(!btn) return;
+    btn.onclick=async()=>{
+      if(!confirm('Sincronizzare le materie mutate da web.dmi.unict.it?')) return;
+      showLoading(true,'Sincronizzazione mutuazioni in corso...');
+      hideImportReport();
+      try{
+        const res = await apiPost('/api/import/url', { section:'mutuations' });
+        await loadDbFromServer();
+        const s=res?.summary||{};
+        const lines=[
+          `Legami aggiornati: ${Number(s.updated||0)}`,
+          `Scartati: ${Number(s.skipped||0)}`,
+          ''
+        ];
+        if(Array.isArray(s.notes)) lines.push(...s.notes.slice(0,25));
+        showImportReport({
+          title:'Sincronizzazione mutuazioni completata',
+          meta:`Aggiornati:${Number(s.updated||0)}  Scartati:${Number(s.skipped||0)}`,
+          lines,
+          ok:Number(s.updated||0)>0
+        });
+        setStatus('mutuazioni sincronizzate ✓');
+      }catch(e){
+        alert('Errore sincronizzazione mutuazioni: ' + (e?.message||e));
+      }finally{
+        showLoading(false);
+        render();
+      }
+    };
+  },0);
+
+  return wrap;
 }
 
 function renderUnavailability(){
@@ -1063,9 +1455,14 @@ function renderSoftPolicy(){
   const div=document.createElement("div");
   const w=db.softPolicy?.weights||{};
   div.innerHTML=`
-    <div class="info-box">I pesi determinano l'importanza relativa di ogni vincolo soft nell'ottimizzazione. Valori più alti = vincolo più importante.</div>
+    <div class="info-box">
+      <strong>Vincoli soft</strong>: non bloccano la soluzione, ma la rendono migliore/peggiore.<br>
+      Peso alto = il solver evita di violare quel criterio quando possibile.<br>
+      <strong>Nota:</strong> i vincoli hard (sovrapposizioni, capienza, mutuazioni, indisponibilità) restano sempre obbligatori.
+    </div>
     <div class="row3">
       ${numField("curriculumGapPerHour","Penalità buchi curriculum/ora", w.curriculumGapPerHour??10)}
+      ${numField("curriculumRoomChangePenalty","Penalità cambio aula studenti", w.curriculumRoomChangePenalty??6)}
       ${numField("lunchOverlapPenalty","Penalità lezione su pranzo", w.lunchOverlapPenalty??200)}
       ${numField("patternViolation","Violazione pattern preferito", w.patternViolation??1000)}
     </div>
@@ -1425,6 +1822,11 @@ function renderTimetableGrid(){
       <div class="ev-room">📍 ${escapeHtml(a.roomName)}</div>
       <div class="ev-teacher">👤 ${escapeHtml(teacherStr)}</div>`;
     ev.title=`${a.courseName}\n${a.startHour}:00 - ${a.endHour}:00\nAula: ${a.roomName}\nDocente: ${teacherStr}`;
+    ev.onclick=(e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      openScheduleEventEditor(a);
+    };
 
     cell.style.position="relative";
     cell.appendChild(ev);
@@ -1489,7 +1891,7 @@ function renderTimetableStats(){
     <div class="stat-card"><div class="stat-val">${placed}</div><div class="stat-label">Lezioni piazzate</div></div>
     <div class="stat-card"><div class="stat-val">${totalHours}h</div><div class="stat-label">Ore totali settimanali</div></div>
     <div class="stat-card"><div class="stat-val">${totalGaps}</div><div class="stat-label">Buchi totali (curricula)</div></div>
-    <div class="stat-card"><div class="stat-val ${unplaced?'dangerTxt':'ok'}">${unplaced}</div><div class="stat-label">Non piazzati</div></div>
+    <div class="stat-card"><div class="stat-val ${unplaced?'dangerTxt':'ok'}">${unplaced}</div><div class="stat-label">Non piazzati (eventi senza slot/aula valida)</div></div>
     <div class="stat-card"><div class="stat-val">${lastSchedule.solveTimeSeconds||0}s</div><div class="stat-label">Tempo solver</div></div>
     ${lastSchedule.objective!=null?`<div class="stat-card"><div class="stat-val">${lastSchedule.objective}</div><div class="stat-label">Penalità totale</div></div>`:''}
   `;
@@ -1503,9 +1905,23 @@ function renderConstraintLog(){
     box.innerHTML='<div class="info-box">Log vincoli non disponibile per questa soluzione.</div>';
     return;
   }
+  const meanings={
+    teacherOverlap:'Un docente non puo tenere due lezioni nello stesso orario.',
+    roomOverlap:'Una stessa aula non puo ospitare due lezioni insieme.',
+    curriculumOverlap:'Studenti dello stesso curriculum non devono avere sovrapposizioni.',
+    roomCapacity:'La capienza dell\'aula deve essere sufficiente.',
+    roomType:'Il tipo di aula deve rispettare il tipo richiesto dal corso.',
+    teacherUnavailability:'Le indisponibilita docenti devono essere rispettate.',
+    roomReserved:'Le aule gia prenotate non possono essere riutilizzate.',
+    lunchBreak:'Nessuna lezione nella fascia pranzo.',
+    courseDifferentDays:'Eventi dello stesso corso distribuiti in giorni diversi.',
+    timeWindow:'Lezioni entro l\'orario giornaliero configurato.',
+    mutuationSync:'Corsi mutuati sincronizzati come stessa materia.',
+  };
+
   const rows=report.checks.map(c=>`
     <tr>
-      <td>${escapeHtml(c.label||c.id||'')}</td>
+      <td><strong>${escapeHtml(c.label||c.id||'')}</strong><div class="mini">${escapeHtml(meanings[c.id]||'')}</div></td>
       <td class="${c.respected?'ok':'dangerTxt'}">${c.respected?'Rispettato':'Violato'}</td>
       <td>${c.violations||0}</td>
     </tr>`).join("");
@@ -1547,6 +1963,7 @@ function renderCurriculumTables(){
   const ds=Number(tm.dayStart||8);
   const de=Number(tm.dayEnd||19);
   const programsById = Object.fromEntries((db.programs||[]).map(p => [p.id, p]));
+  const courseById = Object.fromEntries((db.courses||[]).map(c => [c.id, c]));
   const curricula=(db.curricula||[]).filter(c=>(!fProg || c.programId===fProg) && (!fCurr || c.id===fCurr));
 
   box.innerHTML=curricula.map(cur=>{
@@ -1606,7 +2023,16 @@ function renderCurriculumTables(){
     const titleParts = [];
     if(programLabel) titleParts.push(`CdL ${escapeHtml(programLabel)}`);
     titleParts.push(escapeHtml(cur.name||cur.id));
-    if(cur.yearCohort) titleParts.push(escapeHtml(cur.yearCohort));
+    const years = Array.from(new Set(
+      rows
+        .map(r => Number(r.studyYear ?? courseById[r.courseId]?.year ?? courseById[r.courseId]?.studyYear))
+        .filter(y => Number.isFinite(y) && y > 0)
+    )).sort((a,b)=>a-b);
+    if(years.length===1){
+      titleParts.push(`${years[0]}° anno`);
+    } else if(years.length>1){
+      titleParts.push('anni misti');
+    }
     const title = titleParts.join(' - ');
 
     return `<div class="cw-wrap">
@@ -1750,7 +2176,8 @@ function openModal(section,mode,id){
     const existing=mode==="edit"?db.courses.find(x=>x.id===id):{
       id:uid("K"),name:"",programId:db.programs[0]?.id||"",
       curriculaIds:[],teacherIds:[],expectedStudents:30,roomType:"lecture",
-      patternPref:"",semester:1,weeklyEvents:[{id:uid("E"),durationHours:2},{id:uid("E"),durationHours:2}]
+      patternPref:"",semester:1,year:1,cfu:0,weeklyHours:4,preferredSlotHours:2,mutuationGroup:"",
+      weeklyEvents:[{id:uid("E"),durationHours:2},{id:uid("E"),durationHours:2}]
     };
     body.innerHTML=`
       <div class="row">
@@ -1761,6 +2188,7 @@ function openModal(section,mode,id){
         <div><label class="muted">CdS</label>
           <select id="f_programId">${db.programs.map(p=>`<option value="${escapeAttr(p.id)}" ${p.id===existing.programId?"selected":""}>${escapeHtml(p.name)}</option>`).join("")}</select>
         </div>
+        <div><label class="muted">Anno di studio</label><input id="f_year" type="number" min="1" value="${Number(existing.year ?? existing.studyYear ?? existing.anno ?? 1)}" /></div>
         <div><label class="muted">Tipo aula</label>
           <select id="f_roomType">${["lecture","lab","seminar"].map(t=>`<option ${existing.roomType===t?"selected":""}>${t}</option>`).join("")}</select>
         </div>
@@ -1783,8 +2211,18 @@ function openModal(section,mode,id){
       </div>
       <div class="row3" style="margin-top:10px">
         <div><label class="muted">Studenti attesi</label><input id="f_expectedStudents" type="number" value="${Number(existing.expectedStudents||0)}" /></div>
+        <div><label class="muted">CFU</label><input id="f_cfu" type="number" min="0" value="${Number(existing.cfu||0)}" /></div>
+        <div><label class="muted">Ore settimanali</label><input id="f_weeklyHours" type="number" min="0" value="${Number(existing.weeklyHours||0)}" /></div>
+      </div>
+      <div class="row3" style="margin-top:10px">
+        <div><label class="muted">Preferenza slot (ore)</label><input id="f_preferredSlotHours" type="number" min="0" value="${Number(existing.preferredSlotHours||0)}" />
+          <div class="hint">0 = nessuna preferenza. Per imporre realmente gli slot usa anche weeklyEvents con durationHours coerenti.</div></div>
+        <div><label class="muted">Gruppo mutuazione</label><input id="f_mutuationGroup" type="text" value="${escapeAttr(existing.mutuationGroup||existing.sharedWithCourseId||"")}" />
+          <div class="hint">Stessa chiave per corsi mutuati (vincolo hard)</div></div>
         <div><label class="muted">Pattern preferito</label><input id="f_patternPref" type="text" value="${escapeAttr(existing.patternPref||"")}" />
           <div class="hint">Es: 2x2h_lun-mer</div></div>
+      </div>
+      <div class="row" style="margin-top:10px">
         <div><label class="muted">Eventi settimanali (JSON)</label><textarea id="f_weeklyEvents"></textarea>
           <div class="hint">[{"id":"E-1","durationHours":2}]</div></div>
       </div>`;
@@ -1854,6 +2292,11 @@ async function saveModal(){
   const s=modalState?.section;
   if(!s) return;
 
+  if(s==="schedule-event-edit"){
+    saveSingleScheduleEventFromModal();
+    return;
+  }
+
   if(s==="schedule-manual"){
     saveManualScheduleFromModal();
     return;
@@ -1920,11 +2363,16 @@ async function saveModal(){
       id:document.getElementById("f_id").value.trim(),
       name:document.getElementById("f_name").value.trim(),
       programId:selectedProgram,
+      year:Number(document.getElementById("f_year").value || 1),
       roomType:document.getElementById("f_roomType").value,
       semester:Number(document.getElementById("f_semester").value),
       curriculaIds:selectedCurricula,
       teacherIds:readMultiSelect("f_teachers"),
       expectedStudents:Number(document.getElementById("f_expectedStudents").value),
+      cfu:Number(document.getElementById("f_cfu").value || 0),
+      weeklyHours:Number(document.getElementById("f_weeklyHours").value || 0),
+      preferredSlotHours:Number(document.getElementById("f_preferredSlotHours").value || 0),
+      mutuationGroup:(document.getElementById("f_mutuationGroup").value||"").trim(),
       patternPref:document.getElementById("f_patternPref").value.trim(),
       weeklyEvents:we
     });
@@ -2245,6 +2693,11 @@ function mergeExternalJsonIntoDb(payload, sourceName=''){
         if(!Array.isArray(existing.weeklyEvents) || !existing.weeklyEvents.length){
           existing.weeklyEvents = [{durationHours:2}];
         }
+        if(existing.year==null) existing.year = 1;
+        if(existing.cfu==null) existing.cfu = 0;
+        if(existing.weeklyHours==null) existing.weeklyHours = 2;
+        if(existing.preferredSlotHours==null) existing.preferredSlotHours = 2;
+        if(existing.mutuationGroup==null) existing.mutuationGroup = '';
       }else{
         db.courses.push({
           id: cid,
@@ -2256,6 +2709,10 @@ function mergeExternalJsonIntoDb(payload, sourceName=''){
           curriculaIds: [],
           teacherIds: [],
           expectedStudents: 0,
+          cfu: 0,
+          weeklyHours: 2,
+          preferredSlotHours: 2,
+          mutuationGroup: '',
           roomType: 'lecture',
           weeklyEvents: [{durationHours:2}],
         });
@@ -2305,7 +2762,7 @@ document.getElementById("btnReset").onclick=async()=>{
   db={
     meta:{version:1,timeModel:{dayStart:8,dayEnd:19,lunchStart:13,lunchEnd:14,granularityHours:1},note:""},
     rooms:[],teachers:[],programs:[],curricula:[],courses:[],unavailability:[],
-    softPolicy:{weights:{patternViolation:1000,curriculumGapPerHour:10,teacherConsecutiveOver3PerHour:30,teacherDailyOver5PerHour:20,lateStartPenalty:3,earlyStartPenalty:2,lunchOverlapPenalty:200},preferredPatterns:{twoEvents:["Mon-Wed","Wed-Fri","Tue-Thu"],threeEvents:["Mon-Wed-Fri"]}}
+    softPolicy:{weights:{patternViolation:1000,curriculumGapPerHour:10,teacherConsecutiveOver3PerHour:30,teacherDailyOver5PerHour:20,lateStartPenalty:3,earlyStartPenalty:2,lunchOverlapPenalty:200,curriculumRoomChangePenalty:6},preferredPatterns:{twoEvents:["Mon-Wed","Wed-Fri","Tue-Thu"],threeEvents:["Mon-Wed-Fri"]}}
   };
   lastSchedule=null;
   await saveDbToServer();

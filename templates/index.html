@@ -82,6 +82,7 @@
     }
     th { background: #f8faf8; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
     .pill { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; font-size: 12px; }
+    .tag { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; font-size: 12px; margin: 2px 4px 2px 0; background: #f7faf7; }
     .ok { color: var(--good); font-weight: 700; }
     .ko { color: var(--bad); font-weight: 700; }
     .grid {
@@ -154,8 +155,18 @@
     </section>
 
     <section class="panel">
+      <div class="hd">Filtri Visualizzazione</div>
+      <div class="bd" id="viewFilters"></div>
+    </section>
+
+    <section class="panel">
       <div class="hd">Algoritmo E Vincoli</div>
       <div class="bd" id="constraintLog"></div>
+    </section>
+
+    <section class="panel">
+      <div class="hd">Vista Corsi Mutuati</div>
+      <div class="bd" id="mutuationView"></div>
     </section>
 
     <section class="panel">
@@ -166,6 +177,14 @@
 
 <script>
 let payload = null;
+const publicFilters = {
+  programId: '',
+  curriculumId: '',
+  teacherId: '',
+  roomId: '',
+  courseId: '',
+  studyYear: '',
+};
 
 function esc(s) {
   return String(s || '')
@@ -184,9 +203,129 @@ async function loadPublicTimetable() {
   const r = await fetch('/api/public/timetable');
   if (!r.ok) throw new Error('Errore caricamento orario pubblico');
   payload = await r.json();
+  renderFilters();
   renderStatus();
   renderConstraintLog();
+  renderMutuationView();
   renderCurriculumTables();
+}
+
+function filteredPlacedAssignments() {
+  const s = payload?.schedule || {};
+  let rows = (s.assignments || []).filter(a => a.day !== 'N/A');
+  const coursesById = payload?.coursesById || {};
+  const courseCurr = payload?.courseCurricula || {};
+
+  if (publicFilters.programId) {
+    rows = rows.filter(a => (a.programId || coursesById[a.courseId]?.programId || '') === publicFilters.programId);
+  }
+  if (publicFilters.curriculumId) {
+    rows = rows.filter(a => (courseCurr[a.courseId] || []).includes(publicFilters.curriculumId));
+  }
+  if (publicFilters.teacherId) {
+    rows = rows.filter(a => (a.teacherIds || coursesById[a.courseId]?.teacherIds || []).includes(publicFilters.teacherId));
+  }
+  if (publicFilters.roomId) {
+    rows = rows.filter(a => (a.roomId || '') === publicFilters.roomId);
+  }
+  if (publicFilters.courseId) {
+    rows = rows.filter(a => (a.courseId || '') === publicFilters.courseId);
+  }
+  if (publicFilters.studyYear) {
+    rows = rows.filter(a => String(a.studyYear ?? coursesById[a.courseId]?.studyYear ?? '') === String(publicFilters.studyYear));
+  }
+
+  return rows;
+}
+
+function renderFilters() {
+  const el = document.getElementById('viewFilters');
+  if (!el) return;
+
+  const coursesById = payload?.coursesById || {};
+  const programs = new Map();
+  const teachers = new Map();
+  const rooms = new Map();
+  const courses = new Map();
+  const years = new Set();
+  const curricula = new Map((payload?.curricula || []).map(c => [c.id, c]));
+
+  for (const a of (payload?.schedule?.assignments || [])) {
+    if (a.day === 'N/A') continue;
+    const c = coursesById[a.courseId] || {};
+    const pid = a.programId || c.programId || '';
+    const pname = a.programName || c.programName || pid;
+    if (pid) programs.set(pid, pname || pid);
+
+    const sy = a.studyYear ?? c.studyYear;
+    if (sy) years.add(String(sy));
+
+    if (a.courseId) courses.set(a.courseId, a.courseName || c.name || a.courseId);
+    if (a.roomId && a.roomId !== 'N/A') rooms.set(a.roomId, a.roomName || a.roomId);
+    for (const tid of (a.teacherIds || c.teacherIds || [])) {
+      const tname = (a.teacherNames || [])[0] || tid;
+      teachers.set(tid, tname);
+    }
+  }
+
+  const opt = (map, selected) => [...map.entries()]
+    .sort((x, y) => String(x[1]).localeCompare(String(y[1])))
+    .map(([v, l]) => `<option value="${esc(v)}" ${String(v) === String(selected) ? 'selected' : ''}>${esc(l)}</option>`)
+    .join('');
+
+  const curriculaOpts = [...curricula.values()]
+    .filter(c => !publicFilters.programId || c.programId === publicFilters.programId)
+    .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
+    .map(c => `<option value="${esc(c.id)}" ${c.id === publicFilters.curriculumId ? 'selected' : ''}>${esc(c.name || c.id)}</option>`)
+    .join('');
+
+  const yearsOpts = [...years]
+    .sort((a, b) => Number(a) - Number(b))
+    .map(y => `<option value="${esc(y)}" ${String(y) === String(publicFilters.studyYear) ? 'selected' : ''}>${esc(y)}° anno</option>`)
+    .join('');
+
+  el.innerHTML = `
+    <div class="grid">
+      <div><label class="muted">CdL</label><select id="fProgram"><option value="">Tutti</option>${opt(programs, publicFilters.programId)}</select></div>
+      <div><label class="muted">Curriculum</label><select id="fCurriculum"><option value="">Tutti</option>${curriculaOpts}</select></div>
+      <div><label class="muted">Docente</label><select id="fTeacher"><option value="">Tutti</option>${opt(teachers, publicFilters.teacherId)}</select></div>
+      <div><label class="muted">Aula</label><select id="fRoom"><option value="">Tutte</option>${opt(rooms, publicFilters.roomId)}</select></div>
+      <div><label class="muted">Corso</label><select id="fCourse"><option value="">Tutti</option>${opt(courses, publicFilters.courseId)}</select></div>
+      <div><label class="muted">Anno</label><select id="fStudyYear"><option value="">Tutti</option>${yearsOpts}</select></div>
+    </div>
+  `;
+
+  document.getElementById('fProgram').onchange = (e) => {
+    publicFilters.programId = e.target.value || '';
+    if (publicFilters.curriculumId) {
+      const curr = (payload?.curricula || []).find(c => c.id === publicFilters.curriculumId);
+      if (curr && curr.programId !== publicFilters.programId && publicFilters.programId) {
+        publicFilters.curriculumId = '';
+      }
+    }
+    renderFilters();
+    renderStatus();
+    renderConstraintLog();
+    renderMutuationView();
+    renderCurriculumTables();
+  };
+
+  const bindSimple = (id, key) => {
+    const node = document.getElementById(id);
+    if (!node) return;
+    node.onchange = (e) => {
+      publicFilters[key] = e.target.value || '';
+      renderStatus();
+      renderConstraintLog();
+      renderMutuationView();
+      renderCurriculumTables();
+    };
+  };
+  bindSimple('fCurriculum', 'curriculumId');
+  bindSimple('fTeacher', 'teacherId');
+  bindSimple('fRoom', 'roomId');
+  bindSimple('fCourse', 'courseId');
+  bindSimple('fStudyYear', 'studyYear');
 }
 
 function renderStatus() {
@@ -197,7 +336,7 @@ function renderStatus() {
     return;
   }
 
-  const assignments = (s.assignments || []).filter(a => a.day !== 'N/A');
+  const assignments = filteredPlacedAssignments();
   const totalHours = assignments.reduce((acc, a) => acc + (Number(a.duration) || 0), 0);
   const semText = s.semester ? `${s.semester} semestre` : 'tutti i semestri';
   const algorithm = s.algorithmLabel || s.solverBackend || payload?.algorithm?.available || 'N/D';
@@ -222,24 +361,61 @@ function renderConstraintLog() {
     return;
   }
 
-  const rows = report.checks
+  const violated = report.checks.filter(c => Number(c.violations || 0) > 0);
+  if (violated.length === 0) {
+    el.innerHTML = '<div class="empty">Nessuna violazione hard rilevata.</div>';
+    return;
+  }
+
+  const rows = violated
     .map(c => `<tr>
       <td>${esc(c.label || c.id)}</td>
-      <td class="${c.respected ? 'ok' : 'ko'}">${c.respected ? 'Rispettato' : 'Violato'}</td>
+      <td class="ko">Violato</td>
       <td>${esc(c.violations || 0)}</td>
     </tr>`)
     .join('');
 
   el.innerHTML = `
-    <div style="margin-bottom:8px">
-      <span class="pill">Vincoli rispettati: ${esc(report.respectedCount || 0)}/${esc(report.totalChecks || 0)}</span>
-      <span class="pill" style="margin-left:6px">Eventi piazzati: ${esc(report.placedEvents || 0)}</span>
-    </div>
+    <div class="meta-line" style="margin-bottom:8px">Mostrati solo i vincoli hard violati.</div>
     <table>
       <thead><tr><th>Vincolo</th><th>Esito</th><th>Violazioni</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
   `;
+}
+
+function renderMutuationView() {
+  const container = document.getElementById('mutuationView');
+  if (!container) return;
+  const groups = payload?.mutuationView || [];
+  if (!groups.length) {
+    container.innerHTML = '<div class="empty">Nessun corso mutuato configurato.</div>';
+    return;
+  }
+
+  const filtered = groups.filter(g => {
+    const courses = g.courses || [];
+    if (publicFilters.programId && !courses.some(c => c.programId === publicFilters.programId)) return false;
+    if (publicFilters.studyYear && !courses.some(c => String(c.studyYear || '') === String(publicFilters.studyYear))) return false;
+    if (publicFilters.courseId && !courses.some(c => c.courseId === publicFilters.courseId)) return false;
+    return true;
+  });
+
+  if (!filtered.length) {
+    container.innerHTML = '<div class="empty">Nessun gruppo mutuato con i filtri attuali.</div>';
+    return;
+  }
+
+  container.innerHTML = filtered.map(g => {
+    const scheduleInfo = g.assignment
+      ? `${esc(g.assignment.dayIt || g.assignment.day || '')} ${esc(g.assignment.startHour)}:00-${esc(g.assignment.endHour)}:00${g.assignment.roomName ? ` • Aula ${esc(g.assignment.roomName)}` : ''}`
+      : 'Non ancora schedulato';
+    const members = (g.courses || []).map(c => {
+      const year = c.studyYear ? `${c.studyYear}° anno` : 'anno N/D';
+      return `<span class="tag">${esc(c.courseName)} (${esc(c.programName || c.programId || '')}, ${esc(year)})</span>`;
+    }).join(' ');
+    return `<div class="kpi" style="margin-bottom:8px"><div><strong>${esc(g.label || g.groupId)}</strong></div><div class="meta-line" style="margin-top:4px">${scheduleInfo}</div><div style="margin-top:6px">${members}</div></div>`;
+  }).join('');
 }
 
 function renderCurriculumTables() {
@@ -256,82 +432,124 @@ function renderCurriculumTables() {
   }
 
   container.innerHTML = tables.map(block => {
-    const titleParts = [];
-    if (block.programName || block.programId) titleParts.push(`CdL ${block.programName || block.programId}`);
-    titleParts.push(block.curriculumName || 'Curriculum');
-    if (block.yearCohort) titleParts.push(block.yearCohort);
-    const fullTitle = titleParts.join(' - ');
-
-    const rows = [...(block.rows || [])]
+    const filteredRows = [...(block.rows || [])]
+      .filter((a) => {
+        const courseCurr = payload?.courseCurricula?.[a.courseId] || [];
+        const sy = a.studyYear ?? payload?.coursesById?.[a.courseId]?.studyYear;
+        if (publicFilters.programId && (a.programId || '') !== publicFilters.programId) return false;
+        if (publicFilters.curriculumId && !courseCurr.includes(publicFilters.curriculumId)) return false;
+        if (publicFilters.teacherId && !(a.teacherIds || []).includes(publicFilters.teacherId)) return false;
+        if (publicFilters.roomId && (a.roomId || '') !== publicFilters.roomId) return false;
+        if (publicFilters.courseId && (a.courseId || '') !== publicFilters.courseId) return false;
+        if (publicFilters.studyYear && String(sy || '') !== String(publicFilters.studyYear)) return false;
+        return true;
+      })
       .sort((a, b) => {
         const dd = dayOrder(a.day) - dayOrder(b.day);
         if (dd !== 0) return dd;
         return (a.startHour || 0) - (b.startHour || 0);
       });
 
-    const startMap = {};
-    const coverMap = {};
-    for (const r of rows) {
-      const day = r.day;
-      if (!days.includes(day)) continue;
-      const start = Number(r.startHour);
-      const end = Number(r.endHour);
-      if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue;
-      startMap[`${day}_${start}`] = r;
-      for (let h = start; h < end; h++) {
-        coverMap[`${day}_${h}`] = true;
-      }
+    if (!filteredRows.length) return '';
+
+    const grouped = new Map();
+    for (const r of filteredRows) {
+      const sy = r.studyYear ?? payload?.coursesById?.[r.courseId]?.studyYear;
+      const key = sy ? String(sy) : 'N/D';
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(r);
     }
 
-    let body = '';
-    for (let h = ds; h < de; h++) {
-      body += `<tr><td class="cw-hour">${String(h).padStart(2, '0')}:00</td><td class="cw-hour">${String(h + 1).padStart(2, '0')}:00</td>`;
-      for (const d of days) {
-        const key = `${d}_${h}`;
-        const ev = startMap[key];
-        if (ev) {
-          const teacherList = (ev.teacherNames || ev.teacherIds || []);
-          const primaryTeacher = Array.isArray(teacherList) && teacherList.length ? teacherList[0] : '';
-          const roomLabel = ev.roomName || ev.roomId || '';
-          const program = ev.programName || ev.programId || '';
-          const dur = Math.max(1, Number(ev.duration) || (Number(ev.endHour) - Number(ev.startHour)) || 1);
-          body += `<td class="cw-event" rowspan="${dur}">
-            <div>${esc(ev.courseName || '')}</div>
-            ${program ? `<div class="meta">CdL: ${esc(program)}</div>` : ''}
-            ${roomLabel ? `<div class="meta">Aula: ${esc(roomLabel)}</div>` : ''}
-            ${primaryTeacher ? `<div class="meta">Docente: ${esc(primaryTeacher)}</div>` : ''}
-          </td>`;
-        } else if (coverMap[key]) {
-          // Coperta da un evento con rowspan iniziato in una riga precedente.
-        } else {
-          body += '<td class="cw-day"></td>';
+    const groupKeys = [...grouped.keys()].sort((a, b) => {
+      if (a === 'N/D') return 1;
+      if (b === 'N/D') return -1;
+      return Number(a) - Number(b);
+    });
+
+    return groupKeys.map((groupKey) => {
+      const rows = grouped.get(groupKey) || [];
+      const yearLabel = groupKey === 'N/D' ? 'Anno N/D' : `${groupKey}° anno`;
+
+      const titleParts = [];
+      if (block.programName || block.programId) titleParts.push(`CdL ${block.programName || block.programId}`);
+      titleParts.push(block.curriculumName || 'Curriculum');
+      titleParts.push(yearLabel);
+      if (block.yearCohort) titleParts.push(block.yearCohort);
+      const fullTitle = titleParts.join(' - ');
+
+      const startMap = {};
+      const coverMap = {};
+      for (const r of rows) {
+        const day = r.day;
+        if (!days.includes(day)) continue;
+        const start = Number(r.startHour);
+        const end = Number(r.endHour);
+        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue;
+        startMap[`${day}_${start}`] = r;
+        for (let h = start; h < end; h++) {
+          coverMap[`${day}_${h}`] = true;
         }
       }
-      body += '</tr>';
-    }
 
-    return `
-      <div class="cw-wrap">
-        <div class="cw-title">${esc(fullTitle)}</div>
-        <div style="overflow:auto">
-          <table class="cw-table">
-            <thead>
-              <tr>
-                <th class="cw-hour">dalle</th>
-                <th class="cw-hour">alle</th>
-                <th>lunedi</th>
-                <th>martedi</th>
-                <th>mercoledi</th>
-                <th>giovedi</th>
-                <th>venerdi</th>
-              </tr>
-            </thead>
-            <tbody>${body}</tbody>
-          </table>
+      let body = '';
+      for (let h = ds; h < de; h++) {
+        body += `<tr><td class="cw-hour">${String(h).padStart(2, '0')}:00</td><td class="cw-hour">${String(h + 1).padStart(2, '0')}:00</td>`;
+        for (const d of days) {
+          const key = `${d}_${h}`;
+          const ev = startMap[key];
+          if (ev) {
+            const teacherList = (ev.teacherNames || ev.teacherIds || []);
+            const primaryTeacher = Array.isArray(teacherList) && teacherList.length ? teacherList[0] : '';
+            const roomLabel = ev.roomName || ev.roomId || '';
+            const program = ev.programName || ev.programId || '';
+            const dur = Math.max(1, Number(ev.duration) || (Number(ev.endHour) - Number(ev.startHour)) || 1);
+            const yearMeta = ev.studyYear ?? payload?.coursesById?.[ev.courseId]?.studyYear;
+            const yearMetaLabel = yearMeta ? `${yearMeta}° anno` : '';
+            const commonAcrossCurricula = (payload?.courseCurricula?.[ev.courseId] || []).length > 1;
+            body += `<td class="cw-event" rowspan="${dur}">
+              <div>${esc(ev.courseName || '')}</div>
+              ${yearMetaLabel ? `<div class="meta">Anno: ${esc(yearMetaLabel)}</div>` : ''}
+              ${commonAcrossCurricula ? `<div class="meta">In comune tra curricula</div>` : ''}
+              ${program ? `<div class="meta">CdL: ${esc(program)}</div>` : ''}
+              ${roomLabel ? `<div class="meta">Aula: ${esc(roomLabel)}</div>` : ''}
+              ${primaryTeacher ? `<div class="meta">Docente: ${esc(primaryTeacher)}</div>` : ''}
+            </td>`;
+          } else if (coverMap[key]) {
+            // Coperta da un evento con rowspan iniziato in una riga precedente.
+          } else {
+            body += '<td class="cw-day"></td>';
+          }
+        }
+        body += '</tr>';
+      }
+
+      return `
+        <div class="cw-wrap">
+          <div class="cw-title">${esc(fullTitle)}</div>
+          <div style="overflow:auto">
+            <table class="cw-table">
+              <thead>
+                <tr>
+                  <th class="cw-hour">dalle</th>
+                  <th class="cw-hour">alle</th>
+                  <th>lunedi</th>
+                  <th>martedi</th>
+                  <th>mercoledi</th>
+                  <th>giovedi</th>
+                  <th>venerdi</th>
+                </tr>
+              </thead>
+              <tbody>${body}</tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    }).join('');
   }).join('');
+
+  if (!container.innerHTML) {
+    container.innerHTML = '<div class="empty">Nessuna lezione con i filtri selezionati.</div>';
+  }
 }
 
 document.getElementById('btnRefresh').onclick = () => loadPublicTimetable().catch(e => alert(e.message));

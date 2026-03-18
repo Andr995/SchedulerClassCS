@@ -1262,7 +1262,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "39722416",
@@ -1300,7 +1301,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "91237381",
@@ -1322,7 +1324,8 @@
         }
       ],
       "sourceCode": "1000417",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "48569126",
@@ -1359,7 +1362,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "46850960",
@@ -1396,7 +1400,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "45400891",
@@ -1433,71 +1438,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
-    },
-    {
-      "id": "93307171",
-      "name": "1000977 - INSEGNAMENTO A SCELTA",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "37624967",
-        "19080634",
-        "78033281",
-        "13739711"
       ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1000977",
-      "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "37624967",
-        "19080634",
-        "78033281",
-        "13739711"
-      ]
-    },
-    {
-      "id": "23206625",
-      "name": "1001172 - PROVA FINALE",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "48594436",
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1001172",
-      "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "48594436",
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ]
+      "cfu": 6
     },
     {
       "id": "22823975",
@@ -1534,7 +1476,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "83030831",
@@ -1556,7 +1499,8 @@
         }
       ],
       "sourceCode": "1006055",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "26806678",
@@ -1578,7 +1522,8 @@
         }
       ],
       "sourceCode": "1006278",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "89928565",
@@ -1606,7 +1551,8 @@
       "sharedWithCurriculaIds": [
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "48815755",
@@ -1628,7 +1574,8 @@
         }
       ],
       "sourceCode": "1007998",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "87321847",
@@ -1650,7 +1597,8 @@
         }
       ],
       "sourceCode": "1008049",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "71047590",
@@ -1686,39 +1634,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
-    },
-    {
-      "id": "87965680",
-      "name": "1011145 - STAGE E TIROCINI",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
       ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1011145",
-      "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "37624967",
-        "19080634",
-        "90827153",
-        "78033281",
-        "13739711"
-      ]
+      "cfu": 6
     },
     {
       "id": "39697665",
@@ -1752,7 +1669,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "66130718",
@@ -1774,7 +1692,8 @@
         }
       ],
       "sourceCode": "1014455",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "56412818",
@@ -1810,7 +1729,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "41181421",
@@ -1833,7 +1753,8 @@
         }
       ],
       "sourceCode": "1015126",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "92568327",
@@ -1872,7 +1793,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "13183521",
@@ -1894,7 +1816,8 @@
         }
       ],
       "sourceCode": "1015205",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "76333226",
@@ -1928,7 +1851,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "27010014",
@@ -1962,7 +1886,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "94581518",
@@ -1996,7 +1921,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "48715927",
@@ -2018,7 +1944,8 @@
         }
       ],
       "sourceCode": "52713",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "36117189",
@@ -2056,7 +1983,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "53617800",
@@ -2076,7 +2004,8 @@
         }
       ],
       "sourceCode": "80140",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "81831718",
@@ -2098,7 +2027,8 @@
         }
       ],
       "sourceCode": "92092",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "63974542",
@@ -2120,7 +2050,8 @@
         }
       ],
       "sourceCode": "9793942",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "74300289",
@@ -2140,7 +2071,8 @@
         }
       ],
       "sourceCode": "9794565",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "94337264",
@@ -2177,7 +2109,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "74257934",
@@ -2215,7 +2148,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "88006427",
@@ -2237,7 +2171,8 @@
         }
       ],
       "sourceCode": "9795536",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "80959491",
@@ -2271,7 +2206,8 @@
         "90827153",
         "78033281",
         "13739711"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "15493433",
@@ -2293,7 +2229,8 @@
         }
       ],
       "sourceCode": "9796008",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "39531985",
@@ -2315,7 +2252,8 @@
         }
       ],
       "sourceCode": "9796654",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "23509779",
@@ -2337,7 +2275,8 @@
         }
       ],
       "sourceCode": "9796702",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "61866016",
@@ -2360,7 +2299,8 @@
         }
       ],
       "sourceCode": "9796732",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "26853379",
@@ -2382,7 +2322,8 @@
         }
       ],
       "sourceCode": "9796733",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "87515519",
@@ -2404,33 +2345,8 @@
         }
       ],
       "sourceCode": "9796734",
-      "year": 3
-    },
-    {
-      "id": "98495818",
-      "name": "9796735 - INSEGNAMENTO A SCELTA",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "48594436",
-        "90827153"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "9796735",
       "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "48594436",
-        "90827153"
-      ]
+      "cfu": 6
     },
     {
       "id": "25596703",
@@ -2452,7 +2368,8 @@
         }
       ],
       "sourceCode": "9796736",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "60251555",
@@ -2472,7 +2389,8 @@
         }
       ],
       "sourceCode": "9796746",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "81602249",
@@ -2494,7 +2412,8 @@
         }
       ],
       "sourceCode": "9796747",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "48745420",
@@ -2516,7 +2435,8 @@
         }
       ],
       "sourceCode": "9796748",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "22552937",
@@ -2539,7 +2459,8 @@
         }
       ],
       "sourceCode": "9796749",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "36315950",
@@ -2561,7 +2482,8 @@
         }
       ],
       "sourceCode": "9796750",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "78656649",
@@ -2583,7 +2505,8 @@
         }
       ],
       "sourceCode": "9796751",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "46452875",
@@ -2605,7 +2528,8 @@
         }
       ],
       "sourceCode": "9796762",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "11058624",
@@ -2627,7 +2551,8 @@
         }
       ],
       "sourceCode": "9796763",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "96888973",
@@ -2649,7 +2574,8 @@
         }
       ],
       "sourceCode": "9796764",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "51981025",
@@ -2669,7 +2595,8 @@
         }
       ],
       "sourceCode": "9796767",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "56155965",
@@ -2691,7 +2618,8 @@
         }
       ],
       "sourceCode": "9796774",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "76989518",
@@ -2711,7 +2639,8 @@
         }
       ],
       "sourceCode": "9796776",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "75596780",
@@ -2733,127 +2662,8 @@
         }
       ],
       "sourceCode": "9796830",
-      "year": 3
-    },
-    {
-      "id": "46950694",
-      "name": "Nuovo gruppo OPZIONALE A1",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "48594436"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "39834823",
-      "name": "Nuovo gruppo OPZIONALE A2",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "37624967"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "89076930",
-      "name": "Nuovo gruppo OPZIONALE A3",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "19080634"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "13563590",
-      "name": "Nuovo gruppo OPZIONALE A4",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "90827153"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "42272930",
-      "name": "Nuovo gruppo OPZIONALE A5",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "78033281"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "90254401",
-      "name": "Nuovo gruppo OPZIONALE A6",
-      "programId": "66526837",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "13739711"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "28421981",
@@ -2879,7 +2689,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "91237381",
@@ -2907,7 +2718,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "80103373",
@@ -2936,7 +2748,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "83619842",
@@ -2965,59 +2778,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
-    },
-    {
-      "id": "19197906",
-      "name": "1001164 - INSEGNAMENTO A SCELTA",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "72903764",
-        "99016358"
       ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1001164",
-      "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "99016358",
-        "72903764"
-      ]
-    },
-    {
-      "id": "23206625",
-      "name": "1001172 - PROVA FINALE",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "72903764",
-        "99016358"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1001172",
-      "year": 3,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "99016358",
-        "72903764"
-      ]
+      "cfu": 6
     },
     {
       "id": "43658140",
@@ -3045,7 +2807,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "27523372",
@@ -3073,7 +2836,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "22823975",
@@ -3101,7 +2865,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "52388106",
@@ -3123,7 +2888,8 @@
         }
       ],
       "sourceCode": "1003564",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "95890581",
@@ -3145,7 +2911,8 @@
         }
       ],
       "sourceCode": "1003777",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "74145816",
@@ -3173,7 +2940,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "22639021",
@@ -3201,7 +2969,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "32405112",
@@ -3229,7 +2998,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "25469389",
@@ -3257,7 +3027,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "84244706",
@@ -3279,7 +3050,8 @@
         }
       ],
       "sourceCode": "1015517",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "40927619",
@@ -3307,7 +3079,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "95240875",
@@ -3335,7 +3108,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "72026151",
@@ -3358,7 +3132,8 @@
         }
       ],
       "sourceCode": "1015531",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "17659687",
@@ -3380,7 +3155,8 @@
         }
       ],
       "sourceCode": "1016218",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "11940074",
@@ -3403,7 +3179,8 @@
         }
       ],
       "sourceCode": "1016219",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "37628715",
@@ -3425,7 +3202,8 @@
         }
       ],
       "sourceCode": "1016286",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "10336349",
@@ -3454,7 +3232,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "39236409",
@@ -3483,7 +3262,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "81099691",
@@ -3511,7 +3291,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "70578929",
@@ -3534,7 +3315,8 @@
         }
       ],
       "sourceCode": "9795550",
-      "year": 3
+      "year": 3,
+      "cfu": 6
     },
     {
       "id": "25773199",
@@ -3562,7 +3344,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "11309869",
@@ -3590,113 +3373,8 @@
       "sharedWithCurriculaIds": [
         "99016358",
         "72903764"
-      ]
-    },
-    {
-      "id": "50171541",
-      "name": "Gruppo opzionale applicativo",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "99016358"
       ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "45509383",
-      "name": "Gruppo opzionale generale I",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "72903764"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "32971543",
-      "name": "Gruppo opzionale generale II",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "72903764"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "46525818",
-      "name": "Gruppo opzionale generale III",
-      "programId": "68829610",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "72903764"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 50,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 3
-    },
-    {
-      "id": "75239916",
-      "name": "1000975 - INSEGNAMENTO A SCELTA",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "15328892",
-        "16257291"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1000975",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "16257291",
-        "15328892"
-      ]
+      "cfu": 6
     },
     {
       "id": "27523372",
@@ -3724,33 +3402,8 @@
       "sharedWithCurriculaIds": [
         "16257291",
         "15328892"
-      ]
-    },
-    {
-      "id": "14724626",
-      "name": "1002356 - PROVA FINALE",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "15328892",
-        "16257291"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1002356",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "16257291",
-        "15328892"
-      ]
+      "cfu": 6
     },
     {
       "id": "36695267",
@@ -3782,39 +3435,8 @@
         "16257291",
         "15328892",
         "91724030"
-      ]
-    },
-    {
-      "id": "85712187",
-      "name": "1004570 - INSEGNAMENTO A SCELTA",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "15328892",
-        "16257291",
-        "94312330",
-        "48952648",
-        "49464289"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1004570",
-      "year": 1,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "94312330",
-        "48952648",
-        "16257291",
-        "49464289",
-        "15328892"
-      ]
+      "cfu": 6
     },
     {
       "id": "97412670",
@@ -3842,7 +3464,8 @@
       "sharedWithCurriculaIds": [
         "16257291",
         "15328892"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "89648290",
@@ -3870,7 +3493,8 @@
       "sharedWithCurriculaIds": [
         "94312330",
         "44399015"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "31547913",
@@ -3893,7 +3517,8 @@
         }
       ],
       "sourceCode": "1014425",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "32460371",
@@ -3913,7 +3538,8 @@
         }
       ],
       "sourceCode": "1014441",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "84741968",
@@ -3933,7 +3559,8 @@
         }
       ],
       "sourceCode": "1014444",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "54978536",
@@ -3955,7 +3582,8 @@
         }
       ],
       "sourceCode": "1014450",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "52935155",
@@ -3977,7 +3605,8 @@
         }
       ],
       "sourceCode": "1014456",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "63193314",
@@ -3997,7 +3626,8 @@
         }
       ],
       "sourceCode": "1014458",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "37797705",
@@ -4017,7 +3647,8 @@
         }
       ],
       "sourceCode": "1014561",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "30247009",
@@ -4047,7 +3678,8 @@
         "44399015",
         "49464289",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "56781973",
@@ -4069,7 +3701,8 @@
         }
       ],
       "sourceCode": "1015622",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "10753984",
@@ -4089,7 +3722,8 @@
         }
       ],
       "sourceCode": "1015941",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "51491164",
@@ -4109,7 +3743,8 @@
         }
       ],
       "sourceCode": "1015944",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "55980296",
@@ -4145,7 +3780,8 @@
         "68142346",
         "49464289",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "60359481",
@@ -4168,7 +3804,8 @@
         }
       ],
       "sourceCode": "9793952",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "58620548",
@@ -4197,7 +3834,8 @@
       "sharedWithCurriculaIds": [
         "44399015",
         "49464289"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "49071872",
@@ -4219,7 +3857,8 @@
         }
       ],
       "sourceCode": "9795447",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "81335729",
@@ -4241,7 +3880,8 @@
         }
       ],
       "sourceCode": "9795448",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "42485975",
@@ -4263,7 +3903,8 @@
         }
       ],
       "sourceCode": "9795538",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "62828855",
@@ -4285,7 +3926,8 @@
         }
       ],
       "sourceCode": "9796004",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "31455923",
@@ -4305,7 +3947,8 @@
         }
       ],
       "sourceCode": "9796006",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "39531985",
@@ -4333,7 +3976,8 @@
       "sharedWithCurriculaIds": [
         "49464289",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "91446628",
@@ -4355,7 +3999,8 @@
         }
       ],
       "sourceCode": "9796656",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "23509779",
@@ -4377,7 +4022,8 @@
         }
       ],
       "sourceCode": "9796702",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "35402324",
@@ -4409,7 +4055,8 @@
         "48952648",
         "44399015",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "41125520",
@@ -4439,39 +4086,8 @@
         "94312330",
         "48952648",
         "68142346"
-      ]
-    },
-    {
-      "id": "11689274",
-      "name": "9799506 - Insegnamento a Scelta",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "94312330",
-        "48952648",
-        "68142346",
-        "49464289",
-        "91724030"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "9799506",
-      "year": 1,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "94312330",
-        "48952648",
-        "68142346",
-        "49464289",
-        "91724030"
-      ]
+      "cfu": 6
     },
     {
       "id": "99849758",
@@ -4494,7 +4110,8 @@
         }
       ],
       "sourceCode": "9799511",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "79412522",
@@ -4517,7 +4134,8 @@
         }
       ],
       "sourceCode": "9799512",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "40360142",
@@ -4548,7 +4166,8 @@
         "44399015",
         "49464289",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "59993651",
@@ -4571,7 +4190,8 @@
         }
       ],
       "sourceCode": "9799525",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "48227399",
@@ -4591,7 +4211,8 @@
         }
       ],
       "sourceCode": "9799526",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "19088919",
@@ -4614,7 +4235,8 @@
         }
       ],
       "sourceCode": "9799527",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "61317298",
@@ -4634,7 +4256,8 @@
         }
       ],
       "sourceCode": "9799528",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "46834610",
@@ -4662,7 +4285,8 @@
       "sharedWithCurriculaIds": [
         "68142346",
         "49464289"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "34342696",
@@ -4691,7 +4315,8 @@
       "sharedWithCurriculaIds": [
         "49464289",
         "91724030"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "79553364",
@@ -4713,7 +4338,8 @@
         }
       ],
       "sourceCode": "9799541",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "33551793",
@@ -4736,7 +4362,8 @@
         }
       ],
       "sourceCode": "9799542",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "29135442",
@@ -4758,7 +4385,8 @@
         }
       ],
       "sourceCode": "9799543",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "97365821",
@@ -4784,7 +4412,8 @@
       "sharedWithCurriculaIds": [
         "94312330",
         "48952648"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "21195323",
@@ -4804,7 +4433,8 @@
         }
       ],
       "sourceCode": "9799579",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "29325107",
@@ -4836,7 +4466,8 @@
         "48952648",
         "44399015",
         "68142346"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "47155114",
@@ -4856,7 +4487,8 @@
         }
       ],
       "sourceCode": "9799583",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "78337000",
@@ -4876,7 +4508,8 @@
         }
       ],
       "sourceCode": "9799585",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "29769785",
@@ -4911,243 +4544,8 @@
         "44399015",
         "49464289",
         "91724030"
-      ]
-    },
-    {
-      "id": "42398493",
-      "name": "GRUPPO OPZIONALE  Data Science  SECONDO ANNO I SEM. e II SEM.",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "16257291"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "50689713",
-      "name": "GRUPPO OPZIONALE Sistemi e sicurezza SECONDO ANNO I° SEMESTRE",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "15328892"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "41724522",
-      "name": "Gruppo opzionale A,  I anno II Semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "94312330"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "46520658",
-      "name": "Gruppo opzionale B, I anno II semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "48952648"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "49627655",
-      "name": "Gruppo opzionale C, I anno II semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "44399015"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "28947956",
-      "name": "Gruppo opzionale D, I anno II semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "68142346"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "74369155",
-      "name": "Gruppo opzionale E, I anno II semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "49464289"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "61009202",
-      "name": "Gruppo opzionale F, I anno I semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "91724030"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "55370875",
-      "name": "Gruppo opzionale F, I anno II semestre",
-      "programId": "31569366",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "91724030"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "19197906",
-      "name": "1001164 - INSEGNAMENTO A SCELTA",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1001164",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ]
-    },
-    {
-      "id": "94463053",
-      "name": "1002572 - PROVA FINALE",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "1002572",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ]
+      "cfu": 6
     },
     {
       "id": "28720095",
@@ -5177,7 +4575,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "24176059",
@@ -5207,7 +4606,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "43261544",
@@ -5229,7 +4629,8 @@
         }
       ],
       "sourceCode": "1007499",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "22491935",
@@ -5259,7 +4660,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "63588064",
@@ -5285,7 +4687,8 @@
       "sharedWithCurriculaIds": [
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "33487252",
@@ -5311,7 +4714,8 @@
       "sharedWithCurriculaIds": [
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "95994549",
@@ -5342,7 +4746,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "20388248",
@@ -5373,7 +4778,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "57387154",
@@ -5401,7 +4807,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "52560099",
@@ -5431,7 +4838,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "47478038",
@@ -5459,7 +4867,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "61976088",
@@ -5489,7 +4898,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "77401198",
@@ -5517,7 +4927,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "56082548",
@@ -5545,7 +4956,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "16205369",
@@ -5567,7 +4979,8 @@
         }
       ],
       "sourceCode": "1016277",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "24513110",
@@ -5597,7 +5010,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "17663504",
@@ -5629,7 +5043,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "98903638",
@@ -5659,7 +5074,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "58165470",
@@ -5681,7 +5097,8 @@
         }
       ],
       "sourceCode": "1016356",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "19004788",
@@ -5703,7 +5120,8 @@
         }
       ],
       "sourceCode": "1016370",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "31485070",
@@ -5733,7 +5151,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "29035259",
@@ -5755,7 +5174,8 @@
         }
       ],
       "sourceCode": "50220",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "56397385",
@@ -5785,7 +5205,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "56355202",
@@ -5807,7 +5228,8 @@
         }
       ],
       "sourceCode": "9793960",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "61944619",
@@ -5829,7 +5251,8 @@
         }
       ],
       "sourceCode": "9793961",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "56734390",
@@ -5849,7 +5272,8 @@
         }
       ],
       "sourceCode": "9793972",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "25661899",
@@ -5869,7 +5293,8 @@
         }
       ],
       "sourceCode": "9793973",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "73229581",
@@ -5889,7 +5314,8 @@
         }
       ],
       "sourceCode": "9793974",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "59097181",
@@ -5917,7 +5343,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "95882380",
@@ -5945,7 +5372,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "17126412",
@@ -5973,7 +5401,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "56899252",
@@ -5999,7 +5428,8 @@
       "sharedWithCurriculaIds": [
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "79258799",
@@ -6027,7 +5457,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "68177697",
@@ -6047,7 +5478,8 @@
         }
       ],
       "sourceCode": "9794104",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "91805508",
@@ -6067,7 +5499,8 @@
         }
       ],
       "sourceCode": "9794156",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "32732140",
@@ -6095,7 +5528,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "14379550",
@@ -6125,7 +5559,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "51962605",
@@ -6147,7 +5582,8 @@
         }
       ],
       "sourceCode": "9795933",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "32658323",
@@ -6176,7 +5612,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "41205259",
@@ -6204,35 +5641,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
-    },
-    {
-      "id": "36552239",
-      "name": "9796508 - PROVA FINALE",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "9796508",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ]
+      "cfu": 6
     },
     {
       "id": "17571313",
@@ -6262,7 +5672,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "58226424",
@@ -6291,7 +5702,8 @@
       "sharedWithCurriculaIds": [
         "93975478",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "52994498",
@@ -6322,7 +5734,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "83736659",
@@ -6344,7 +5757,8 @@
         }
       ],
       "sourceCode": "9799375",
-      "year": 1
+      "year": 1,
+      "cfu": 6
     },
     {
       "id": "28854621",
@@ -6374,267 +5788,8 @@
         "93975478",
         "26065258",
         "74880747"
-      ]
-    },
-    {
-      "id": "12258527",
-      "name": "GRUPPO OPZIONALE AFFINE  teorico e Applicativo I anno",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "74880747",
-        "93975478"
       ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "74880747"
-      ]
-    },
-    {
-      "id": "12367224",
-      "name": "GRUPPO OPZIONALE AFFINI CURRICULUM DIDATTICO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "96972272",
-      "name": "GRUPPO OPZIONALE APPLICATIVO I SEM. e II SEM.",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "74880747",
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "26065258",
-        "74880747"
-      ]
-    },
-    {
-      "id": "75571942",
-      "name": "GRUPPO OPZIONALE DELLE ISTITUZIONI APPLICATIVE",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "93975478"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "59021620",
-      "name": "GRUPPO OPZIONALE DELLE ISTITUZIONI DIDATTICHE",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "56750081",
-      "name": "GRUPPO OPZIONALE TEORICO II anno I sem. curriculum TEORICO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "74880747"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "10895904",
-      "name": "II° GRUPPO OPZIONALE APPLICATIVO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "87287970",
-      "name": "II° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "93975478"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "60851539",
-      "name": "II° GRUPPO OPZIONALE DIDATTICO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2
-    },
-    {
-      "id": "53742109",
-      "name": "I° GRUPPO OPZIONALE APPLICATIVO CURRICULUM APPLICATIVO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "93975478"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "58485379",
-      "name": "I° GRUPPO OPZIONALE TEORICO",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 1,
-      "curriculaIds": [
-        "93975478"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 1
-    },
-    {
-      "id": "89585034",
-      "name": "PROVA FINALE",
-      "programId": "39325618",
-      "roomType": "lecture",
-      "semester": 2,
-      "curriculaIds": [
-        "74880747",
-        "93975478",
-        "26065258"
-      ],
-      "teacherIds": [],
-      "expectedStudents": 30,
-      "patternPref": "",
-      "weeklyEvents": [
-        {
-          "duration": 2
-        }
-      ],
-      "sourceCode": "",
-      "year": 2,
-      "isCommonBetweenCurricula": true,
-      "sharedWithCurriculaIds": [
-        "93975478",
-        "26065258",
-        "74880747"
-      ]
+      "cfu": 6
     },
     {
       "id": "40468096",
@@ -6662,7 +5817,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "41961150",
@@ -6684,7 +5840,8 @@
         }
       ],
       "sourceCode": "9793880",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "56042487",
@@ -6712,7 +5869,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "13603351",
@@ -6740,7 +5898,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "50623637",
@@ -6766,7 +5925,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "30807478",
@@ -6794,7 +5954,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "86613515",
@@ -6823,7 +5984,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "73313740",
@@ -6851,7 +6013,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "23653914",
@@ -6880,7 +6043,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "79026455",
@@ -6906,7 +6070,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "57060166",
@@ -6928,7 +6093,8 @@
         }
       ],
       "sourceCode": "9796556",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "71934721",
@@ -6950,7 +6116,8 @@
         }
       ],
       "sourceCode": "9796557",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "17725639",
@@ -6976,7 +6143,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "47976083",
@@ -7002,7 +6170,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "65329474",
@@ -7030,7 +6199,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "57464942",
@@ -7058,7 +6228,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "75665476",
@@ -7086,7 +6257,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "43531606",
@@ -7112,7 +6284,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "38371058",
@@ -7140,7 +6313,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "48852536",
@@ -7162,7 +6336,8 @@
         }
       ],
       "sourceCode": "9798827",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "70892527",
@@ -7190,7 +6365,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "26876725",
@@ -7216,7 +6392,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "26626557",
@@ -7242,7 +6419,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "32235143",
@@ -7268,7 +6446,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "27621315",
@@ -7294,7 +6473,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "64837844",
@@ -7320,7 +6500,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "98807281",
@@ -7346,7 +6527,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "39038777",
@@ -7372,7 +6554,8 @@
       "sharedWithCurriculaIds": [
         "97526580",
         "77253503"
-      ]
+      ],
+      "cfu": 6
     },
     {
       "id": "46735618",
@@ -7392,7 +6575,8 @@
         }
       ],
       "sourceCode": "",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "37522155",
@@ -7412,7 +6596,8 @@
         }
       ],
       "sourceCode": "",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "32306921",
@@ -7432,7 +6617,8 @@
         }
       ],
       "sourceCode": "",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     },
     {
       "id": "92481040",
@@ -7452,7 +6638,8 @@
         }
       ],
       "sourceCode": "",
-      "year": 2
+      "year": 2,
+      "cfu": 6
     }
   ],
   "unavailability": [

@@ -287,7 +287,7 @@ def _collect_events(data):
             return 1
 
     for course in data.get('courses', []):
-        for evt in course.get('weeklyEvents', []):
+        for order_idx, evt in enumerate(course.get('weeklyEvents', [])):
             teacher_prefs = {}
             for tid in course.get('teacherIds', []):
                 t = teachers_by_id.get(tid, {})
@@ -297,15 +297,19 @@ def _collect_events(data):
             events.append({
                 'idx': len(events),
                 'eventId': evt.get('id', f"E-{len(events)}"),
+                'eventOrder': order_idx,
                 'courseId': course['id'],
                 'courseName': course.get('name', ''),
                 'duration': _event_duration_hours(evt),
                 'teacherIds': course.get('teacherIds', []),
                 'curriculaIds': course.get('curriculaIds', []),
                 'programId': course.get('programId', ''),
+                'studyYear': course.get('year', course.get('studyYear', course.get('anno'))),
+                'mutuationGroup': str(course.get('mutuationGroup') or course.get('sharedWithCourseId') or '').strip(),
                 'expectedStudents': course.get('expectedStudents', 0),
                 'roomType': course.get('roomType', 'lecture'),
                 'teacherPrefs': teacher_prefs,
+                'preferredSlotHours': int(course.get('preferredSlotHours', 0) or 0),
             })
     return events
 
@@ -421,6 +425,7 @@ def _validate_hard_constraints(assignments, data):
         'lunchBreak': 0,
         'courseDifferentDays': 0,
         'timeWindow': 0,
+        'mutuationSync': 0,
     }
 
     for a in placed:
@@ -483,6 +488,38 @@ def _validate_hard_constraints(assignments, data):
             if len(by_course_days.get(cid, set())) != n_events:
                 violations['courseDifferentDays'] += 1
 
+    mut_group_by_course = {}
+    for course in data.get('courses', []):
+        cid = course.get('id', '')
+        mg = str(course.get('mutuationGroup') or course.get('sharedWithCourseId') or '').strip()
+        if cid and mg:
+            mut_group_by_course[cid] = mg
+
+    slots_by_course = defaultdict(set)
+    for a in placed:
+        cid = a.get('courseId', '')
+        if not cid:
+            continue
+        slots_by_course[cid].add((a.get('day', ''), int(a.get('startHour', -1)), int(a.get('endHour', -1))))
+
+    groups = defaultdict(list)
+    for cid, mg in mut_group_by_course.items():
+        groups[mg].append(cid)
+
+    for _, members in groups.items():
+        canonical = None
+        for cid in members:
+            slots = slots_by_course.get(cid, set())
+            if slots:
+                canonical = slots
+                break
+        if not canonical:
+            continue
+        for cid in members:
+            slots = slots_by_course.get(cid, set())
+            if slots and slots != canonical:
+                violations['mutuationSync'] += 1
+
     checks = [
         {
             'id': 'teacherOverlap',
@@ -543,6 +580,12 @@ def _validate_hard_constraints(assignments, data):
             'label': 'Lezioni nella finestra oraria',
             'respected': violations['timeWindow'] == 0,
             'violations': violations['timeWindow'],
+        },
+        {
+            'id': 'mutuationSync',
+            'label': 'Mutuazioni sincronizzate (vincolo forte)',
+            'respected': violations['mutuationSync'] == 0,
+            'violations': violations['mutuationSync'],
         },
     ]
 
@@ -685,6 +728,24 @@ def _solve_cpsat(data, time_limit_s=30):
         if len(evts) > 1:
             model.AddAllDifferent([day_v[i] for i in evts])
 
+    # 4b. Corsi mutuati: stesso gruppo, stessa collocazione per evento omologo.
+    mut_by_group_order = defaultdict(list)
+    for i in scheduled:
+        mg = events[i].get('mutuationGroup', '')
+        if not mg:
+            continue
+        key = (mg, int(events[i].get('eventOrder', 0)))
+        mut_by_group_order[key].append(i)
+
+    for _, evts in mut_by_group_order.items():
+        if len(evts) < 2:
+            continue
+        base = evts[0]
+        for other in evts[1:]:
+            model.Add(day_v[other] == day_v[base])
+            model.Add(start_v[other] == start_v[base])
+            model.Add(room_v[other] == room_v[base])
+
     # 5. Indisponibilità docenti
     for unav in data.get('unavailability', []):
         tid = unav.get('teacherId', '')
@@ -746,6 +807,7 @@ def _solve_cpsat(data, time_limit_s=30):
     consec_w = weights.get('teacherConsecutiveOver3PerHour', 30)
     daily_w = weights.get('teacherDailyOver5PerHour', 20)
     pattern_w = weights.get('patternViolation', 1000)
+    room_change_w = weights.get('curriculumRoomChangePenalty', 6)
     preferred_patterns = data.get('softPolicy', {}).get('preferredPatterns', {})
 
     obj_parts = []
@@ -838,6 +900,28 @@ def _solve_cpsat(data, time_limit_s=30):
                 model.Add(excess == 0).OnlyEnforceIf(sd.Not())
                 model.Add(excess == 0).OnlyEnforceIf([sd, over3.Not()])
                 obj_parts.append(excess * consec_w)
+
+    # d2) Penalità cambio aula per lo stesso curriculum nello stesso giorno
+    for c, evts in by_curriculum.items():
+        if len(evts) < 2 or room_change_w <= 0:
+            continue
+        for a in range(len(evts)):
+            for b in range(a + 1, len(evts)):
+                i, j = evts[a], evts[b]
+
+                sd = model.NewBoolVar(f'crsd_{c}_{i}_{j}')
+                model.Add(day_v[i] == day_v[j]).OnlyEnforceIf(sd)
+                model.Add(day_v[i] != day_v[j]).OnlyEnforceIf(sd.Not())
+
+                same_room = model.NewBoolVar(f'crsr_{c}_{i}_{j}')
+                model.Add(room_v[i] == room_v[j]).OnlyEnforceIf(same_room)
+                model.Add(room_v[i] != room_v[j]).OnlyEnforceIf(same_room.Not())
+
+                room_change = model.NewBoolVar(f'crchg_{c}_{i}_{j}')
+                model.Add(room_change == 0).OnlyEnforceIf(sd.Not())
+                model.Add(room_change == 0).OnlyEnforceIf(same_room)
+                model.Add(room_change == 1).OnlyEnforceIf([sd, same_room.Not()])
+                obj_parts.append(room_change * room_change_w)
 
     # e) Penalità ore giornaliere docente oltre 5
     for t, evts in by_teacher.items():
@@ -940,6 +1024,8 @@ def _solve_cpsat(data, time_limit_s=30):
                 'eventId': e['eventId'],
                 'courseId': e['courseId'],
                 'courseName': e['courseName'],
+                'studyYear': e.get('studyYear'),
+                'mutuationGroup': e.get('mutuationGroup', ''),
                 'day': DAYS[di],
                 'dayIt': DAY_NAMES_IT.get(DAYS[di], DAYS[di]),
                 'startHour': si,
@@ -1013,6 +1099,7 @@ def _solve_greedy(data):
     late_w = weights.get('lateStartPenalty', 3)
     daily_w = weights.get('teacherDailyOver5PerHour', 20)
     pattern_w = weights.get('patternViolation', 1000)
+    room_change_w = weights.get('curriculumRoomChangePenalty', 6)
     preferred_patterns = data.get('softPolicy', {}).get('preferredPatterns', {})
     allowed_patterns_by_course = {
         cid: _course_allowed_patterns(course, preferred_patterns)
@@ -1032,6 +1119,7 @@ def _solve_greedy(data):
     curriculum_slots = defaultdict(set)  # cid -> set di (day_idx, hour)
     room_slots = defaultdict(set)        # room_idx -> set di (day_idx, hour)
     course_days = defaultdict(set)       # courseId -> set di day_idx
+    assigned_by_mut_order = {}           # (mutGroup, eventOrder) -> (day,start,room)
 
     # Indisponibilità pre-calcolate
     unav_lookup = defaultdict(set)  # tid -> set di (day_idx, hour)
@@ -1129,6 +1217,21 @@ def _solve_greedy(data):
             if projected > 5:
                 sc += (projected - 5) * daily_w
 
+        # Penalità cambio aula per curriculum nello stesso giorno.
+        if room_change_w > 0:
+            for cid in event['curriculaIds']:
+                rooms_same_day = set()
+                for other in assignments:
+                    if other.get('day') == DAYS[day_idx] and cid in (other.get('curriculaIds') or []):
+                        rid = other.get('roomId', '')
+                        if rid and rid != 'N/A':
+                            rooms_same_day.add(rid)
+                if rooms_same_day:
+                    # Stima minima: qualsiasi cambio rispetto alla prima aula vista.
+                    pref_room = next(iter(rooms_same_day))
+                    # La room precisa viene valutata più avanti quando disponibile.
+                    sc += room_change_w if pref_room else 0
+
         # Penalità violazione pattern preferito quando la distribuzione è completa
         allowed = allowed_patterns_by_course.get(event['courseId'], [])
         expected_events = len(courses_by_id.get(event['courseId'], {}).get('weeklyEvents', []))
@@ -1162,6 +1265,37 @@ def _solve_greedy(data):
 
     assignments = []
     for event in sorted_events:
+        mg = event.get('mutuationGroup', '')
+        mo = int(event.get('eventOrder', 0) or 0)
+        mut_key = (mg, mo) if mg else None
+
+        if mut_key and mut_key in assigned_by_mut_order:
+            d, h, r = assigned_by_mut_order[mut_key]
+            if is_valid(event, d, h, r):
+                assign(event, d, h, r)
+                teacher_names = [teachers_by_id.get(tid, {}).get('name', tid)
+                                 for tid in event['teacherIds']]
+                assignments.append({
+                    'eventId': event['eventId'],
+                    'courseId': event['courseId'],
+                    'courseName': event['courseName'],
+                    'studyYear': event.get('studyYear'),
+                    'mutuationGroup': event.get('mutuationGroup', ''),
+                    'day': DAYS[d],
+                    'dayIt': DAY_NAMES_IT.get(DAYS[d], DAYS[d]),
+                    'startHour': h,
+                    'endHour': h + event['duration'],
+                    'duration': event['duration'],
+                    'roomId': rooms[r]['id'],
+                    'roomName': rooms[r].get('name', ''),
+                    'teacherIds': event['teacherIds'],
+                    'teacherNames': teacher_names,
+                    'curriculaIds': event['curriculaIds'],
+                    'programId': event['programId'],
+                    'color': _course_color(event['courseId']),
+                })
+                continue
+
         vs = _valid_starts(event['duration'], ds, de, ls, le)
 
         cr = [j for j, r in enumerate(rooms)
@@ -1188,12 +1322,16 @@ def _solve_greedy(data):
         if best:
             d, h, r = best
             assign(event, d, h, r)
+            if mut_key and mut_key not in assigned_by_mut_order:
+                assigned_by_mut_order[mut_key] = (d, h, r)
             teacher_names = [teachers_by_id.get(tid, {}).get('name', tid)
                              for tid in event['teacherIds']]
             assignments.append({
                 'eventId': event['eventId'],
                 'courseId': event['courseId'],
                 'courseName': event['courseName'],
+                'studyYear': event.get('studyYear'),
+                'mutuationGroup': event.get('mutuationGroup', ''),
                 'day': DAYS[d],
                 'dayIt': DAY_NAMES_IT.get(DAYS[d], DAYS[d]),
                 'startHour': h,
@@ -1212,6 +1350,8 @@ def _solve_greedy(data):
                 'eventId': event['eventId'],
                 'courseId': event['courseId'],
                 'courseName': event['courseName'],
+                'studyYear': event.get('studyYear'),
+                'mutuationGroup': event.get('mutuationGroup', ''),
                 'day': 'N/A',
                 'dayIt': 'N/A',
                 'startHour': -1,

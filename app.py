@@ -19,6 +19,7 @@ import os
 import re
 import time
 import unicodedata
+from collections import defaultdict
 from pathlib import Path
 from functools import wraps
 from datetime import datetime, timezone
@@ -202,7 +203,8 @@ DEFAULT_DB = {
             "teacherDailyOver5PerHour": 20,
             "lateStartPenalty": 3,
             "earlyStartPenalty": 2,
-            "lunchOverlapPenalty": 200
+            "lunchOverlapPenalty": 200,
+            "curriculumRoomChangePenalty": 6
         },
         "preferredPatterns": {
             "twoEvents": ["Mon-Wed", "Wed-Fri", "Tue-Thu"],
@@ -337,6 +339,8 @@ def _normalize_schedule_payload(payload, db, base_schedule=None, source='manual'
             'eventId': event_id,
             'courseId': course_id,
             'courseName': course_name,
+            'studyYear': _course_study_year(course),
+            'mutuationGroup': _course_mutuation_group(course),
             'day': day,
             'dayIt': scheduler.DAY_NAMES_IT.get(day, 'N/A'),
             'startHour': start_hour,
@@ -389,6 +393,12 @@ def _course_study_year(course):
                 except ValueError:
                     continue
     return None
+
+
+def _course_mutuation_group(course):
+    """Restituisce la chiave normalizzata del gruppo di mutuazione del corso."""
+    raw = course.get('mutuationGroup') or course.get('sharedWithCourseId') or ''
+    return str(raw).strip()
 
 
 def _build_room_reservations_from_assignments(assignments):
@@ -462,6 +472,14 @@ def _ensure_db_shape(data):
         data['meta'] = json.loads(json.dumps(DEFAULT_DB['meta']))
     if not isinstance(data.get('softPolicy'), dict):
         data['softPolicy'] = json.loads(json.dumps(DEFAULT_DB['softPolicy']))
+    if not isinstance(data.get('softPolicy', {}).get('weights'), dict):
+        data['softPolicy']['weights'] = {}
+    for key, default_value in DEFAULT_DB.get('softPolicy', {}).get('weights', {}).items():
+        data['softPolicy']['weights'].setdefault(key, default_value)
+    if not isinstance(data.get('softPolicy', {}).get('preferredPatterns'), dict):
+        data['softPolicy']['preferredPatterns'] = json.loads(
+            json.dumps(DEFAULT_DB['softPolicy']['preferredPatterns'])
+        )
     return data
 
 
@@ -599,6 +617,100 @@ def _fetch_soup(url):
     return BeautifulSoup(resp.text, 'html.parser')
 
 
+def _normalize_course_name_for_match(value):
+    text = str(value or '').strip().lower()
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(ch for ch in text if unicodedata.category(ch) != 'Mn')
+    text = re.sub(r'^\s*\d+\s*-\s*', '', text)
+    text = re.sub(r'[^a-z0-9 ]+', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
+def _extract_mutuation_source(text):
+    raw = str(text or '').strip()
+    if not raw:
+        return ''
+
+    patterns = [
+        r'mutuat[oa]\s+da\s+([^;|\n\r]+)',
+        r'mutuat[oa]\s+con\s+([^;|\n\r]+)',
+        r'in\s+comune\s+con\s+([^;|\n\r]+)',
+    ]
+    lowered = raw.lower()
+    for pat in patterns:
+        m = re.search(pat, lowered, flags=re.IGNORECASE)
+        if not m:
+            continue
+        start, end = m.span(1)
+        candidate = raw[start:end].strip(' .,:;')
+        if candidate:
+            return candidate
+    return ''
+
+
+def _scrape_mutuations_from_program(url):
+    soup = _fetch_soup(url)
+    out = []
+
+    for row in soup.find_all('tr'):
+        cols = row.find_all('td')
+        if len(cols) < 2:
+            continue
+        course_name = cols[0].get_text(' ', strip=True)
+        details = ' | '.join(td.get_text(' ', strip=True) for td in cols[1:])
+        if 'mutuat' not in details.lower() and 'comune con' not in details.lower():
+            continue
+        source_name = _extract_mutuation_source(details)
+        if not course_name or not source_name:
+            continue
+        out.append({
+            'courseName': course_name,
+            'sourceCourseName': source_name,
+            'sourceUrl': url,
+        })
+
+    return {'mutuations': out}
+
+
+def _find_best_course_id_by_name(name, courses):
+    needle = _normalize_course_name_for_match(name)
+    if not needle:
+        return ''
+
+    best_id = ''
+    best_score = -1
+
+    for course in courses:
+        cid = str(course.get('id', '')).strip()
+        cname = _normalize_course_name_for_match(course.get('name', ''))
+        scode = _normalize_course_name_for_match(course.get('sourceCode', ''))
+        if not cid or not cname:
+            continue
+
+        score = 0
+        if needle == cname:
+            score = 100
+        elif scode and needle == scode:
+            score = 95
+        elif needle in cname or cname in needle:
+            score = 70
+        else:
+            nt = set(needle.split())
+            ct = set(cname.split())
+            if nt and ct:
+                inter = len(nt & ct)
+                union = len(nt | ct)
+                if union > 0:
+                    score = int(60 * (inter / union))
+
+        if score > best_score:
+            best_score = score
+            best_id = cid
+
+    return best_id if best_score >= 55 else ''
+
+
 def _scrape_docenti(url='https://web.dmi.unict.it/docenti'):
     soup = _fetch_soup(url)
     out = []
@@ -687,8 +799,26 @@ def _scrape_corsi_laurea(url='https://web.dmi.unict.it/it/content/didattica'):
 
 
 def _scrape_insegnamenti(url):
+    def _extract_cfu(cols):
+        # Cerca prima pattern espliciti tipo "6 CFU" nelle colonne dopo il nome.
+        trailing = ' | '.join(td.get_text(' ', strip=True) for td in cols[1:])
+        m = re.search(r'\b(\d{1,2})\s*cfu\b', trailing, flags=re.IGNORECASE)
+        if m:
+            return int(m.group(1))
+
+        # Fallback: colonna che contiene solo un numero plausibile di CFU.
+        for td in cols[1:]:
+            txt = td.get_text(' ', strip=True)
+            m_num = re.fullmatch(r'(\d{1,2})', txt)
+            if not m_num:
+                continue
+            val = int(m_num.group(1))
+            if 1 <= val <= 24:
+                return val
+        return 0
+
     soup = _fetch_soup(url)
-    found = set()
+    found = {}
     for row in soup.find_all('tr')[1:]:
         cols = row.find_all('td')
         if not cols:
@@ -699,9 +829,27 @@ def _scrape_insegnamenti(url):
             continue
         code = match.group(1).strip()
         name = match.group(2).strip()
+        cfu = _extract_cfu(cols)
         if code and name:
-            found.add((code, name))
-    return {'insegnamenti': [{'codice': c, 'nome_insegnamento': n} for c, n in sorted(found)]}
+            prev = found.get(code)
+            if not prev:
+                found[code] = {'nome_insegnamento': name, 'cfu': cfu}
+            else:
+                # Mantieni il nome più lungo e il CFU non nullo (se trovato successivamente).
+                if len(name) > len(prev.get('nome_insegnamento', '')):
+                    prev['nome_insegnamento'] = name
+                if cfu > 0:
+                    prev['cfu'] = cfu
+
+    out = []
+    for code in sorted(found.keys()):
+        info = found[code]
+        out.append({
+            'codice': code,
+            'nome_insegnamento': info.get('nome_insegnamento', ''),
+            'cfu': int(info.get('cfu', 0) or 0),
+        })
+    return {'insegnamenti': out}
 
 
 def _scrape_curriculum_l31(url='https://web.dmi.unict.it/it/corsi/l-31/piani-di-studio'):
@@ -904,6 +1052,7 @@ def _merge_external_payload_into_db(data, payload, source_name=''):
         for ins in payload['insegnamenti']:
             code = str(ins.get('codice', '')).strip()
             name = str(ins.get('nome_insegnamento', '')).strip()
+            cfu = int(ins.get('cfu', 0) or 0)
             if not code and not name:
                 stats['skipped'] += 1
                 _note('scartato insegnamento', '(codice e nome mancanti)')
@@ -936,6 +1085,9 @@ def _merge_external_payload_into_db(data, payload, source_name=''):
                 if not isinstance(existing.get('weeklyEvents'), list) or not existing.get('weeklyEvents'):
                     existing['weeklyEvents'] = [{'durationHours': 2}]
                     changed = True
+                if cfu > 0 and int(existing.get('cfu', 0) or 0) != cfu:
+                    existing['cfu'] = cfu
+                    changed = True
                 if changed:
                     stats['updated'] += 1
                 _note('duplicato insegnamento', code or name)
@@ -958,11 +1110,68 @@ def _merge_external_payload_into_db(data, payload, source_name=''):
                     'curriculaIds': [],
                     'teacherIds': [],
                     'expectedStudents': 0,
+                    'cfu': cfu,
+                    'weeklyHours': 2,
+                    'preferredSlotHours': 2,
+                    'mutuationGroup': '',
                     'roomType': 'lecture',
                     'weeklyEvents': [{'durationHours': 2}],
                 })
                 stats['added'] += 1
             stats['courses'] += 1
+
+    if isinstance(payload.get('mutuations'), list):
+        courses = data.get('courses', [])
+        parent = {}
+
+        def _find(x):
+            parent.setdefault(x, x)
+            if parent[x] != x:
+                parent[x] = _find(parent[x])
+            return parent[x]
+
+        def _union(a, b):
+            ra, rb = _find(a), _find(b)
+            if ra != rb:
+                parent[rb] = ra
+
+        linked = 0
+        for row in payload.get('mutuations', []):
+            target_name = row.get('courseName', '')
+            source_name_mut = row.get('sourceCourseName', '')
+            target_id = _find_best_course_id_by_name(target_name, courses)
+            source_id = _find_best_course_id_by_name(source_name_mut, courses)
+
+            if not target_id or not source_id:
+                stats['skipped'] += 1
+                _note('mutuazione non agganciata', f"{target_name} -> {source_name_mut}")
+                continue
+
+            _union(target_id, source_id)
+            linked += 1
+
+        groups = defaultdict(list)
+        for c in courses:
+            cid = c.get('id', '')
+            if not cid or cid not in parent:
+                continue
+            groups[_find(cid)].append(c)
+
+        for root, members in groups.items():
+            if len(members) < 2:
+                continue
+            canonical = _normalize_for_id(members[0].get('name', root)) or _normalize_for_id(root) or 'mut'
+            gid = f'MUT-{canonical}'.upper()[:36]
+            for c in members:
+                if c.get('mutuationGroup') != gid:
+                    c['mutuationGroup'] = gid
+                    stats['updated'] += 1
+            stats['courses'] += len(members)
+
+        if linked == 0:
+            _note('mutuazioni', 'nessun legame applicato ai corsi locali')
+        else:
+            _note('mutuazioni', f'legami applicati: {linked}')
 
     return data, stats
 
@@ -984,6 +1193,13 @@ def _scrape_payloads_for_section(section):
             ('insegnamenti_lm18', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/lm-18/programmi')),
             ('insegnamenti_l35', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/l-35/programmi')),
             ('insegnamenti_lm40', _scrape_insegnamenti('https://web.dmi.unict.it/corsi/lm-40/programmi')),
+        ]
+    if section == 'mutuations':
+        return [
+            ('mutuazioni_l31', _scrape_mutuations_from_program('https://web.dmi.unict.it/corsi/l-31/programmi')),
+            ('mutuazioni_lm18', _scrape_mutuations_from_program('https://web.dmi.unict.it/corsi/lm-18/programmi')),
+            ('mutuazioni_l35', _scrape_mutuations_from_program('https://web.dmi.unict.it/corsi/l-35/programmi')),
+            ('mutuazioni_lm40', _scrape_mutuations_from_program('https://web.dmi.unict.it/corsi/lm-40/programmi')),
         ]
     if section == 'curricula':
         return [
@@ -1381,6 +1597,18 @@ def manual_update_schedule():
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
 
+    hard_report = normalized.get('hardConstraintReport', {})
+    violated = [
+        c for c in hard_report.get('checks', [])
+        if int(c.get('violations', 0) or 0) > 0
+    ]
+    if violated:
+        return jsonify({
+            'error': 'Modifica manuale rifiutata: violazione vincoli hard.',
+            'violatedConstraints': violated,
+            'hardConstraintReport': hard_report,
+        }), 400
+
     save_schedule(normalized)
     return jsonify({'ok': True, 'message': 'Orario aggiornato manualmente.', 'schedule': normalized})
 
@@ -1430,6 +1658,8 @@ def get_public_timetable():
                 program_id = row.get('programId') or course.get('programId', '')
                 row['programId'] = program_id
                 row['programName'] = row.get('programName') or programs_by_id.get(program_id, {}).get('name', program_id)
+                row['studyYear'] = _course_study_year(course)
+                row['mutuationGroup'] = _course_mutuation_group(course)
                 rows.append(row)
         rows.sort(key=lambda x: (x.get('day', ''), x.get('startHour', 0), x.get('courseName', '')))
         curriculum_program_id = curriculum.get('programId', '')
@@ -1446,6 +1676,50 @@ def get_public_timetable():
             'programName': curriculum_program_name,
             'rows': rows,
         })
+
+    assignments_by_course = {}
+    for a in schedule.get('assignments', []):
+        cid = a.get('courseId', '')
+        if cid and cid not in assignments_by_course:
+            assignments_by_course[cid] = a
+
+    mut_group_members = {}
+    for course in db.get('courses', []):
+        mg = _course_mutuation_group(course)
+        if not mg:
+            continue
+        mut_group_members.setdefault(mg, []).append(course)
+
+    mutuation_view = []
+    for mg, members in mut_group_members.items():
+        entry = {
+            'groupId': mg,
+            'label': mg,
+            'courses': [],
+            'assignment': None,
+        }
+        for c in members:
+            course_program_id = c.get('programId', '')
+            entry['courses'].append({
+                'courseId': c.get('id', ''),
+                'courseName': c.get('name', ''),
+                'programId': course_program_id,
+                'programName': programs_by_id.get(course_program_id, {}).get('name', course_program_id),
+                'studyYear': _course_study_year(c),
+                'semester': c.get('semester'),
+            })
+            if not entry['assignment']:
+                a = assignments_by_course.get(c.get('id', ''))
+                if a and a.get('day') != 'N/A':
+                    entry['assignment'] = {
+                        'day': a.get('day'),
+                        'dayIt': a.get('dayIt') or scheduler.DAY_NAMES_IT.get(a.get('day', ''), a.get('day', '')),
+                        'startHour': a.get('startHour'),
+                        'endHour': a.get('endHour'),
+                        'roomName': a.get('roomName') or a.get('roomId', ''),
+                    }
+        mutuation_view.append(entry)
+    mutuation_view.sort(key=lambda x: x.get('groupId', ''))
 
     return jsonify({
         'schedule': schedule,
@@ -1468,6 +1742,24 @@ def get_public_timetable():
             cid: course.get('curriculaIds', [])
             for cid, course in courses_by_id.items()
         },
+        'coursesById': {
+            cid: {
+                'id': cid,
+                'name': c.get('name', ''),
+                'programId': c.get('programId', ''),
+                'programName': programs_by_id.get(c.get('programId', ''), {}).get('name', c.get('programId', '')),
+                'studyYear': _course_study_year(c),
+                'semester': c.get('semester'),
+                'teacherIds': c.get('teacherIds', []),
+                'roomType': c.get('roomType', ''),
+                'cfu': c.get('cfu', 0),
+                'weeklyHours': c.get('weeklyHours', 0),
+                'preferredSlotHours': c.get('preferredSlotHours', 0),
+                'mutuationGroup': _course_mutuation_group(c),
+            }
+            for cid, c in courses_by_id.items()
+        },
+        'mutuationView': mutuation_view,
         'curriculaById': {
             cid: {
                 'name': c.get('name', cid),
@@ -1500,7 +1792,12 @@ def export_flat():
             'program': programs_by_id.get(c.get('programId', ''), {'id': c.get('programId', '')}),
             'curricula': [curricula_by_id.get(cid, {'id': cid}) for cid in c.get('curriculaIds', [])],
             'teachers': [teachers_by_id.get(tid, {'id': tid}) for tid in c.get('teacherIds', [])],
+            'year': c.get('year', c.get('studyYear', c.get('anno'))),
             'expectedStudents': c.get('expectedStudents', 0),
+            'cfu': c.get('cfu', 0),
+            'weeklyHours': c.get('weeklyHours', 0),
+            'preferredSlotHours': c.get('preferredSlotHours', 0),
+            'mutuationGroup': c.get('mutuationGroup', c.get('sharedWithCourseId', '')),
             'roomType': c.get('roomType', 'lecture'),
             'weeklyEvents': c.get('weeklyEvents', []),
             'patternPref': c.get('patternPref', ''),
