@@ -411,7 +411,7 @@ async function saveDbToServer() {
   render();
 }
 
-let selectedSemester = null; // null = auto (usa ultimo), 1, 2
+let selectedSemester = null; // null = tutti i semestri, 1, 2
 let selectedAlgorithm = 'auto'; // auto, cp-sat, greedy
 let selectedProgramId = '';
 let selectedStudyYear = '';
@@ -429,15 +429,13 @@ function normalizeAlgorithmKey(v){
 function updateSemesterButtons(){
   const b1=document.getElementById('btnSem1');
   const b2=document.getElementById('btnSem2');
+  const ba=document.getElementById('btnSemAll');
   if(b1){ b1.classList.toggle('active', selectedSemester===1); }
   if(b2){ b2.classList.toggle('active', selectedSemester===2); }
+  if(ba){ ba.classList.toggle('active', selectedSemester===null); }
 }
 
 async function generateSchedule() {
-  if(!selectedSemester){
-    alert('Seleziona il semestre (1° o 2°) prima di generare l\'orario.');
-    return;
-  }
   const algLabels = {
     'auto': 'Auto',
     'cp-sat': 'Programmazione a vincoli (CP-SAT)',
@@ -448,7 +446,8 @@ async function generateSchedule() {
   };
   const chosenAlg = normalizeAlgorithmKey(selectedAlgorithm);
   const chosenLabel = algLabels[chosenAlg] || 'Auto';
-  showLoading(true, `Generazione orario ${selectedSemester}° semestre in corso (${chosenLabel})…`);
+  const semLabel = selectedSemester ? `${selectedSemester}° semestre` : 'tutti i semestri';
+  showLoading(true, `Generazione orario (${semLabel}) in corso (${chosenLabel})…`);
   try {
     lastSchedule = await apiPost('/api/schedule', {
       timeLimitSeconds: 30,
@@ -456,7 +455,7 @@ async function generateSchedule() {
       algorithm: chosenAlg,
     });
     scheduleDirty = false;
-    setStatus(`orario ${selectedSemester}° semestre generato ✓ (${chosenLabel})`);
+    setStatus(`orario (${semLabel}) generato ✓ (${chosenLabel})`);
   } catch(e) {
     lastSchedule = { assignments:[], status:'error', message: 'Errore di comunicazione con il server.' };
     console.error(e);
@@ -1561,7 +1560,8 @@ function renderTimetableSection(){
   let filterHtml=`
     <div class="tt-toolbar">
       <div class="semester-toggle" style="display:flex;gap:0;margin-right:12px">
-        <button id="btnSem1" class="${curSem===1?'active':''} sem-btn" style="border-radius:6px 0 0 6px;padding:10px 14px;font-size:13px">1° Semestre</button>
+        <button id="btnSemAll" class="${curSem?'' :'active'} sem-btn" style="border-radius:6px 0 0 6px;padding:10px 14px;font-size:13px">Tutti</button>
+        <button id="btnSem1" class="${curSem===1?'active':''} sem-btn" style="border-radius:0;padding:10px 14px;font-size:13px">1° Semestre</button>
         <button id="btnSem2" class="${curSem===2?'active':''} sem-btn" style="border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px">2° Semestre</button>
       </div>
       <select id="ttAlgorithm" style="min-width:190px">
@@ -1711,8 +1711,9 @@ function renderTimetableSection(){
     const btnGenerateSingle=document.getElementById('btnGenerateSingle');
     if(btnGenerateSingle) btnGenerateSingle.onclick = generateScheduleForProgramYear;
     // Semester toggle
-    document.getElementById("btnSem1").onclick=()=>{ selectedSemester=(selectedSemester===1?null:1); updateSemesterButtons(); };
-    document.getElementById("btnSem2").onclick=()=>{ selectedSemester=(selectedSemester===2?null:2); updateSemesterButtons(); };
+    document.getElementById("btnSemAll").onclick=()=>{ selectedSemester=null; updateSemesterButtons(); };
+    document.getElementById("btnSem1").onclick=()=>{ selectedSemester=1; updateSemesterButtons(); };
+    document.getElementById("btnSem2").onclick=()=>{ selectedSemester=2; updateSemesterButtons(); };
     updateSemesterButtons();
     fProg.onchange=()=>{
       if(fProg.value) selectedProgramId = fProg.value;

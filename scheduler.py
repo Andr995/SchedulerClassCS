@@ -600,6 +600,306 @@ def _validate_hard_constraints(assignments, data):
     }
 
 
+def _evaluate_soft_constraints(assignments, data):
+    """Valuta i vincoli soft e calcola un punteggio per docente.
+
+    Il report e indipendente dal solver usato, quindi valido anche per
+    schedule importati o modificati manualmente.
+    """
+    tm = data.get('meta', {}).get('timeModel', {})
+    ds = int(tm.get('dayStart', 8))
+    de = int(tm.get('dayEnd', 19))
+
+    weights = data.get('softPolicy', {}).get('weights', {})
+    gap_w = int(weights.get('curriculumGapPerHour', 10) or 0)
+    early_w = int(weights.get('earlyStartPenalty', 2) or 0)
+    late_w = int(weights.get('lateStartPenalty', 3) or 0)
+    consec_w = int(weights.get('teacherConsecutiveOver3PerHour', 30) or 0)
+    daily_w = int(weights.get('teacherDailyOver5PerHour', 20) or 0)
+    pattern_w = int(weights.get('patternViolation', 1000) or 0)
+    room_change_w = int(weights.get('curriculumRoomChangePenalty', 6) or 0)
+    preferred_patterns = data.get('softPolicy', {}).get('preferredPatterns', {})
+
+    placed = [a for a in assignments if a.get('day') in DAYS and int(a.get('startHour', -1)) >= 0]
+    courses_by_id = {c.get('id', ''): c for c in data.get('courses', [])}
+    teachers_by_id = {t.get('id', ''): t for t in data.get('teachers', [])}
+
+    teacher_day_hours = defaultdict(lambda: defaultdict(set))  # tid -> di -> set(hours)
+    teacher_daily_total = defaultdict(lambda: defaultdict(int))
+    teacher_pref_early_hits = defaultdict(int)
+    teacher_pref_late_hits = defaultdict(int)
+    teacher_pref_early_total = defaultdict(int)
+    teacher_pref_late_total = defaultdict(int)
+    course_days = defaultdict(list)
+    curriculum_day_events = defaultdict(list)  # (curriculum, day_idx) -> events
+
+    for a in placed:
+        day_name = a.get('day', '')
+        di = DAY_INDEX.get(day_name, -1)
+        if di < 0:
+            continue
+
+        start = int(a.get('startHour', -1))
+        end = int(a.get('endHour', -1))
+        if end <= start:
+            continue
+
+        duration = max(1, end - start)
+        course_id = a.get('courseId', '')
+        course_days[course_id].append(di)
+
+        curricula = list(a.get('curriculaIds') or courses_by_id.get(course_id, {}).get('curriculaIds', []))
+        for cid in curricula:
+            curriculum_day_events[(cid, di)].append(a)
+
+        teacher_ids = list(a.get('teacherIds') or courses_by_id.get(course_id, {}).get('teacherIds', []))
+        for tid in teacher_ids:
+            teacher_daily_total[tid][di] += duration
+            for h in range(start, end):
+                teacher_day_hours[tid][di].add(h)
+
+            t = teachers_by_id.get(tid, {})
+            prefs = t.get('preferences', {}) if isinstance(t, dict) else {}
+            if prefs.get('avoidEarly'):
+                teacher_pref_early_total[tid] += 1
+                if start == ds:
+                    teacher_pref_early_hits[tid] += 1
+            if prefs.get('avoidLate'):
+                teacher_pref_late_total[tid] += 1
+                if start >= 17:
+                    teacher_pref_late_hits[tid] += 1
+
+    # 1) Gap curriculum (ore buco tra lezioni nello stesso giorno)
+    gap_hours = 0
+    for (_, _), evts in curriculum_day_events.items():
+        if len(evts) < 2:
+            continue
+        intervals = []
+        for e in evts:
+            s = int(e.get('startHour', -1))
+            f = int(e.get('endHour', -1))
+            if s >= 0 and f > s:
+                intervals.append((s, f))
+        if len(intervals) < 2:
+            continue
+        intervals.sort(key=lambda x: (x[0], x[1]))
+        merged = []
+        for s, f in intervals:
+            if not merged or s > merged[-1][1]:
+                merged.append([s, f])
+            else:
+                merged[-1][1] = max(merged[-1][1], f)
+        for i in range(1, len(merged)):
+            gap = max(0, merged[i][0] - merged[i - 1][1])
+            gap_hours += gap
+
+    gap_penalty = gap_hours * gap_w
+
+    # 2) Early / Late start con preferenze docenti
+    early_hits = sum(teacher_pref_early_hits.values())
+    late_hits = sum(teacher_pref_late_hits.values())
+    early_penalty = early_hits * max(1, early_w)
+    late_penalty = late_hits * max(1, late_w)
+
+    # 3) Ore consecutive docente oltre 3
+    consecutive_excess_hours = 0
+    daily_over5_hours = 0
+    teacher_max_consecutive = defaultdict(int)
+    teacher_days_taught = defaultdict(set)
+
+    for tid, by_day in teacher_day_hours.items():
+        for di, hour_set in by_day.items():
+            if not hour_set:
+                continue
+            teacher_days_taught[tid].add(di)
+            hours = sorted(hour_set)
+            block = 1
+            max_block = 1
+            for idx in range(1, len(hours)):
+                if hours[idx] == hours[idx - 1] + 1:
+                    block += 1
+                else:
+                    max_block = max(max_block, block)
+                    block = 1
+            max_block = max(max_block, block)
+            teacher_max_consecutive[tid] = max(teacher_max_consecutive[tid], max_block)
+            if max_block > 3:
+                consecutive_excess_hours += (max_block - 3)
+
+    for tid, by_day in teacher_daily_total.items():
+        for _, total_h in by_day.items():
+            if total_h > 5:
+                daily_over5_hours += (total_h - 5)
+
+    consecutive_penalty = consecutive_excess_hours * consec_w
+    daily_penalty = daily_over5_hours * daily_w
+
+    # 4) Violazioni pattern distribuzione settimanale
+    pattern_violations = 0
+    for cid, days in course_days.items():
+        course = courses_by_id.get(cid, {})
+        expected_events = len(course.get('weeklyEvents', []))
+        if expected_events not in (2, 3):
+            continue
+        allowed = _course_allowed_patterns(course, preferred_patterns)
+        if not allowed:
+            continue
+        unique_days = sorted(set(days))
+        if len(unique_days) != expected_events:
+            pattern_violations += 1
+            continue
+        if tuple(unique_days) not in allowed:
+            pattern_violations += 1
+    pattern_penalty = pattern_violations * pattern_w
+
+    # 5) Cambio aula curriculum stesso giorno
+    room_changes = 0
+    for (_, _), evts in curriculum_day_events.items():
+        if len(evts) < 2:
+            continue
+        ordered = sorted(
+            evts,
+            key=lambda e: (int(e.get('startHour', -1)), int(e.get('endHour', -1)))
+        )
+        prev_room = None
+        for e in ordered:
+            room_id = e.get('roomId', '')
+            if prev_room is not None and room_id and room_id != prev_room:
+                room_changes += 1
+            prev_room = room_id or prev_room
+    room_change_penalty = room_changes * room_change_w
+
+    checks = [
+        {
+            'id': 'curriculumGapPerHour',
+            'label': 'Buchi curriculum (stesso giorno)',
+            'violations': gap_hours,
+            'weight': gap_w,
+            'penalty': gap_penalty,
+            'respected': gap_hours == 0,
+        },
+        {
+            'id': 'teacherAvoidEarly',
+            'label': 'Preferenze docenti: evitare slot iniziale',
+            'violations': early_hits,
+            'weight': early_w,
+            'penalty': early_penalty,
+            'respected': early_hits == 0,
+        },
+        {
+            'id': 'teacherAvoidLate',
+            'label': 'Preferenze docenti: evitare slot tardi',
+            'violations': late_hits,
+            'weight': late_w,
+            'penalty': late_penalty,
+            'respected': late_hits == 0,
+        },
+        {
+            'id': 'teacherConsecutiveOver3PerHour',
+            'label': 'Docenti con blocchi consecutivi oltre 3h',
+            'violations': consecutive_excess_hours,
+            'weight': consec_w,
+            'penalty': consecutive_penalty,
+            'respected': consecutive_excess_hours == 0,
+        },
+        {
+            'id': 'teacherDailyOver5PerHour',
+            'label': 'Docenti con ore giornaliere oltre 5h',
+            'violations': daily_over5_hours,
+            'weight': daily_w,
+            'penalty': daily_penalty,
+            'respected': daily_over5_hours == 0,
+        },
+        {
+            'id': 'patternViolation',
+            'label': 'Distribuzione giorni non in pattern preferito',
+            'violations': pattern_violations,
+            'weight': pattern_w,
+            'penalty': pattern_penalty,
+            'respected': pattern_violations == 0,
+        },
+        {
+            'id': 'curriculumRoomChangePenalty',
+            'label': 'Cambi aula nello stesso curriculum/giorno',
+            'violations': room_changes,
+            'weight': room_change_w,
+            'penalty': room_change_penalty,
+            'respected': room_changes == 0,
+        },
+    ]
+
+    total_penalty = sum(int(c.get('penalty', 0) or 0) for c in checks)
+    respected_count = sum(1 for c in checks if c.get('respected'))
+
+    # Punti docenti: premia rispetto preferenze/limiti giornalieri e consecutivi.
+    teacher_points = []
+    for tid, teacher in teachers_by_id.items():
+        days_taught = teacher_days_taught.get(tid, set())
+        taught_days_count = len(days_taught)
+        if taught_days_count == 0 and teacher_pref_early_total.get(tid, 0) == 0 and teacher_pref_late_total.get(tid, 0) == 0:
+            continue
+
+        early_total = teacher_pref_early_total.get(tid, 0)
+        early_ok = max(0, early_total - teacher_pref_early_hits.get(tid, 0))
+        late_total = teacher_pref_late_total.get(tid, 0)
+        late_ok = max(0, late_total - teacher_pref_late_hits.get(tid, 0))
+
+        daily_ok_days = 0
+        consecutive_ok_days = 0
+        for di in days_taught:
+            day_total = teacher_daily_total.get(tid, {}).get(di, 0)
+            if day_total <= 5:
+                daily_ok_days += 1
+
+            day_hours = sorted(teacher_day_hours.get(tid, {}).get(di, set()))
+            max_block = 0
+            if day_hours:
+                block = 1
+                max_block = 1
+                for idx in range(1, len(day_hours)):
+                    if day_hours[idx] == day_hours[idx - 1] + 1:
+                        block += 1
+                    else:
+                        max_block = max(max_block, block)
+                        block = 1
+                max_block = max(max_block, block)
+            if max_block <= 3:
+                consecutive_ok_days += 1
+
+        points = early_ok + late_ok + (daily_ok_days * 2) + (consecutive_ok_days * 2)
+        max_points = early_total + late_total + (taught_days_count * 2) + (taught_days_count * 2)
+        if max_points <= 0:
+            percentage = 100
+        else:
+            percentage = round((points / max_points) * 100, 1)
+
+        teacher_points.append({
+            'teacherId': tid,
+            'teacherName': teacher.get('name', tid),
+            'points': points,
+            'maxPoints': max_points,
+            'percentage': percentage,
+            'details': {
+                'respectAvoidEarly': {'ok': early_ok, 'total': early_total},
+                'respectAvoidLate': {'ok': late_ok, 'total': late_total},
+                'dailyLoadWithin5hDays': {'ok': daily_ok_days, 'total': taught_days_count},
+                'consecutiveLoadWithin3hDays': {'ok': consecutive_ok_days, 'total': taught_days_count},
+                'maxConsecutiveHours': teacher_max_consecutive.get(tid, 0),
+            },
+        })
+
+    teacher_points.sort(key=lambda x: (-x.get('percentage', 0), -x.get('points', 0), x.get('teacherName', '')))
+
+    return {
+        'checks': checks,
+        'respectedCount': respected_count,
+        'totalChecks': len(checks),
+        'allSoftConstraintsRespected': respected_count == len(checks),
+        'totalPenalty': total_penalty,
+        'teacherPoints': teacher_points,
+    }
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # CP-SAT Solver (primario)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1041,6 +1341,7 @@ def _solve_cpsat(data, time_limit_s=30):
             })
 
         hard_report = _validate_hard_constraints(assignments, data)
+        soft_report = _evaluate_soft_constraints(assignments, data)
 
         return {
             'assignments': assignments,
@@ -1050,6 +1351,7 @@ def _solve_cpsat(data, time_limit_s=30):
             'algorithm': 'CP-SAT',
             'algorithmLabel': 'Google OR-Tools CP-SAT',
             'hardConstraintReport': hard_report,
+            'softConstraintReport': soft_report,
             'message': ('Soluzione ottimale trovata.' if status == cp_model.OPTIMAL
                         else 'Soluzione ammissibile trovata (non garantita ottimale).'),
         }
@@ -1067,6 +1369,14 @@ def _solve_cpsat(data, time_limit_s=30):
                 'allHardConstraintsRespected': False,
                 'placedEvents': 0,
                 'totalEvents': 0,
+            },
+            'softConstraintReport': {
+                'checks': [],
+                'respectedCount': 0,
+                'totalChecks': 0,
+                'allSoftConstraintsRespected': False,
+                'totalPenalty': 0,
+                'teacherPoints': [],
             },
             'message': ('Impossibile trovare una soluzione. Controlla i vincoli: '
                         'troppi corsi per le aule disponibili, indisponibilità '
@@ -1369,6 +1679,7 @@ def _solve_greedy(data):
 
     unplaced = sum(1 for a in assignments if a.get('error'))
     hard_report = _validate_hard_constraints(assignments, data)
+    soft_report = _evaluate_soft_constraints(assignments, data)
     return {
         'assignments': assignments,
         'status': 'feasible' if unplaced == 0 else 'partial',
@@ -1377,6 +1688,7 @@ def _solve_greedy(data):
         'algorithm': 'Greedy',
         'algorithmLabel': 'Greedy Heuristic Fallback',
         'hardConstraintReport': hard_report,
+        'softConstraintReport': soft_report,
         'message': (f'Scheduling completato. {len(assignments) - unplaced}/{len(assignments)} '
                     f'eventi piazzati.' +
                     (f' {unplaced} eventi non piazzabili.' if unplaced else '')),

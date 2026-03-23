@@ -3065,55 +3065,257 @@
       "color": "hsla(136, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-121",
-      "courseId": "32306921",
-      "courseName": "Supplementary courses group 2 Data Analysis and Modelling",
-      "studyYear": 2,
+      "eventId": "E-0",
+      "courseId": "22823975",
+      "courseName": "1002967 - ULTERIORI CONOSCENZE LINGUISTICHE",
+      "studyYear": 1,
       "mutuationGroup": "",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 11,
+      "endHour": 13,
       "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
-      "teacherIds": [],
-      "teacherNames": [],
-      "curriculaIds": [
-        "97526580"
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [
+        "70594314",
+        "79290972"
       ],
-      "programId": "88927583",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+      "teacherNames": [
+        "CACCIOLA GIULIANA",
+        "ALESSI GIUSTINO MICHELANGELO IACONO"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(286, 65%, 55%, 0.7)"
     },
     {
-      "eventId": "E-122",
-      "courseId": "92481040",
-      "courseName": "Supplementary courses group 2 Data Data Driven Applications",
-      "studyYear": 2,
+      "eventId": "E-1",
+      "courseId": "92568327",
+      "courseName": "1015128 - ELEMENTI DI ANALISI MATEMATICA 1 A - E",
+      "studyYear": 1,
       "mutuationGroup": "",
-      "day": "N/A",
-      "dayIt": "N/A",
-      "startHour": -1,
-      "endHour": -1,
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 16,
+      "endHour": 18,
       "duration": 2,
-      "roomId": "N/A",
-      "roomName": "N/A",
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [
+        "75567359",
+        "56402091",
+        "94072636",
+        "56692910"
+      ],
+      "teacherNames": [
+        "D'ASERO Salvatore",
+        "NASELLI Ornella",
+        "FANCIULLO Maria",
+        "MOSCONI SUNRA JOHANNES NIKOLAJ"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(186, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-2",
+      "courseId": "76333226",
+      "courseName": "1015912 - PROGRAMMAZIONE I E LABORATORIO A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Fri",
+      "dayIt": "Venerdì",
+      "startHour": 15,
+      "endHour": 17,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
       "teacherIds": [],
       "teacherNames": [],
       "curriculaIds": [
-        "77253503"
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
       ],
-      "programId": "88927583",
-      "color": "#888",
-      "error": "Impossibile piazzare questo evento con i vincoli attuali."
+      "programId": "66526837",
+      "color": "hsla(218, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-3",
+      "courseId": "94581518",
+      "courseName": "1015938 - ARCHITETTURA DEGLI ELABORATORI E LABORATORIO A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Mon",
+      "dayIt": "Lunedì",
+      "startHour": 15,
+      "endHour": 17,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(169, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-4",
+      "courseId": "36117189",
+      "courseName": "72439 - FONDAMENTI DI INFORMATICA A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Thu",
+      "dayIt": "Giovedì",
+      "startHour": 9,
+      "endHour": 11,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [
+        "82301386",
+        "30330147",
+        "62245432"
+      ],
+      "teacherNames": [
+        "BARBANERA Franco",
+        "MADONIA Maria Serafina",
+        "FARGETTA GEORGIA"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(142, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-5",
+      "courseId": "94337264",
+      "courseName": "9795525 - STRUTTURE DISCRETE A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 16,
+      "endHour": 18,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [
+        "61836657",
+        "28366579"
+      ],
+      "teacherNames": [
+        "CUTELLO Vincenzo",
+        "CAVALLARO CLAUDIA"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(316, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-6",
+      "courseId": "74257934",
+      "courseName": "9795526 - ALGEBRA LINEARE E GEOMETRIA A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Wed",
+      "dayIt": "Mercoledì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [
+        "31464069",
+        "28716514",
+        "65026054"
+      ],
+      "teacherNames": [
+        "MARINO LUCIA MARIA",
+        "ZAPPALA' Giuseppe",
+        "STAGLIANO' GIOVANNI"
+      ],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(227, 65%, 55%, 0.7)"
+    },
+    {
+      "eventId": "E-7",
+      "courseId": "80959491",
+      "courseName": "9795537 - PROGRAMMAZIONE II E LABORATORIO A - E",
+      "studyYear": 1,
+      "mutuationGroup": "",
+      "day": "Tue",
+      "dayIt": "Martedì",
+      "startHour": 14,
+      "endHour": 16,
+      "duration": 2,
+      "roomId": "86994409",
+      "roomName": "Aula 128",
+      "teacherIds": [],
+      "teacherNames": [],
+      "curriculaIds": [
+        "48594436",
+        "37624967",
+        "19080634",
+        "90827153",
+        "78033281",
+        "13739711"
+      ],
+      "programId": "66526837",
+      "color": "hsla(15, 65%, 55%, 0.7)"
     }
   ],
-  "status": "partial",
-  "objective": null,
-  "unplaced": 2,
-  "algorithm": "Greedy",
-  "algorithmLabel": "Greedy Heuristic Fallback",
+  "status": "optimal",
+  "objective": 0.0,
+  "wallTime": 1.08,
+  "algorithm": "Linear",
+  "algorithmLabel": "Linear Integer Programming (via OR-Tools CP-SAT)",
   "hardConstraintReport": {
     "checks": [
       {
@@ -3131,8 +3333,8 @@
       {
         "id": "curriculumOverlap",
         "label": "No sovrapposizioni curricula",
-        "respected": true,
-        "violations": 0
+        "respected": false,
+        "violations": 60
       },
       {
         "id": "roomCapacity",
@@ -3183,17 +3385,20 @@
         "violations": 0
       }
     ],
-    "respectedCount": 11,
+    "respectedCount": 10,
     "totalChecks": 11,
-    "allHardConstraintsRespected": true,
-    "placedEvents": 121,
-    "totalEvents": 123
+    "allHardConstraintsRespected": false,
+    "placedEvents": 129,
+    "totalEvents": 129
   },
-  "message": "Impossibile trovare una soluzione. Controlla i vincoli: troppi corsi per le aule disponibili, indisponibilità troppo restrittive, o eventi dello stesso corso che superano i 5 giorni disponibili. | Modello risolto come programma lineare intero con vincoli interi. Fallback automatico su Greedy attivato. Scheduling completato. 121/123 eventi piazzati. 2 eventi non piazzabili.",
-  "fallbackFromAlgorithm": "linear-programming",
-  "solveTimeSeconds": 30.68,
+  "message": "Rigenerato da zero il blocco 66526837 anno 1. Mantenute 121 assegnazioni esistenti fuori target.",
+  "solveTimeSeconds": 1.22,
   "requestedAlgorithm": "linear-programming",
-  "solverBackend": "Greedy Heuristic Fallback",
-  "timestamp": "2026-03-18 21:06:58",
-  "semester": 2
+  "timestamp": "2026-03-19 18:47:04",
+  "generationMode": "program-year",
+  "targetProgramId": "66526837",
+  "targetYear": 1,
+  "keptAssignments": 121,
+  "regeneratedAssignments": 8,
+  "solverBackend": "Linear Integer Programming (via OR-Tools CP-SAT)"
 }

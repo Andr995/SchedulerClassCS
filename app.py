@@ -357,11 +357,13 @@ def _normalize_schedule_payload(payload, db, base_schedule=None, source='manual'
         })
 
     report = scheduler._validate_hard_constraints(normalized_assignments, db)
+    soft_report = scheduler._evaluate_soft_constraints(normalized_assignments, db)
 
     out = dict(base_schedule or {})
     out.update(payload)
     out['assignments'] = normalized_assignments
     out['hardConstraintReport'] = report
+    out['softConstraintReport'] = soft_report
     out['timestamp'] = time.strftime('%Y-%m-%d %H:%M:%S')
     out['status'] = payload.get('status') or ('manual' if source == 'manual' else 'imported')
     out['message'] = payload.get('message') or (
@@ -1547,6 +1549,7 @@ def generate_schedule_program_year():
 
     # Ricalcola report hard sull'orario complessivo finale.
     result['hardConstraintReport'] = scheduler._validate_hard_constraints(merged_assignments, db)
+    result['softConstraintReport'] = scheduler._evaluate_soft_constraints(merged_assignments, db)
     if result.get('status') not in ('error', 'infeasible'):
         result['message'] = (
             f"Rigenerato da zero il blocco {program_id} anno {year}. "
