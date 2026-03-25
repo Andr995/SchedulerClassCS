@@ -1,10 +1,18 @@
 [
   {
     "username": "admin",
+<<<<<<< HEAD
     "passwordHash": "scrypt:32768:8:1$KmX6HaeRlMhwuAXW$962b5092e5cdcfead38181401cbb3af1ca173c393e5d334681e930ca55002c23f1c6b7525e620f4adc48368dfafc62eafb8e2f93765fa87050f8b85410ed666f",
     "role": "admin",
     "isActive": true,
     "createdAt": "2026-03-23T17:12:38+00:00",
     "lastLoginAt": "2026-03-23T17:13:24+00:00"
+=======
+    "passwordHash": "scrypt:32768:8:1$UM0QQofA4i54tPH2$0c80fcd729a105056d9cfd1d9e0d3b248f83c419478548e400443927aea87353449ff44fc5c857e433e3fd7f87e95953753aa8e139bfcb156304cc8c23425131",
+    "role": "admin",
+    "isActive": true,
+    "createdAt": "2026-03-18T21:14:04+00:00",
+    "lastLoginAt": "2026-03-19T17:46:06+00:00"
+>>>>>>> 3d7ff1a4b4e9e6e30fb586e9aa37a5cd7a321f78
   }
 ]

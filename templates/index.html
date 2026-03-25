@@ -355,33 +355,94 @@ function renderStatus() {
 
 function renderConstraintLog() {
   const el = document.getElementById('constraintLog');
-  const report = payload?.schedule?.hardConstraintReport;
-  if (!report || !Array.isArray(report.checks) || report.checks.length === 0) {
+  const hard = payload?.schedule?.hardConstraintReport;
+  const soft = payload?.schedule?.softConstraintReport;
+
+  const hasHard = !!(hard && Array.isArray(hard.checks) && hard.checks.length > 0);
+  const hasSoft = !!(soft && Array.isArray(soft.checks) && soft.checks.length > 0);
+
+  if (!hasHard && !hasSoft) {
     el.innerHTML = '<div class="empty">Log vincoli non disponibile per questo orario.</div>';
     return;
   }
 
-  const violated = report.checks.filter(c => Number(c.violations || 0) > 0);
-  if (violated.length === 0) {
-    el.innerHTML = '<div class="empty">Nessuna violazione hard rilevata.</div>';
-    return;
+  let html = '';
+
+  if (hasHard) {
+    const hardViolated = hard.checks.filter(c => Number(c.violations || 0) > 0);
+    const hardRows = (hardViolated.length ? hardViolated : hard.checks)
+      .map(c => {
+        const v = Number(c.violations || 0);
+        const ok = v === 0;
+        return `<tr>
+          <td>${esc(c.label || c.id)}</td>
+          <td class="${ok ? 'ok' : 'ko'}">${ok ? 'OK' : 'Violato'}</td>
+          <td>${esc(v)}</td>
+        </tr>`;
+      })
+      .join('');
+
+    html += `
+      <div class="meta-line" style="margin-bottom:8px">
+        Vincoli hard rispettati: <b>${esc(hard.respectedCount || 0)}/${esc(hard.totalChecks || 0)}</b>
+      </div>
+      <table>
+        <thead><tr><th>Vincolo Hard</th><th>Esito</th><th>Violazioni</th></tr></thead>
+        <tbody>${hardRows}</tbody>
+      </table>
+    `;
   }
 
-  const rows = violated
-    .map(c => `<tr>
-      <td>${esc(c.label || c.id)}</td>
-      <td class="ko">Violato</td>
-      <td>${esc(c.violations || 0)}</td>
-    </tr>`)
-    .join('');
+  if (hasSoft) {
+    const softRows = soft.checks
+      .map(c => {
+        const v = Number(c.violations || 0);
+        const ok = v === 0;
+        return `<tr>
+          <td>${esc(c.label || c.id)}</td>
+          <td class="${ok ? 'ok' : 'ko'}">${ok ? 'OK' : 'Da migliorare'}</td>
+          <td>${esc(v)}</td>
+          <td>${esc(c.weight ?? 0)}</td>
+          <td>${esc(c.penalty ?? 0)}</td>
+        </tr>`;
+      })
+      .join('');
 
-  el.innerHTML = `
-    <div class="meta-line" style="margin-bottom:8px">Mostrati solo i vincoli hard violati.</div>
-    <table>
-      <thead><tr><th>Vincolo</th><th>Esito</th><th>Violazioni</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-  `;
+    html += `
+      <div class="meta-line" style="margin:12px 0 8px 0">
+        Vincoli soft rispettati: <b>${esc(soft.respectedCount || 0)}/${esc(soft.totalChecks || 0)}</b>
+        | Penalita soft totale: <b>${esc(soft.totalPenalty ?? 0)}</b>
+      </div>
+      <table>
+        <thead><tr><th>Vincolo Soft</th><th>Esito</th><th>Violazioni</th><th>Peso</th><th>Penalita</th></tr></thead>
+        <tbody>${softRows}</tbody>
+      </table>
+    `;
+
+    const teacherPoints = Array.isArray(soft.teacherPoints) ? soft.teacherPoints : [];
+    if (teacherPoints.length) {
+      const rankedRows = teacherPoints
+        .slice()
+        .sort((a, b) => (Number(b.percentage || 0) - Number(a.percentage || 0)) || (Number(b.points || 0) - Number(a.points || 0)))
+        .map((t, idx) => `<tr>
+          <td>${idx + 1}</td>
+          <td>${esc(t.teacherName || t.teacherId || '')}</td>
+          <td>${esc(t.points ?? 0)}/${esc(t.maxPoints ?? 0)}</td>
+          <td class="${Number(t.percentage || 0) >= 80 ? 'ok' : (Number(t.percentage || 0) < 50 ? 'ko' : '')}">${esc(t.percentage ?? 0)}%</td>
+        </tr>`)
+        .join('');
+
+      html += `
+        <div class="meta-line" style="margin:12px 0 8px 0">Punti docenti (rispetto vincoli soft)</div>
+        <table>
+          <thead><tr><th>#</th><th>Docente</th><th>Punti</th><th>Score</th></tr></thead>
+          <tbody>${rankedRows}</tbody>
+        </table>
+      `;
+    }
+  }
+
+  el.innerHTML = html;
 }
 
 function renderMutuationView() {
