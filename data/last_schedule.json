@@ -3112,8 +3112,8 @@
   "status": "partial",
   "objective": null,
   "unplaced": 2,
-  "algorithm": "Greedy",
-  "algorithmLabel": "Greedy Heuristic Fallback",
+  "algorithm": "Linear",
+  "algorithmLabel": "Linear Programming Requested (fallback Greedy)",
   "hardConstraintReport": {
     "checks": [
       {
@@ -3189,11 +3189,10 @@
     "placedEvents": 121,
     "totalEvents": 123
   },
-  "message": "Impossibile trovare una soluzione. Controlla i vincoli: troppi corsi per le aule disponibili, indisponibilità troppo restrittive, o eventi dello stesso corso che superano i 5 giorni disponibili. | Modello risolto come programma lineare intero con vincoli interi. Fallback automatico su Greedy attivato. Scheduling completato. 121/123 eventi piazzati. 2 eventi non piazzabili.",
-  "fallbackFromAlgorithm": "linear-programming",
-  "solveTimeSeconds": 30.68,
+  "message": "Scheduling completato. 121/123 eventi piazzati. 2 eventi non piazzabili. | OR-Tools non disponibile: fallback su greedy.",
+  "solveTimeSeconds": 0.73,
   "requestedAlgorithm": "linear-programming",
-  "solverBackend": "Greedy Heuristic Fallback",
-  "timestamp": "2026-03-18 21:06:58",
+  "solverBackend": "Linear Programming Requested (fallback Greedy)",
+  "timestamp": "2026-03-23 18:27:42",
   "semester": 2
 }
